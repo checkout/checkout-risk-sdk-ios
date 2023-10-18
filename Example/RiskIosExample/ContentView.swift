@@ -24,7 +24,7 @@ struct ContentView: View {
             Text("Risk iOS")
             
             Button("Initialise Risk") {
-                Risk.init(publicKey: "test_pk_key")
+                let RiskInstance = Risk.init(publicKey: "test_pk_key")
             }
         }
         .padding()

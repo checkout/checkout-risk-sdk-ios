@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/checkout/checkout-risk-sdk-ios.git",
       "state" : {
-        "branch" : "PRISM-10045-hello-world-i-os-package",
-        "revision" : "4c1254c20440b5fce1dbd0be844438bcace23c8e"
+        "branch" : "main",
+        "revision" : "35eb48dd5142882977105a4cc2e189bae281595c"
       }
     }
   ],
