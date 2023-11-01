@@ -1,0 +1,58 @@
+name: Verify PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - 'main'
+      - 'develop'
+      - 'release/*'
+
+env:
+  destination: "platform=iOS Simulator,name=iPhone 14 Pro,OS=latest"
+  configuration: "Debug"
+  noIndex: "COMPILER_INDEX_STORE_ENABLE=NO"
+  noSigning: "CODE_SIGNING_ALLOWED=NO"
+  versionXcode: "14.3.1"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  risk-sdk:
+    name: Risk SDK Verification
+    runs-on: macos-13-xl
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Select Xcode
+        run: |
+          sudo xcode-select -switch /Applications/Xcode_${versionXcode}.app
+
+      - name: Log xcodebuild Version
+        run: |
+          xcodebuild -version
+
+      - name: Set git user details
+        run: |
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config user.name "$GITHUB_ACTOR"
+          git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+
+      - name: Run Risk SDK Tests
+        run: |
+          set -o pipefail && xcodebuild -scheme "${scheme}" test -destination "${destination}" "${noIndex}" "${noSigning}" | xcpretty
+        env:
+          scheme: RiskIos
+      
+      # TODO: find way of working with private repo
+      # - name: Build Risk SDK SPM Test Project
+      #   run: |
+      #     set -o pipefail && xcodebuild "build" "-project" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
+      #   env:
+      #     path: "Example/RiskIosExample.xcodeproj"
+      #     scheme: RiskIos
