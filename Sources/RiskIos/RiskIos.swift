@@ -8,10 +8,34 @@
 import Foundation
 
 public class Risk {
-    private var publicKey: String
+    private static var sharedInstance: Risk?
     
-    public init(publicKey: String) {
-        self.publicKey = publicKey
-        print("Risk package initialised with public key: \(self.publicKey)")
+    public init() {
+        print("RiskIos Initialized")
+    }
+    
+    public static func createInstance(config: RiskIosConfig, completion: @escaping (Risk?) -> Void) {
+        if let existingInstance = sharedInstance {
+            completion(existingInstance)
+        } else {
+            let internalConfig = RiskSdkInternalConfig(config: config)
+            let deviceDataService = DeviceDataService(config: internalConfig)
+            
+            deviceDataService.getConfiguration {
+                configuration in
+                
+                if(!configuration.fingerprintIntegration.enabled) {
+                    return completion(nil)
+                }
+                
+                let riskInstance = Risk()
+                sharedInstance = riskInstance
+                completion(riskInstance)
+            }
+        }
+    }
+    
+    public func publishDeviceData () {
+        print("Publishing")
     }
 }

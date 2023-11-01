@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,7 +14,7 @@
 		BA0B005A2AD6A52A0037D9FF /* RiskIosExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00592AD6A52A0037D9FF /* RiskIosExampleTests.swift */; };
 		BA0B00642AD6A52A0037D9FF /* RiskIosExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00632AD6A52A0037D9FF /* RiskIosExampleUITests.swift */; };
 		BA0B00662AD6A52A0037D9FF /* RiskIosExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00652AD6A52A0037D9FF /* RiskIosExampleUITestsLaunchTests.swift */; };
-		BAE398122AD7FCB600E64B16 /* RiskIos in Frameworks */ = {isa = PBXBuildFile; productRef = BAE398112AD7FCB600E64B16 /* RiskIos */; };
+		BA9442362AEFE8970037BFCB /* RiskIos in Frameworks */ = {isa = PBXBuildFile; productRef = BA9442352AEFE8970037BFCB /* RiskIos */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAE398122AD7FCB600E64B16 /* RiskIos in Frameworks */,
+				BA9442362AEFE8970037BFCB /* RiskIos in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,7 +146,7 @@
 			);
 			name = RiskIosExample;
 			packageProductDependencies = (
-				BAE398112AD7FCB600E64B16 /* RiskIos */,
+				BA9442352AEFE8970037BFCB /* RiskIos */,
 			);
 			productName = RiskIosExample;
 			productReference = BA0B00452AD6A5280037D9FF /* RiskIosExample.app */;
@@ -221,7 +221,7 @@
 			);
 			mainGroup = BA0B003C2AD6A5280037D9FF;
 			packageReferences = (
-				BA0B00A82AD6D84B0037D9FF /* XCRemoteSwiftPackageReference "checkout-risk-sdk-ios" */,
+				BA9442342AEFE8970037BFCB /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = BA0B00462AD6A5280037D9FF /* Products */;
 			projectDirPath = "";
@@ -593,21 +593,16 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		BA0B00A82AD6D84B0037D9FF /* XCRemoteSwiftPackageReference "checkout-risk-sdk-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/checkout/checkout-risk-sdk-ios.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		BA9442342AEFE8970037BFCB /* XCLocalSwiftPackageReference ".." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ..;
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BAE398112AD7FCB600E64B16 /* RiskIos */ = {
+		BA9442352AEFE8970037BFCB /* RiskIos */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BA0B00A82AD6D84B0037D9FF /* XCRemoteSwiftPackageReference "checkout-risk-sdk-ios" */;
 			productName = RiskIos;
 		};
 /* End XCSwiftPackageProductDependency section */
