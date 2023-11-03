@@ -1,6 +1,7 @@
 //
-//  File.swift
-//  
+//  RiskSdkConfig.swift
+//  RiskIos
+//  Sources
 //
 //  Created by Precious Ossai on 31/10/2023.
 //
@@ -28,9 +29,9 @@ enum RiskEvent {
 
 
 public struct RiskIosConfig {
-    public var publicKey: String // merchant public key
-    public var environment: RiskEnvironment // qa | sandbox | prod
-    public var framesMode: Bool
+    private(set) public var publicKey: String // merchant public key
+    private(set) public var environment: RiskEnvironment // qa | sandbox | prod
+    private(set) public var framesMode: Bool
     
     public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
         self.publicKey = publicKey
@@ -40,9 +41,9 @@ public struct RiskIosConfig {
 }
 
 struct RiskSdkInternalConfig {
-    var merchantPublicKey: String
-    var deviceDataEndpoint: String
-    var integrationType: RiskIntegrationType
+    let merchantPublicKey: String
+    let deviceDataEndpoint: String
+    let integrationType: RiskIntegrationType
     
     init(config: RiskIosConfig) {
         self.merchantPublicKey = config.publicKey

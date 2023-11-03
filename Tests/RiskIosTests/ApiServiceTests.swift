@@ -1,13 +1,14 @@
 //
-//  File.swift
-//  
+//  ApiServiceTests.swift
+//  RiskIosTests
+//  Tests
 //
 //  Created by Precious Ossai on 31/10/2023.
 //
 
 import Foundation
 import XCTest
-@testable import RiskIos // Replace with the name of your main project module
+@testable import RiskIos
 
 class ApiServiceTests: XCTestCase {
     func testApiServiceWithValidData() {
@@ -15,7 +16,6 @@ class ApiServiceTests: XCTestCase {
         let apiService = ApiService()
         let validEndpoint = "https://prism-qa.ckotech.co/collect/configuration?integrationType=RiskJsStandalone"
         let validAuthToken = "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo"
-//        let expectedResult: Result<DeviceDataConfiguration, Error> = .success(DeviceDataConfiguration(fingerprintIntegration: FingerprintIntegration(enabled: true, publicKey: "xxx")))
 
         // Create an expectation for the async completion handler
         let expectation = self.expectation(description: "API request completed")

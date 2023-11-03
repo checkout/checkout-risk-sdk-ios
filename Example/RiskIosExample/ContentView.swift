@@ -24,7 +24,6 @@ struct ContentView: View {
             Button("Initialise Risk") {
                 let yourConfig = RiskIosConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
                 
-                
                 Risk.createInstance(config: yourConfig) { 
                     riskInstance in
                     riskInstance?.publishDeviceData()

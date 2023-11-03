@@ -1,6 +1,7 @@
 //
-//  File.swift
-//  
+//  DeviceDataService.swift
+//  RiskIos
+//  Sources
 //
 //  Created by Precious Ossai on 30/10/2023.
 //
@@ -16,18 +17,18 @@ public struct DeviceDataConfiguration: Decodable, Equatable {
     let fingerprintIntegration: FingerprintIntegration
 }
 
-internal class DeviceDataService {
-    public var config: RiskSdkInternalConfig
-    public var apiService: ApiServiceProtocol
+class DeviceDataService {
+    private(set) public var config: RiskSdkInternalConfig
+    private(set) public var apiService: ApiServiceProtocol
     
-    public init(config: RiskSdkInternalConfig, apiService:ApiServiceProtocol = ApiService()) {
+    public init(config: RiskSdkInternalConfig, apiService: ApiServiceProtocol = ApiService()) {
         self.config = config
         self.apiService = apiService
     }
     
     public func getConfiguration(completion: @escaping (DeviceDataConfiguration) -> Void) {
-        let endpoint = "\(self.config.deviceDataEndpoint)/configuration?integrationType=\(self.config.integrationType)"
-        let authToken = self.config.merchantPublicKey
+        let endpoint = "\(config.deviceDataEndpoint)/configuration?integrationType=\(config.integrationType)"
+        let authToken = config.merchantPublicKey
 
         apiService.getJSONFromAPIWithAuthorization(endpoint: endpoint, authToken: authToken, responseType: DeviceDataConfiguration.self) {
             result in

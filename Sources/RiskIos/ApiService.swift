@@ -1,5 +1,7 @@
 //
-//  File.swift
+//  ApiService.swift
+//  RiskIos
+//  Sources
 //
 //  Created by Precious Ossai on 30/10/2023.
 //
@@ -8,6 +10,17 @@ import Foundation
 
 protocol ApiServiceProtocol {
     func getJSONFromAPIWithAuthorization<T: Decodable>(endpoint: String, authToken: String, responseType: T.Type, completion: @escaping (Result<T, Error>) -> Void)
+}
+
+enum APIServiceError: Error {
+   case invalidURL
+   
+   var localizedDescription: String {
+       switch self {
+           case .invalidURL:
+               return "Invalid URL"
+       }
+   }
 }
 
 final class ApiService: ApiServiceProtocol {
