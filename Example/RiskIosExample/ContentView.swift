@@ -1,12 +1,12 @@
 //
 //  ContentView.swift
-//  RiskIosExample
+//  RiskExample
 //
 //  Created by Precious Ossai on 11/10/2023.
 //
 
 import SwiftUI
-import RiskIos
+import Risk
 
 import Foundation
 
@@ -22,7 +22,7 @@ struct ContentView: View {
             Text("Risk iOS")
             
             Button("Initialise Risk") {
-                let yourConfig = RiskIosConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
+                let yourConfig = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
                 
                 Risk.createInstance(config: yourConfig) { 
                     riskInstance in

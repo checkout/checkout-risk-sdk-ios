@@ -1,13 +1,13 @@
 //
-//  RiskIosExampleUITestsLaunchTests.swift
-//  RiskIosExampleUITests
+//  RiskExampleUITestsLaunchTests.swift
+//  RiskExampleUITests
 //
 //  Created by Precious Ossai on 11/10/2023.
 //
 
 import XCTest
 
-final class RiskIosExampleUITestsLaunchTests: XCTestCase {
+final class RiskExampleUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

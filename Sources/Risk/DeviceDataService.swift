@@ -1,6 +1,6 @@
 //
 //  DeviceDataService.swift
-//  RiskIos
+//  Risk
 //  Sources
 //
 //  Created by Precious Ossai on 30/10/2023.
@@ -18,10 +18,10 @@ public struct DeviceDataConfiguration: Decodable, Equatable {
 }
 
 class DeviceDataService {
-    public let config: RiskSdkInternalConfig
-    public let apiService: ApiServiceProtocol
+    public let config: RiskSDKInternalConfig
+    public let apiService: APIServiceProtocol
     
-    public init(config: RiskSdkInternalConfig, apiService: ApiServiceProtocol = ApiService()) {
+    public init(config: RiskSDKInternalConfig, apiService: APIServiceProtocol = APIService()) {
         self.config = config
         self.apiService = apiService
     }

@@ -1,12 +1,10 @@
 //
-//  RiskIos.swift
-//  RiskIos
+//  Risk.swift
+//  Risk
 //  Sources
 //
 //  Created by Precious Ossai on 13/10/2023.
 //
-// The Swift Programming Language
-// https://docs.swift.org/swift-book
 
 import Foundation
 
@@ -14,15 +12,15 @@ public class Risk {
     private static var sharedInstance: Risk?
     
     public init() {
-        print("RiskIos Initialized")
+        print("Risk Initialized")
     }
     
-    public static func createInstance(config: RiskIosConfig, completion: @escaping (Risk?) -> Void) {
+    public static func createInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
         guard sharedInstance === nil else {
             return completion(sharedInstance)
         }
         
-        let internalConfig = RiskSdkInternalConfig(config: config)
+        let internalConfig = RiskSDKInternalConfig(config: config)
         let deviceDataService = DeviceDataService(config: internalConfig)
         
         deviceDataService.getConfiguration {

@@ -1,6 +1,6 @@
 //
 //  DeviceDataServiceTests.swift
-//  RiskIosTests
+//  RiskTests
 //  Tests
 //
 //  Created by Precious Ossai on 31/10/2023.
@@ -8,17 +8,17 @@
 
 import Foundation
 import XCTest
-@testable import RiskIos // Replace with the actual name of your module
+@testable import Risk // Replace with the actual name of your module
 
 class DeviceDataServiceTests: XCTestCase {
     func testGetConfiguration() {
-        // Mocking your ApiService to provide expected results for testing
-        let mockApiService = MockApiService()
+        // Mocking your APIService to provide expected results for testing
+        let mockAPIService = MockAPIService()
         
         // Create a DeviceDataService with a mocked configuration
-        let config = RiskIosConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
-        let internalConfig = RiskSdkInternalConfig(config: config)
-        let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockApiService)
+        let config = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
+        let internalConfig = RiskSDKInternalConfig(config: config)
+        let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockAPIService)
         
         // Create an expectation for the async completion handler
         let expectation = self.expectation(description: "Configuration received")
@@ -26,8 +26,8 @@ class DeviceDataServiceTests: XCTestCase {
         // Define the expected configuration
         let expectedConfiguration = DeviceDataConfiguration(fingerprintIntegration: FingerprintIntegration(enabled: true, publicKey: "mockPublicKey"))
         
-        // Set up the mockApiService to return the expected configuration
-        mockApiService.expectedResult = .success(expectedConfiguration)
+        // Set up the mockAPIService to return the expected configuration
+        mockAPIService.expectedResult = .success(expectedConfiguration)
         
         // Call the getConfiguration method
         deviceDataService.getConfiguration { configuration in
@@ -44,8 +44,8 @@ class DeviceDataServiceTests: XCTestCase {
 }
 
 
-// Mock ApiService for testing purposes
-class MockApiService: ApiServiceProtocol {
+// Mock APIService for testing purposes
+class MockAPIService: APIServiceProtocol {
     var expectedResult: Result<DeviceDataConfiguration, Error>?
     
     func getJSONFromAPIWithAuthorization<T>(endpoint: String, authToken: String, responseType: T.Type, completion: @escaping (Result<T, Error>) -> Void) where T: Decodable {

@@ -1,6 +1,6 @@
 //
 //  RiskSdkConfig.swift
-//  RiskIos
+//  Risk
 //  Sources
 //
 //  Created by Precious Ossai on 31/10/2023.
@@ -15,20 +15,20 @@ public enum RiskEnvironment {
 }
 
 internal enum RiskIntegrationType: String {
-    case RiskJsStandalone = "RiskJsStandalone" // TODO: - Update this value to use RiskIosStandalone
-    case RiskIosFrames = "RiskJsInFramesJs" // TODO: - Update this value to use RiskIosInFramesIos
+    case riskIosStandalone = "RiskIosStandalone"
+    case riskIosInFramesIos = "RiskIosInFramesIos"
 }
 
 enum RiskEvent {
-    case riskDataPublishDisabled
-    case riskDataPublished
-    case riskDataPublishBlocked
-    case riskDataPublishFailure
-    case riskDataCollected
+    case publishDisabled
+    case published
+    case publishBlocked
+    case publishFailure
+    case collected
 }
 
 
-public struct RiskIosConfig {
+public struct RiskConfig {
     public let publicKey: String // merchant public key
     public let environment: RiskEnvironment // qa | sandbox | prod
     public let framesMode: Bool
@@ -40,14 +40,14 @@ public struct RiskIosConfig {
     }
 }
 
-struct RiskSdkInternalConfig {
+struct RiskSDKInternalConfig {
     let merchantPublicKey: String
     let deviceDataEndpoint: String
     let integrationType: RiskIntegrationType
     
-    init(config: RiskIosConfig) {
+    init(config: RiskConfig) {
         self.merchantPublicKey = config.publicKey
-        self.integrationType = config.framesMode ? RiskIntegrationType.RiskIosFrames : RiskIntegrationType.RiskJsStandalone
+        self.integrationType = config.framesMode ? RiskIntegrationType.riskIosInFramesIos : RiskIntegrationType.riskIosStandalone
         
         switch config.environment {
         case .qa:

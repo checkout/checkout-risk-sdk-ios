@@ -1,15 +1,15 @@
 //
-//  RiskIosTests.swift
-//  RiskIosTests
+//  RiskTests.swift
+//  RiskTests
 //  Tests
 //
 //  Created by Precious Ossai on 31/10/2023.
 //
 
 import XCTest
-@testable import RiskIos
+@testable import Risk
 
-final class RiskIosTests: XCTestCase {
+final class RiskTests: XCTestCase {
     func testExample() throws {
         // XCTest Documentation
         // https://developer.apple.com/documentation/xctest

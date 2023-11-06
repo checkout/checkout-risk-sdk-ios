@@ -1,6 +1,6 @@
 //
-//  ApiService.swift
-//  RiskIos
+//  APIService.swift
+//  Risk
 //  Sources
 //
 //  Created by Precious Ossai on 30/10/2023.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ApiServiceProtocol {
+protocol APIServiceProtocol {
     func getJSONFromAPIWithAuthorization<T: Decodable>(endpoint: String, authToken: String, responseType: T.Type, completion: @escaping (Result<T, Error>) -> Void)
 }
 
@@ -29,7 +29,7 @@ enum APIServiceError: Error {
    }  
 }  
 
-final class ApiService: ApiServiceProtocol {
+struct APIService: APIServiceProtocol {
     
     public func getJSONFromAPIWithAuthorization<T: Decodable>(endpoint: String, authToken: String, responseType: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
         // Create a URL based on the endpoint string

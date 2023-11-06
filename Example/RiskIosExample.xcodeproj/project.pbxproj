@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BA0B00492AD6A5280037D9FF /* RiskIosExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00482AD6A5280037D9FF /* RiskIosExampleApp.swift */; };
+		BA0B00492AD6A5280037D9FF /* RiskExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00482AD6A5280037D9FF /* RiskExampleApp.swift */; };
 		BA0B004B2AD6A5280037D9FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B004A2AD6A5280037D9FF /* ContentView.swift */; };
 		BA0B004D2AD6A52A0037D9FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA0B004C2AD6A52A0037D9FF /* Assets.xcassets */; };
 		BA0B00502AD6A52A0037D9FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA0B004F2AD6A52A0037D9FF /* Preview Assets.xcassets */; };
-		BA0B005A2AD6A52A0037D9FF /* RiskIosExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00592AD6A52A0037D9FF /* RiskIosExampleTests.swift */; };
-		BA0B00642AD6A52A0037D9FF /* RiskIosExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00632AD6A52A0037D9FF /* RiskIosExampleUITests.swift */; };
-		BA0B00662AD6A52A0037D9FF /* RiskIosExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00652AD6A52A0037D9FF /* RiskIosExampleUITestsLaunchTests.swift */; };
-		BA9442362AEFE8970037BFCB /* RiskIos in Frameworks */ = {isa = PBXBuildFile; productRef = BA9442352AEFE8970037BFCB /* RiskIos */; };
+		BA0B005A2AD6A52A0037D9FF /* RiskExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00592AD6A52A0037D9FF /* RiskExampleTests.swift */; };
+		BA0B00642AD6A52A0037D9FF /* RiskExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00632AD6A52A0037D9FF /* RiskExampleUITests.swift */; };
+		BA0B00662AD6A52A0037D9FF /* RiskExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00652AD6A52A0037D9FF /* RiskExampleUITestsLaunchTests.swift */; };
+		BA9442362AEFE8970037BFCB /* Risk in Frameworks */ = {isa = PBXBuildFile; productRef = BA9442352AEFE8970037BFCB /* Risk */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,28 +23,28 @@
 			containerPortal = BA0B003D2AD6A5280037D9FF /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = BA0B00442AD6A5280037D9FF;
-			remoteInfo = RiskIosExample;
+			remoteInfo = RiskExample;
 		};
 		BA0B00602AD6A52A0037D9FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BA0B003D2AD6A5280037D9FF /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = BA0B00442AD6A5280037D9FF;
-			remoteInfo = RiskIosExample;
+			remoteInfo = RiskExample;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BA0B00452AD6A5280037D9FF /* RiskIosExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RiskIosExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA0B00482AD6A5280037D9FF /* RiskIosExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskIosExampleApp.swift; sourceTree = "<group>"; };
+		BA0B00452AD6A5280037D9FF /* RiskExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RiskExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA0B00482AD6A5280037D9FF /* RiskExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskExampleApp.swift; sourceTree = "<group>"; };
 		BA0B004A2AD6A5280037D9FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BA0B004C2AD6A52A0037D9FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA0B004F2AD6A52A0037D9FF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		BA0B00552AD6A52A0037D9FF /* RiskIosExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiskIosExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA0B00592AD6A52A0037D9FF /* RiskIosExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskIosExampleTests.swift; sourceTree = "<group>"; };
-		BA0B005F2AD6A52A0037D9FF /* RiskIosExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiskIosExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA0B00632AD6A52A0037D9FF /* RiskIosExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskIosExampleUITests.swift; sourceTree = "<group>"; };
-		BA0B00652AD6A52A0037D9FF /* RiskIosExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskIosExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BA0B00552AD6A52A0037D9FF /* RiskExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiskExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA0B00592AD6A52A0037D9FF /* RiskExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskExampleTests.swift; sourceTree = "<group>"; };
+		BA0B005F2AD6A52A0037D9FF /* RiskExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiskExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA0B00632AD6A52A0037D9FF /* RiskExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskExampleUITests.swift; sourceTree = "<group>"; };
+		BA0B00652AD6A52A0037D9FF /* RiskExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA9442362AEFE8970037BFCB /* RiskIos in Frameworks */,
+				BA9442362AEFE8970037BFCB /* Risk in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,9 +76,9 @@
 		BA0B003C2AD6A5280037D9FF = {
 			isa = PBXGroup;
 			children = (
-				BA0B00472AD6A5280037D9FF /* RiskIosExample */,
-				BA0B00582AD6A52A0037D9FF /* RiskIosExampleTests */,
-				BA0B00622AD6A52A0037D9FF /* RiskIosExampleUITests */,
+				BA0B00472AD6A5280037D9FF /* RiskExample */,
+				BA0B00582AD6A52A0037D9FF /* RiskExampleTests */,
+				BA0B00622AD6A52A0037D9FF /* RiskExampleUITests */,
 				BA0B00462AD6A5280037D9FF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,22 +86,22 @@
 		BA0B00462AD6A5280037D9FF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BA0B00452AD6A5280037D9FF /* RiskIosExample.app */,
-				BA0B00552AD6A52A0037D9FF /* RiskIosExampleTests.xctest */,
-				BA0B005F2AD6A52A0037D9FF /* RiskIosExampleUITests.xctest */,
+				BA0B00452AD6A5280037D9FF /* RiskExample.app */,
+				BA0B00552AD6A52A0037D9FF /* RiskExampleTests.xctest */,
+				BA0B005F2AD6A52A0037D9FF /* RiskExampleUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BA0B00472AD6A5280037D9FF /* RiskIosExample */ = {
+		BA0B00472AD6A5280037D9FF /* RiskExample */ = {
 			isa = PBXGroup;
 			children = (
-				BA0B00482AD6A5280037D9FF /* RiskIosExampleApp.swift */,
+				BA0B00482AD6A5280037D9FF /* RiskExampleApp.swift */,
 				BA0B004A2AD6A5280037D9FF /* ContentView.swift */,
 				BA0B004C2AD6A52A0037D9FF /* Assets.xcassets */,
 				BA0B004E2AD6A52A0037D9FF /* Preview Content */,
 			);
-			path = RiskIosExample;
+			path = RiskExample;
 			sourceTree = "<group>";
 		};
 		BA0B004E2AD6A52A0037D9FF /* Preview Content */ = {
@@ -112,29 +112,29 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		BA0B00582AD6A52A0037D9FF /* RiskIosExampleTests */ = {
+		BA0B00582AD6A52A0037D9FF /* RiskExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				BA0B00592AD6A52A0037D9FF /* RiskIosExampleTests.swift */,
+				BA0B00592AD6A52A0037D9FF /* RiskExampleTests.swift */,
 			);
-			path = RiskIosExampleTests;
+			path = RiskExampleTests;
 			sourceTree = "<group>";
 		};
-		BA0B00622AD6A52A0037D9FF /* RiskIosExampleUITests */ = {
+		BA0B00622AD6A52A0037D9FF /* RiskExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				BA0B00632AD6A52A0037D9FF /* RiskIosExampleUITests.swift */,
-				BA0B00652AD6A52A0037D9FF /* RiskIosExampleUITestsLaunchTests.swift */,
+				BA0B00632AD6A52A0037D9FF /* RiskExampleUITests.swift */,
+				BA0B00652AD6A52A0037D9FF /* RiskExampleUITestsLaunchTests.swift */,
 			);
-			path = RiskIosExampleUITests;
+			path = RiskExampleUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BA0B00442AD6A5280037D9FF /* RiskIosExample */ = {
+		BA0B00442AD6A5280037D9FF /* RiskExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA0B00692AD6A52A0037D9FF /* Build configuration list for PBXNativeTarget "RiskIosExample" */;
+			buildConfigurationList = BA0B00692AD6A52A0037D9FF /* Build configuration list for PBXNativeTarget "RiskExample" */;
 			buildPhases = (
 				BA0B00412AD6A5280037D9FF /* Sources */,
 				BA0B00422AD6A5280037D9FF /* Frameworks */,
@@ -144,17 +144,17 @@
 			);
 			dependencies = (
 			);
-			name = RiskIosExample;
+			name = RiskExample;
 			packageProductDependencies = (
-				BA9442352AEFE8970037BFCB /* RiskIos */,
+				BA9442352AEFE8970037BFCB /* Risk */,
 			);
-			productName = RiskIosExample;
-			productReference = BA0B00452AD6A5280037D9FF /* RiskIosExample.app */;
+			productName = RiskExample;
+			productReference = BA0B00452AD6A5280037D9FF /* RiskExample.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BA0B00542AD6A52A0037D9FF /* RiskIosExampleTests */ = {
+		BA0B00542AD6A52A0037D9FF /* RiskExampleTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA0B006C2AD6A52A0037D9FF /* Build configuration list for PBXNativeTarget "RiskIosExampleTests" */;
+			buildConfigurationList = BA0B006C2AD6A52A0037D9FF /* Build configuration list for PBXNativeTarget "RiskExampleTests" */;
 			buildPhases = (
 				BA0B00512AD6A52A0037D9FF /* Sources */,
 				BA0B00522AD6A52A0037D9FF /* Frameworks */,
@@ -165,14 +165,14 @@
 			dependencies = (
 				BA0B00572AD6A52A0037D9FF /* PBXTargetDependency */,
 			);
-			name = RiskIosExampleTests;
-			productName = RiskIosExampleTests;
-			productReference = BA0B00552AD6A52A0037D9FF /* RiskIosExampleTests.xctest */;
+			name = RiskExampleTests;
+			productName = RiskExampleTests;
+			productReference = BA0B00552AD6A52A0037D9FF /* RiskExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BA0B005E2AD6A52A0037D9FF /* RiskIosExampleUITests */ = {
+		BA0B005E2AD6A52A0037D9FF /* RiskExampleUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA0B006F2AD6A52A0037D9FF /* Build configuration list for PBXNativeTarget "RiskIosExampleUITests" */;
+			buildConfigurationList = BA0B006F2AD6A52A0037D9FF /* Build configuration list for PBXNativeTarget "RiskExampleUITests" */;
 			buildPhases = (
 				BA0B005B2AD6A52A0037D9FF /* Sources */,
 				BA0B005C2AD6A52A0037D9FF /* Frameworks */,
@@ -183,9 +183,9 @@
 			dependencies = (
 				BA0B00612AD6A52A0037D9FF /* PBXTargetDependency */,
 			);
-			name = RiskIosExampleUITests;
-			productName = RiskIosExampleUITests;
-			productReference = BA0B005F2AD6A52A0037D9FF /* RiskIosExampleUITests.xctest */;
+			name = RiskExampleUITests;
+			productName = RiskExampleUITests;
+			productReference = BA0B005F2AD6A52A0037D9FF /* RiskExampleUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -211,7 +211,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BA0B00402AD6A5280037D9FF /* Build configuration list for PBXProject "RiskIosExample" */;
+			buildConfigurationList = BA0B00402AD6A5280037D9FF /* Build configuration list for PBXProject "RiskExample" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -227,9 +227,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BA0B00442AD6A5280037D9FF /* RiskIosExample */,
-				BA0B00542AD6A52A0037D9FF /* RiskIosExampleTests */,
-				BA0B005E2AD6A52A0037D9FF /* RiskIosExampleUITests */,
+				BA0B00442AD6A5280037D9FF /* RiskExample */,
+				BA0B00542AD6A52A0037D9FF /* RiskExampleTests */,
+				BA0B005E2AD6A52A0037D9FF /* RiskExampleUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -266,7 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA0B004B2AD6A5280037D9FF /* ContentView.swift in Sources */,
-				BA0B00492AD6A5280037D9FF /* RiskIosExampleApp.swift in Sources */,
+				BA0B00492AD6A5280037D9FF /* RiskExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA0B005A2AD6A52A0037D9FF /* RiskIosExampleTests.swift in Sources */,
+				BA0B005A2AD6A52A0037D9FF /* RiskExampleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,8 +282,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA0B00662AD6A52A0037D9FF /* RiskIosExampleUITestsLaunchTests.swift in Sources */,
-				BA0B00642AD6A52A0037D9FF /* RiskIosExampleUITests.swift in Sources */,
+				BA0B00662AD6A52A0037D9FF /* RiskExampleUITestsLaunchTests.swift in Sources */,
+				BA0B00642AD6A52A0037D9FF /* RiskExampleUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,12 +292,12 @@
 /* Begin PBXTargetDependency section */
 		BA0B00572AD6A52A0037D9FF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BA0B00442AD6A5280037D9FF /* RiskIosExample */;
+			target = BA0B00442AD6A5280037D9FF /* RiskExample */;
 			targetProxy = BA0B00562AD6A52A0037D9FF /* PBXContainerItemProxy */;
 		};
 		BA0B00612AD6A52A0037D9FF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BA0B00442AD6A5280037D9FF /* RiskIosExample */;
+			target = BA0B00442AD6A5280037D9FF /* RiskExample */;
 			targetProxy = BA0B00602AD6A52A0037D9FF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -431,7 +431,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"RiskIosExample/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"RiskExample/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -444,7 +444,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.RiskIosExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.RiskExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -459,7 +459,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"RiskIosExample/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"RiskExample/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -472,7 +472,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.RiskIosExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.RiskExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -490,12 +490,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.RiskIosExampleTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.RiskExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RiskIosExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RiskIosExample";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RiskExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RiskExample";
 			};
 			name = Debug;
 		};
@@ -509,12 +509,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.RiskIosExampleTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.RiskExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RiskIosExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RiskIosExample";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RiskExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RiskExample";
 			};
 			name = Release;
 		};
@@ -526,12 +526,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.RiskIosExampleUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.RiskExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = RiskIosExample;
+				TEST_TARGET_NAME = RiskExample;
 			};
 			name = Debug;
 		};
@@ -543,19 +543,19 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.RiskIosExampleUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.checkout.RiskExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = RiskIosExample;
+				TEST_TARGET_NAME = RiskExample;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BA0B00402AD6A5280037D9FF /* Build configuration list for PBXProject "RiskIosExample" */ = {
+		BA0B00402AD6A5280037D9FF /* Build configuration list for PBXProject "RiskExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BA0B00672AD6A52A0037D9FF /* Debug */,
@@ -564,7 +564,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BA0B00692AD6A52A0037D9FF /* Build configuration list for PBXNativeTarget "RiskIosExample" */ = {
+		BA0B00692AD6A52A0037D9FF /* Build configuration list for PBXNativeTarget "RiskExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BA0B006A2AD6A52A0037D9FF /* Debug */,
@@ -573,7 +573,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BA0B006C2AD6A52A0037D9FF /* Build configuration list for PBXNativeTarget "RiskIosExampleTests" */ = {
+		BA0B006C2AD6A52A0037D9FF /* Build configuration list for PBXNativeTarget "RiskExampleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BA0B006D2AD6A52A0037D9FF /* Debug */,
@@ -582,7 +582,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BA0B006F2AD6A52A0037D9FF /* Build configuration list for PBXNativeTarget "RiskIosExampleUITests" */ = {
+		BA0B006F2AD6A52A0037D9FF /* Build configuration list for PBXNativeTarget "RiskExampleUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BA0B00702AD6A52A0037D9FF /* Debug */,
@@ -601,9 +601,9 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BA9442352AEFE8970037BFCB /* RiskIos */ = {
+		BA9442352AEFE8970037BFCB /* Risk */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = RiskIos;
+			productName = Risk;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

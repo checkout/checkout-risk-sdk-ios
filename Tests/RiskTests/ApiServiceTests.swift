@@ -1,6 +1,6 @@
 //
-//  ApiServiceTests.swift
-//  RiskIosTests
+//  APIServiceTests.swift
+//  RiskTests
 //  Tests
 //
 //  Created by Precious Ossai on 31/10/2023.
@@ -8,13 +8,13 @@
 
 import Foundation
 import XCTest
-@testable import RiskIos
+@testable import Risk
 
-class ApiServiceTests: XCTestCase {
-    func testApiServiceWithValidData() {
+class APIServiceTests: XCTestCase {
+    func testAPIServiceWithValidData() {
         // Arrange
-        let apiService = ApiService()
-        let validEndpoint = "https://prism-qa.ckotech.co/collect/configuration?integrationType=RiskJsStandalone"
+        let apiService = APIService()
+        let validEndpoint = "https://prism-qa.ckotech.co/collect/configuration?integrationType=RiskIosStandalone"
         let validAuthToken = "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo"
 
         // Create an expectation for the async completion handler
@@ -39,9 +39,9 @@ class ApiServiceTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
 
-    func testApiServiceWithInvalidEndpoint() {
+    func testAPIServiceWithInvalidEndpoint() {
         // Arrange
-        let apiService = ApiService()
+        let apiService = APIService()
         let invalidEndpoint = "invalidURL"
         let validAuthToken = "yourAuthToken"
         
