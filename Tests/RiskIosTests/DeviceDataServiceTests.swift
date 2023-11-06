@@ -18,10 +18,7 @@ class DeviceDataServiceTests: XCTestCase {
         // Create a DeviceDataService with a mocked configuration
         let config = RiskIosConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
         let internalConfig = RiskSdkInternalConfig(config: config)
-        let deviceDataService = DeviceDataService(config: internalConfig)
-        
-        // Inject the mock ApiService
-        deviceDataService.apiService = mockApiService
+        let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockApiService)
         
         // Create an expectation for the async completion handler
         let expectation = self.expectation(description: "Configuration received")

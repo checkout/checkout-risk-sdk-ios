@@ -29,9 +29,9 @@ enum RiskEvent {
 
 
 public struct RiskIosConfig {
-    private(set) public var publicKey: String // merchant public key
-    private(set) public var environment: RiskEnvironment // qa | sandbox | prod
-    private(set) public var framesMode: Bool
+    public let publicKey: String // merchant public key
+    public let environment: RiskEnvironment // qa | sandbox | prod
+    public let framesMode: Bool
     
     public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
         self.publicKey = publicKey

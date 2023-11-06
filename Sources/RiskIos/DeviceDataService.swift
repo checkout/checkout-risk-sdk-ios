@@ -18,8 +18,8 @@ public struct DeviceDataConfiguration: Decodable, Equatable {
 }
 
 class DeviceDataService {
-    private(set) public var config: RiskSdkInternalConfig
-    private(set) public var apiService: ApiServiceProtocol
+    public let config: RiskSdkInternalConfig
+    public let apiService: ApiServiceProtocol
     
     public init(config: RiskSdkInternalConfig, apiService: ApiServiceProtocol = ApiService()) {
         self.config = config
