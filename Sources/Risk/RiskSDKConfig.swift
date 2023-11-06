@@ -14,9 +14,9 @@ public enum RiskEnvironment {
     case production
 }
 
-internal enum RiskIntegrationType: String {
-    case riskIosStandalone = "RiskIosStandalone"
-    case riskIosInFramesIos = "RiskIosInFramesIos"
+enum RiskIntegrationType: String {
+    case RiskIosStandalone
+    case RiskIosInFramesIos
 }
 
 enum RiskEvent {
@@ -47,7 +47,7 @@ struct RiskSDKInternalConfig {
     
     init(config: RiskConfig) {
         self.merchantPublicKey = config.publicKey
-        self.integrationType = config.framesMode ? RiskIntegrationType.riskIosInFramesIos : RiskIntegrationType.riskIosStandalone
+        self.integrationType = config.framesMode ? RiskIntegrationType.RiskIosInFramesIos : RiskIntegrationType.RiskIosStandalone
         
         switch config.environment {
         case .qa:

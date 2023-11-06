@@ -14,6 +14,7 @@
 		BA0B005A2AD6A52A0037D9FF /* RiskExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00592AD6A52A0037D9FF /* RiskExampleTests.swift */; };
 		BA0B00642AD6A52A0037D9FF /* RiskExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00632AD6A52A0037D9FF /* RiskExampleUITests.swift */; };
 		BA0B00662AD6A52A0037D9FF /* RiskExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00652AD6A52A0037D9FF /* RiskExampleUITestsLaunchTests.swift */; };
+		BA13934B2AF9416200D89A8D /* Risk in Frameworks */ = {isa = PBXBuildFile; productRef = BA13934A2AF9416200D89A8D /* Risk */; };
 		BA9442362AEFE8970037BFCB /* Risk in Frameworks */ = {isa = PBXBuildFile; productRef = BA9442352AEFE8970037BFCB /* Risk */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +38,7 @@
 /* Begin PBXFileReference section */
 		BA0B00452AD6A5280037D9FF /* RiskExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RiskExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0B00482AD6A5280037D9FF /* RiskExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskExampleApp.swift; sourceTree = "<group>"; };
-		BA0B004A2AD6A5280037D9FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BA0B004A2AD6A5280037D9FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; usesTabs = 1; };
 		BA0B004C2AD6A52A0037D9FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA0B004F2AD6A52A0037D9FF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		BA0B00552AD6A52A0037D9FF /* RiskExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RiskExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA9442362AEFE8970037BFCB /* Risk in Frameworks */,
+				BA13934B2AF9416200D89A8D /* Risk in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +149,7 @@
 			name = RiskExample;
 			packageProductDependencies = (
 				BA9442352AEFE8970037BFCB /* Risk */,
+				BA13934A2AF9416200D89A8D /* Risk */,
 			);
 			productName = RiskExample;
 			productReference = BA0B00452AD6A5280037D9FF /* RiskExample.app */;
@@ -221,7 +224,7 @@
 			);
 			mainGroup = BA0B003C2AD6A5280037D9FF;
 			packageReferences = (
-				BA9442342AEFE8970037BFCB /* XCLocalSwiftPackageReference ".." */,
+				BA1393492AF9416200D89A8D /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = BA0B00462AD6A5280037D9FF /* Products */;
 			projectDirPath = "";
@@ -594,13 +597,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		BA9442342AEFE8970037BFCB /* XCLocalSwiftPackageReference ".." */ = {
+		BA1393492AF9416200D89A8D /* XCLocalSwiftPackageReference ".." */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ..;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BA13934A2AF9416200D89A8D /* Risk */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Risk;
+		};
 		BA9442352AEFE8970037BFCB /* Risk */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Risk;
