@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ApiServiceProtocol: AnyObject {
+protocol ApiServiceProtocol {
     func getJSONFromAPIWithAuthorization<T: Decodable>(endpoint: String, authToken: String, responseType: T.Type, completion: @escaping (Result<T, Error>) -> Void)
 }
 
