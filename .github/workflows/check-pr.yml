@@ -4,9 +4,9 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
     branches:
-      - 'main'
-      - 'develop'
-      - 'release/*'
+      - "main"
+      - "develop"
+      - "release/*"
 
 env:
   destination: "platform=iOS Simulator,name=iPhone 14 Pro,OS=latest"
@@ -20,7 +20,6 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-
   risk-sdk:
     name: Risk SDK Verification
     runs-on: macos-13-xl
@@ -47,12 +46,12 @@ jobs:
         run: |
           set -o pipefail && xcodebuild -scheme "${scheme}" test -destination "${destination}" "${noIndex}" "${noSigning}" | xcpretty
         env:
-          scheme: RiskIos
-      
+          scheme: Risk
+
       # TODO: find way of working with private repo
       # - name: Build Risk SDK SPM Test Project
       #   run: |
       #     set -o pipefail && xcodebuild "build" "-project" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
       #   env:
-      #     path: "Example/RiskIosExample.xcodeproj"
-      #     scheme: RiskIos
+      #     path: "Example/RiskExample.xcodeproj"
+      #     scheme: Risk
