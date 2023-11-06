@@ -17,7 +17,7 @@ public struct DeviceDataConfiguration: Decodable, Equatable {
     let fingerprintIntegration: FingerprintIntegration
 }
 
-class DeviceDataService {
+struct DeviceDataService {
     public let config: RiskSDKInternalConfig
     public let apiService: APIServiceProtocol
     
