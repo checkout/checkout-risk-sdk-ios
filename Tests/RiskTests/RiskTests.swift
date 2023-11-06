@@ -9,12 +9,41 @@
 import XCTest
 @testable import Risk
 
-final class RiskTests: XCTestCase {
-    func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
-
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+class RiskTests: XCTestCase {
+    
+    func testCreateInstanceWithValidConfiguration() {
+        // Arrange
+        let expectation = self.expectation(description: "Risk instance creation")
+        var createdRiskInstance: Risk?
+        
+        let validConfig = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
+        
+        // Act
+        Risk.createInstance(config: validConfig) { risk in
+            createdRiskInstance = risk
+            expectation.fulfill()
+        }
+        
+        // Assert
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertNotNil(createdRiskInstance)
+    }
+    
+    func testCreateInstanceWithInvalidPublicKey() {
+        // Arrange
+        let expectation = self.expectation(description: "Risk instance creation with invalid public key")
+        var createdRiskInstance: Risk?
+        
+        let invalidConfig = RiskConfig(publicKey: "invalid_public_key", environment: RiskEnvironment.qa)
+        
+        // Act
+        Risk.createInstance(config: invalidConfig) { risk in
+            createdRiskInstance = risk
+            expectation.fulfill()
+        }
+        
+        // Assert
+        waitForExpectations(timeout: 5, handler: nil)
+        XCTAssertNil(createdRiskInstance)
     }
 }
