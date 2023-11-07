@@ -28,7 +28,7 @@ class FingerprintService {
                 return completion(self.requestId)
             }
             
-        let metaTags = self.internalConfig.createFpTags()
+        let metaTags = createFpTags(sourceType: self.internalConfig.sourceType)
         
         self.client.getVisitorIdResponse(metaTags) { result in
             
@@ -40,6 +40,14 @@ class FingerprintService {
                 return completion(response.requestId)
             }
         }
+    }
+    
+    func createFpTags(sourceType: SourceType) -> Metadata {
+        var meta = Metadata();
+        meta.setTag(sourceType.rawValue, forKey: "fpjsSource")
+        meta.setTag(Date().timeIntervalSince1970 * 1000, forKey: "fpjsTimestamp")
+        
+        return meta
     }
     
 }
