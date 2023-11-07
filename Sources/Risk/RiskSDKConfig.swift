@@ -29,8 +29,8 @@ enum RiskEvent {
 }
 
 enum SourceType: String {
-    case card_token = "card_token"
-    case riskios = "riskios"
+    case card_token
+    case riskios
 }
 
 public struct RiskConfig {

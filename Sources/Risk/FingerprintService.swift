@@ -14,8 +14,6 @@ class FingerprintService {
     private let internalConfig: RiskSDKInternalConfig
     
     init(fingerprintPublicKey: String, internalConfig: RiskSDKInternalConfig) {
-        print("Initialising fingerprint")
-        
         let customDomain: Region = .custom(domain: internalConfig.fingerprintEndpoint)
         let configuration = Configuration(apiKey: fingerprintPublicKey, region: customDomain)
         self.client = FingerprintProFactory.getInstance(configuration)
@@ -28,9 +26,9 @@ class FingerprintService {
                 return completion(self.requestId)
             }
             
-        let metaTags = createFpTags(sourceType: self.internalConfig.sourceType)
+        let metadata = createMetadata(sourceType: self.internalConfig.sourceType)
         
-        self.client.getVisitorIdResponse(metaTags) { result in
+        self.client.getVisitorIdResponse(metadata) { result in
             
             switch result {
             case let .failure(error):
@@ -42,7 +40,7 @@ class FingerprintService {
         }
     }
     
-    func createFpTags(sourceType: SourceType) -> Metadata {
+    func createMetadata(sourceType: SourceType) -> Metadata {
         var meta = Metadata();
         meta.setTag(sourceType.rawValue, forKey: "fpjsSource")
         meta.setTag(Date().timeIntervalSince1970 * 1000, forKey: "fpjsTimestamp")
