@@ -3,21 +3,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "RiskIos",
+    name: "Risk",
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "RiskIos",
-            targets: ["RiskIos"]),
+            name: "Risk",
+            targets: ["Risk"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "RiskIos",
+            name: "Risk",
             path: "Sources"),
         .testTarget(
-            name: "RiskIosTests",
-            dependencies: ["RiskIos"]),
+            name: "RiskTests",
+            dependencies: ["Risk"]),
     ]
 )

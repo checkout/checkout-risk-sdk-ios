@@ -1,14 +1,14 @@
 //
-//  RiskIosExampleTests.swift
-//  RiskIosExampleTests
+//  RiskExampleTests.swift
+//  RiskExampleTests
 //
 //  Created by Precious Ossai on 11/10/2023.
 //
 
 import XCTest
-@testable import RiskIosExample
+@testable import RiskExample
 
-final class RiskIosExampleTests: XCTestCase {
+final class RiskExampleTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

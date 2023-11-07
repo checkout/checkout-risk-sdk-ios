@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "RiskIos"
-               BuildableName = "RiskIos"
-               BlueprintName = "RiskIos"
+               BlueprintIdentifier = "Risk"
+               BuildableName = "Risk"
+               BlueprintName = "Risk"
                ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
@@ -49,9 +49,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "RiskIos"
-            BuildableName = "RiskIos"
-            BlueprintName = "RiskIos"
+            BlueprintIdentifier = "Risk"
+            BuildableName = "Risk"
+            BlueprintName = "Risk"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>
