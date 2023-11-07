@@ -26,7 +26,7 @@ struct ContentView: View {
                 
                 Risk.createInstance(config: yourConfig) { 
                     riskInstance in
-                    riskInstance?.publishDeviceData()
+                    riskInstance?.publishData()
                 }
             }
         }
