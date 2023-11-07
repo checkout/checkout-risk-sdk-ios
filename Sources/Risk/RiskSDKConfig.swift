@@ -29,8 +29,8 @@ enum RiskEvent {
 
 
 public struct RiskConfig {
-    public let publicKey: String // merchant public key
-    public let environment: RiskEnvironment // qa | sandbox | prod
+    public let publicKey: String
+    public let environment: RiskEnvironment
     public let framesMode: Bool
     
     public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
