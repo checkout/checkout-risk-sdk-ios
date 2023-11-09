@@ -31,7 +31,7 @@ enum APIServiceError: Error {
 
 struct APIService: APIServiceProtocol {
     
-    public func getJSONFromAPIWithAuthorization<T: Decodable>(endpoint: String, authToken: String, responseType: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+    func getJSONFromAPIWithAuthorization<T: Decodable>(endpoint: String, authToken: String, responseType: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
         guard let url = URL(string: endpoint) else {
             completion(.failure(APIServiceError.invalidURL))
             return

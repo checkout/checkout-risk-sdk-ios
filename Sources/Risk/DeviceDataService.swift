@@ -8,25 +8,25 @@
 
 import Foundation
 
-public struct FingerprintIntegration: Decodable, Equatable {
+struct FingerprintIntegration: Decodable, Equatable {
     let enabled: Bool
     let publicKey: String?
 }
 
-public struct DeviceDataConfiguration: Decodable, Equatable {
+struct DeviceDataConfiguration: Decodable, Equatable {
     let fingerprintIntegration: FingerprintIntegration
 }
 
 struct DeviceDataService {
-    public let config: RiskSDKInternalConfig
-    public let apiService: APIServiceProtocol
+    let config: RiskSDKInternalConfig
+    let apiService: APIServiceProtocol
     
-    public init(config: RiskSDKInternalConfig, apiService: APIServiceProtocol = APIService()) {
+    init(config: RiskSDKInternalConfig, apiService: APIServiceProtocol = APIService()) {
         self.config = config
         self.apiService = apiService
     }
     
-    public func getConfiguration(completion: @escaping (DeviceDataConfiguration) -> Void) {
+    func getConfiguration(completion: @escaping (DeviceDataConfiguration) -> Void) {
         let endpoint = "\(config.deviceDataEndpoint)/configuration?integrationType=\(config.integrationType)"
         let authToken = config.merchantPublicKey
 

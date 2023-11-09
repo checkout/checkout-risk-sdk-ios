@@ -20,7 +20,7 @@ final class FingerprintService {
         self.internalConfig = internalConfig
     }
     
-    public func publishData(cardToken: String?, completion: @escaping (String?) -> Void) {
+    func publishData(cardToken: String?, completion: @escaping (String?) -> Void) {
         
         guard requestID == nil else {
             return completion(requestID)
@@ -28,7 +28,7 @@ final class FingerprintService {
             
         let metadata = createMetadata(sourceType: internalConfig.sourceType)
         
-        client.getVisitorIdResponse(metadata) { result in
+        client.getVisitorIdResponse(metadata) { [weak self] result in
             
             switch result {
             case let .failure(error):
@@ -36,7 +36,7 @@ final class FingerprintService {
                 print("Error: ", error.localizedDescription)
             case let .success(response):
                 // #warning("TODO: - Dispatch collected event and/or log (https://checkout.atlassian.net/browse/PRISM-10482)")
-                self.requestID = response.requestId
+                self?.requestID = response.requestId
                 return completion(response.requestId)
             }
         }
