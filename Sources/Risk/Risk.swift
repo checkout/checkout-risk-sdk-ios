@@ -27,11 +27,12 @@ public class Risk {
         deviceDataService.getConfiguration {
             configuration in
             
-            guard configuration.fingerprintIntegration.enabled else {
+            guard configuration.fingerprintIntegration.enabled, let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey else {
                 return completion(nil)
+                // #warning("TODO: - Handle disabled fingerpint integraiton, e.g. dispatch and/or log event")
             }
-                
-            let fingerprintService = FingerprintService(fingerprintPublicKey: configuration.fingerprintIntegration.publicKey!, internalConfig: internalConfig)
+            
+            let fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey, internalConfig: internalConfig)
             
             let riskInstance = Risk(fingerprintService: fingerprintService)
             sharedInstance = riskInstance
@@ -42,8 +43,8 @@ public class Risk {
     
     public func publishData () {
         
-        self.fingerprintService.publishData(cardToken: nil) { requestId in
-            print("Published to Fingerprint with requestId: \(requestId)")
+        fingerprintService.publishData(cardToken: nil) { requestID in
+            print("Published to Fingerprint with requestID: \(requestID ?? "")")
         }
     }
 }

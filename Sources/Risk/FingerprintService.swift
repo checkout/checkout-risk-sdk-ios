@@ -8,41 +8,43 @@
 import FingerprintPro
 import Foundation
 
-class FingerprintService {
-    private var requestId: String? = nil
+final class FingerprintService {
+    private var requestID: String? = nil
     private let client: FingerprintClientProviding
     private let internalConfig: RiskSDKInternalConfig
     
     init(fingerprintPublicKey: String, internalConfig: RiskSDKInternalConfig) {
         let customDomain: Region = .custom(domain: internalConfig.fingerprintEndpoint)
         let configuration = Configuration(apiKey: fingerprintPublicKey, region: customDomain)
-        self.client = FingerprintProFactory.getInstance(configuration)
+        client = FingerprintProFactory.getInstance(configuration)
         self.internalConfig = internalConfig
     }
     
     public func publishData(cardToken: String?, completion: @escaping (String?) -> Void) {
         
-            guard self.requestId == nil else {
-                return completion(self.requestId)
-            }
+        guard requestID == nil else {
+            return completion(requestID)
+        }
             
-        let metadata = createMetadata(sourceType: self.internalConfig.sourceType)
+        let metadata = createMetadata(sourceType: internalConfig.sourceType)
         
-        self.client.getVisitorIdResponse(metadata) { result in
+        client.getVisitorIdResponse(metadata) { result in
             
             switch result {
             case let .failure(error):
+                // #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
                 print("Error: ", error.localizedDescription)
             case let .success(response):
-                self.requestId = response.requestId
+                // #warning("TODO: - Dispatch collected event and/or log (https://checkout.atlassian.net/browse/PRISM-10482)")
+                self.requestID = response.requestId
                 return completion(response.requestId)
             }
         }
     }
     
-    func createMetadata(sourceType: SourceType) -> Metadata {
-        var meta = Metadata();
-        meta.setTag(sourceType.rawValue, forKey: "fpjsSource")
+    func createMetadata(sourceType: SourceType.RawValue) -> Metadata {
+        var meta = Metadata()
+        meta.setTag(sourceType, forKey: "fpjsSource")
         meta.setTag(Date().timeIntervalSince1970 * 1000, forKey: "fpjsTimestamp")
         
         return meta

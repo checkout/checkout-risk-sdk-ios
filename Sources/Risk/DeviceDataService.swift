@@ -34,8 +34,10 @@ struct DeviceDataService {
             result in
             switch result {
             case .success(let configuration):
+                // #warning("TODO: - Handle disabled fingerpint integraiton, e.g. dispatch and/or log event (https://checkout.atlassian.net/browse/PRISM-10482)")
                 completion(configuration)
             case .failure:
+                // #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
                 completion(DeviceDataConfiguration(fingerprintIntegration: FingerprintIntegration(enabled: false, publicKey: nil)))
             }
         }

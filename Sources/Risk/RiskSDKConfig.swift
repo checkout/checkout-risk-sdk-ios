@@ -16,8 +16,8 @@ public enum RiskEnvironment {
 }
 
 enum RiskIntegrationType: String, Encodable {
-    case RiskIosStandalone
-    case RiskIosInFramesIos
+    case standalone = "RiskIosStandalone"
+    case inFrames = "RiskIosInFramesIos"
 }
 
 enum RiskEvent {
@@ -29,8 +29,8 @@ enum RiskEvent {
 }
 
 enum SourceType: String {
-    case card_token
-    case riskios
+    case cardToken = "card_token"
+    case riskSDK = "riskios"
 }
 
 public struct RiskConfig {
@@ -49,24 +49,24 @@ struct RiskSDKInternalConfig {
     let merchantPublicKey: String
     let deviceDataEndpoint: String
     let fingerprintEndpoint: String
-    let integrationType: RiskIntegrationType
-    let sourceType: SourceType
+    let integrationType: RiskIntegrationType.RawValue
+    let sourceType: SourceType.RawValue
     
     init(config: RiskConfig) {
-        self.merchantPublicKey = config.publicKey
-        self.integrationType = config.framesMode ? RiskIntegrationType.RiskIosInFramesIos : RiskIntegrationType.RiskIosStandalone
-        self.sourceType = config.framesMode ? SourceType.card_token : SourceType.riskios
+        merchantPublicKey = config.publicKey
+        integrationType = config.framesMode ? RiskIntegrationType.inFrames.rawValue : RiskIntegrationType.standalone.rawValue
+        sourceType = config.framesMode ? SourceType.cardToken.rawValue : SourceType.riskSDK.rawValue
         
         switch config.environment {
         case .qa:
-            self.deviceDataEndpoint = "https://prism-qa.ckotech.co/collect"
-            self.fingerprintEndpoint = "https://fpjs.cko-qa.ckotech.co"
+            deviceDataEndpoint = "https://prism-qa.ckotech.co/collect"
+            fingerprintEndpoint = "https://fpjs.cko-qa.ckotech.co"
         case .sandbox:
-            self.deviceDataEndpoint = "https://risk.sandbox.checkout.com/collect"
-            self.fingerprintEndpoint = "https://fpjs.sandbox.checkout.com"
+            deviceDataEndpoint = "https://risk.sandbox.checkout.com/collect"
+            fingerprintEndpoint = "https://fpjs.sandbox.checkout.com"
         case .production:
-            self.deviceDataEndpoint = "https://risk.checkout.com/collect"
-            self.fingerprintEndpoint = "https://fpjs.checkout.com"
+            deviceDataEndpoint = "https://risk.checkout.com/collect"
+            fingerprintEndpoint = "https://fpjs.checkout.com"
         }
     }
     
