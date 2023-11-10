@@ -13,20 +13,20 @@ protocol APIServiceProtocol {
 }
 
 enum APIServiceError: Error {  
-   case invalidURL
-   case noData
-   case httpError(Int)
-   
-   var localizedDescription: String {  
-       switch self {
-           case .invalidURL:
-               return "Invalid URL"  
-           case .noData: 
-               return "No Data"
-           case .httpError(let code):
-               return "HTTP Error: \(code)"
-       }  
-   }  
+    case invalidURL
+    case noData
+    case httpError(Int)
+    
+    var localizedDescription: String {  
+        switch self {
+        case .invalidURL:
+            return "Invalid URL"  
+        case .noData: 
+            return "No Data"
+        case .httpError(let code):
+            return "HTTP Error: \(code)"
+        }  
+    }  
 }  
 
 struct APIService: APIServiceProtocol {

@@ -36,7 +36,7 @@ public class Risk {
             
             let riskInstance = Risk(fingerprintService: fingerprintService)
             sharedInstance = riskInstance
-                
+            
             completion(riskInstance)
         }
     }

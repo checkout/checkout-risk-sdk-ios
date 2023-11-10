@@ -29,7 +29,7 @@ struct DeviceDataService {
     func getConfiguration(completion: @escaping (DeviceDataConfiguration) -> Void) {
         let endpoint = "\(config.deviceDataEndpoint)/configuration?integrationType=\(config.integrationType)"
         let authToken = config.merchantPublicKey
-
+        
         apiService.getJSONFromAPIWithAuthorization(endpoint: endpoint, authToken: authToken, responseType: DeviceDataConfiguration.self) {
             result in
             switch result {
@@ -42,5 +42,5 @@ struct DeviceDataService {
             }
         }
     }
-
+    
 }
