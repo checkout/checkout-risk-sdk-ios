@@ -27,7 +27,7 @@ struct DeviceDataService {
     }
     
     func getConfiguration(completion: @escaping (DeviceDataConfiguration) -> Void) {
-        let endpoint = "\(config.deviceDataEndpoint)/configuration?integrationType=\(config.integrationType)"
+        let endpoint = "\(config.deviceDataEndpoint)/configuration?integrationType=\(config.integrationType.rawValue)"
         let authToken = config.merchantPublicKey
         
         apiService.getJSONFromAPIWithAuthorization(endpoint: endpoint, authToken: authToken, responseType: DeviceDataConfiguration.self) {

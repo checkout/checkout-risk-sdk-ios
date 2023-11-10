@@ -26,7 +26,7 @@ final class FingerprintService {
             return completion(requestID)
         }
         
-        let metadata = createMetadata(sourceType: internalConfig.sourceType)
+        let metadata = createMetadata(sourceType: internalConfig.sourceType.rawValue)
         
         client.getVisitorIdResponse(metadata) { [weak self] result in
             

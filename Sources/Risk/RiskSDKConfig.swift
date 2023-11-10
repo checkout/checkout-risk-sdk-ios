@@ -18,11 +18,6 @@ public enum RiskEnvironment {
 enum RiskIntegrationType: String, Encodable {
     case standalone = "RiskIosStandalone"
     case inFrames = "RiskIosInFramesIos"
-    
-    enum CodingKeys: String, CodingKey {
-        case standalone = "RiskIosStandalone"
-        case inFrames = "RiskIosInFramesIos"
-    }
 }
 
 enum RiskEvent {
@@ -54,13 +49,13 @@ struct RiskSDKInternalConfig {
     let merchantPublicKey: String
     let deviceDataEndpoint: String
     let fingerprintEndpoint: String
-    let integrationType: RiskIntegrationType.RawValue
-    let sourceType: SourceType.RawValue
+    let integrationType: RiskIntegrationType
+    let sourceType: SourceType
     
     init(config: RiskConfig) {
         merchantPublicKey = config.publicKey
-        integrationType = config.framesMode ? RiskIntegrationType.inFrames.rawValue : RiskIntegrationType.standalone.rawValue
-        sourceType = config.framesMode ? SourceType.cardToken.rawValue : SourceType.riskSDK.rawValue
+        integrationType = config.framesMode ? .inFrames : .standalone
+        sourceType = config.framesMode ? .cardToken : .riskSDK
         
         switch config.environment {
         case .qa:
