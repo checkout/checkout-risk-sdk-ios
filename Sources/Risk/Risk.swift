@@ -29,7 +29,7 @@ public class Risk {
             
             guard configuration.fingerprintIntegration.enabled, let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey else {
                 return completion(nil)
-                // #warning("TODO: - Handle disabled fingerpint integraiton, e.g. dispatch and/or log event")
+                #warning("TODO: - Handle disabled fingerpint integraiton, e.g. dispatch and/or log event")
             }
             
             let fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey, internalConfig: internalConfig)

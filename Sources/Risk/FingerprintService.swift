@@ -32,12 +32,12 @@ final class FingerprintService {
             
             switch result {
             case let .failure(error):
-                // #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
+                #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
                 print("Error: ", error.localizedDescription)
             case let .success(response):
-                // #warning("TODO: - Dispatch collected event and/or log (https://checkout.atlassian.net/browse/PRISM-10482)")
+                #warning("TODO: - Dispatch collected event and/or log (https://checkout.atlassian.net/browse/PRISM-10482)")
                 self?.requestID = response.requestId
-                return completion(response.requestId)
+                completion(response.requestId)
             }
         }
     }
