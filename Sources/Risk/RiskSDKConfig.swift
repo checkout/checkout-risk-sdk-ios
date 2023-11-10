@@ -18,6 +18,11 @@ public enum RiskEnvironment {
 enum RiskIntegrationType: String, Encodable {
     case standalone = "RiskIosStandalone"
     case inFrames = "RiskIosInFramesIos"
+    
+    enum CodingKeys: String, CodingKey {
+        case standalone = "RiskIosStandalone"
+        case inFrames = "RiskIosInFramesIos"
+    }
 }
 
 enum RiskEvent {
