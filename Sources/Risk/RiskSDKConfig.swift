@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FingerprintPro
 
 public enum RiskEnvironment {
     case qa
@@ -14,9 +15,9 @@ public enum RiskEnvironment {
     case production
 }
 
-enum RiskIntegrationType: String {
-    case RiskIosStandalone
-    case RiskIosInFramesIos
+enum RiskIntegrationType: String, Encodable {
+    case standalone = "RiskIosStandalone"
+    case inFrames = "RiskIosInFramesIos"
 }
 
 enum RiskEvent {
@@ -27,6 +28,10 @@ enum RiskEvent {
     case collected
 }
 
+enum SourceType: String {
+    case cardToken = "card_token"
+    case riskSDK = "riskios"
+}
 
 public struct RiskConfig {
     public let publicKey: String
@@ -43,19 +48,26 @@ public struct RiskConfig {
 struct RiskSDKInternalConfig {
     let merchantPublicKey: String
     let deviceDataEndpoint: String
+    let fingerprintEndpoint: String
     let integrationType: RiskIntegrationType
+    let sourceType: SourceType
     
     init(config: RiskConfig) {
-        self.merchantPublicKey = config.publicKey
-        self.integrationType = config.framesMode ? RiskIntegrationType.RiskIosInFramesIos : RiskIntegrationType.RiskIosStandalone
+        merchantPublicKey = config.publicKey
+        integrationType = config.framesMode ? .inFrames : .standalone
+        sourceType = config.framesMode ? .cardToken : .riskSDK
         
         switch config.environment {
         case .qa:
-            self.deviceDataEndpoint = "https://prism-qa.ckotech.co/collect"
+            deviceDataEndpoint = "https://prism-qa.ckotech.co/collect"
+            fingerprintEndpoint = "https://fpjs.cko-qa.ckotech.co"
         case .sandbox:
-            self.deviceDataEndpoint = "https://risk.sandbox.checkout.com/collect"
+            deviceDataEndpoint = "https://risk.sandbox.checkout.com/collect"
+            fingerprintEndpoint = "https://fpjs.sandbox.checkout.com"
         case .production:
-            self.deviceDataEndpoint = "https://risk.checkout.com/collect"
+            deviceDataEndpoint = "https://risk.checkout.com/collect"
+            fingerprintEndpoint = "https://fpjs.checkout.com"
         }
     }
+    
 }

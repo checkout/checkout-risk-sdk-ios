@@ -10,9 +10,10 @@ import Foundation
 
 public class Risk {
     private static var sharedInstance: Risk?
+    private let fingerprintService: FingerprintService
     
-    public init() {
-        print("Risk Initialized")
+    private init(fingerprintService: FingerprintService) {
+        self.fingerprintService = fingerprintService
     }
     
     public static func createInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
@@ -26,17 +27,24 @@ public class Risk {
         deviceDataService.getConfiguration {
             configuration in
             
-            guard configuration.fingerprintIntegration.enabled else {
+            guard configuration.fingerprintIntegration.enabled, let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey else {
                 return completion(nil)
+                #warning("TODO: - Handle disabled fingerpint integraiton, e.g. dispatch and/or log event")
             }
             
-            let riskInstance = Risk()
+            let fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey, internalConfig: internalConfig)
+            
+            let riskInstance = Risk(fingerprintService: fingerprintService)
             sharedInstance = riskInstance
+            
             completion(riskInstance)
         }
     }
     
-    public func publishDeviceData () {
-        print("Publishing")
+    public func publishData () {
+        
+        fingerprintService.publishData(cardToken: nil) { requestID in
+            print("Published to Fingerprint with requestID: \(requestID ?? "")")
+        }
     }
 }
