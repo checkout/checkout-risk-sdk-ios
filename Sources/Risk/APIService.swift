@@ -70,6 +70,13 @@ struct APIService: APIServiceProtocol {
         }
         
         task.resume()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            if task.state == .running {
+                task.cancel()
+                completion(.failure(APIServiceError.httpError(408)))
+            }
+        }
     }
     
     public func putDataToAPIWithAuthorization<T: Encodable, U: Decodable>(endpoint: String, authToken: String, data: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
@@ -124,6 +131,13 @@ struct APIService: APIServiceProtocol {
         }
         
         task.resume()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            if task.state == .running {
+                task.cancel()
+                completion(.failure(APIServiceError.httpError(408)))
+            }
+        }
     }
     
 }
