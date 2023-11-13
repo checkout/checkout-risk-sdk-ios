@@ -9,7 +9,7 @@ import FingerprintPro
 import Foundation
 
 final class FingerprintService {
-    private var requestID: String? = nil
+    private var requestID: String?
     private let client: FingerprintClientProviding
     private let internalConfig: RiskSDKInternalConfig
     
@@ -33,7 +33,7 @@ final class FingerprintService {
             switch result {
             case let .failure(error):
                 #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
-                print("Error: ", error.localizedDescription)
+                completion(nil)
             case let .success(response):
                 #warning("TODO: - Dispatch collected event and/or log (https://checkout.atlassian.net/browse/PRISM-10482)")
                 self?.requestID = response.requestId

@@ -11,27 +11,29 @@ import Risk
 import Foundation
 
 struct ContentView: View {
-	
-	var body: some View {
-		
-		VStack {
-			Image(systemName: "globe")
-				.imageScale(.large)
-				.foregroundStyle(.tint)
-			
-			Text("Risk iOS")
-			
-			Button("Initialise Risk") {
-				let yourConfig = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
-				
-				Risk.createInstance(config: yourConfig) { 
-					riskInstance in
-					riskInstance?.publishData()
-				}
-			}
-		}
-		.padding()
-	}
+    
+    var body: some View {
+        
+        VStack {
+            Image(systemName: "globe")
+                .imageScale(.large)
+                .foregroundStyle(.tint)
+            
+            Text("Risk iOS")
+            
+            Button("Initialise Risk") {
+                let yourConfig = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
+                
+                Risk.createInstance(config: yourConfig) { 
+                    riskInstance in
+                    riskInstance?.publishData() {
+						response in
+						deviceSessionId = response?.deviceSessionId ?? ""
+					}
+                }
+        }
+        .padding()
+    }
 }
 
 #Preview {

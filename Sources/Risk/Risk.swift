@@ -8,12 +8,18 @@
 
 import Foundation
 
+public struct PublishRiskData {
+    public let deviceSessionId: String
+}
+
 public class Risk {
     private static var sharedInstance: Risk?
     private let fingerprintService: FingerprintService
+    private let deviceDataService: DeviceDataService
     
-    private init(fingerprintService: FingerprintService) {
+    private init(fingerprintService: FingerprintService, deviceDataService: DeviceDataService) {
         self.fingerprintService = fingerprintService
+        self.deviceDataService = deviceDataService
     }
     
     public static func createInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
@@ -29,22 +35,34 @@ public class Risk {
             
             guard configuration.fingerprintIntegration.enabled, let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey else {
                 return completion(nil)
-                #warning("TODO: - Handle disabled fingerpint integraiton, e.g. dispatch and/or log event")
             }
             
             let fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey, internalConfig: internalConfig)
             
-            let riskInstance = Risk(fingerprintService: fingerprintService)
+            let riskInstance = Risk(fingerprintService: fingerprintService, deviceDataService: deviceDataService)
             sharedInstance = riskInstance
             
             completion(riskInstance)
         }
     }
     
-    public func publishData () {
+    public func publishData (cardToken: String? = nil, completion: @escaping (PublishRiskData?) -> Void) {
         
-        fingerprintService.publishData(cardToken: nil) { requestID in
-            print("Published to Fingerprint with requestID: \(requestID ?? "")")
+        fingerprintService.publishData(cardToken: nil) { 
+            requestID in
+            
+            guard requestID != nil, let fingerprintRequestId = requestID else {
+                return completion(nil)
+            }
+            
+            self.deviceDataService.persistFpData(fingerprintRequestId: fingerprintRequestId, cardToken: cardToken) { response in
+                
+                guard response != nil, let deviceSessionId = response?.deviceSessionId else {
+                    return completion(nil)
+                }
+                
+                completion(PublishRiskData(deviceSessionId: deviceSessionId))
+            }
         }
     }
 }
