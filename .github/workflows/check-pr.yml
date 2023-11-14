@@ -55,9 +55,10 @@ jobs:
         env:
           scheme: Risk
 
-      - name: Build Risk SDK SPM Test Project
-        run: |
-          set -o pipefail && xcodebuild "build" "-project" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
-        env:
-          path: "Example/RiskExample.xcodeproj"
-          scheme: Risk
+      # TODO: find way of working with private repo
+      # - name: Build Risk SDK SPM Test Project
+      #   run: |
+      #     set -o pipefail && xcodebuild "build" "-project" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
+      #   env:
+      #     path: "Example/RiskExample.xcodeproj"
+      #     scheme: Risk
