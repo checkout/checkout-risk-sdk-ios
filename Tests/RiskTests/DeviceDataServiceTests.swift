@@ -43,4 +43,10 @@ class MockAPIService: APIServiceProtocol {
             completion(expectedResult)
         }
     }
+    
+    func putDataToAPIWithAuthorization<T, U>(endpoint: String, authToken: String, data: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) where T: Encodable, U: Decodable {
+        if let expectedResult = expectedResult as? Result<U, Error> {
+            completion(expectedResult)
+        }
+    }
 }
