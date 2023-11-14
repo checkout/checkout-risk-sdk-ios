@@ -17,7 +17,7 @@ struct DeviceDataConfiguration: Decodable, Equatable {
     let fingerprintIntegration: FingerprintIntegration
 }
 
-struct PersistDeviceDataServiceData: Codable {
+struct PersistDeviceDataServiceData: Codable, Equatable {
     
     private enum CodingKeys: String, CodingKey {
         case integrationType, fpRequestId, cardToken

@@ -32,6 +32,28 @@ class DeviceDataServiceTests: XCTestCase {
         
         waitForExpectations(timeout: 5, handler: nil)
     }
+    
+    func testPersistFpData() {
+        let mockAPIService = MockAPIService()
+
+        let config = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
+        let internalConfig = RiskSDKInternalConfig(config: config)
+        let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockAPIService)
+
+        let expectation = self.expectation(description: "Data sent")
+
+        let expectedResponse = PersistDeviceDataResponse(deviceSessionId: "abc")
+
+        mockAPIService.expectedDeviceDataResult = .success(expectedResponse)
+
+        deviceDataService.persistFpData(fingerprintRequestId: "12345.ab0cd", cardToken: nil) { result in
+            XCTAssertEqual(result, expectedResponse)
+
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+    }
 }
 
 
@@ -44,8 +66,9 @@ class MockAPIService: APIServiceProtocol {
         }
     }
     
+    var expectedDeviceDataResult: Result<PersistDeviceDataResponse, Error>?
     func putDataToAPIWithAuthorization<T, U>(endpoint: String, authToken: String, data: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) where T: Encodable, U: Decodable {
-        if let expectedResult = expectedResult as? Result<U, Error> {
+        if let expectedResult = expectedDeviceDataResult as? Result<U, Error> {
             completion(expectedResult)
         }
     }
