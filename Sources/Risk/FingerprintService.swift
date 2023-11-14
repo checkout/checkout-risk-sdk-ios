@@ -31,7 +31,7 @@ final class FingerprintService {
         client.getVisitorIdResponse(metadata) { [weak self] result in
             
             switch result {
-            case let .failure(error):
+            case .failure:
                 #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
                 completion(nil)
             case let .success(response):
