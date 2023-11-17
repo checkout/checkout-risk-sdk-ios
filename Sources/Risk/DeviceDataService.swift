@@ -23,22 +23,17 @@ struct PersistDeviceDataServiceData: Codable, Equatable {
         case integrationType, fingerprintRequestID = "fpRequestId", cardToken
     }
     
-    let integrationType: RiskIntegrationType.RawValue
+    let integrationType: RiskIntegrationType
     let fingerprintRequestID: String
     let cardToken: String?
-    
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(integrationType, forKey: .integrationType)
-        try container.encode(fingerprintRequestID, forKey: .fingerprintRequestID)
-        try container.encode(cardToken, forKey: .cardToken)
-    }
 }
 
 struct PersistDeviceDataResponse: Decodable, Equatable {
-    let deviceSessionId: String
+    let deviceSessionID: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case deviceSessionID = "deviceSessionId"
+    }
 }
 
 struct DeviceDataService {
@@ -73,7 +68,7 @@ struct DeviceDataService {
         let integrationType = config.integrationType
         
         let data = PersistDeviceDataServiceData(
-            integrationType: integrationType.rawValue,
+            integrationType: integrationType,
             fingerprintRequestID: fingerprintRequestID,
             cardToken: cardToken
         )

@@ -15,7 +15,7 @@ public enum RiskEnvironment {
     case production
 }
 
-enum RiskIntegrationType: String, Encodable {
+enum RiskIntegrationType: String, Codable {
     case standalone = "RiskIosStandalone"
     case inFrames = "RiskIosInFramesIos"
 }

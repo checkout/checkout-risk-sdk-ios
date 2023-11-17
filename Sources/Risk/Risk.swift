@@ -9,7 +9,7 @@
 import Foundation
 
 public struct PublishRiskData {
-    public let deviceSessionId: String
+    public let deviceSessionID: String
 }
 
 public class Risk {
@@ -57,11 +57,11 @@ public class Risk {
             
             self.deviceDataService.persistFpData(fingerprintRequestID: fingerprintRequestID, cardToken: cardToken) { response in
                 
-                guard response != nil, let deviceSessionID = response?.deviceSessionId else {
+                guard response != nil, let deviceSessionID = response?.deviceSessionID else {
                     return completion(nil)
                 }
                 
-                completion(PublishRiskData(deviceSessionId: deviceSessionID))
+                completion(PublishRiskData(deviceSessionID: deviceSessionID))
             }
         }
     }
