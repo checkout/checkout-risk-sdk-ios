@@ -20,11 +20,11 @@ struct DeviceDataConfiguration: Decodable, Equatable {
 struct PersistDeviceDataServiceData: Codable, Equatable {
     
     private enum CodingKeys: String, CodingKey {
-        case integrationType, fpRequestId, cardToken
+        case integrationType, fingerprintRequestID = "fpRequestId", cardToken
     }
     
     let integrationType: RiskIntegrationType.RawValue
-    let fpRequestId: String
+    let fingerprintRequestID: String
     let cardToken: String?
     
     
@@ -32,7 +32,7 @@ struct PersistDeviceDataServiceData: Codable, Equatable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode(integrationType, forKey: .integrationType)
-        try container.encode(fpRequestId, forKey: .fpRequestId)
+        try container.encode(fingerprintRequestID, forKey: .fingerprintRequestID)
         try container.encode(cardToken, forKey: .cardToken)
     }
 }
@@ -67,14 +67,14 @@ struct DeviceDataService {
         }
     }
     
-    func persistFpData(fingerprintRequestId: String, cardToken: String?, completion: @escaping (PersistDeviceDataResponse?) -> Void) {
+    func persistFpData(fingerprintRequestID: String, cardToken: String?, completion: @escaping (PersistDeviceDataResponse?) -> Void) {
         let endpoint = "\(config.deviceDataEndpoint)/fingerprint"
         let authToken = config.merchantPublicKey
         let integrationType = config.integrationType
         
         let data = PersistDeviceDataServiceData(
             integrationType: integrationType.rawValue,
-            fpRequestId: fingerprintRequestId,
+            fingerprintRequestID: fingerprintRequestID,
             cardToken: cardToken
         )
         

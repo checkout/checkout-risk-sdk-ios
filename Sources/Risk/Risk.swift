@@ -48,20 +48,20 @@ public class Risk {
     
     public func publishData (cardToken: String? = nil, completion: @escaping (PublishRiskData?) -> Void) {
         
-        fingerprintService.publishData(cardToken: nil) { 
+        fingerprintService.publishData() { 
             requestID in
             
-            guard requestID != nil, let fingerprintRequestId = requestID else {
+            guard requestID != nil, let fingerprintRequestID = requestID else {
                 return completion(nil)
             }
             
-            self.deviceDataService.persistFpData(fingerprintRequestId: fingerprintRequestId, cardToken: cardToken) { response in
+            self.deviceDataService.persistFpData(fingerprintRequestID: fingerprintRequestID, cardToken: cardToken) { response in
                 
-                guard response != nil, let deviceSessionId = response?.deviceSessionId else {
+                guard response != nil, let deviceSessionID = response?.deviceSessionId else {
                     return completion(nil)
                 }
                 
-                completion(PublishRiskData(deviceSessionId: deviceSessionId))
+                completion(PublishRiskData(deviceSessionId: deviceSessionID))
             }
         }
     }

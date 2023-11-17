@@ -46,7 +46,7 @@ class DeviceDataServiceTests: XCTestCase {
 
         mockAPIService.expectedDeviceDataResult = .success(expectedResponse)
 
-        deviceDataService.persistFpData(fingerprintRequestId: "12345.ab0cd", cardToken: nil) { result in
+        deviceDataService.persistFpData(fingerprintRequestID: "12345.ab0cd", cardToken: nil) { result in
             XCTAssertEqual(result, expectedResponse)
 
             expectation.fulfill()

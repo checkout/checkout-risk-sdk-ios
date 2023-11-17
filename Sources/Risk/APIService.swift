@@ -8,6 +8,31 @@
 
 import Foundation
 
+enum HTTPStatusCode: Int {
+    case ok = 200
+    case created = 201
+    case badRequest = 400
+    case unauthorized = 401
+    case notFound = 404
+    case internalServerError = 500
+}
+
+func handleResponse(statusCode: HTTPStatusCode) {
+    switch statusCode {
+    case .ok, .created:
+        print("Request was successful")
+    case .badRequest:
+        print("Bad request")
+    case .unauthorized:
+        print("Unauthorized access")
+    case .notFound:
+        print("Resource not found")
+    case .internalServerError:
+        print("Internal server error")
+    }
+}
+
+
 protocol APIServiceProtocol {
     func getJSONFromAPIWithAuthorization<T: Decodable>(endpoint: String, authToken: String, responseType: T.Type, completion: @escaping (Result<T, Error>) -> Void)
     func putDataToAPIWithAuthorization<T: Encodable, U: Decodable>(endpoint: String, authToken: String, data: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void)

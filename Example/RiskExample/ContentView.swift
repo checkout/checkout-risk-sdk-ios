@@ -11,7 +11,8 @@ import Risk
 import Foundation
 
 struct ContentView: View {
-	@State private var deviceSessionId: String = ""
+	@State private var deviceSessionID: String?
+	@State private var enabled: Bool = false
 	@State private var checked: Bool = false
 	
 	var body: some View {
@@ -30,14 +31,16 @@ struct ContentView: View {
 			let yourConfig = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
 			
 			Risk.createInstance(config: yourConfig) { riskInstance in
+				checked = true
+				enabled = riskInstance != nil ? true : false
+				
 				riskInstance?.publishData() { response in
-					checked = true
-					deviceSessionId = response?.deviceSessionId ?? ""
+					deviceSessionID = response?.deviceSessionId ?? ""
 				}
 			}
 		}.padding().background(Color.blue.opacity(0.9)).cornerRadius(8).frame(maxWidth: .infinity, alignment: .center).foregroundColor(.white).padding(.top)
 		
-		Text(!checked ? "" : "Device session id: \(deviceSessionId)").padding(.top).multilineTextAlignment(.center)
+        Text(!checked ? .init() : enabled && deviceSessionID != nil ? "Device session id: \(deviceSessionID!)" : "Integration disabled" ).padding(.top).multilineTextAlignment(.center)
 	}
 }
 

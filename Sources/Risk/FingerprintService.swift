@@ -20,7 +20,7 @@ final class FingerprintService {
         self.internalConfig = internalConfig
     }
     
-    func publishData(cardToken: String?, completion: @escaping (String?) -> Void) {
+    func publishData(completion: @escaping (String?) -> Void) {
         
         guard requestID == nil else {
             return completion(requestID)
