@@ -12,7 +12,7 @@ public struct PublishRiskData {
     public let deviceSessionID: String
 }
 
-public enum PublishRiskDataError: Error {
+public enum RiskError: Error {
     case description(String)
     
     var localizedDescription: String {
@@ -41,37 +41,38 @@ public class Risk {
         let internalConfig = RiskSDKInternalConfig(config: config)
         let deviceDataService = DeviceDataService(config: internalConfig)
         
-        deviceDataService.getConfiguration {
-            configuration in
+        deviceDataService.getConfiguration { result in
             
-            guard configuration.fingerprintIntegration.enabled, let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey else {
+            switch(result) {
+            case .failure:
                 return completion(nil)
+            case .success(let configuration):
+                let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey!
+                let fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey, internalConfig: internalConfig)
+                let riskInstance = Risk(fingerprintService: fingerprintService, deviceDataService: deviceDataService)
+                sharedInstance = riskInstance
+                
+                completion(riskInstance)
             }
             
-            let fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey, internalConfig: internalConfig)
-            
-            let riskInstance = Risk(fingerprintService: fingerprintService, deviceDataService: deviceDataService)
-            sharedInstance = riskInstance
-            
-            completion(riskInstance)
         }
     }
     
-    public func publishData (cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, PublishRiskDataError>) -> Void) {
+    public func publishData (cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
         
-        fingerprintService.publishData() { 
-            requestID in
+        fingerprintService.publishData() { fpResult in
             
-            guard requestID != nil, let fingerprintRequestID = requestID else {
-                return completion(.failure(PublishRiskDataError.description("Error publishing risk data")))
-            }
-            
-            self.deviceDataService.persistFpData(fingerprintRequestID: fingerprintRequestID, cardToken: cardToken) { result in
-                switch(result) {
-                case .success(let response):
-                    completion(.success(PublishRiskData(deviceSessionID: response.deviceSessionID)))
-                case .failure(let errorMessage):
-                    completion(.failure(errorMessage))
+            switch(fpResult) {
+            case .failure(let errorMessage):
+                completion(.failure(errorMessage))
+            case .success(let requestID):
+                self.deviceDataService.persistFpData(fingerprintRequestID: requestID, cardToken: cardToken) { result in
+                    switch(result) {
+                    case .success(let response):
+                        completion(.success(PublishRiskData(deviceSessionID: response.deviceSessionID)))
+                    case .failure(let errorMessage):
+                        completion(.failure(errorMessage))
+                    }
                 }
             }
         }

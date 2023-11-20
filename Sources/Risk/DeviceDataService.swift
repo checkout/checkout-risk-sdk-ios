@@ -45,7 +45,7 @@ struct DeviceDataService {
         self.apiService = apiService
     }
     
-    func getConfiguration(completion: @escaping (DeviceDataConfiguration) -> Void) {
+    func getConfiguration(completion: @escaping (Result<DeviceDataConfiguration, RiskError>) -> Void) {
         let endpoint = "\(config.deviceDataEndpoint)/configuration?integrationType=\(config.integrationType.rawValue)"
         let authToken = config.merchantPublicKey
         
@@ -53,16 +53,21 @@ struct DeviceDataService {
             result in
             switch result {
             case .success(let configuration):
-                #warning("TODO: - Handle disabled fingerpint integraiton, e.g. dispatch and/or log event (https://checkout.atlassian.net/browse/PRISM-10482)")
-                completion(configuration)
+                
+                guard configuration.fingerprintIntegration.enabled && configuration.fingerprintIntegration.publicKey != nil else {
+                    #warning("TODO: - Handle disabled fingerpint integraiton, e.g. dispatch and/or log event (https://checkout.atlassian.net/browse/PRISM-10482)")
+                    return completion(.failure(RiskError.description("Integration disabled")))
+                }
+                
+                completion(.success(configuration))
             case .failure:
                 #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
-                completion(DeviceDataConfiguration(fingerprintIntegration: FingerprintIntegration(enabled: false, publicKey: nil)))
+                return completion(.failure(RiskError.description("Error retrieving configuration")))
             }
         }
     }
     
-    func persistFpData(fingerprintRequestID: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, PublishRiskDataError>) -> Void) {
+    func persistFpData(fingerprintRequestID: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError>) -> Void) {
         let endpoint = "\(config.deviceDataEndpoint)/fingerprint"
         let authToken = config.merchantPublicKey
         let integrationType = config.integrationType
@@ -81,7 +86,7 @@ struct DeviceDataService {
                 completion(.success(response))
             case .failure:
                 #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
-                completion(.failure(PublishRiskDataError.description("Error persisting risk data")))
+                completion(.failure(RiskError.description("Error persisting risk data")))
             }
         }
     }

@@ -14,6 +14,7 @@ struct ContentView: View {
 	@State private var deviceSessionID: String?
 	@State private var enabled: Bool = false
 	@State private var checked: Bool = false
+	@State private var loading: Bool = false
 	
 	var body: some View {
 		Text("Risk iOS Example").padding(.bottom).frame(maxWidth: .infinity, alignment: .center).font(.title)
@@ -32,22 +33,29 @@ struct ContentView: View {
 			
 			Risk.createInstance(config: yourConfig) { riskInstance in
 				checked = true
-				enabled = riskInstance != nil ? true : false
+				loading = true
+				
+				guard riskInstance != nil else {
+					loading = false
+					enabled = false
+					return
+				}
+				enabled = true
 				
 				riskInstance?.publishData() { result in
 					
 					switch(result) {
-						case .success(let response):
-							deviceSessionID = response.deviceSessionID
-						case .failure:
-							deviceSessionID = nil
+					case .success(let response):
+						deviceSessionID = response.deviceSessionID
+					case .failure:
+						deviceSessionID = nil
 					}
-					
+					loading = false
 				}
 			}
 		}.padding().background(Color.blue.opacity(0.9)).cornerRadius(8).frame(maxWidth: .infinity, alignment: .center).foregroundColor(.white).padding(.top)
 		
-        Text(!checked ? .init() : enabled && deviceSessionID != nil ? "Device session id: \(deviceSessionID!)" : "Integration disabled" ).padding(.top).multilineTextAlignment(.center)
+		Text(!checked ? .init() : loading ? "Loading..." : enabled && deviceSessionID != nil ? "Device session id: \(deviceSessionID!)" : "Integration disabled" ).padding(.top).multilineTextAlignment(.center)
 	}
 }
 

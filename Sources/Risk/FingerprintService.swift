@@ -20,10 +20,10 @@ final class FingerprintService {
         self.internalConfig = internalConfig
     }
     
-    func publishData(completion: @escaping (String?) -> Void) {
+    func publishData(completion: @escaping (Result<String, RiskError>) -> Void) {
         
         guard requestID == nil else {
-            return completion(requestID)
+            return completion(.success(requestID!))
         }
         
         let metadata = createMetadata(sourceType: internalConfig.sourceType.rawValue)
@@ -33,11 +33,11 @@ final class FingerprintService {
             switch result {
             case .failure:
                 #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
-                completion(nil)
+                return completion(.failure(RiskError.description("Error publishing risk data")))
             case let .success(response):
                 #warning("TODO: - Dispatch collected event and/or log (https://checkout.atlassian.net/browse/PRISM-10482)")
                 self?.requestID = response.requestId
-                completion(response.requestId)
+                completion(.success(response.requestId))
             }
         }
     }
