@@ -12,7 +12,7 @@ public struct PublishRiskData {
     public let deviceSessionID: String
 }
 
-public enum RiskError: Error {
+public enum RiskError: Error, Equatable {
     case description(String)
     
     var localizedDescription: String {
