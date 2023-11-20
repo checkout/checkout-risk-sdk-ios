@@ -62,7 +62,7 @@ struct DeviceDataService {
         }
     }
     
-    func persistFpData(fingerprintRequestID: String, cardToken: String?, completion: @escaping (PersistDeviceDataResponse?) -> Void) {
+    func persistFpData(fingerprintRequestID: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, PublishRiskDataError>) -> Void) {
         let endpoint = "\(config.deviceDataEndpoint)/fingerprint"
         let authToken = config.merchantPublicKey
         let integrationType = config.integrationType
@@ -78,10 +78,10 @@ struct DeviceDataService {
             switch result {
             case .success(let response):
                 #warning("TODO: - dispatch and/or log published event (https://checkout.atlassian.net/browse/PRISM-10482)")
-                completion(response)
+                completion(.success(response))
             case .failure:
                 #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
-                completion(nil)
+                completion(.failure(PublishRiskDataError.description("Error persisting risk data")))
             }
         }
     }

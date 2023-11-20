@@ -42,7 +42,7 @@ class DeviceDataServiceTests: XCTestCase {
 
         let expectation = self.expectation(description: "Data sent")
 
-        let expectedResponse = PersistDeviceDataResponse(deviceSessionId: "abc")
+        let expectedResponse = PersistDeviceDataResponse(deviceSessionID: "abc")
 
         mockAPIService.expectedDeviceDataResult = .success(expectedResponse)
 

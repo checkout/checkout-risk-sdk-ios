@@ -12,6 +12,17 @@ public struct PublishRiskData {
     public let deviceSessionID: String
 }
 
+public enum PublishRiskDataError: Error {
+    case description(String)
+    
+    var localizedDescription: String {
+        switch self {
+        case .description(let errorMessage):
+            return errorMessage
+        }
+    }
+}
+
 public class Risk {
     private static var sharedInstance: Risk?
     private let fingerprintService: FingerprintService
@@ -46,22 +57,22 @@ public class Risk {
         }
     }
     
-    public func publishData (cardToken: String? = nil, completion: @escaping (PublishRiskData?) -> Void) {
+    public func publishData (cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, PublishRiskDataError>) -> Void) {
         
         fingerprintService.publishData() { 
             requestID in
             
             guard requestID != nil, let fingerprintRequestID = requestID else {
-                return completion(nil)
+                return completion(.failure(PublishRiskDataError.description("Error publishing risk data")))
             }
             
-            self.deviceDataService.persistFpData(fingerprintRequestID: fingerprintRequestID, cardToken: cardToken) { response in
-                
-                guard response != nil, let deviceSessionID = response?.deviceSessionID else {
-                    return completion(nil)
+            self.deviceDataService.persistFpData(fingerprintRequestID: fingerprintRequestID, cardToken: cardToken) { result in
+                switch(result) {
+                case .success(let response):
+                    completion(.success(PublishRiskData(deviceSessionID: response.deviceSessionID)))
+                case .failure(let errorMessage):
+                    completion(.failure(errorMessage))
                 }
-                
-                completion(PublishRiskData(deviceSessionID: deviceSessionID))
             }
         }
     }

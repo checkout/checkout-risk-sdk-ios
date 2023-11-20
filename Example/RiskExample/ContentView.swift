@@ -34,8 +34,15 @@ struct ContentView: View {
 				checked = true
 				enabled = riskInstance != nil ? true : false
 				
-				riskInstance?.publishData() { response in
-					deviceSessionID = response?.deviceSessionID ?? ""
+				riskInstance?.publishData() { result in
+					
+					switch(result) {
+						case .success(let response):
+							deviceSessionID = response.deviceSessionID
+						case .failure:
+							deviceSessionID = nil
+					}
+					
 				}
 			}
 		}.padding().background(Color.blue.opacity(0.9)).cornerRadius(8).frame(maxWidth: .infinity, alignment: .center).foregroundColor(.white).padding(.top)
