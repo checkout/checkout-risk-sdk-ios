@@ -6,6 +6,8 @@ excluded:
   - "Tests"
   - "iOS Example Risk SPM/RiskExampleTests"
   - "iOS Example Risk SPM/RiskExampleUITests"
+  - "Example/RiskExampleTests"
+  - "Example/RiskExampleUITests"
 
 opt_in_rules:
   - array_init
