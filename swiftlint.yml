@@ -1,11 +1,9 @@
 included:
   - "Sources"
-  - "iOS Example Risk SPM"
+  - "Example"
 
 excluded:
   - "Tests"
-  - "iOS Example Risk SPM/RiskExampleTests"
-  - "iOS Example Risk SPM/RiskExampleUITests"
   - "Example/RiskExampleTests"
   - "Example/RiskExampleUITests"
 
