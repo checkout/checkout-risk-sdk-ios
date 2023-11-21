@@ -12,20 +12,12 @@ import FingerprintPro
 public enum RiskEnvironment {
     case qa
     case sandbox
-    case production
+    case prod
 }
 
 enum RiskIntegrationType: String, Codable {
     case standalone = "RiskIosStandalone"
     case inFrames = "RiskIosInFramesIos"
-}
-
-enum RiskEvent {
-    case publishDisabled
-    case published
-    case publishBlocked
-    case publishFailure
-    case collected
 }
 
 enum SourceType: String {
@@ -51,20 +43,24 @@ struct RiskSDKInternalConfig {
     let fingerprintEndpoint: String
     let integrationType: RiskIntegrationType
     let sourceType: SourceType
+    let framesMode: Bool
+    let environment: RiskEnvironment
     
     init(config: RiskConfig) {
         merchantPublicKey = config.publicKey
-        integrationType = config.framesMode ? .inFrames : .standalone
-        sourceType = config.framesMode ? .cardToken : .riskSDK
+        environment = config.environment
+        framesMode = config.framesMode
+        integrationType = framesMode ? .inFrames : .standalone
+        sourceType = framesMode ? .cardToken : .riskSDK
         
-        switch config.environment {
+        switch environment {
         case .qa:
             deviceDataEndpoint = "https://prism-qa.ckotech.co/collect"
             fingerprintEndpoint = "https://fpjs.cko-qa.ckotech.co"
         case .sandbox:
             deviceDataEndpoint = "https://risk.sandbox.checkout.com/collect"
             fingerprintEndpoint = "https://fpjs.sandbox.checkout.com"
-        case .production:
+        case .prod:
             deviceDataEndpoint = "https://risk.checkout.com/collect"
             fingerprintEndpoint = "https://fpjs.checkout.com"
         }

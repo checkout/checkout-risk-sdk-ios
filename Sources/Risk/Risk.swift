@@ -27,10 +27,12 @@ public class Risk {
     private static var sharedInstance: Risk?
     private let fingerprintService: FingerprintService
     private let deviceDataService: DeviceDataService
+    private let loggerService: LoggerService
     
-    private init(fingerprintService: FingerprintService, deviceDataService: DeviceDataService) {
+    private init(fingerprintService: FingerprintService, deviceDataService: DeviceDataService, loggerService: LoggerService) {
         self.fingerprintService = fingerprintService
         self.deviceDataService = deviceDataService
+        self.loggerService = loggerService
     }
     
     public static func getInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
@@ -39,7 +41,8 @@ public class Risk {
         }
         
         let internalConfig = RiskSDKInternalConfig(config: config)
-        let deviceDataService = DeviceDataService(config: internalConfig)
+        let loggerService = LoggerService(internalConfig: internalConfig)
+        let deviceDataService = DeviceDataService(config: internalConfig, loggerService: loggerService)
         
         deviceDataService.getConfiguration { result in
             
@@ -48,8 +51,8 @@ public class Risk {
                 return completion(nil)
             case .success(let configuration):
                 let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey!
-                let fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey, internalConfig: internalConfig)
-                let riskInstance = Risk(fingerprintService: fingerprintService, deviceDataService: deviceDataService)
+                let fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey, internalConfig: internalConfig, loggerService: loggerService)
+                let riskInstance = Risk(fingerprintService: fingerprintService, deviceDataService: deviceDataService, loggerService: loggerService)
                 sharedInstance = riskInstance
                 
                 completion(riskInstance)

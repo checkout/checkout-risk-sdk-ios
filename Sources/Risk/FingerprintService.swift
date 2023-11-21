@@ -12,12 +12,14 @@ final class FingerprintService {
     private var requestID: String?
     private let client: FingerprintClientProviding
     private let internalConfig: RiskSDKInternalConfig
+    private let loggerService: LoggerService
     
-    init(fingerprintPublicKey: String, internalConfig: RiskSDKInternalConfig) {
+    init(fingerprintPublicKey: String, internalConfig: RiskSDKInternalConfig, loggerService: LoggerService) {
         let customDomain: Region = .custom(domain: internalConfig.fingerprintEndpoint)
         let configuration = Configuration(apiKey: fingerprintPublicKey, region: customDomain)
         client = FingerprintProFactory.getInstance(configuration)
         self.internalConfig = internalConfig
+        self.loggerService = loggerService
     }
     
     func publishData(completion: @escaping (Result<String, RiskError>) -> Void) {
@@ -32,11 +34,13 @@ final class FingerprintService {
             
             switch result {
             case .failure:
-                #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
+                self?.loggerService.log(riskEvent: .publishFailure)
+
                 return completion(.failure(RiskError.description("Error publishing risk data")))
             case let .success(response):
-                #warning("TODO: - Dispatch collected event and/or log (https://checkout.atlassian.net/browse/PRISM-10482)")
+                self?.loggerService.log(riskEvent: .collected, requestID: response.requestId)
                 self?.requestID = response.requestId
+                
                 completion(.success(response.requestId))
             }
         }
