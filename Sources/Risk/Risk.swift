@@ -33,7 +33,7 @@ public class Risk {
         self.deviceDataService = deviceDataService
     }
     
-    public static func createInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
+    public static func getInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
         guard sharedInstance === nil else {
             return completion(sharedInstance)
         }
@@ -59,21 +59,23 @@ public class Risk {
     }
     
     public func publishData (cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
-        
         fingerprintService.publishData() { fpResult in
-            
             switch(fpResult) {
             case .failure(let errorMessage):
                 completion(.failure(errorMessage))
             case .success(let requestID):
-                self.deviceDataService.persistFpData(fingerprintRequestID: requestID, cardToken: cardToken) { result in
-                    switch(result) {
-                    case .success(let response):
-                        completion(.success(PublishRiskData(deviceSessionID: response.deviceSessionID)))
-                    case .failure(let errorMessage):
-                        completion(.failure(errorMessage))
-                    }
-                }
+                self.persistFpData(cardToken: cardToken, fingerprintRequestID: requestID, completion: completion)
+            }
+        }
+    }
+    
+    private func persistFpData(cardToken: String?, fingerprintRequestID: String, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
+        self.deviceDataService.persistFpData(fingerprintRequestID: fingerprintRequestID, cardToken: cardToken) { result in
+            switch(result) {
+            case .success(let response):
+                completion(.success(PublishRiskData(deviceSessionID: response.deviceSessionID)))
+            case .failure(let errorMessage):
+                completion(.failure(errorMessage))
             }
         }
     }

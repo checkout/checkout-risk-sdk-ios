@@ -31,7 +31,7 @@ struct ContentView: View {
 		Button("Pay $1400") {
 			let yourConfig = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
 			
-			Risk.createInstance(config: yourConfig) { riskInstance in
+			Risk.getInstance(config: yourConfig) { riskInstance in
 				checked = true
 				loading = true
 				
