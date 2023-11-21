@@ -8,15 +8,32 @@
 
 import Foundation
 
+public struct PublishRiskData {
+    public let deviceSessionID: String
+}
+
+public enum RiskError: Error, Equatable {
+    case description(String)
+    
+    var localizedDescription: String {
+        switch self {
+        case .description(let errorMessage):
+            return errorMessage
+        }
+    }
+}
+
 public class Risk {
     private static var sharedInstance: Risk?
     private let fingerprintService: FingerprintService
+    private let deviceDataService: DeviceDataService
     
-    private init(fingerprintService: FingerprintService) {
+    private init(fingerprintService: FingerprintService, deviceDataService: DeviceDataService) {
         self.fingerprintService = fingerprintService
+        self.deviceDataService = deviceDataService
     }
     
-    public static func createInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
+    public static func getInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
         guard sharedInstance === nil else {
             return completion(sharedInstance)
         }
@@ -24,27 +41,42 @@ public class Risk {
         let internalConfig = RiskSDKInternalConfig(config: config)
         let deviceDataService = DeviceDataService(config: internalConfig)
         
-        deviceDataService.getConfiguration {
-            configuration in
+        deviceDataService.getConfiguration { result in
             
-            guard configuration.fingerprintIntegration.enabled, let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey else {
+            switch(result) {
+            case .failure:
                 return completion(nil)
-                #warning("TODO: - Handle disabled fingerpint integraiton, e.g. dispatch and/or log event")
+            case .success(let configuration):
+                let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey!
+                let fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey, internalConfig: internalConfig)
+                let riskInstance = Risk(fingerprintService: fingerprintService, deviceDataService: deviceDataService)
+                sharedInstance = riskInstance
+                
+                completion(riskInstance)
             }
             
-            let fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey, internalConfig: internalConfig)
-            
-            let riskInstance = Risk(fingerprintService: fingerprintService)
-            sharedInstance = riskInstance
-            
-            completion(riskInstance)
         }
     }
     
-    public func publishData () {
-        
-        fingerprintService.publishData(cardToken: nil) { requestID in
-            print("Published to Fingerprint with requestID: \(requestID ?? "")")
+    public func publishData (cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
+        fingerprintService.publishData() { fpResult in
+            switch(fpResult) {
+            case .failure(let errorMessage):
+                completion(.failure(errorMessage))
+            case .success(let requestID):
+                self.persistFpData(cardToken: cardToken, fingerprintRequestID: requestID, completion: completion)
+            }
+        }
+    }
+    
+    private func persistFpData(cardToken: String?, fingerprintRequestID: String, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
+        self.deviceDataService.persistFpData(fingerprintRequestID: fingerprintRequestID, cardToken: cardToken) { result in
+            switch(result) {
+            case .success(let response):
+                completion(.success(PublishRiskData(deviceSessionID: response.deviceSessionID)))
+            case .failure(let errorMessage):
+                completion(.failure(errorMessage))
+            }
         }
     }
 }

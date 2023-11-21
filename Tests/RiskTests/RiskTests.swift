@@ -11,13 +11,13 @@ import XCTest
 
 class RiskTests: XCTestCase {
     
-    func testCreateInstanceWithValidConfiguration() {
+    func testGetInstanceWithValidConfiguration() {
         let expectation = self.expectation(description: "Risk instance creation")
         var createdRiskInstance: Risk?
         
         let validConfig = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
         
-        Risk.createInstance(config: validConfig) { risk in
+        Risk.getInstance(config: validConfig) { risk in
             createdRiskInstance = risk
             expectation.fulfill()
         }
@@ -26,13 +26,13 @@ class RiskTests: XCTestCase {
         XCTAssertNotNil(createdRiskInstance)
     }
     
-    func testCreateInstanceWithInvalidPublicKey() {
+    func testGetInstanceWithInvalidPublicKey() {
         let expectation = self.expectation(description: "Risk instance creation with invalid public key")
         var createdRiskInstance: Risk?
         
         let invalidConfig = RiskConfig(publicKey: "invalid_public_key", environment: RiskEnvironment.qa)
         
-        Risk.createInstance(config: invalidConfig) { risk in
+        Risk.getInstance(config: invalidConfig) { risk in
             createdRiskInstance = risk
             expectation.fulfill()
         }
