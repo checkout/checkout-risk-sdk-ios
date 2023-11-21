@@ -20,9 +20,21 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  lint:
+    name: Swift Lint
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Lint Edited Files
+        run: bash .github/scripts/lintEditedFiles.sh
+
   risk-sdk:
     name: Risk SDK Verification
     runs-on: macos-13-xl
+    needs: lint
 
     steps:
       - name: Checkout
@@ -60,5 +72,5 @@ jobs:
       #   run: |
       #     set -o pipefail && xcodebuild "build" "-project" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
       #   env:
-      #     path: "Example/RiskExample.xcodeproj"
+      #     path: "iOS Example Risk SPM/RiskExample.xcodeproj"
       #     scheme: Risk
