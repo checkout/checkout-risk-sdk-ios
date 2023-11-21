@@ -1,11 +1,11 @@
 included:
   - "Sources"
-  - "Example"
+  - "iOS Example Risk SPM"
 
 excluded:
   - "Tests"
-  - "Example/RiskExampleTests"
-  - "Example/RiskExampleUITests"
+  - "iOS Example Risk SPM/RiskExampleTests"
+  - "iOS Example Risk SPM/RiskExampleUITests"
 
 opt_in_rules:
   - array_init
