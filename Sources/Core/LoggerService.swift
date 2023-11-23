@@ -56,9 +56,9 @@ struct LoggerService {
             logEnvironment = .production
         }
         
-#if DEBUG
-        logger.enableLocalProcessor(monitoringLevel: .debug)
-#endif
+        //#if DEBUG
+        //        logger.enableLocalProcessor(monitoringLevel: .debug)
+        //#endif
         
         logger.enableRemoteProcessor(
             environment: logEnvironment,
@@ -84,17 +84,36 @@ struct LoggerService {
         switch riskEvent {
         case .published, .collected:
             monitoringLevel = .info
-            properties = ["EventType": AnyCodable(riskEvent.rawValue), "deviceSessionId": AnyCodable(deviceSessionID), "requestID": AnyCodable(requestID), "MaskedPublicKey": AnyCodable(getMaskedPublicKey())]
+            properties = [
+                "EventType": AnyCodable(riskEvent.rawValue),
+                "FramesMode": AnyCodable(internalConfig.framesMode),
+                "ddTags": AnyCodable("team:prism,service:prism.risk.ios,version:\(Constants.version),env:\(internalConfig.environment.rawValue)"),
+                "deviceSessionId": AnyCodable(deviceSessionID),
+                "requestID": AnyCodable(requestID),
+                "MaskedPublicKey": AnyCodable(getMaskedPublicKey())
+            ]
         case .publishFailure, .loadFailure:
             monitoringLevel = .error
-            properties = ["EventType": AnyCodable(riskEvent.rawValue), "ErrorMessage": AnyCodable(error?.message), "ErrorType": AnyCodable(error?.type), "ErrorReason": AnyCodable(error?.reason)]
+            properties = [
+                "EventType": AnyCodable(riskEvent.rawValue),
+                "FramesMode": AnyCodable(internalConfig.framesMode),
+                "ErrorMessage": AnyCodable(error?.message),
+                "ErrorType": AnyCodable(error?.type),
+                "ErrorReason": AnyCodable(error?.reason)
+            ]
         case .publishDisabled:
             monitoringLevel = .warn
-            properties = ["EventType": AnyCodable(riskEvent.rawValue), "ErrorMessage": AnyCodable(error?.message), "ErrorType": AnyCodable(error?.type), "ErrorReason": AnyCodable(error?.reason)]
+            properties = [
+                "EventType": AnyCodable(riskEvent.rawValue),
+                "FramesMode": AnyCodable(internalConfig.framesMode),
+                "ErrorMessage": AnyCodable(error?.message),
+                "ErrorType": AnyCodable(error?.type),
+                "ErrorReason": AnyCodable(error?.reason)
+            ]
         }
-#if DEBUG
-        monitoringLevel = .debug
-#endif
+        //#if DEBUG
+        //        monitoringLevel = .debug
+        //#endif
         
         logger.log(event: Event(
             typeIdentifier: "com.checkout.risk-mobile-sdk",
