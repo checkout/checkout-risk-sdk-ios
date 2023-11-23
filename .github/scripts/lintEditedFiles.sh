@@ -4,17 +4,31 @@ set -o pipefail
 git fetch origin main
 echo "Fetched"
 
-# Use a conditional to check if there are edited files
-if EDITED_FILES=$(git diff HEAD origin/main --name-only --diff-filter=d | grep "\.swift" | grep -v "\.swiftlint\.yml" | xargs echo | tr ' ' ','); then
-  echo "Got edited files"
-  echo $EDITED_FILES
+# Run SwiftLint
+START_DATE=$(date +"%s")
 
-  # Check if EDITED_FILES is empty or null
-  if [ -z "$EDITED_FILES" ]; then
-    echo "No edited .swift files found."
-  else
-    swiftlint lint $EDITED_FILES | sed -E -n 's/^(.*):([0-9]+):([0-9]+): error: (.*)/::error file=\1,line=\2,col=\3::\4\n\1:\2:\3/p'
-  fi
+SWIFT_LINT=/opt/homebrew/bin/swiftlint
+
+
+# Run SwiftLint for given filename
+run_swiftlint() {
+    local filename="${1}"
+    if [[ "${filename##*.}" == "swift" ]]; then
+        ${SWIFT_LINT} -- "${filename}"
+    fi
+}
+
+if [[ -e "${SWIFT_LINT}" ]]; then
+    echo "SwiftLint version: $(${SWIFT_LINT} version)"
+    # Run for both staged and unstaged files
+    git diff --name-only | while read filename; do run_swiftlint "${filename}"; done
+    git diff --cached --name-only | while read filename; do run_swiftlint "${filename}"; done
 else
-  echo "No changes in .swift files found."
+    echo "${SWIFT_LINT} is not installed."
+    exit 0
 fi
+
+END_DATE=$(date +"%s")
+
+DIFF=$(($END_DATE - $START_DATE))
+echo "SwiftLint took $(($DIFF / 60)) minutes and $(($DIFF % 60)) seconds to complete."
