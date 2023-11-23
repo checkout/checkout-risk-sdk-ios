@@ -34,7 +34,7 @@ final class FingerprintService {
             
             switch result {
             case .failure:
-                self?.loggerService.log(riskEvent: .publishFailure)
+                self?.loggerService.log(riskEvent: .publishFailure, error: RiskLogError(reason: "publishData", message: "Error publishing risk data", status: nil, type: "Error"))
 
                 return completion(.failure(RiskError.description("Error publishing risk data")))
             case let .success(response):

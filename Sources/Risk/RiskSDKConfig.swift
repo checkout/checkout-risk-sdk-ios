@@ -9,7 +9,7 @@
 import Foundation
 import FingerprintPro
 
-public enum RiskEnvironment {
+public enum RiskEnvironment: String {
     case qa
     case sandbox
     case prod
