@@ -9,56 +9,12 @@ import Foundation
 import CheckoutEventLoggerKit
 import UIKit
 
-enum CloudEventsEnvironment {
-    case qa
-    case sandbox
-    case prod
-}
-
-enum LogLevel: String {
-    case info
-    case warning
-    case error
-}
-
 enum RiskEvent: String, Codable {
     case publishDisabled = "riskDataPublishDisabled"
     case published = "riskDataPublished"
     case publishFailure = "riskDataPublishFailure"
     case collected = "riskDataCollected"
     case loadFailure = "riskLoadFailure"
-}
-
-struct CloudEventsProperties: Codable {
-    let maskedPublicKey: String
-    let framesMode: Bool
-    let deviceSessionID: String?
-    let requestID: String?
-    let eventType: RiskEvent
-    
-    
-    private enum CodingKeys: String, CodingKey {
-        case maskedPublicKey = "MaskedPublicKey", framesMode = "FramesMode", deviceSessionID = "DeviceSessionId", requestID = "RequestId", eventType = "EventType"
-    }
-}
-
-struct CloudEventsData {
-    let properties: CloudEventsProperties
-}
-
-struct CloudEventsCkoTags {
-    let ddTags: String
-    let logLevel: LogLevel
-}
-
-struct CloudEventsPayload {
-    let specversion: String = "1.0"
-    let id: String
-    let type: RiskEvent
-    let source: String = "prism.risk.ios"
-    let time: String
-    let data: CloudEventsData
-    let cko: CloudEventsCkoTags
 }
 
 struct RiskLogError {
@@ -91,12 +47,21 @@ struct LoggerService {
         
         let deviceName = getDeviceModel()
         let osVersion = UIDevice.current.systemVersion
+        let logEnvironment: Environment
+        
+        switch internalConfig.environment {
+        case .qa, .sandbox:
+            logEnvironment = .sandbox
+        case .prod:
+            logEnvironment = .production
+        }
+        
 #if DEBUG
         logger.enableLocalProcessor(monitoringLevel: .debug)
 #endif
         
         logger.enableRemoteProcessor(
-            environment: .sandbox,
+            environment: logEnvironment,
             remoteProcessorMetadata: RemoteProcessorMetadata(
                 productIdentifier: Constants.productName,
                 productVersion: Constants.version,
@@ -112,25 +77,24 @@ struct LoggerService {
     }
     
     func log(riskEvent: RiskEvent, deviceSessionID: String? = nil, requestID: String? = nil, error: RiskLogError? = nil) {
-        let schema = formatSchema(riskEvent: riskEvent, deviceSessionID: deviceSessionID, requestID: requestID)
         
         var monitoringLevel: MonitoringLevel
         let properties: [String: AnyCodable]
         
-        switch schema.cko.logLevel {
-        case .info:
+        switch riskEvent {
+        case .published, .collected:
             monitoringLevel = .info
             properties = ["EventType": AnyCodable(riskEvent.rawValue), "deviceSessionId": AnyCodable(deviceSessionID), "requestID": AnyCodable(requestID), "MaskedPublicKey": AnyCodable(getMaskedPublicKey())]
-        case .error:
+        case .publishFailure, .loadFailure:
             monitoringLevel = .error
             properties = ["EventType": AnyCodable(riskEvent.rawValue), "ErrorMessage": AnyCodable(error?.message), "ErrorType": AnyCodable(error?.type), "ErrorReason": AnyCodable(error?.reason)]
-        case .warning:
+        case .publishDisabled:
             monitoringLevel = .warn
             properties = ["EventType": AnyCodable(riskEvent.rawValue), "ErrorMessage": AnyCodable(error?.message), "ErrorType": AnyCodable(error?.type), "ErrorReason": AnyCodable(error?.reason)]
         }
-        #if DEBUG
-                monitoringLevel = .debug
-        #endif
+#if DEBUG
+        monitoringLevel = .debug
+#endif
         
         logger.log(event: Event(
             typeIdentifier: "com.checkout.risk-mobile-sdk",
@@ -140,27 +104,6 @@ struct LoggerService {
         ))
     }
     
-    private func formatSchema(riskEvent: RiskEvent, deviceSessionID: String?, requestID: String?) -> CloudEventsPayload {
-        let dateFormatter = ISO8601DateFormatter()
-        dateFormatter.formatOptions = [.withInternetDateTime]
-        let timeStamp = dateFormatter.string(from: Date())
-        let randomId = UUID().uuidString
-        let maskedPublicKey = String(internalConfig.merchantPublicKey.prefix(8) + "********" + internalConfig.merchantPublicKey.suffix(6))
-        let cloudEventsData = CloudEventsData(properties: CloudEventsProperties(maskedPublicKey: maskedPublicKey, framesMode: internalConfig.framesMode, deviceSessionID: deviceSessionID, requestID: requestID, eventType: riskEvent))
-        let dataDogTag = "team:prism,service:prism.risk.ios,version:0.1.1,env:\(internalConfig.environment)"
-        var logLevel:LogLevel
-        
-        switch riskEvent {
-        case .publishDisabled:
-            logLevel = .warning
-        case .published, .collected:
-            logLevel = .info
-        case .publishFailure, .loadFailure:
-            logLevel = .error
-        }
-        
-        return CloudEventsPayload(id: randomId, type: riskEvent, time: timeStamp, data: cloudEventsData, cko: CloudEventsCkoTags(ddTags: dataDogTag, logLevel: logLevel))
-    }
     
     private func getMaskedPublicKey() -> String {
         return String(internalConfig.merchantPublicKey.prefix(8) + "********" + internalConfig.merchantPublicKey.suffix(6))
