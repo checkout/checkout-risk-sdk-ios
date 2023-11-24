@@ -72,5 +72,5 @@ jobs:
       #   run: |
       #     set -o pipefail && xcodebuild "build" "-project" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
       #   env:
-      #     path: "iOS Example Risk SPM/RiskExample.xcodeproj"
+      #     path: "iOSExampleRiskSPM/RiskExample.xcodeproj"
       #     scheme: Risk
