@@ -32,9 +32,45 @@ protocol LoggerServiceProtocol {
     init(internalConfig: RiskSDKInternalConfig)
     func log(riskEvent: RiskEvent, deviceSessionID: String?, requestID: String?, error: RiskLogError?)
 }
+
 extension LoggerServiceProtocol {
-    func log(riskEvent: RiskEvent, deviceSessionID: String? = nil, requestID: String? = nil, error: RiskLogError? = nil) {
+    func formatEvent(internalConfig: RiskSDKInternalConfig, riskEvent: RiskEvent, deviceSessionID: String?, requestID: String?, error: RiskLogError?) -> Event {
+        let maskedPublicKey = internalConfig.merchantPublicKey.prefix(8) + "********" + internalConfig.merchantPublicKey.suffix(6)
+        var monitoringLevel: MonitoringLevel
+        var properties: [String: AnyCodable] = [
+            "EventType": AnyCodable(riskEvent.rawValue),
+            "FramesMode": AnyCodable(internalConfig.framesMode),
+        ]
+        let errorProperties: [String: AnyCodable] = [
+            "ErrorMessage": AnyCodable(error?.message),
+            "ErrorType": AnyCodable(error?.type),
+            "ErrorReason": AnyCodable(error?.reason)
+        ]
+        let ddProperties: [String: AnyCodable] = [
+            "ddTags": AnyCodable("team:prism,service:prism.risk.ios,version:\(Constants.version),env:\(internalConfig.environment.rawValue)"),
+            "deviceSessionId": AnyCodable(deviceSessionID),
+            "requestID": AnyCodable(requestID),
+            "MaskedPublicKey": AnyCodable(maskedPublicKey)
+        ]
         
+        switch riskEvent {
+        case .published, .collected:
+            monitoringLevel = .info
+            properties.merge(ddProperties) { (_, new) in new }
+        case .publishFailure, .loadFailure:
+            monitoringLevel = .error
+            properties.merge(errorProperties) { (_, new) in new }
+        case .publishDisabled:
+            monitoringLevel = .warn
+            properties.merge(errorProperties) { (_, new) in new }
+        }
+        
+        return Event(
+            typeIdentifier: "com.checkout.risk-mobile-sdk",
+            time: Date(),
+            monitoringLevel: monitoringLevel,
+            properties: properties
+        )
     }
 }
 
@@ -67,7 +103,7 @@ struct LoggerService: LoggerServiceProtocol {
         }
         
         //#if DEBUG
-        //        logger.enableLocalProcessor(monitoringLevel: .debug)
+        // logger.enableLocalProcessor(monitoringLevel: .debug)
         //#endif
         
         logger.enableRemoteProcessor(
@@ -87,55 +123,8 @@ struct LoggerService: LoggerServiceProtocol {
     }
     
     func log(riskEvent: RiskEvent, deviceSessionID: String? = nil, requestID: String? = nil, error: RiskLogError? = nil) {
-        
-        var monitoringLevel: MonitoringLevel
-        let properties: [String: AnyCodable]
-        
-        switch riskEvent {
-        case .published, .collected:
-            monitoringLevel = .info
-            properties = [
-                "EventType": AnyCodable(riskEvent.rawValue),
-                "FramesMode": AnyCodable(internalConfig.framesMode),
-                "ddTags": AnyCodable("team:prism,service:prism.risk.ios,version:\(Constants.version),env:\(internalConfig.environment.rawValue)"),
-                "deviceSessionId": AnyCodable(deviceSessionID),
-                "requestID": AnyCodable(requestID),
-                "MaskedPublicKey": AnyCodable(getMaskedPublicKey())
-            ]
-        case .publishFailure, .loadFailure:
-            monitoringLevel = .error
-            properties = [
-                "EventType": AnyCodable(riskEvent.rawValue),
-                "FramesMode": AnyCodable(internalConfig.framesMode),
-                "ErrorMessage": AnyCodable(error?.message),
-                "ErrorType": AnyCodable(error?.type),
-                "ErrorReason": AnyCodable(error?.reason)
-            ]
-        case .publishDisabled:
-            monitoringLevel = .warn
-            properties = [
-                "EventType": AnyCodable(riskEvent.rawValue),
-                "FramesMode": AnyCodable(internalConfig.framesMode),
-                "ErrorMessage": AnyCodable(error?.message),
-                "ErrorType": AnyCodable(error?.type),
-                "ErrorReason": AnyCodable(error?.reason)
-            ]
-        }
-        //#if DEBUG
-        //        monitoringLevel = .debug
-        //#endif
-        
-        logger.log(event: Event(
-            typeIdentifier: "com.checkout.risk-mobile-sdk",
-            time: Date(),
-            monitoringLevel: monitoringLevel,
-            properties: properties
-        ))
-    }
-    
-    
-    private func getMaskedPublicKey() -> String {
-        return String(internalConfig.merchantPublicKey.prefix(8) + "********" + internalConfig.merchantPublicKey.suffix(6))
+        let event = formatEvent(internalConfig: internalConfig, riskEvent: riskEvent, deviceSessionID: deviceSessionID, requestID: requestID, error: error)
+        logger.log(event: event)
     }
     
     private func getDeviceModel() -> String {

@@ -57,14 +57,14 @@ struct DeviceDataService {
             case .success(let configuration):
                 
                 guard configuration.fingerprintIntegration.enabled && configuration.fingerprintIntegration.publicKey != nil else {
-                    loggerService.log(riskEvent: .publishDisabled, error: RiskLogError(reason: "getConfiguration", message: "Integration disabled", status: nil, type: "Error"))
+                    loggerService.log(riskEvent: .publishDisabled, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "getConfiguration", message: "Integration disabled", status: nil, type: "Error"))
                     
                     return completion(.failure(RiskError.description("Integration disabled")))
                 }
                 
                 completion(.success(configuration))
             case .failure:
-                loggerService.log(riskEvent: .loadFailure, error: RiskLogError(reason: "getConfiguration", message: "Error retrieving configuration", status: nil, type: "Error"))
+                loggerService.log(riskEvent: .loadFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "getConfiguration", message: "Error retrieving configuration", status: nil, type: "Error"))
                 return completion(.failure(RiskError.description("Error retrieving configuration")))
             }
         }
@@ -85,11 +85,11 @@ struct DeviceDataService {
             
             switch result {
             case .success(let response):
-                loggerService.log(riskEvent: .published, deviceSessionID: response.deviceSessionID, requestID: fingerprintRequestID)
+                loggerService.log(riskEvent: .published, deviceSessionID: response.deviceSessionID, requestID: fingerprintRequestID, error: nil)
                 
                 completion(.success(response))
             case .failure:
-                loggerService.log(riskEvent: .publishFailure, error: RiskLogError(reason: "persistFpData", message: "Error persisting risk data", status: nil, type: "Error"))
+                loggerService.log(riskEvent: .publishFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "persistFpData", message: "Error persisting risk data", status: nil, type: "Error"))
                 
                 completion(.failure(RiskError.description("Error persisting risk data")))
             }
