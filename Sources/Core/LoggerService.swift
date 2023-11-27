@@ -28,7 +28,17 @@ struct RiskLogError {
     }
 }
 
-struct LoggerService {
+protocol LoggerServiceProtocol {
+    init(internalConfig: RiskSDKInternalConfig)
+    func log(riskEvent: RiskEvent, deviceSessionID: String?, requestID: String?, error: RiskLogError?)
+}
+extension LoggerServiceProtocol {
+    func log(riskEvent: RiskEvent, deviceSessionID: String? = nil, requestID: String? = nil, error: RiskLogError? = nil) {
+        
+    }
+}
+
+struct LoggerService: LoggerServiceProtocol {
     private let internalConfig: RiskSDKInternalConfig
     private let logger: CheckoutEventLogging
     
@@ -38,7 +48,7 @@ struct LoggerService {
         setup()
     }
     
-    func setup() {
+    private func setup() {
         
         let appBundle = Bundle.main
         let appPackageName = appBundle.bundleIdentifier ?? "unavailableAppPackageName"

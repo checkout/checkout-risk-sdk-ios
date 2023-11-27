@@ -39,9 +39,9 @@ struct PersistDeviceDataResponse: Decodable, Equatable {
 struct DeviceDataService {
     let config: RiskSDKInternalConfig
     let apiService: APIServiceProtocol
-    let loggerService: LoggerService
+    let loggerService: LoggerServiceProtocol
     
-    init(config: RiskSDKInternalConfig, apiService: APIServiceProtocol = APIService(), loggerService: LoggerService) {
+    init(config: RiskSDKInternalConfig, apiService: APIServiceProtocol = APIService(), loggerService: LoggerServiceProtocol) {
         self.config = config
         self.apiService = apiService
         self.loggerService = loggerService

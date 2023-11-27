@@ -27,9 +27,9 @@ public class Risk {
     private static var sharedInstance: Risk?
     private let fingerprintService: FingerprintService
     private let deviceDataService: DeviceDataService
-    private let loggerService: LoggerService
+    private let loggerService: LoggerServiceProtocol
     
-    private init(fingerprintService: FingerprintService, deviceDataService: DeviceDataService, loggerService: LoggerService) {
+    private init(fingerprintService: FingerprintService, deviceDataService: DeviceDataService, loggerService: LoggerServiceProtocol) {
         self.fingerprintService = fingerprintService
         self.deviceDataService = deviceDataService
         self.loggerService = loggerService

@@ -12,9 +12,9 @@ final class FingerprintService {
     private var requestID: String?
     private let client: FingerprintClientProviding
     private let internalConfig: RiskSDKInternalConfig
-    private let loggerService: LoggerService
+    private let loggerService: LoggerServiceProtocol
     
-    init(fingerprintPublicKey: String, internalConfig: RiskSDKInternalConfig, loggerService: LoggerService) {
+    init(fingerprintPublicKey: String, internalConfig: RiskSDKInternalConfig, loggerService: LoggerServiceProtocol) {
         let customDomain: Region = .custom(domain: internalConfig.fingerprintEndpoint)
         let configuration = Configuration(apiKey: fingerprintPublicKey, region: customDomain)
         client = FingerprintProFactory.getInstance(configuration)
