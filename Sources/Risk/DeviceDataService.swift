@@ -63,8 +63,9 @@ struct DeviceDataService {
                 }
                 
                 completion(.success(configuration))
-            case .failure:
-                loggerService.log(riskEvent: .loadFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "getConfiguration", message: "Error retrieving configuration", status: nil, type: "Error"))
+            case .failure(let error):
+                
+                loggerService.log(riskEvent: .loadFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "getConfiguration", message: error.localizedDescription, status: nil, type: "Error"))
                 return completion(.failure(RiskError.description("Error retrieving configuration")))
             }
         }
@@ -88,8 +89,8 @@ struct DeviceDataService {
                 loggerService.log(riskEvent: .published, deviceSessionID: response.deviceSessionID, requestID: fingerprintRequestID, error: nil)
                 
                 completion(.success(response))
-            case .failure:
-                loggerService.log(riskEvent: .publishFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "persistFpData", message: "Error persisting risk data", status: nil, type: "Error"))
+            case .failure(let error):
+                loggerService.log(riskEvent: .publishFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "persistFpData", message: error.localizedDescription, status: nil, type: "Error"))
                 
                 completion(.failure(RiskError.description("Error persisting risk data")))
             }

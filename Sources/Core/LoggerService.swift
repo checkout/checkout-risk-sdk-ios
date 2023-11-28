@@ -18,10 +18,10 @@ enum RiskEvent: String, Codable {
 }
 
 struct RiskLogError {
-    let reason: String // service
+    let reason: String // service method
     let message: String // description of error
     let status: Int? // status code
-    let type: String? // TODO: - Add error type, e.g. timeout, Error
+    let type: String? // Error type
     
     private enum CodingKeys: String, CodingKey {
         case reason = "Reason", message = "Message", status = "Status", type = "Type"
@@ -37,7 +37,7 @@ extension LoggerServiceProtocol {
     func formatEvent(internalConfig: RiskSDKInternalConfig, riskEvent: RiskEvent, deviceSessionID: String?, requestID: String?, error: RiskLogError?) -> Event {
         let maskedPublicKey = getMaskedPublicKey(publicKey: internalConfig.merchantPublicKey)
         let ddTags = getDDTags(environment: internalConfig.environment.rawValue)
-        let monitoringLevel: MonitoringLevel
+        var monitoringLevel: MonitoringLevel
         let properties: [String: AnyCodable]
         
         switch riskEvent {
@@ -48,10 +48,10 @@ extension LoggerServiceProtocol {
         case .publishDisabled:
             monitoringLevel = .warn
         }
-
-//         #if DEBUG
-//            monitoringLevel = .debug
-//         #endif
+        
+ #if DEBUG
+         monitoringLevel = .debug
+ #endif
         
         switch riskEvent {
         case .published, .collected:
@@ -118,9 +118,9 @@ struct LoggerService: LoggerServiceProtocol {
             logEnvironment = .production
         }
         
-        // #if DEBUG
-        //  logger.enableLocalProcessor(monitoringLevel: .debug)
-        // #endif
+ #if DEBUG
+         logger.enableLocalProcessor(monitoringLevel: .debug)
+ #endif
         
         logger.enableRemoteProcessor(
             environment: logEnvironment,
