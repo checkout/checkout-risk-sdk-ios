@@ -39,10 +39,12 @@ struct PersistDeviceDataResponse: Decodable, Equatable {
 struct DeviceDataService {
     let config: RiskSDKInternalConfig
     let apiService: APIServiceProtocol
+    let loggerService: LoggerServiceProtocol
     
-    init(config: RiskSDKInternalConfig, apiService: APIServiceProtocol = APIService()) {
+    init(config: RiskSDKInternalConfig, apiService: APIServiceProtocol = APIService(), loggerService: LoggerServiceProtocol) {
         self.config = config
         self.apiService = apiService
+        self.loggerService = loggerService
     }
     
     func getConfiguration(completion: @escaping (Result<DeviceDataConfiguration, RiskError>) -> Void) {
@@ -55,13 +57,14 @@ struct DeviceDataService {
             case .success(let configuration):
                 
                 guard configuration.fingerprintIntegration.enabled && configuration.fingerprintIntegration.publicKey != nil else {
-                    #warning("TODO: - Handle disabled fingerpint integraiton, e.g. dispatch and/or log event (https://checkout.atlassian.net/browse/PRISM-10482)")
+                    loggerService.log(riskEvent: .publishDisabled, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "getConfiguration", message: "Integration disabled", status: nil, type: "Error"))
+                    
                     return completion(.failure(RiskError.description("Integration disabled")))
                 }
                 
                 completion(.success(configuration))
             case .failure:
-                #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
+                loggerService.log(riskEvent: .loadFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "getConfiguration", message: "Error retrieving configuration", status: nil, type: "Error"))
                 return completion(.failure(RiskError.description("Error retrieving configuration")))
             }
         }
@@ -82,10 +85,12 @@ struct DeviceDataService {
             
             switch result {
             case .success(let response):
-                #warning("TODO: - dispatch and/or log published event (https://checkout.atlassian.net/browse/PRISM-10482)")
+                loggerService.log(riskEvent: .published, deviceSessionID: response.deviceSessionID, requestID: fingerprintRequestID, error: nil)
+                
                 completion(.success(response))
             case .failure:
-                #warning("TODO: - Handle the error here (https://checkout.atlassian.net/browse/PRISM-10482)")
+                loggerService.log(riskEvent: .publishFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "persistFpData", message: "Error persisting risk data", status: nil, type: "Error"))
+                
                 completion(.failure(RiskError.description("Error persisting risk data")))
             }
         }

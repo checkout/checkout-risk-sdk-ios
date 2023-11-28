@@ -14,9 +14,10 @@ class DeviceDataServiceTests: XCTestCase {
     func testGetConfiguration() {
         let mockAPIService = MockAPIService()
         
-        let config = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
+        let config = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: .qa)
         let internalConfig = RiskSDKInternalConfig(config: config)
-        let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockAPIService)
+        let mockLogger = MockLoggerService(internalConfig: internalConfig)
+        let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockAPIService, loggerService: mockLogger)
         
         let expectation = self.expectation(description: "Configuration received")
         
@@ -26,19 +27,21 @@ class DeviceDataServiceTests: XCTestCase {
         
         deviceDataService.getConfiguration { configuration in
             XCTAssertEqual(configuration, .success(expectedConfiguration))
-            
             expectation.fulfill()
         }
         
         waitForExpectations(timeout: 5, handler: nil)
     }
     
+    
     func testPersistFpData() {
         let mockAPIService = MockAPIService()
 
         let config = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
         let internalConfig = RiskSDKInternalConfig(config: config)
-        let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockAPIService)
+        let mockLogger = MockLoggerService(internalConfig: internalConfig)
+        
+        let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockAPIService, loggerService: mockLogger)
 
         let expectation = self.expectation(description: "Data sent")
 
@@ -46,7 +49,7 @@ class DeviceDataServiceTests: XCTestCase {
 
         mockAPIService.expectedDeviceDataResult = .success(expectedResponse)
 
-        deviceDataService.persistFpData(fingerprintRequestID: "12345.ab0cd", cardToken: nil) { result in
+        deviceDataService.persistFpData(fingerprintRequestID: "12345.ab0cd", cardToken: "") { result in
             XCTAssertEqual(result, .success(expectedResponse))
 
             expectation.fulfill()
@@ -56,20 +59,3 @@ class DeviceDataServiceTests: XCTestCase {
     }
 }
 
-
-class MockAPIService: APIServiceProtocol {
-    var expectedResult: Result<DeviceDataConfiguration, Error>?
-    
-    func getJSONFromAPIWithAuthorization<T>(endpoint: String, authToken: String, responseType: T.Type, completion: @escaping (Result<T, Error>) -> Void) where T: Decodable {
-        if let expectedResult = expectedResult as? Result<T, Error> {
-            completion(expectedResult)
-        }
-    }
-    
-    var expectedDeviceDataResult: Result<PersistDeviceDataResponse, Error>?
-    func putDataToAPIWithAuthorization<T, U>(endpoint: String, authToken: String, data: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) where T: Encodable, U: Decodable {
-        if let expectedResult = expectedDeviceDataResult as? Result<U, Error> {
-            completion(expectedResult)
-        }
-    }
-}

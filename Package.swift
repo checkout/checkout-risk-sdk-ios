@@ -15,7 +15,14 @@ let package = Package(
             targets: ["Risk"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/fingerprintjs/fingerprintjs-pro-ios", .exact("2.2.0")),
+        .package(
+            url: "https://github.com/fingerprintjs/fingerprintjs-pro-ios",
+            .exact("2.2.0")
+        ),
+        .package(
+            url: "https://github.com/checkout/checkout-event-logger-ios-framework.git",
+            from: "1.2.4"
+        )
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -23,6 +30,8 @@ let package = Package(
         .target(
             name: "Risk",
             dependencies: [
+                .product(name: "CheckoutEventLoggerKit",
+                         package: "checkout-event-logger-ios-framework"),
                 .product(
                     name: "FingerprintPro",
                     package: "fingerprintjs-pro-ios"),
