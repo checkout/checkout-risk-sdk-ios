@@ -28,7 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Lint Edited Files
+      - name: Lint Swift Files
         run: bash .github/scripts/lintSwiftFiles.sh
 
   risk-sdk:

@@ -29,7 +29,7 @@ public struct RiskConfig {
     public let publicKey: String
     public let environment: RiskEnvironment
     public let framesMode: Bool
-    
+
     public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
         self.publicKey = publicKey
         self.environment = environment
@@ -45,14 +45,14 @@ struct RiskSDKInternalConfig {
     let sourceType: SourceType
     let framesMode: Bool
     let environment: RiskEnvironment
-    
+
     init(config: RiskConfig) {
         merchantPublicKey = config.publicKey
         environment = config.environment
         framesMode = config.framesMode
         integrationType = framesMode ? .inFrames : .standalone
         sourceType = framesMode ? .cardToken : .riskSDK
-        
+
         switch environment {
         case .qa:
             deviceDataEndpoint = "https://prism-qa.ckotech.co/collect"
@@ -65,5 +65,5 @@ struct RiskSDKInternalConfig {
             fingerprintEndpoint = "https://fpjs.checkout.com"
         }
     }
-    
+
 }

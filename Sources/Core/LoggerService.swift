@@ -22,7 +22,7 @@ struct RiskLogError {
     let message: String // description of error
     let status: Int? // status code
     let type: String? // TODO: - Add error type, e.g. timeout, Error
-    
+
     private enum CodingKeys: String, CodingKey {
         case reason = "Reason", message = "Message", status = "Status", type = "Type"
     }
@@ -39,7 +39,7 @@ extension LoggerServiceProtocol {
         let ddTags = getDDTags(environment: internalConfig.environment.rawValue)
         let monitoringLevel: MonitoringLevel
         let properties: [String: AnyCodable]
-        
+
         switch riskEvent {
         case .published, .collected:
             monitoringLevel = .info
@@ -49,18 +49,18 @@ extension LoggerServiceProtocol {
             monitoringLevel = .warn
         }
 
-//         #if DEBUG
-//            monitoringLevel = .debug
-//         #endif
-        
+        //         #if DEBUG
+        //            monitoringLevel = .debug
+        //         #endif
+
         switch riskEvent {
         case .published, .collected:
             properties = [
                 "EventType": AnyCodable(riskEvent.rawValue),
                 "FramesMode": AnyCodable(internalConfig.framesMode),
-                "MaskedPublicKey" : AnyCodable(maskedPublicKey),
+                "MaskedPublicKey": AnyCodable(maskedPublicKey),
                 "ddTags": AnyCodable(ddTags),
-                "DeviceSessionId" : AnyCodable(deviceSessionID),
+                "DeviceSessionId": AnyCodable(deviceSessionID),
                 "RequestId": AnyCodable(requestID)
             ]
         case .publishFailure, .loadFailure, .publishDisabled:
@@ -72,7 +72,7 @@ extension LoggerServiceProtocol {
                 "ErrorReason": AnyCodable(error?.reason)
             ]
         }
-        
+
         return Event(
             typeIdentifier: "com.checkout.risk-mobile-sdk",
             time: Date(),
@@ -80,11 +80,11 @@ extension LoggerServiceProtocol {
             properties: properties
         )
     }
-    
+
     func getMaskedPublicKey (publicKey: String) -> String {
         return "\(publicKey.prefix(8))********\(publicKey.suffix(6))"
     }
-    
+
     func getDDTags(environment: String) -> String {
         return "team:prism,service:prism.risk.ios,version:\(Constants.version),env:\(environment)"
     }
@@ -93,35 +93,35 @@ extension LoggerServiceProtocol {
 struct LoggerService: LoggerServiceProtocol {
     private let internalConfig: RiskSDKInternalConfig
     private let logger: CheckoutEventLogging
-    
+
     init(internalConfig: RiskSDKInternalConfig) {
         self.internalConfig = internalConfig
         self.logger = CheckoutEventLogger(productName: Constants.productName)
         setup()
     }
-    
+
     private func setup() {
-        
+
         let appBundle = Bundle.main
         let appPackageName = appBundle.bundleIdentifier ?? "unavailableAppPackageName"
         let appPackageVersion = appBundle
             .infoDictionary?["CFBundleShortVersionString"] as? String ?? "unavailableAppPackageVersion"
-        
+
         let deviceName = getDeviceModel()
         let osVersion = UIDevice.current.systemVersion
         let logEnvironment: Environment
-        
+
         switch internalConfig.environment {
         case .qa, .sandbox:
             logEnvironment = .sandbox
         case .prod:
             logEnvironment = .production
         }
-        
+
         // #if DEBUG
         //  logger.enableLocalProcessor(monitoringLevel: .debug)
         // #endif
-        
+
         logger.enableRemoteProcessor(
             environment: logEnvironment,
             remoteProcessorMetadata: RemoteProcessorMetadata(
@@ -135,21 +135,21 @@ struct LoggerService: LoggerServiceProtocol {
                 osVersion: osVersion
             )
         )
-        
+
     }
-    
+
     func log(riskEvent: RiskEvent, deviceSessionID: String? = nil, requestID: String? = nil, error: RiskLogError? = nil) {
         let event = formatEvent(internalConfig: internalConfig, riskEvent: riskEvent, deviceSessionID: deviceSessionID, requestID: requestID, error: error)
         logger.log(event: event)
     }
-    
+
     private func getDeviceModel() -> String {
-#if targetEnvironment(simulator)
+        #if targetEnvironment(simulator)
         if let identifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
             return identifier
         }
-#endif
-        
+        #endif
+
         var systemInfo = utsname()
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
