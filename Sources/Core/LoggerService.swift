@@ -60,8 +60,8 @@ extension LoggerServiceProtocol {
                 "FramesMode": AnyCodable(internalConfig.framesMode),
                 "MaskedPublicKey" : AnyCodable(maskedPublicKey),
                 "ddTags": AnyCodable(ddTags),
-                "deviceSessionId" : AnyCodable(deviceSessionID),
-                "requestID": AnyCodable(requestID)
+                "DeviceSessionId" : AnyCodable(deviceSessionID),
+                "RequestId": AnyCodable(requestID)
             ]
         case .publishFailure, .loadFailure, .publishDisabled:
             properties = [
