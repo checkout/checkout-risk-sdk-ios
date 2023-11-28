@@ -35,34 +35,42 @@ protocol LoggerServiceProtocol {
 
 extension LoggerServiceProtocol {
     func formatEvent(internalConfig: RiskSDKInternalConfig, riskEvent: RiskEvent, deviceSessionID: String?, requestID: String?, error: RiskLogError?) -> Event {
-        let maskedPublicKey = internalConfig.merchantPublicKey.prefix(8) + "********" + internalConfig.merchantPublicKey.suffix(6)
+        let maskedPublicKey = "\(internalConfig.merchantPublicKey.prefix(8))********\(internalConfig.merchantPublicKey.suffix(6))"
+        let ddTags = "team:prism,service:prism.risk.ios,version:\(Constants.version),env:\(internalConfig.environment.rawValue)"
         var monitoringLevel: MonitoringLevel
-        var properties: [String: AnyCodable] = [
-            "EventType": AnyCodable(riskEvent.rawValue),
-            "FramesMode": AnyCodable(internalConfig.framesMode),
-        ]
-        let errorProperties: [String: AnyCodable] = [
-            "ErrorMessage": AnyCodable(error?.message),
-            "ErrorType": AnyCodable(error?.type),
-            "ErrorReason": AnyCodable(error?.reason)
-        ]
-        let ddProperties: [String: AnyCodable] = [
-            "ddTags": AnyCodable("team:prism,service:prism.risk.ios,version:\(Constants.version),env:\(internalConfig.environment.rawValue)"),
-            "deviceSessionId": AnyCodable(deviceSessionID),
-            "requestID": AnyCodable(requestID),
-            "MaskedPublicKey": AnyCodable(maskedPublicKey)
-        ]
+        var properties: [String: AnyCodable]
         
         switch riskEvent {
         case .published, .collected:
             monitoringLevel = .info
-            properties.merge(ddProperties) { (_, new) in new }
         case .publishFailure, .loadFailure:
             monitoringLevel = .error
-            properties.merge(errorProperties) { (_, new) in new }
         case .publishDisabled:
             monitoringLevel = .warn
-            properties.merge(errorProperties) { (_, new) in new }
+        }
+
+//         #if DEBUG
+//            monitoringLevel = .debug
+//         #endif
+        
+        switch riskEvent {
+        case .published, .collected:
+            properties = [
+                "EventType": AnyCodable(riskEvent.rawValue),
+                "FramesMode": AnyCodable(internalConfig.framesMode),
+                "MaskedPublicKey" : AnyCodable(maskedPublicKey),
+                "ddTags": AnyCodable(ddTags),
+                "deviceSessionId" : AnyCodable(deviceSessionID),
+                "requestID": AnyCodable(requestID)
+            ]
+        case .publishFailure, .loadFailure, .publishDisabled:
+            properties = [
+                "EventType": AnyCodable(riskEvent.rawValue),
+                "FramesMode": AnyCodable(internalConfig.framesMode),
+                "ErrorMessage": AnyCodable(error?.message),
+                "ErrorType": AnyCodable(error?.type),
+                "ErrorReason": AnyCodable(error?.reason)
+            ]
         }
         
         return Event(
@@ -102,9 +110,9 @@ struct LoggerService: LoggerServiceProtocol {
             logEnvironment = .production
         }
         
-        //#if DEBUG
-        // logger.enableLocalProcessor(monitoringLevel: .debug)
-        //#endif
+        // #if DEBUG
+        //  logger.enableLocalProcessor(monitoringLevel: .debug)
+        // #endif
         
         logger.enableRemoteProcessor(
             environment: logEnvironment,
