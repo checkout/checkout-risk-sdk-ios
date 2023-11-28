@@ -63,7 +63,7 @@ public class Risk {
 
     public func publishData (cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
         fingerprintService.publishData { fpResult in
-            switch fpResult {
+            switch fpResult 
             case .failure(let errorMessage):
                 completion(.failure(errorMessage))
             case .success(let requestID):
