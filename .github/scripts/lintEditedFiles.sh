@@ -1,26 +1,23 @@
-#!/bin/sh
+#!/bin/bash
 
-set -o pipefail
-git fetch origin main
-echo "Fetched"
+# Install SwiftLint
+brew install swiftlint
 
-# Run SwiftLint
-START_DATE=$(date +"%s")
+# Get the list of modified or added Swift files in the commit
+modified_files=$(git diff --name-only --diff-filter=AM ${{ github.event.before }} ${{ github.sha }} | grep '\.swift$')
+# modified_files=$(curl -sSL "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.number }}/files" | jq -r '.[] | select(.filename | endswith(".swift")) | .filename')
 
-# Run SwiftLint for given filename
-run_swiftlint() {
-    local filename="${1}"
-    if [[ "${filename##*.}" == "swift" ]]; then
-        swiftlint -- "${filename}"
-    fi
-}
+# Check if there are any Swift files to lint
+if [ -z "$modified_files" ]; then
+  echo "No Swift files to lint."
+  exit 0
+fi
 
-# Run for both staged and unstaged files
-git diff --name-only | while read filename; do run_swiftlint "${filename}"; done
-git diff --cached --name-only | while read filename; do run_swiftlint "${filename}"; done
+# Lint the modified Swift files
+swiftlint lint --strict --config .swiftlint.yml --path ${modified_files}
 
+# Capture the exit status
+lint_exit_status=$?
 
-END_DATE=$(date +"%s")
-
-DIFF=$(($END_DATE - $START_DATE))
-echo "SwiftLint took $(($DIFF / 60)) minutes and $(($DIFF % 60)) seconds to complete."
+# Exit with the lint exit status
+exit $lint_exit_status
