@@ -35,10 +35,10 @@ protocol LoggerServiceProtocol {
 
 extension LoggerServiceProtocol {
     func formatEvent(internalConfig: RiskSDKInternalConfig, riskEvent: RiskEvent, deviceSessionID: String?, requestID: String?, error: RiskLogError?) -> Event {
-        let maskedPublicKey = "\(internalConfig.merchantPublicKey.prefix(8))********\(internalConfig.merchantPublicKey.suffix(6))"
-        let ddTags = "team:prism,service:prism.risk.ios,version:\(Constants.version),env:\(internalConfig.environment.rawValue)"
-        var monitoringLevel: MonitoringLevel
-        var properties: [String: AnyCodable]
+        let maskedPublicKey = getMaskedPublicKey(publicKey: internalConfig.merchantPublicKey)
+        let ddTags = getDDTags(environment: internalConfig.environment.rawValue)
+        let monitoringLevel: MonitoringLevel
+        let properties: [String: AnyCodable]
         
         switch riskEvent {
         case .published, .collected:
@@ -79,6 +79,14 @@ extension LoggerServiceProtocol {
             monitoringLevel: monitoringLevel,
             properties: properties
         )
+    }
+    
+    func getMaskedPublicKey (publicKey: String) -> String {
+        return "\(publicKey.prefix(8))********\(publicKey.suffix(6))"
+    }
+    
+    func getDDTags(environment: String) -> String {
+        return "team:prism,service:prism.risk.ios,version:\(Constants.version),env:\(environment)"
     }
 }
 
