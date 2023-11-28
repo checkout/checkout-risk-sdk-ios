@@ -33,8 +33,8 @@ final class FingerprintService {
         client.getVisitorIdResponse(metadata) { [weak self] result in
             
             switch result {
-            case .failure:
-                self?.loggerService.log(riskEvent: .publishFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "publishData", message: "Error publishing risk data", status: nil, type: "Error"))
+            case .failure(let error):
+                self?.loggerService.log(riskEvent: .publishFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "publishData", message: error.localizedDescription, status: nil, type: "Error"))
 
                 return completion(.failure(RiskError.description("Error publishing risk data")))
             case let .success(response):
