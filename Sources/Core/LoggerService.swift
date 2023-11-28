@@ -49,9 +49,9 @@ extension LoggerServiceProtocol {
             monitoringLevel = .warn
         }
         
-// #if DEBUG
-//         monitoringLevel = .debug
-// #endif
+ #if DEBUG
+         monitoringLevel = .debug
+ #endif
         
         switch riskEvent {
         case .published, .collected:
@@ -118,9 +118,9 @@ struct LoggerService: LoggerServiceProtocol {
             logEnvironment = .production
         }
         
-// #if DEBUG
-//         logger.enableLocalProcessor(monitoringLevel: .debug)
-// #endif
+ #if DEBUG
+         logger.enableLocalProcessor(monitoringLevel: .debug)
+ #endif
         
         logger.enableRemoteProcessor(
             environment: logEnvironment,
