@@ -51,6 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BA0B00442AD6A5280037D9FF"
+            BuildableName = "RiskExample.app"
+            BlueprintName = "RiskExample"
+            ReferencedContainer = "container:iOSExampleRiskSPM/RiskExample.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
