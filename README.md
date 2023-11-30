@@ -43,7 +43,7 @@ Risk.getInstance(config: yourConfig) { riskInstance in
 
 ### Public API
 The package exposes two methods:
-1. `getInstance` - This is a method that returns a singleton instance of Risk. When the method is called, preliminary checks are done to Checkout's internal API that retrieves the public keys used to initialise the package used in collecting device data, if this succeeds, the instance is returned to the consumer which can now be used to publish the data with the method below.
+1. `getInstance` - This is a method that returns a singleton instance of Risk. When the method is called, preliminary checks are made to Checkout's internal API(s) that retrieves the public keys used to initialise the package used in collecting device data, if the checks fail or the merchant is disabled, nil will be returned, else, if the checks are successful, the `Risk` instance is returned to the consumer of the package which can now be used to publish the data with the `publishData` method.
 
     <details>
     <summary>Arguments</summary>
