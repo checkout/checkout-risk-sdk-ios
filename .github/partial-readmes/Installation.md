@@ -5,6 +5,17 @@ We've done our best to support the most common distribution methods on iOS. We a
 ### Swift Package Manager
 [Swift Package Manager](https://swift.org/package-manager/) integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies. It should work out of the box on latest Xcode projects since Xcode 11 and has had a lot of community support, seeing huge adoption over the recent years. This is our preferred distribution method for Risk iOS and is the easiest one to integrate, keep updated and build around.
 
+```swift
+let package = Package(
+    ...
+    dependencies: [
+        .package(url: "https://github.com/checkout/checkout-risk-sdk-ios", from: "...")
+    ]
+    ...
+)
+```
+<!-- TODO: update tag version (https://checkout.atlassian.net/browse/PRISM-10088) -->
+
 If you've never used it before, get started with Apple's step by step guide into [adding package dependencies to your app](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app) . Just use this repository's URL (https://github.com/checkout/checkout-risk-sdk-ios) when adding dependency.
 
 

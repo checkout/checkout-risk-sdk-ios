@@ -13,7 +13,6 @@ The package helps collect device data for merchants with direct integration (sta
   - [Documentation](#documentation)
     - [Usage guide](#usage-guide)
     - [Public API](#public-api)
-    - [Types definitions](#types-definitions)
     - [Additional Resources](#additional-resources)
   - [Demo projects](#demo-projects)
   - [Changelog](#changelog)
@@ -28,7 +27,7 @@ The package helps collect device data for merchants with direct integration (sta
 
 ## Documentation
 ### Usage guide
-  1. Add `Risk` as a package dependency - _see [Installation guide](https://github.com/checkout/checkout-risk-sdk-ios/blob/main/.github/partial-readmes/Integration.md) on how to add our SDK in your iOS app_
+  1. Add `Risk` as a package dependency - _see [Installation guide](https://github.com/checkout/checkout-risk-sdk-ios/blob/main/.github/partial-readmes/Integration.md) on how to add our SDK in your iOS app via SPM or Cocoapods._
   2. Obtain a public API key from [Checkout Dashboard](https://dashboard.checkout.com/developers/keys).
   3. Initialise the package with the `getInstance` method passing in the required configuration (public API key and environment), then publish the device data with the `publishData` method, see example below.
 ```swift
@@ -45,76 +44,85 @@ Risk.getInstance(config: yourConfig) { riskInstance in
 ### Public API
 The package exposes two methods:
 1. `getInstance` - This is a method that returns a singleton instance of Risk. When the method is called, preliminary checks are done to Checkout's internal API that retrieves the public keys used to initialise the package used in collecting device data, if this succeeds, the instance is returned to the consumer which can now be used to publish the data with the method below.
-2. `publishData` - This is used to publish and persist the device data.
 
+    <details>
+    <summary>Arguments</summary>
 
-### Types definitions
-<details>
-<summary>Arguments</summary>
-
-```swift
-public enum RiskEnvironment {
-    case qa
-    case sandbox
-    case prod
-}
-
-public struct RiskConfig {
-    public let publicKey: String
-    public let environment: RiskEnvironment
-    public let framesMode: Bool
-    
-    public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
-        self.publicKey = publicKey
-        self.environment = environment
-        self.framesMode = framesMode
-    }
-}
-
-```
-</details>
-
-<details>
-<summary>Responses</summary>
-
-```swift
-public struct PublishRiskData {
-    public let deviceSessionID: String
-}
-
-public enum RiskError: Error, Equatable {
-    case description(String)
-    
-    var localizedDescription: String {
-        switch self {
-        case .description(let errorMessage):
-            return errorMessage
+    ```swift
+    public struct RiskConfig {
+        public let publicKey: String
+        public let environment: RiskEnvironment
+        public let framesMode: Bool
+        
+        public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
+            self.publicKey = publicKey
+            self.environment = environment
+            self.framesMode = framesMode
         }
     }
-}
-```
-</details>
 
-<details>
-<summary>Extra notes</summary>
+    public enum RiskEnvironment {
+        case qa
+        case sandbox
+        case prod
+    }
+    ```
+    </details>
 
-```swift
-public class Risk {
-  private static var sharedInstance: Risk?
-  ...
-  
-  public static func getInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
+    <details>
+    <summary>Responses</summary>
+
+    ```swift
+    public class Risk {
+        private static var sharedInstance: Risk?
         ...
-        // Early return of the shared instance if the method is called multiple times
-        // If preliminary checks the `sharedInstance` is returned else `nil` is returned
-  } 
+        
+        public static func getInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
+                ...
+                // Early return of the shared instance if the method is called multiple times
+                // If preliminary checks the `sharedInstance` is returned else `nil` is returned
+        } 
 
-  public func publishData(cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
-        ...
-  }
-}
-```
-</details>
+        public func publishData(...) ... {
+                ...
+        }
+    }
+    ```
+    </details>
+
+
+2. `publishData` - This is used to publish and persist the device data.
+
+    <details>
+    <summary>Arguments</summary>
+
+    ```swift
+    public func publishData(cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
+            ...
+    }
+    ```
+    </details>
+
+    <details>
+    <summary>Responses</summary>
+
+    ```swift
+    public struct PublishRiskData {
+        public let deviceSessionID: String
+    }
+
+    public enum RiskError: Error, Equatable {
+        case description(String)
+        
+        var localizedDescription: String {
+            switch self {
+            case .description(let errorMessage):
+                return errorMessage
+            }
+        }
+    }
+    ```
+    </details>
 
 ### Additional Resources
 <!-- TODO: Add website documentation link here (https://checkout.atlassian.net/browse/PRISM-10088) - [Risk iOS SDK documentation](https://docs.checkout.com/risk/overview) -->
