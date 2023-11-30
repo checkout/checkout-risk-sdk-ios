@@ -27,7 +27,7 @@ target '<Your Target Name>' do
     pod 'Risk', '~> 1.0' 
 end
 ```
-<!-- TODO: Update pod version -->
+<!-- TODO: Update pod version (https://checkout.atlassian.net/browse/PRISM-10088) -->
 
 Then, run the following command in terminal:
 

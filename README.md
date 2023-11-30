@@ -1,5 +1,5 @@
 #  Risk iOS package
-<!-- TODO: Uncomment when repo is public -->
+<!-- TODO: Uncomment when repo is public (https://checkout.atlassian.net/browse/PRISM-10088) -->
 <!-- [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Risk.svg)](https://img.shields.io/cocoapods/v/Risk)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/checkout/checkout-risk-sdk-ios?label=spm)
 [![Platform](https://img.shields.io/cocoapods/p/Risk.svg?style=flat)]()
@@ -117,7 +117,7 @@ public class Risk {
 </details>
 
 ### Additional Resources
-<!-- TODO: Add website documentation link here - [Risk iOS SDK documentation](https://docs.checkout.com/risk/overview) -->
+<!-- TODO: Add website documentation link here (https://checkout.atlassian.net/browse/PRISM-10088) - [Risk iOS SDK documentation](https://docs.checkout.com/risk/overview) -->
 - [Frames iOS SDK documentation](https://www.checkout.com/docs/developer-resources/sdks/frames-ios-sdk)
 
 ## Demo projects
