@@ -9,11 +9,11 @@ on:
       - "release/*"
 
 env:
-  destination: "platform=iOS Simulator,name=iPhone 14 Pro,OS=latest"
+  destination: "platform=iOS Simulator,name=iPhone 15 Pro,OS=latest"
   configuration: "Debug"
   noIndex: "COMPILER_INDEX_STORE_ENABLE=NO"
   noSigning: "CODE_SIGNING_ALLOWED=NO"
-  versionXcode: "14.3.1"
+  versionXcode: "15.0.1"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
