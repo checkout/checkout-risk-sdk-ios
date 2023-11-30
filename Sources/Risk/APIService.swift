@@ -67,7 +67,7 @@ struct APIService: APIServiceProtocol {
         }
 
         var request = URLRequest(url: url)
-        
+
         request.timeoutInterval = ApiConstants.timeoutInterval
 
         request.setValue(authToken, forHTTPHeaderField: "Authorization")

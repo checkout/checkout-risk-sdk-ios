@@ -22,7 +22,7 @@ struct RiskLogError {
     let message: String // description of error
     let status: Int? // status code
     let type: String? // Error type
-    
+
     private enum CodingKeys: String, CodingKey {
         case reason = "Reason", message = "Message", status = "Status", type = "Type"
     }
@@ -48,11 +48,11 @@ extension LoggerServiceProtocol {
         case .publishDisabled:
             monitoringLevel = .warn
         }
-        
- #if DEBUG
-         monitoringLevel = .debug
- #endif
-        
+
+        #if DEBUG
+        monitoringLevel = .debug
+        #endif
+
         switch riskEvent {
         case .published, .collected:
             properties = [
@@ -117,11 +117,11 @@ struct LoggerService: LoggerServiceProtocol {
         case .prod:
             logEnvironment = .production
         }
-        
- #if DEBUG
-         logger.enableLocalProcessor(monitoringLevel: .debug)
- #endif
-        
+
+        #if DEBUG
+        logger.enableLocalProcessor(monitoringLevel: .debug)
+        #endif
+
         logger.enableRemoteProcessor(
             environment: logEnvironment,
             remoteProcessorMetadata: RemoteProcessorMetadata(
