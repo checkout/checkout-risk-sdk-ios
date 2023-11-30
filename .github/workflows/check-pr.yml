@@ -50,16 +50,16 @@ jobs:
 
       - name: Set git user details
         run: |
-          # git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          # git config user.name "$GITHUB_ACTOR"
-          # git config --global --add url."git@github.com:".insteadOf "https://github.com/"
-          # git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
           git config user.name "$GITHUB_ACTOR"
           git config --global credential.helper 'cache --timeout=3600'
           git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git config --global user.name "$GITHUB_ACTOR"
           git remote set-url origin "https://${GITHUB_ACTOR}:${{ secrets.ACCESS_TOKEN }}@github.com/${{ github.repository }}.git"
+
+      - name: Accept Xcode License
+        run: sudo xcodebuild -license accept
+
+      - name: Set NSUnbufferedIO
+        run: export NSUnbufferedIO=YES
 
       - name: Run Risk SDK Tests
         run: |
@@ -67,7 +67,6 @@ jobs:
         env:
           scheme: Risk
 
-      # TODO: find way of working with private repo
       - name: Build Risk SDK SPM Test Project
         run: |
           set -o pipefail && xcodebuild "build" "-project" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
