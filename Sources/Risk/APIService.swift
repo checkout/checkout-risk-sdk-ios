@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum ApiConstants {
+    static let timeoutInterval = TimeInterval(5.0)
+}
+
 enum HTTPStatusCode: Int {
     case ok = 200
     case created = 201
@@ -63,6 +67,8 @@ struct APIService: APIServiceProtocol {
         }
 
         var request = URLRequest(url: url)
+        
+        request.timeoutInterval = ApiConstants.timeoutInterval
 
         request.setValue(authToken, forHTTPHeaderField: "Authorization")
 
@@ -73,7 +79,7 @@ struct APIService: APIServiceProtocol {
             }
 
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-                completion(.failure(APIServiceError.httpError((response as? HTTPURLResponse)?.statusCode ?? 500)))
+                completion(.failure(APIServiceError.httpError((response as? HTTPURLResponse)?.statusCode ?? HTTPStatusCode.internalServerError.rawValue)))
                 return
             }
 
@@ -94,13 +100,6 @@ struct APIService: APIServiceProtocol {
         }
 
         task.resume()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            if task.state == .running {
-                task.cancel()
-                completion(.failure(APIServiceError.httpError(408)))
-            }
-        }
     }
 
     public func putDataToAPIWithAuthorization<T: Encodable, U: Decodable>(endpoint: String, authToken: String, data: T, responseType: U.Type, completion: @escaping (Result<U, Error>) -> Void) {
@@ -114,6 +113,7 @@ struct APIService: APIServiceProtocol {
 
         request.setValue(authToken, forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.timeoutInterval = ApiConstants.timeoutInterval
 
         do {
             let encoder = JSONEncoder()
@@ -135,7 +135,7 @@ struct APIService: APIServiceProtocol {
             }
 
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-                completion(.failure(APIServiceError.httpError((response as? HTTPURLResponse)?.statusCode ?? 500)))
+                completion(.failure(APIServiceError.httpError((response as? HTTPURLResponse)?.statusCode ?? HTTPStatusCode.internalServerError.rawValue)))
                 return
             }
 
@@ -155,13 +155,6 @@ struct APIService: APIServiceProtocol {
         }
 
         task.resume()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            if task.state == .running {
-                task.cancel()
-                completion(.failure(APIServiceError.httpError(408)))
-            }
-        }
     }
 
 }
