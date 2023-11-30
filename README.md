@@ -74,14 +74,7 @@ The package exposes two methods:
 
     ```swift
     public class Risk {
-        private static var sharedInstance: Risk?
         ...
-        
-        public static func getInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
-                ...
-                // Early return of the shared instance if the method is called multiple times
-                // If preliminary checks the `sharedInstance` is returned else `nil` is returned
-        } 
 
         public func publishData(...) ... {
                 ...
