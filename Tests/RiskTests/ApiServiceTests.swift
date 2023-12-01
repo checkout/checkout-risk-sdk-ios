@@ -15,9 +15,9 @@ class APIServiceTests: XCTestCase {
         let apiService = APIService()
         let validEndpoint = "https://prism-qa.ckotech.co/collect/configuration?integrationType=RiskIosStandalone"
         let validAuthToken = "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo"
-        
+
         let expectation = self.expectation(description: "API request completed")
-        
+
         apiService.getJSONFromAPIWithAuthorization(endpoint: validEndpoint, authToken: validAuthToken, responseType: DeviceDataConfiguration.self) { result in
             switch result {
             case .success(let decodedData):
@@ -26,20 +26,20 @@ class APIServiceTests: XCTestCase {
             case .failure(let error):
                 XCTFail("API request failed with error: \(error)")
             }
-            
+
             expectation.fulfill()
         }
-        
+
         waitForExpectations(timeout: 5, handler: nil)
     }
-    
+
     func testAPIServiceWithInvalidEndpoint() {
         let apiService = APIService()
         let invalidEndpoint = "invalidURL"
         let validAuthToken = "yourAuthToken"
-        
+
         let expectation = self.expectation(description: "API request completed")
-        
+
         apiService.getJSONFromAPIWithAuthorization(endpoint: invalidEndpoint, authToken: validAuthToken, responseType: DeviceDataConfiguration.self) { result in
             switch result {
             case .success:
@@ -47,10 +47,10 @@ class APIServiceTests: XCTestCase {
             case .failure(let error):
                 XCTAssertTrue(error is NSError)
             }
-            
+
             expectation.fulfill()
         }
-        
+
         waitForExpectations(timeout: 5, handler: nil)
     }
 }

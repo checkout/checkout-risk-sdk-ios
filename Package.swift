@@ -12,7 +12,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "Risk",
-            targets: ["Risk"]),
+            targets: ["Risk"])
     ],
     dependencies: [
         .package(
@@ -34,11 +34,11 @@ let package = Package(
                          package: "checkout-event-logger-ios-framework"),
                 .product(
                     name: "FingerprintPro",
-                    package: "fingerprintjs-pro-ios"),
+                    package: "fingerprintjs-pro-ios")
             ],
             path: "Sources"),
         .testTarget(
             name: "RiskTests",
-            dependencies: ["Risk"]),
+            dependencies: ["Risk"])
     ]
 )

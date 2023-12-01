@@ -17,7 +17,7 @@
                BlueprintIdentifier = "Risk"
                BuildableName = "Risk"
                BlueprintName = "Risk"
-               ReferencedContainer = "container:">
+               ReferencedContainer = "container:..">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -52,7 +52,7 @@
             BlueprintIdentifier = "Risk"
             BuildableName = "Risk"
             BlueprintName = "Risk"
-            ReferencedContainer = "container:">
+            ReferencedContainer = "container:..">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

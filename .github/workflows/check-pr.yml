@@ -9,11 +9,11 @@ on:
       - "release/*"
 
 env:
-  destination: "platform=iOS Simulator,name=iPhone 14 Pro,OS=latest"
+  destination: "platform=iOS Simulator,name=iPhone 15 Pro,OS=latest"
   configuration: "Debug"
   noIndex: "COMPILER_INDEX_STORE_ENABLE=NO"
   noSigning: "CODE_SIGNING_ALLOWED=NO"
-  versionXcode: "14.3.1"
+  versionXcode: "15.0.1"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -28,7 +28,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Lint Edited Files
+      - name: Lint Swift Files
         run: bash .github/scripts/lintSwiftFiles.sh
 
   risk-sdk:
@@ -50,15 +50,9 @@ jobs:
 
       - name: Set git user details
         run: |
-          # git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          # git config user.name "$GITHUB_ACTOR"
-          # git config --global --add url."git@github.com:".insteadOf "https://github.com/"
-          # git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
           git config user.name "$GITHUB_ACTOR"
           git config --global credential.helper 'cache --timeout=3600'
           git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git config --global user.name "$GITHUB_ACTOR"
           git remote set-url origin "https://${GITHUB_ACTOR}:${{ secrets.ACCESS_TOKEN }}@github.com/${{ github.repository }}.git"
 
       - name: Run Risk SDK Tests
@@ -67,10 +61,9 @@ jobs:
         env:
           scheme: Risk
 
-      # TODO: find way of working with private repo
-      # - name: Build Risk SDK SPM Test Project
-      #   run: |
-      #     set -o pipefail && xcodebuild "build" "-project" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
-      #   env:
-      #     path: "iOSExampleRiskSPM/RiskExample.xcodeproj"
-      #     scheme: Risk
+      - name: Build Risk SDK SPM iOS Example
+        run: |
+          set -o pipefail && xcodebuild "build" "-project" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
+        env:
+          path: "iOSExampleRiskSPM/RiskExample.xcodeproj"
+          scheme: Risk
