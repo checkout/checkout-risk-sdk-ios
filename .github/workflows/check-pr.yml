@@ -55,19 +55,13 @@ jobs:
           git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git remote set-url origin "https://${GITHUB_ACTOR}:${{ secrets.ACCESS_TOKEN }}@github.com/${{ github.repository }}.git"
 
-      - name: Accept Xcode License
-        run: sudo xcodebuild -license accept
-
-      - name: Set NSUnbufferedIO
-        run: export NSUnbufferedIO=YES
-
       - name: Run Risk SDK Tests
         run: |
           set -o pipefail && xcodebuild -scheme "${scheme}" test -destination "${destination}" "${noIndex}" "${noSigning}" | xcpretty
         env:
           scheme: Risk
 
-      - name: Build Risk SDK SPM Test Project
+      - name: Build Risk SDK SPM iOS Example
         run: |
           set -o pipefail && xcodebuild "build" "-project" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
         env:
