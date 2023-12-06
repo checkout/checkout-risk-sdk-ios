@@ -1,0 +1,17 @@
+name: Publish Risk.podspec
+
+on: workflow_dispatch
+
+jobs:
+  publish:
+    environment: CocoaPodsRelease
+    runs-on: macos-12-xl
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Publish to CocoaPods register
+        run: |
+          gem install cocoapods
+          pod trunk push Risk.podspec --allow-warnings
+        env:
+          COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
