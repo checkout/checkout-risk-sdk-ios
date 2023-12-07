@@ -36,6 +36,9 @@ jobs:
     runs-on: macos-13-xl
     needs: lint
 
+    env:
+      SAMPLE_MERCHANT_PUBLIC_KEY: ${{ secrets.SAMPLE_MERCHANT_PUBLIC_KEY }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -57,7 +60,6 @@ jobs:
 
       - name: Run Risk SDK Tests
         run: |
-          export SAMPLE_MERCHANT_PUBLIC_KEY=${{ secrets.SAMPLE_MERCHANT_PUBLIC_KEY }}
           set -o pipefail && xcodebuild -scheme "${scheme}" test -destination "${destination}" "${noIndex}" "${noSigning}" | xcpretty
         env:
           scheme: Risk
