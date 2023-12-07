@@ -12,12 +12,13 @@ import Foundation
 
 struct ContentView: View {
     @State private var deviceSessionID: String?
+	@State private var error: String?
     @State private var enabled: Bool = false
     @State private var checked: Bool = false
     @State private var loading: Bool = false
 
     var body: some View {
-        Text("Risk iOS Example").padding(.bottom).frame(maxWidth: .infinity, alignment: .center).font(.title)
+        Text("Risk iOS Example - SPM").padding(.bottom).frame(maxWidth: .infinity, alignment: .center).font(.title)
 
         VStack(alignment: .leading) {
 
@@ -29,7 +30,13 @@ struct ContentView: View {
         .padding().background(Color.gray.opacity(0.1))
 
         Button("Pay $1400") {
-            let yourConfig = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
+            guard let publicKey = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_PUBLIC_KEY"] else {
+				error = "Environment variable (SAMPLE_MERCHANT_PUBLIC_KEY) not set"
+				
+                return
+            }
+            
+            let yourConfig = RiskConfig(publicKey: publicKey, environment: RiskEnvironment.qa)
 
             Risk.getInstance(config: yourConfig) { riskInstance in
                 checked = true
@@ -47,15 +54,16 @@ struct ContentView: View {
                     switch result {
                     case .success(let response):
                         deviceSessionID = response.deviceSessionID
-                    case .failure:
+                    case .failure(let errorResponse):
                         deviceSessionID = nil
+						error = errorResponse.localizedDescription
                     }
                     loading = false
                 }
             }
         }.padding().background(Color.blue.opacity(0.9)).cornerRadius(8).frame(maxWidth: .infinity, alignment: .center).foregroundColor(.white).padding(.top)
 
-        Text(!checked ? .init() : loading ? "Loading..." : enabled && deviceSessionID != nil ? "Device session id: \(deviceSessionID!)" : "Integration disabled" ).padding(.top).multilineTextAlignment(.center)
+		Text(error ?? (!checked ? .init() : loading ? "Loading..." : enabled && deviceSessionID != nil ? "Device session id: \(deviceSessionID!)" : "Integration disabled") ).padding(.top).multilineTextAlignment(.center)
     }
 }
 

@@ -14,11 +14,16 @@ class APIServiceTests: XCTestCase {
     func testAPIServiceWithValidData() {
         let apiService = APIService()
         let validEndpoint = "https://prism-qa.ckotech.co/collect/configuration?integrationType=RiskIosStandalone"
-        let validAuthToken = "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo"
+        
+        // Retrieve the auth token from the environment variable
+        guard let publicKey = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_PUBLIC_KEY"] else {
+            XCTFail("Environment variable SAMPLE_MERCHANT_PUBLIC_KEY is not set.")
+            return
+        }
 
         let expectation = self.expectation(description: "API request completed")
 
-        apiService.getJSONFromAPIWithAuthorization(endpoint: validEndpoint, authToken: validAuthToken, responseType: DeviceDataConfiguration.self) { result in
+        apiService.getJSONFromAPIWithAuthorization(endpoint: validEndpoint, authToken: publicKey, responseType: DeviceDataConfiguration.self) { result in
             switch result {
             case .success(let decodedData):
                 XCTAssertTrue(decodedData.fingerprintIntegration.enabled)
@@ -36,11 +41,11 @@ class APIServiceTests: XCTestCase {
     func testAPIServiceWithInvalidEndpoint() {
         let apiService = APIService()
         let invalidEndpoint = "invalidURL"
-        let validAuthToken = "yourAuthToken"
+        let publicKey = "invalid_public_key"
 
         let expectation = self.expectation(description: "API request completed")
 
-        apiService.getJSONFromAPIWithAuthorization(endpoint: invalidEndpoint, authToken: validAuthToken, responseType: DeviceDataConfiguration.self) { result in
+        apiService.getJSONFromAPIWithAuthorization(endpoint: invalidEndpoint, authToken: publicKey, responseType: DeviceDataConfiguration.self) { result in
             switch result {
             case .success:
                 XCTFail("API request should have failed due to an invalid endpoint.")

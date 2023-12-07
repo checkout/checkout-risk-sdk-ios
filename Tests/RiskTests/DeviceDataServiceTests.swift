@@ -13,8 +13,13 @@ import XCTest
 class DeviceDataServiceTests: XCTestCase {
     func testGetConfiguration() {
         let mockAPIService = MockAPIService()
+        
+        guard let publicKey = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_PUBLIC_KEY"] else {
+            XCTFail("Environment variable SAMPLE_MERCHANT_PUBLIC_KEY is not set.")
+            return
+        }
 
-        let config = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: .qa)
+        let config = RiskConfig(publicKey: publicKey, environment: .qa)
         let internalConfig = RiskSDKInternalConfig(config: config)
         let mockLogger = MockLoggerService(internalConfig: internalConfig)
         let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockAPIService, loggerService: mockLogger)
@@ -35,8 +40,12 @@ class DeviceDataServiceTests: XCTestCase {
 
     func testPersistFpData() {
         let mockAPIService = MockAPIService()
+        guard let publicKey = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_PUBLIC_KEY"] else {
+            XCTFail("Environment variable SAMPLE_MERCHANT_PUBLIC_KEY is not set.")
+            return
+        }
 
-        let config = RiskConfig(publicKey: "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo", environment: RiskEnvironment.qa)
+        let config = RiskConfig(publicKey: publicKey, environment: RiskEnvironment.qa)
         let internalConfig = RiskSDKInternalConfig(config: config)
         let mockLogger = MockLoggerService(internalConfig: internalConfig)
 

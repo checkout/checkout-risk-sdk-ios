@@ -57,6 +57,7 @@ jobs:
 
       - name: Run Risk SDK Tests
         run: |
+          export SAMPLE_MERCHANT_PUBLIC_KEY=${{ secrets.SAMPLE_MERCHANT_PUBLIC_KEY }}
           set -o pipefail && xcodebuild -scheme "${scheme}" test -destination "${destination}" "${noIndex}" "${noSigning}" | xcpretty
         env:
           scheme: Risk
