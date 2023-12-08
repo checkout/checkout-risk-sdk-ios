@@ -35,7 +35,6 @@ jobs:
     name: Risk SDK Verification
     runs-on: macos-13-xl
     needs: lint
-
     env:
       SAMPLE_MERCHANT_PUBLIC_KEY: ${{ secrets.SAMPLE_MERCHANT_PUBLIC_KEY }}
 
@@ -60,9 +59,12 @@ jobs:
 
       - name: Run Risk SDK Tests
         run: |
-          set -o pipefail && xcodebuild -scheme "${scheme}" test -destination "${destination}" "${noIndex}" "${noSigning}" | xcpretty
+          set -o pipefail && xcodebuild -scheme "${scheme}" test -destination "${destination}" "${noIndex}" "${noSigning}" | xcpretty SAMPLE_MERCHANT_PUBLIC_KEY=${{ secrets.SAMPLE_MERCHANT_PUBLIC_KEY }}
         env:
           scheme: Risk
+
+      - name: Debug Environment Variables
+        run: env
 
       - name: Build Risk SDK SPM iOS Example
         run: |
