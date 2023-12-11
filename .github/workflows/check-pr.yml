@@ -62,6 +62,7 @@ jobs:
 
       - name: Run Risk SDK Tests
         run: |
+          source .github/config.xcconfig
           set -o pipefail && xcodebuild -scheme "${scheme}" test -destination "${destination}" -xcconfig "${GITHUB_WORKSPACE}/.github/config.xcconfig" "${noIndex}" "${noSigning}" | xcpretty
         env:
           scheme: Risk
