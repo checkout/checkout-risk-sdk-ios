@@ -84,4 +84,4 @@ jobs:
       #     set -o pipefail && xcodebuild "build" "-workspace" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
       #   env:
       #     path: "iOSExampleRiskCocoapods/iOSExampleRiskCocoapods.xcworkspace"
-      #     scheme: "iOSExampleRiskCocoapods"
+      #     scheme: "Risk"
