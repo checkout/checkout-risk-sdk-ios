@@ -36,7 +36,12 @@ struct PersistDeviceDataResponse: Decodable, Equatable {
     }
 }
 
-struct DeviceDataService {
+protocol DeviceDataServiceProtocol {
+    func getConfiguration(completion: @escaping (Result<DeviceDataConfiguration, RiskError>) -> Void)
+    func persistFpData(fingerprintRequestID: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError>) -> Void)
+}
+
+struct DeviceDataService: DeviceDataServiceProtocol {
     let config: RiskSDKInternalConfig
     let apiService: APIServiceProtocol
     let loggerService: LoggerServiceProtocol
