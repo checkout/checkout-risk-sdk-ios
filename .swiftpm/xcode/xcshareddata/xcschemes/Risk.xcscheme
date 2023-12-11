@@ -68,7 +68,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "SAMPLE_MERCHANT_PUBLIC_KEY"
-            value = "$(MY_SECRET_API_KEY)"
+            value = "$(SAMPLE_MERCHANT_PUBLIC_KEY)"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
