@@ -13,11 +13,7 @@ import XCTest
 class DeviceDataServiceTests: XCTestCase {
     func testGetConfiguration() {
         let mockAPIService = MockAPIService()
-        
-        guard let publicKey = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_PUBLIC_KEY"] else {
-            XCTFail("Environment variable SAMPLE_MERCHANT_PUBLIC_KEY is not set.")
-            return
-        }
+        let publicKey="mocked_public_key"
 
         let config = RiskConfig(publicKey: publicKey, environment: .qa)
         let internalConfig = RiskSDKInternalConfig(config: config)
@@ -40,10 +36,7 @@ class DeviceDataServiceTests: XCTestCase {
 
     func testPersistFpData() {
         let mockAPIService = MockAPIService()
-        guard let publicKey = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_PUBLIC_KEY"] else {
-            XCTFail("Environment variable SAMPLE_MERCHANT_PUBLIC_KEY is not set.")
-            return
-        }
+        let publicKey="mocked_public_key"
 
         let config = RiskConfig(publicKey: publicKey, environment: RiskEnvironment.qa)
         let internalConfig = RiskSDKInternalConfig(config: config)

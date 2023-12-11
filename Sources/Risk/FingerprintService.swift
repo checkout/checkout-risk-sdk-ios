@@ -8,7 +8,21 @@
 import FingerprintPro
 import Foundation
 
-final class FingerprintService {
+protocol FingerprintServiceProtocol {
+    func publishData(completion: @escaping (Result<String, RiskError>) -> Void)
+}
+
+extension FingerprintServiceProtocol {
+    func createMetadata(sourceType: SourceType.RawValue) -> Metadata {
+        var meta = Metadata()
+        meta.setTag(sourceType, forKey: "fpjsSource")
+        meta.setTag(Date().timeIntervalSince1970 * 1000, forKey: "fpjsTimestamp")
+
+        return meta
+    }
+}
+
+final class FingerprintService: FingerprintServiceProtocol {
     private var requestID: String?
     private let client: FingerprintClientProviding
     private let internalConfig: RiskSDKInternalConfig
@@ -46,12 +60,5 @@ final class FingerprintService {
         }
     }
 
-    func createMetadata(sourceType: SourceType.RawValue) -> Metadata {
-        var meta = Metadata()
-        meta.setTag(sourceType, forKey: "fpjsSource")
-        meta.setTag(Date().timeIntervalSince1970 * 1000, forKey: "fpjsTimestamp")
-
-        return meta
-    }
 
 }
