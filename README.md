@@ -1,9 +1,9 @@
 #  Risk iOS package
-<!-- TODO: Uncomment when repo is public (https://checkout.atlassian.net/browse/PRISM-10088) -->
-<!-- [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Risk.svg)](https://img.shields.io/cocoapods/v/Risk)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/Risk.svg)](https://img.shields.io/cocoapods/v/Risk)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/checkout/checkout-risk-sdk-ios?label=spm)
 [![Platform](https://img.shields.io/cocoapods/p/Risk.svg?style=flat)]()
-![license](https://img.shields.io/github/license/checkout/checkout-risk-sdk-ios.svg) -->
+![license](https://img.shields.io/github/license/checkout/checkout-risk-sdk-ios.svg)
+
 The package helps collect device data for merchants with direct integration (standalone) with the package and those using [Checkout's Frames iOS package](https://github.com/checkout/frames-ios).
 
 ## Table of contents
@@ -27,7 +27,7 @@ The package helps collect device data for merchants with direct integration (sta
 
 ## Documentation
 ### Usage guide
-  1. Add `Risk` as a package dependency - _see [Installation guide](https://github.com/checkout/checkout-risk-sdk-ios/blob/main/.github/partial-readmes/Integration.md) on how to add our SDK in your iOS app via SPM or Cocoapods._
+  1. Add `Risk` as a package dependency - _see [Installation guide](https://github.com/checkout/checkout-risk-sdk-ios/blob/main/.github/partial-readmes/Installation.md) on how to add our SDK in your iOS app via SPM or Cocoapods._
   2. Obtain a public API key from [Checkout Dashboard](https://dashboard.checkout.com/developers/keys).
   3. Initialise the package with the `getInstance` method passing in the required configuration (public API key and environment), then publish the device data with the `publishData` method, see example below.
 ```swift

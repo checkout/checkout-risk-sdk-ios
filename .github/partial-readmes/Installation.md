@@ -35,10 +35,9 @@ platform :ios, '12.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Risk', '~> 1.0' 
+    pod 'Risk', '~> 0.0.2' 
 end
 ```
-<!-- TODO: Update pod version (https://checkout.atlassian.net/browse/PRISM-10088) -->
 
 Then, run the following command in terminal:
 
