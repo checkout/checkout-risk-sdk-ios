@@ -73,15 +73,14 @@ jobs:
           path: "iOSExampleRiskSPM/RiskExample.xcodeproj"
           scheme: Risk
 
-      # TODO: Uncomment when Risk SDK CocoaPods iOS Example is ready
-      # - name: Risk Pod Update
-      #   run: |
-      #     cd iOS\ Example\ Frame
-      #     pod update
+      - name: Risk Pod Update
+        run: |
+          cd iOSExampleRiskCocoapods
+          pod update
 
-      # - name: Build Risk SDK CocoaPods iOS Example
-      #   run: |
-      #     set -o pipefail && xcodebuild "build" "-workspace" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
-      #   env:
-      #     path: "iOSExampleRiskCocoapods/iOSExampleRiskCocoapods.xcworkspace"
-      #     scheme: "Risk"
+      - name: Build Risk SDK CocoaPods iOS Example
+        run: |
+          set -o pipefail && xcodebuild "build" "-workspace" "${path}" "-scheme" "${scheme}" "-configuration" "${configuration}" "-destination" "${destination}" "${noIndex}" "${noSigning}" | xcpretty
+        env:
+          path: "iOSExampleRiskCocoapods/iOSExampleRiskCocoapods.xcworkspace"
+          scheme: "iOSExampleRiskCocoapods"
