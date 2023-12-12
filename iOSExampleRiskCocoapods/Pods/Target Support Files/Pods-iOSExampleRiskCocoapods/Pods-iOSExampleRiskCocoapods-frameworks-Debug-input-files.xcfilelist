@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-iOSExampleRiskCocoapods/Pods-iOSExampleRiskCocoapods-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Risk/Risk.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/CheckoutEventLoggerKit/CheckoutEventLoggerKit.framework/CheckoutEventLoggerKit
+${PODS_XCFRAMEWORKS_BUILD_DIR}/FingerprintPro/FingerprintPro.framework/FingerprintPro

@@ -1,0 +1,3 @@
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Risk.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CheckoutEventLoggerKit.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FingerprintPro.framework
