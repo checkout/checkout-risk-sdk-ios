@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import Risk
+import Risk
 
 import Foundation
 
@@ -30,37 +30,37 @@ struct ContentView: View {
         .padding().background(Color.gray.opacity(0.1))
 
         Button("Pay $1400") {
-//            guard let publicKey = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_PUBLIC_KEY"] else {
-//                error = "Environment variable (SAMPLE_MERCHANT_PUBLIC_KEY) not set"
-//                
-//                return
-//            }
-//            
-//            let yourConfig = RiskConfig(publicKey: publicKey, environment: RiskEnvironment.qa)
-//
-//            Risk.getInstance(config: yourConfig) { riskInstance in
-//                checked = true
-//                loading = true
-//
-//                guard riskInstance != nil else {
-//                    loading = false
-//                    enabled = false
-//                    return
-//                }
-//                enabled = true
-//
-//                riskInstance?.publishData { result in
-//
-//                    switch result {
-//                    case .success(let response):
-//                        deviceSessionID = response.deviceSessionID
-//                    case .failure(let errorResponse):
-//                        deviceSessionID = nil
-//                        error = errorResponse.localizedDescription
-//                    }
-//                    loading = false
-//                }
-//            }
+            guard let publicKey = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_PUBLIC_KEY"] else {
+                error = "Environment variable (SAMPLE_MERCHANT_PUBLIC_KEY) not set"
+                
+                return
+            }
+            
+            let yourConfig = RiskConfig(publicKey: publicKey, environment: RiskEnvironment.qa)
+
+            Risk.getInstance(config: yourConfig) { riskInstance in
+                checked = true
+                loading = true
+
+                guard riskInstance != nil else {
+                    loading = false
+                    enabled = false
+                    return
+                }
+                enabled = true
+
+                riskInstance?.publishData { result in
+
+                    switch result {
+                    case .success(let response):
+                        deviceSessionID = response.deviceSessionID
+                    case .failure(let errorResponse):
+                        deviceSessionID = nil
+                        error = errorResponse.localizedDescription
+                    }
+                    loading = false
+                }
+            }
         }.padding().background(Color.blue.opacity(0.9)).cornerRadius(8).frame(maxWidth: .infinity, alignment: .center).foregroundColor(.white).padding(.top)
 
         Text(error ?? (!checked ? .init() : loading ? "Loading..." : enabled && deviceSessionID != nil ? "Device session id: \(deviceSessionID!)" : "Integration disabled") ).padding(.top).multilineTextAlignment(.center)
