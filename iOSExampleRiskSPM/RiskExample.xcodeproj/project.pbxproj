@@ -15,7 +15,9 @@
 		BA0B00642AD6A52A0037D9FF /* RiskExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00632AD6A52A0037D9FF /* RiskExampleUITests.swift */; };
 		BA0B00662AD6A52A0037D9FF /* RiskExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00652AD6A52A0037D9FF /* RiskExampleUITestsLaunchTests.swift */; };
 		BA13934B2AF9416200D89A8D /* Risk in Frameworks */ = {isa = PBXBuildFile; productRef = BA13934A2AF9416200D89A8D /* Risk */; };
+		BA1927362B58159E00700874 /* Risk in Frameworks */ = {isa = PBXBuildFile; productRef = BA1927352B58159E00700874 /* Risk */; };
 		BA9442362AEFE8970037BFCB /* Risk in Frameworks */ = {isa = PBXBuildFile; productRef = BA9442352AEFE8970037BFCB /* Risk */; };
+		BABAD8F72B72712A00E91DF4 /* Risk in Frameworks */ = {isa = PBXBuildFile; productRef = BABAD8F62B72712A00E91DF4 /* Risk */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA1927362B58159E00700874 /* Risk in Frameworks */,
+				BABAD8F72B72712A00E91DF4 /* Risk in Frameworks */,
 				BA9442362AEFE8970037BFCB /* Risk in Frameworks */,
 				BA13934B2AF9416200D89A8D /* Risk in Frameworks */,
 			);
@@ -150,6 +154,8 @@
 			packageProductDependencies = (
 				BA9442352AEFE8970037BFCB /* Risk */,
 				BA13934A2AF9416200D89A8D /* Risk */,
+				BA1927352B58159E00700874 /* Risk */,
+				BABAD8F62B72712A00E91DF4 /* Risk */,
 			);
 			productName = RiskExample;
 			productReference = BA0B00452AD6A5280037D9FF /* RiskExample.app */;
@@ -224,7 +230,7 @@
 			);
 			mainGroup = BA0B003C2AD6A5280037D9FF;
 			packageReferences = (
-				BA1393492AF9416200D89A8D /* XCLocalSwiftPackageReference ".." */,
+				BABAD8F52B72712A00E91DF4 /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = BA0B00462AD6A5280037D9FF /* Products */;
 			projectDirPath = "";
@@ -597,7 +603,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		BA1393492AF9416200D89A8D /* XCLocalSwiftPackageReference ".." */ = {
+		BABAD8F52B72712A00E91DF4 /* XCLocalSwiftPackageReference ".." */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ..;
 		};
@@ -608,7 +614,15 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Risk;
 		};
+		BA1927352B58159E00700874 /* Risk */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Risk;
+		};
 		BA9442352AEFE8970037BFCB /* Risk */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Risk;
+		};
+		BABAD8F62B72712A00E91DF4 /* Risk */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Risk;
 		};
