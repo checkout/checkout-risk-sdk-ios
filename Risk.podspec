@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "Risk"
-    s.version      = "0.0.2"
+    s.version      = "1.0.0"
     s.summary      = "Checkout Risk package in Swift"
     s.description  = <<-DESC
     Checkout Risk package in Swift.
