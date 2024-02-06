@@ -35,7 +35,7 @@ platform :ios, '12.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Risk', '~> 1.0.0' 
+    pod 'Risk', '~> 1.0.1' 
 end
 ```
 
