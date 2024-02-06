@@ -74,7 +74,7 @@ extension LoggerServiceProtocol {
         }
 
         return Event(
-            typeIdentifier: "com.checkout.risk-mobile-sdk",
+            typeIdentifier: Constants.loggerTypeIdentifier,
             time: Date(),
             monitoringLevel: monitoringLevel,
             properties: properties
