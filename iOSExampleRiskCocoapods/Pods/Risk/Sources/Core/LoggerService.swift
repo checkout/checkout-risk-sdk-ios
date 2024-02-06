@@ -30,11 +30,11 @@ struct RiskLogError {
 
 protocol LoggerServiceProtocol {
     init(internalConfig: RiskSDKInternalConfig)
-    func log(riskEvent: RiskEvent, deviceSessionID: String?, requestID: String?, error: RiskLogError?)
+    func log(riskEvent: RiskEvent, deviceSessionId: String?, requestId: String?, error: RiskLogError?)
 }
 
 extension LoggerServiceProtocol {
-    func formatEvent(internalConfig: RiskSDKInternalConfig, riskEvent: RiskEvent, deviceSessionID: String?, requestID: String?, error: RiskLogError?) -> Event {
+    func formatEvent(internalConfig: RiskSDKInternalConfig, riskEvent: RiskEvent, deviceSessionId: String?, requestId: String?, error: RiskLogError?) -> Event {
         let maskedPublicKey = getMaskedPublicKey(publicKey: internalConfig.merchantPublicKey)
         let ddTags = getDDTags(environment: internalConfig.environment.rawValue)
         var monitoringLevel: MonitoringLevel
@@ -60,8 +60,8 @@ extension LoggerServiceProtocol {
                 "FramesMode": AnyCodable(internalConfig.framesMode),
                 "MaskedPublicKey": AnyCodable(maskedPublicKey),
                 "ddTags": AnyCodable(ddTags),
-                "DeviceSessionId": AnyCodable(deviceSessionID),
-                "RequestId": AnyCodable(requestID)
+                "DeviceSessionId": AnyCodable(deviceSessionId),
+                "RequestId": AnyCodable(requestId)
             ]
         case .publishFailure, .loadFailure, .publishDisabled:
             properties = [
@@ -138,8 +138,8 @@ struct LoggerService: LoggerServiceProtocol {
 
     }
 
-    func log(riskEvent: RiskEvent, deviceSessionID: String? = nil, requestID: String? = nil, error: RiskLogError? = nil) {
-        let event = formatEvent(internalConfig: internalConfig, riskEvent: riskEvent, deviceSessionID: deviceSessionID, requestID: requestID, error: error)
+    func log(riskEvent: RiskEvent, deviceSessionId: String? = nil, requestId: String? = nil, error: RiskLogError? = nil) {
+        let event = formatEvent(internalConfig: internalConfig, riskEvent: riskEvent, deviceSessionId: deviceSessionId, requestId: requestId, error: error)
         logger.log(event: event)
     }
 

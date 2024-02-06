@@ -20,25 +20,25 @@ struct DeviceDataConfiguration: Decodable, Equatable {
 struct PersistDeviceDataServiceData: Codable, Equatable {
 
     private enum CodingKeys: String, CodingKey {
-        case integrationType, fingerprintRequestID = "fpRequestId", cardToken
+        case integrationType, fingerprintRequestId = "fpRequestId", cardToken
     }
 
     let integrationType: RiskIntegrationType
-    let fingerprintRequestID: String
+    let fingerprintRequestId: String
     let cardToken: String?
 }
 
 struct PersistDeviceDataResponse: Decodable, Equatable {
-    let deviceSessionID: String
+    let deviceSessionId: String
 
     private enum CodingKeys: String, CodingKey {
-        case deviceSessionID = "deviceSessionId"
+        case deviceSessionId = "deviceSessionId"
     }
 }
 
 protocol DeviceDataServiceProtocol {
     func getConfiguration(completion: @escaping (Result<DeviceDataConfiguration, RiskError>) -> Void)
-    func persistFpData(fingerprintRequestID: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError>) -> Void)
+    func persistFpData(fingerprintRequestId: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError>) -> Void)
 }
 
 struct DeviceDataService: DeviceDataServiceProtocol {
@@ -62,7 +62,7 @@ struct DeviceDataService: DeviceDataServiceProtocol {
             case .success(let configuration):
 
                 guard configuration.fingerprintIntegration.enabled && configuration.fingerprintIntegration.publicKey != nil else {
-                    loggerService.log(riskEvent: .publishDisabled, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "getConfiguration", message: "Integration disabled", status: nil, type: "Error"))
+                    loggerService.log(riskEvent: .publishDisabled, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "getConfiguration", message: "Integration disabled", status: nil, type: "Error"))
 
                     return completion(.failure(RiskError.description("Integration disabled")))
                 }
@@ -70,20 +70,20 @@ struct DeviceDataService: DeviceDataServiceProtocol {
                 completion(.success(configuration))
             case .failure(let error):
 
-                loggerService.log(riskEvent: .loadFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "getConfiguration", message: error.localizedDescription, status: nil, type: "Error"))
+                loggerService.log(riskEvent: .loadFailure, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "getConfiguration", message: error.localizedDescription, status: nil, type: "Error"))
                 return completion(.failure(RiskError.description("Error retrieving configuration")))
             }
         }
     }
 
-    func persistFpData(fingerprintRequestID: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError>) -> Void) {
+    func persistFpData(fingerprintRequestId: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError>) -> Void) {
         let endpoint = "\(config.deviceDataEndpoint)/fingerprint"
         let authToken = config.merchantPublicKey
         let integrationType = config.integrationType
 
         let data = PersistDeviceDataServiceData(
             integrationType: integrationType,
-            fingerprintRequestID: fingerprintRequestID,
+            fingerprintRequestId: fingerprintRequestId,
             cardToken: cardToken
         )
 
@@ -91,11 +91,11 @@ struct DeviceDataService: DeviceDataServiceProtocol {
 
             switch result {
             case .success(let response):
-                loggerService.log(riskEvent: .published, deviceSessionID: response.deviceSessionID, requestID: fingerprintRequestID, error: nil)
+                loggerService.log(riskEvent: .published, deviceSessionId: response.deviceSessionId, requestId: fingerprintRequestId, error: nil)
 
                 completion(.success(response))
             case .failure(let error):
-                loggerService.log(riskEvent: .publishFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "persistFpData", message: error.localizedDescription, status: nil, type: "Error"))
+                loggerService.log(riskEvent: .publishFailure, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "persistFpData", message: error.localizedDescription, status: nil, type: "Error"))
 
                 completion(.failure(RiskError.description("Error persisting risk data")))
             }

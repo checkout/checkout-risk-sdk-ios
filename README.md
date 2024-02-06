@@ -36,7 +36,7 @@ let yourConfig = RiskConfig(publicKey: "pk_qa_xxx", environment: RiskEnvironment
             
 Risk.getInstance(config: yourConfig) { riskInstance in
     riskInstance?.publishData() { response in
-        print(response.deviceSessionID)
+        print(response.deviceSessionId)
     }
 }
  ```
@@ -101,7 +101,7 @@ The package exposes two methods:
 
     ```swift
     public struct PublishRiskData {
-        public let deviceSessionID: String
+        public let deviceSessionId: String
     }
 
     public enum RiskError: Error, Equatable {
@@ -118,7 +118,7 @@ The package exposes two methods:
     </details>
 
 ### Additional Resources
-<!-- TODO: Add website documentation link here (https://checkout.atlassian.net/browse/PRISM-10088) - [Risk iOS SDK documentation](https://docs.checkout.com/risk/overview) -->
+<!-- TODO: Add website documentation link here - [Risk iOS SDK documentation](https://docs.checkout.com/risk/overview) -->
 - [Frames iOS SDK documentation](https://www.checkout.com/docs/developer-resources/sdks/frames-ios-sdk)
 
 ## Demo projects

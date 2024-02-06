@@ -20,9 +20,9 @@ class MockDeviceDataService: DeviceDataServiceProtocol {
         }
     }
 
-    func persistFpData(fingerprintRequestID: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError>) -> Void) {
+    func persistFpData(fingerprintRequestId: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError>) -> Void) {
         if shouldSucceedPersistFpData {
-            let response = PersistDeviceDataResponse(deviceSessionID: "mocked_device_session_id")
+            let response = PersistDeviceDataResponse(deviceSessionId: "mocked_device_session_id")
             completion(.success(response))
         } else {
             completion(.failure(RiskError.description("Mocked persistFpData error")))
