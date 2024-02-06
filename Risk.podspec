@@ -17,5 +17,10 @@ Pod::Spec.new do |s|
     
     s.dependency 'CheckoutEventLoggerKit', '~> 1.2.4'
     s.dependency 'FingerprintPro', '2.2.0'
+
+    s.pod_target_xcconfig = {
+      'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64'
+    }
+    s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   
   end
