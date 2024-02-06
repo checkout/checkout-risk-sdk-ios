@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "Risk"
-    s.version      = "0.0.2"
+    s.version      = "1.0.1"
     s.summary      = "Checkout Risk package in Swift"
     s.description  = <<-DESC
     Checkout Risk package in Swift.
@@ -17,5 +17,8 @@ Pod::Spec.new do |s|
     
     s.dependency 'CheckoutEventLoggerKit', '~> 1.2.4'
     s.dependency 'FingerprintPro', '2.2.0'
+
+    # This resolves the missing SWIFT_INCLUDE_PATHS variable
+    s.pod_target_xcconfig   = { 'SWIFT_INCLUDE_PATHS' => '$(inherited) ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)'}
   
   end

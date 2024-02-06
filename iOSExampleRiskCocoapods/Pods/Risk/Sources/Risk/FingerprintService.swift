@@ -23,7 +23,7 @@ extension FingerprintServiceProtocol {
 }
 
 final class FingerprintService: FingerprintServiceProtocol {
-    private var requestID: String?
+    private var requestId: String?
     private let client: FingerprintClientProviding
     private let internalConfig: RiskSDKInternalConfig
     private let loggerService: LoggerServiceProtocol
@@ -38,8 +38,8 @@ final class FingerprintService: FingerprintServiceProtocol {
 
     func publishData(completion: @escaping (Result<String, RiskError>) -> Void) {
 
-        guard requestID == nil else {
-            return completion(.success(requestID!))
+        guard requestId == nil else {
+            return completion(.success(requestId!))
         }
 
         let metadata = createMetadata(sourceType: internalConfig.sourceType.rawValue)
@@ -48,12 +48,12 @@ final class FingerprintService: FingerprintServiceProtocol {
 
             switch result {
             case .failure(let error):
-                self?.loggerService.log(riskEvent: .publishFailure, deviceSessionID: nil, requestID: nil, error: RiskLogError(reason: "publishData", message: error.localizedDescription, status: nil, type: "Error"))
+                self?.loggerService.log(riskEvent: .publishFailure, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "publishData", message: error.localizedDescription, status: nil, type: "Error"))
 
                 return completion(.failure(RiskError.description("Error publishing risk data")))
             case let .success(response):
-                self?.loggerService.log(riskEvent: .collected, deviceSessionID: nil, requestID: response.requestId, error: nil)
-                self?.requestID = response.requestId
+                self?.loggerService.log(riskEvent: .collected, deviceSessionId: nil, requestId: response.requestId, error: nil)
+                self?.requestId = response.requestId
 
                 completion(.success(response.requestId))
             }

@@ -9,7 +9,7 @@
 import Foundation
 
 public struct PublishRiskData {
-    public let deviceSessionID: String
+    public let deviceSessionId: String
 }
 
 public enum RiskError: Error, Equatable {
@@ -66,17 +66,17 @@ public class Risk {
             switch fpResult {
             case .failure(let errorMessage):
                 completion(.failure(errorMessage))
-            case .success(let requestID):
-                self.persistFpData(cardToken: cardToken, fingerprintRequestID: requestID, completion: completion)
+            case .success(let requestId):
+                self.persistFpData(cardToken: cardToken, fingerprintRequestId: requestId, completion: completion)
             }
         }
     }
 
-    private func persistFpData(cardToken: String?, fingerprintRequestID: String, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
-        self.deviceDataService.persistFpData(fingerprintRequestID: fingerprintRequestID, cardToken: cardToken) { result in
+    private func persistFpData(cardToken: String?, fingerprintRequestId: String, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
+        self.deviceDataService.persistFpData(fingerprintRequestId: fingerprintRequestId, cardToken: cardToken) { result in
             switch result {
             case .success(let response):
-                completion(.success(PublishRiskData(deviceSessionID: response.deviceSessionID)))
+                completion(.success(PublishRiskData(deviceSessionId: response.deviceSessionId)))
             case .failure(let errorMessage):
                 completion(.failure(errorMessage))
             }

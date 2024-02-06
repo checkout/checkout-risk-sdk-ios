@@ -36,7 +36,7 @@ let yourConfig = RiskConfig(publicKey: "pk_qa_xxx", environment: RiskEnvironment
             
 Risk.getInstance(config: yourConfig) { riskInstance in
     riskInstance?.publishData() { response in
-        print(response.deviceSessionID)
+        print(response.deviceSessionId)
     }
 }
  ```
@@ -101,7 +101,7 @@ The package exposes two methods:
 
     ```swift
     public struct PublishRiskData {
-        public let deviceSessionID: String
+        public let deviceSessionId: String
     }
 
     public enum RiskError: Error, Equatable {

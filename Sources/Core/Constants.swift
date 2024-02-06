@@ -9,6 +9,7 @@ import Foundation
 
 enum Constants {
     static let productName = "risk-ios-sdk"
-    static let version = "0.0.1"
+    static let version = "1.0.0"
     static let userAgent = "checkout-sdk-risk-ios/\(version)"
+    static let loggerTypeIdentifier = "com.checkout.risk-mobile-sdk"
 }

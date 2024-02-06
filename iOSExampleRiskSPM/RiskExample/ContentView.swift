@@ -11,7 +11,7 @@ import Risk
 import Foundation
 
 struct ContentView: View {
-    @State private var deviceSessionID: String?
+    @State private var deviceSessionId: String?
 	@State private var error: String?
     @State private var enabled: Bool = false
     @State private var checked: Bool = false
@@ -53,9 +53,9 @@ struct ContentView: View {
 
                     switch result {
                     case .success(let response):
-                        deviceSessionID = response.deviceSessionID
+                        deviceSessionId = response.deviceSessionId
                     case .failure(let errorResponse):
-                        deviceSessionID = nil
+                        deviceSessionId = nil
 						error = errorResponse.localizedDescription
                     }
                     loading = false
@@ -63,7 +63,7 @@ struct ContentView: View {
             }
         }.padding().background(Color.blue.opacity(0.9)).cornerRadius(8).frame(maxWidth: .infinity, alignment: .center).foregroundColor(.white).padding(.top)
 
-		Text(error ?? (!checked ? .init() : loading ? "Loading..." : enabled && deviceSessionID != nil ? "Device session id: \(deviceSessionID!)" : "Integration disabled") ).padding(.top).multilineTextAlignment(.center)
+		Text(error ?? (!checked ? .init() : loading ? "Loading..." : enabled && deviceSessionId != nil ? "Device session id: \(deviceSessionId!)" : "Integration disabled") ).padding(.top).multilineTextAlignment(.center)
     }
 }
 
