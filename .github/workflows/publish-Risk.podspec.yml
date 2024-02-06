@@ -12,6 +12,7 @@ jobs:
       - name: Publish to CocoaPods register
         run: |
           gem install cocoapods
-          pod trunk push Risk.podspec --allow-warnings --skip-import-validation
+          pod spec lint Risk.podspec --verbose
+          pod trunk push Risk.podspec --allow-warnings --verbose
         env:
           COCOAPODS_TRUNK_TOKEN: ${{ secrets.COCOAPODS_TRUNK_TOKEN }}
