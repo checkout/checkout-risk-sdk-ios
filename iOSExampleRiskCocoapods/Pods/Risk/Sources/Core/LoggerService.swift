@@ -60,16 +60,22 @@ extension LoggerServiceProtocol {
                 "FramesMode": AnyCodable(internalConfig.framesMode),
                 "MaskedPublicKey": AnyCodable(maskedPublicKey),
                 "ddTags": AnyCodable(ddTags),
+                "RiskSDKVersion": AnyCodable(Constants.version),
+                "Timezone": AnyCodable(TimeZone.current.identifier),
+                "RequestId": AnyCodable(requestId),
                 "DeviceSessionId": AnyCodable(deviceSessionId),
-                "RequestId": AnyCodable(requestId)
             ]
         case .publishFailure, .loadFailure, .publishDisabled:
             properties = [
                 "EventType": AnyCodable(riskEvent.rawValue),
                 "FramesMode": AnyCodable(internalConfig.framesMode),
+                "MaskedPublicKey": AnyCodable(maskedPublicKey),
+                "ddTags": AnyCodable(ddTags),
+                "RiskSDKVersion": AnyCodable(Constants.version),
+                "Timezone": AnyCodable(TimeZone.current.identifier),
                 "ErrorMessage": AnyCodable(error?.message),
                 "ErrorType": AnyCodable(error?.type),
-                "ErrorReason": AnyCodable(error?.reason)
+                "ErrorReason": AnyCodable(error?.reason),
             ]
         }
 
