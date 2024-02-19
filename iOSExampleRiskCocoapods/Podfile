@@ -6,7 +6,7 @@ target 'iOSExampleRiskCocoapods' do
   use_frameworks!
 
   # Pods for iOS Example Custom
-  pod 'Risk', '1.0.0'
+  pod 'Risk', '1.0.2'
 
 end
 
