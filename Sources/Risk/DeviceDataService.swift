@@ -53,7 +53,7 @@ struct DeviceDataService: DeviceDataServiceProtocol {
     }
 
     func getConfiguration(completion: @escaping (Result<DeviceDataConfiguration, RiskError>) -> Void) {
-        let endpoint = "\(config.deviceDataEndpoint)/configuration?integrationType=\(config.integrationType.rawValue)"
+        let endpoint = "\(config.deviceDataEndpoint)/configuration?integrationType=\(config.integrationType.rawValue)&riskSdkVersion=\(Constants.riskSdkVersion)"
         let authToken = config.merchantPublicKey
 
         apiService.getJSONFromAPIWithAuthorization(endpoint: endpoint, authToken: authToken, responseType: DeviceDataConfiguration.self) {
@@ -77,7 +77,7 @@ struct DeviceDataService: DeviceDataServiceProtocol {
     }
 
     func persistFpData(fingerprintRequestId: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError>) -> Void) {
-        let endpoint = "\(config.deviceDataEndpoint)/fingerprint"
+        let endpoint = "\(config.deviceDataEndpoint)/fingerprint?riskSdkVersion=\(Constants.riskSdkVersion)"
         let authToken = config.merchantPublicKey
         let integrationType = config.integrationType
 

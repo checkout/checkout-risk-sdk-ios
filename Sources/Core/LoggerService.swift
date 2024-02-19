@@ -60,7 +60,7 @@ extension LoggerServiceProtocol {
                 "FramesMode": AnyCodable(internalConfig.framesMode),
                 "MaskedPublicKey": AnyCodable(maskedPublicKey),
                 "ddTags": AnyCodable(ddTags),
-                "RiskSDKVersion": AnyCodable(Constants.version),
+                "RiskSDKVersion": AnyCodable(Constants.riskSdkVersion),
                 "Timezone": AnyCodable(TimeZone.current.identifier),
                 "RequestId": AnyCodable(requestId),
                 "DeviceSessionId": AnyCodable(deviceSessionId),
@@ -71,7 +71,7 @@ extension LoggerServiceProtocol {
                 "FramesMode": AnyCodable(internalConfig.framesMode),
                 "MaskedPublicKey": AnyCodable(maskedPublicKey),
                 "ddTags": AnyCodable(ddTags),
-                "RiskSDKVersion": AnyCodable(Constants.version),
+                "RiskSDKVersion": AnyCodable(Constants.riskSdkVersion),
                 "Timezone": AnyCodable(TimeZone.current.identifier),
                 "ErrorMessage": AnyCodable(error?.message),
                 "ErrorType": AnyCodable(error?.type),
@@ -92,7 +92,7 @@ extension LoggerServiceProtocol {
     }
 
     func getDDTags(environment: String) -> String {
-        return "team:prism,service:prism.risk.ios,version:\(Constants.version),env:\(environment)"
+        return "team:prism,service:prism.risk.ios,version:\(Constants.riskSdkVersion),env:\(environment)"
     }
 }
 
@@ -132,7 +132,7 @@ struct LoggerService: LoggerServiceProtocol {
             environment: logEnvironment,
             remoteProcessorMetadata: RemoteProcessorMetadata(
                 productIdentifier: Constants.productName,
-                productVersion: Constants.version,
+                productVersion: Constants.riskSdkVersion,
                 environment: internalConfig.environment.rawValue,
                 appPackageName: appPackageName,
                 appPackageVersion: appPackageVersion,

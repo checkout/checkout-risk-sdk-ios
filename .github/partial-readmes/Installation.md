@@ -9,12 +9,11 @@ We've done our best to support the most common distribution methods on iOS. We a
 let package = Package(
     ...
     dependencies: [
-        .package(url: "https://github.com/checkout/checkout-risk-sdk-ios", from: "...")
+        .package(url: "https://github.com/checkout/checkout-risk-sdk-ios", from: "1.0.3")
     ]
     ...
 )
 ```
-<!-- TODO: update tag version (https://checkout.atlassian.net/browse/PRISM-10088) -->
 
 If you've never used it before, get started with Apple's step by step guide into [adding package dependencies to your app](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app) . Just use this repository's URL (https://github.com/checkout/checkout-risk-sdk-ios) when adding dependency.
 
@@ -35,7 +34,7 @@ platform :ios, '12.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Risk', '~> 1.0.2' 
+    pod 'Risk', '~> 1.0.3' 
 end
 ```
 
