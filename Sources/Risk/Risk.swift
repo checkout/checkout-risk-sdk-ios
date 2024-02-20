@@ -8,57 +8,64 @@
 
 import Foundation
 
-public class Risk {
-    private let fingerprintService: FingerprintService
-    private let deviceDataService: DeviceDataService
-    private let loggerService: LoggerServiceProtocol
-
-    private init(fingerprintService: FingerprintService, deviceDataService: DeviceDataService, loggerService: LoggerServiceProtocol) {
-        self.fingerprintService = fingerprintService
-        self.deviceDataService = deviceDataService
-        self.loggerService = loggerService
+public final class Risk {
+  private let internalConfig: RiskSDKInternalConfig
+  private let deviceDataService: DeviceDataService
+  private let loggerService: LoggerServiceProtocol
+  
+  private var fingerprintService: FingerprintService?
+  
+  private init(config: RiskConfig) {
+    internalConfig = RiskSDKInternalConfig(config: config)
+    loggerService = LoggerService(internalConfig: internalConfig)
+    deviceDataService = DeviceDataService(config: internalConfig, loggerService: loggerService)
+  }
+  
+  public func configure(config: RiskConfig, completion: @escaping (Error?) -> Void) {
+    deviceDataService.getConfiguration { [weak self] result in
+      guard let self = self else { return }
+      
+      switch result {
+      case .success(let configuration):
+        let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey
+        self.fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey,
+                                                     internalConfig: self.internalConfig,
+                                                     loggerService: self.loggerService)
+        completion(nil)
+        
+      case .failure(let error):
+        return completion(error)
+      }
     }
-
-    public static func getInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
-        let internalConfig = RiskSDKInternalConfig(config: config)
-        let loggerService = LoggerService(internalConfig: internalConfig)
-        let deviceDataService = DeviceDataService(config: internalConfig, loggerService: loggerService)
-
-        deviceDataService.getConfiguration { result in
-
-            switch result {
-            case .failure:
-                return completion(nil)
-            case .success(let configuration):
-                let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey!
-                let fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey, internalConfig: internalConfig, loggerService: loggerService)
-                let riskInstance = Risk(fingerprintService: fingerprintService, deviceDataService: deviceDataService, loggerService: loggerService)
-
-                completion(riskInstance)
-            }
-
-        }
+  }
+  
+  public func publishData (cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
+    guard let fingerprintService = fingerprintService else {
+      completion(.failure(.fingerprintServiceIsNotConfigured))
+      return
     }
-
-    public func publishData (cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
-      fingerprintService.publishData { [weak self] fpResult in
-            switch fpResult {
-            case .failure(let errorMessage):
-                completion(.failure(errorMessage))
-            case .success(let requestId):
-                self?.persistFpData(cardToken: cardToken, fingerprintRequestId: requestId, completion: completion)
-            }
-        }
+    
+    fingerprintService.publishData { [weak self] fpResult in
+      guard let self = self else { return }
+      
+      switch fpResult {
+      case .success(let requestId):
+        self.persistFpData(cardToken: cardToken, fingerprintRequestId: requestId, completion: completion)
+        
+      case .failure(let error):
+        completion(.failure(error))
+      }
     }
-
-    private func persistFpData(cardToken: String?, fingerprintRequestId: String, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
-        self.deviceDataService.persistFpData(fingerprintRequestId: fingerprintRequestId, cardToken: cardToken) { result in
-            switch result {
-            case .success(let response):
-                completion(.success(PublishRiskData(deviceSessionId: response.deviceSessionId)))
-            case .failure(let errorMessage):
-                completion(.failure(errorMessage))
-            }
-        }
+  }
+  
+  private func persistFpData(cardToken: String?, fingerprintRequestId: String, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
+    self.deviceDataService.persistFpData(fingerprintRequestId: fingerprintRequestId, cardToken: cardToken) { result in
+      switch result {
+      case .success(let response):
+        completion(.success(PublishRiskData(deviceSessionId: response.deviceSessionId)))
+      case .failure(let error):
+        completion(.failure(error))
+      }
     }
+  }
 }

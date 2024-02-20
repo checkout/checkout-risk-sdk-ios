@@ -12,6 +12,7 @@ public enum RiskError: LocalizedError, Equatable {
   case couldNotPublishRiskData
   case couldNotRetrieveConfiguration
   case couldNotPersisRiskData
+  case fingerprintServiceIsNotConfigured
 
   public var errorDescription: String? {
     switch self {
@@ -26,6 +27,9 @@ public enum RiskError: LocalizedError, Equatable {
 
     case .couldNotPersisRiskData:
       return "Error persisting risk data"
+
+    case .fingerprintServiceIsNotConfigured:
+      return "Fingerprint service is not configured. Please call configure() method first."
     }
   }
 }
