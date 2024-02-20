@@ -24,7 +24,6 @@ public enum RiskError: Error, Equatable {
 }
 
 public class Risk {
-    private static var sharedInstance: Risk?
     private let fingerprintService: FingerprintService
     private let deviceDataService: DeviceDataService
     private let loggerService: LoggerServiceProtocol
@@ -36,10 +35,6 @@ public class Risk {
     }
 
     public static func getInstance(config: RiskConfig, completion: @escaping (Risk?) -> Void) {
-        guard sharedInstance === nil else {
-            return completion(sharedInstance)
-        }
-
         let internalConfig = RiskSDKInternalConfig(config: config)
         let loggerService = LoggerService(internalConfig: internalConfig)
         let deviceDataService = DeviceDataService(config: internalConfig, loggerService: loggerService)
@@ -53,7 +48,6 @@ public class Risk {
                 let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey!
                 let fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey, internalConfig: internalConfig, loggerService: loggerService)
                 let riskInstance = Risk(fingerprintService: fingerprintService, deviceDataService: deviceDataService, loggerService: loggerService)
-                sharedInstance = riskInstance
 
                 completion(riskInstance)
             }
@@ -62,12 +56,12 @@ public class Risk {
     }
 
     public func publishData (cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
-        fingerprintService.publishData { fpResult in
+      fingerprintService.publishData { [weak self] fpResult in
             switch fpResult {
             case .failure(let errorMessage):
                 completion(.failure(errorMessage))
             case .success(let requestId):
-                self.persistFpData(cardToken: cardToken, fingerprintRequestId: requestId, completion: completion)
+                self?.persistFpData(cardToken: cardToken, fingerprintRequestId: requestId, completion: completion)
             }
         }
     }
