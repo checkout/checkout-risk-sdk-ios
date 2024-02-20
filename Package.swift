@@ -16,12 +16,10 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/fingerprintjs/fingerprintjs-pro-ios",
-            .exact("2.2.0")
-        ),
+            exact: "2.2.0"),
         .package(
             url: "https://github.com/checkout/checkout-event-logger-ios-framework.git",
-            from: "1.2.4"
-        )
+            from: "1.2.4")
     ],
     targets: [
         .target(

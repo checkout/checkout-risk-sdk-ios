@@ -30,7 +30,7 @@ struct RiskSDKInternalConfig {
         case .sandbox:
             deviceDataEndpoint = "https://risk.sandbox.checkout.com/collect"
             fingerprintEndpoint = "https://fpjs.sandbox.checkout.com"
-        case .prod:
+        case .production:
             deviceDataEndpoint = "https://risk.checkout.com/collect"
             fingerprintEndpoint = "https://fpjs.checkout.com"
         }

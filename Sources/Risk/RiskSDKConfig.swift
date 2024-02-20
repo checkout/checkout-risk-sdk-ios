@@ -12,7 +12,7 @@ import FingerprintPro
 public enum RiskEnvironment: String {
     case qa
     case sandbox
-    case prod
+    case production
 }
 
 public struct RiskConfig {
