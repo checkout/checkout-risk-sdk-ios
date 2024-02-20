@@ -10,7 +10,7 @@ import Foundation
 
 struct FingerprintIntegration: Decodable, Equatable {
     let enabled: Bool
-    let publicKey: String
+    let publicKey: String?
 }
 
 struct DeviceDataConfiguration: Decodable, Equatable {

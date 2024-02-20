@@ -1,5 +1,6 @@
 import Foundation
 import CheckoutEventLoggerKit
+@testable import Risk
 
 struct MockLoggerService: LoggerServiceProtocol {
     private var loggedEvents: [RiskEvent] = []

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@testable import Risk
 
 class MockFingerprintService: FingerprintServiceProtocol {
     var shouldSucceed: Bool = true
@@ -20,7 +21,7 @@ class MockFingerprintService: FingerprintServiceProtocol {
                 completion(.success(fakeRequestId))
             }
         } else {
-            let error = RiskError.description("Mocked publishData error")
+            let error = RiskError.couldNotPublishRiskData
             completion(.failure(error))
         }
     }

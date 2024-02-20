@@ -27,7 +27,7 @@ public final class Risk {
       
       switch result {
       case .success(let configuration):
-        let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey
+        let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey!
         self.fingerprintService = FingerprintService(fingerprintPublicKey: fingerprintPublicKey,
                                                      internalConfig: self.internalConfig,
                                                      loggerService: self.loggerService)

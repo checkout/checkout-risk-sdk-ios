@@ -34,7 +34,8 @@ let package = Package(
             path: "Sources"),
         .testTarget(
             name: "RiskTests",
-            dependencies: ["Risk"])
+            dependencies: ["Risk"],
+            path: "Tests")
     ],
     swiftLanguageVersions: [.v5]
 )
