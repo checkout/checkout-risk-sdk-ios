@@ -12,15 +12,27 @@ public struct PublishRiskData {
     public let deviceSessionId: String
 }
 
-public enum RiskError: Error, Equatable {
-    case description(String)
+public enum RiskError: LocalizedError, Equatable {
+  case integrationDisabled
+  case couldNotPublishRiskData
+  case couldNotRetrieveConfiguration
+  case couldNotPersisRiskData
 
-    var localizedDescription: String {
-        switch self {
-        case .description(let errorMessage):
-            return errorMessage
-        }
+  public var errorDescription: String? {
+    switch self {
+    case .integrationDisabled:
+      return "Integration disabled"
+
+    case .couldNotPublishRiskData:
+      return "Error publishing risk data"
+
+    case .couldNotRetrieveConfiguration:
+      return "Error retrieving configuration"
+
+    case .couldNotPersisRiskData:
+      return "Error persisting risk data"
     }
+  }
 }
 
 public class Risk {

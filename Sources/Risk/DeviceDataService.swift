@@ -64,14 +64,14 @@ struct DeviceDataService: DeviceDataServiceProtocol {
                 guard configuration.fingerprintIntegration.enabled && configuration.fingerprintIntegration.publicKey != nil else {
                     loggerService.log(riskEvent: .publishDisabled, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "getConfiguration", message: "Integration disabled", status: nil, type: "Error"))
 
-                    return completion(.failure(RiskError.description("Integration disabled")))
+                    return completion(.failure(RiskError.integrationDisabled))
                 }
 
                 completion(.success(configuration))
             case .failure(let error):
 
                 loggerService.log(riskEvent: .loadFailure, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "getConfiguration", message: error.localizedDescription, status: nil, type: "Error"))
-                return completion(.failure(RiskError.description("Error retrieving configuration")))
+                return completion(.failure(RiskError.couldNotRetrieveConfiguration))
             }
         }
     }
@@ -97,7 +97,7 @@ struct DeviceDataService: DeviceDataServiceProtocol {
             case .failure(let error):
                 loggerService.log(riskEvent: .publishFailure, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "persistFpData", message: error.localizedDescription, status: nil, type: "Error"))
 
-                completion(.failure(RiskError.description("Error persisting risk data")))
+                completion(.failure(RiskError.couldNotPersisRiskData))
             }
         }
     }

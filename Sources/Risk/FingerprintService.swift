@@ -50,7 +50,7 @@ final class FingerprintService: FingerprintServiceProtocol {
             case .failure(let error):
                 self?.loggerService.log(riskEvent: .publishFailure, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "publishData", message: error.localizedDescription, status: nil, type: "Error"))
 
-                return completion(.failure(RiskError.description("Error publishing risk data")))
+                return completion(.failure(RiskError.couldNotPublishRiskData))
             case let .success(response):
                 self?.loggerService.log(riskEvent: .collected, deviceSessionId: nil, requestId: response.requestId, error: nil)
                 self?.requestId = response.requestId
