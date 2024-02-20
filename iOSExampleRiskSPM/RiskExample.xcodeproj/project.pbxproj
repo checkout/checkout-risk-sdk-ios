@@ -39,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		163EC7632B85320700149296 /* checkout-risk-sdk-ios */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "checkout-risk-sdk-ios"; path = ..; sourceTree = "<group>"; };
 		BA0B00452AD6A5280037D9FF /* RiskExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RiskExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA0B00482AD6A5280037D9FF /* RiskExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskExampleApp.swift; sourceTree = "<group>"; };
 		BA0B004A2AD6A5280037D9FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; usesTabs = 1; };
@@ -84,6 +85,7 @@
 		BA0B003C2AD6A5280037D9FF = {
 			isa = PBXGroup;
 			children = (
+				163EC7632B85320700149296 /* checkout-risk-sdk-ios */,
 				BA0B00472AD6A5280037D9FF /* RiskExample */,
 				BA0B00582AD6A52A0037D9FF /* RiskExampleTests */,
 				BA0B00622AD6A52A0037D9FF /* RiskExampleUITests */,
@@ -610,8 +612,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/checkout/checkout-risk-sdk-ios";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.2;
+				kind = exactVersion;
+				version = 1.0.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

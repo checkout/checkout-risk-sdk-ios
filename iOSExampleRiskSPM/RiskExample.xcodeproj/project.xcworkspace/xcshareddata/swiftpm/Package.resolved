@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "checkout-risk-sdk-ios",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/checkout/checkout-risk-sdk-ios",
-      "state" : {
-        "revision" : "ac2bbb8f99e46a873a5565e44b2b822448f96e38",
-        "version" : "1.0.2"
-      }
-    },
-    {
       "identity" : "fingerprintjs-pro-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fingerprintjs/fingerprintjs-pro-ios",

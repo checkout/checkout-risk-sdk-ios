@@ -15,13 +15,13 @@ public final class Risk {
   
   private var fingerprintService: FingerprintService?
   
-  private init(config: RiskConfig) {
+  public init(config: RiskConfig) {
     internalConfig = RiskSDKInternalConfig(config: config)
     loggerService = LoggerService(internalConfig: internalConfig)
     deviceDataService = DeviceDataService(config: internalConfig, loggerService: loggerService)
   }
   
-  public func configure(config: RiskConfig, completion: @escaping (Error?) -> Void) {
+  public func configure(completion: @escaping (Error?) -> Void) {
     deviceDataService.getConfiguration { [weak self] result in
       guard let self = self else { return }
       
