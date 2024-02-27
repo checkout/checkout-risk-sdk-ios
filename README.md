@@ -29,56 +29,69 @@ The package helps collect device data for merchants with direct integration (sta
 ### Usage guide
   1. Add `Risk` as a package dependency - _see [Installation guide](https://github.com/checkout/checkout-risk-sdk-ios/blob/main/.github/partial-readmes/Installation.md) on how to add our SDK in your iOS app via SPM or Cocoapods._
   2. Obtain a public API key from [Checkout Dashboard](https://dashboard.checkout.com/developers/keys).
-  3. Initialise the package with the `getInstance` method passing in the required configuration (public API key and environment), then publish the device data with the `publishData` method, see example below.
+  3. Initialise the package Risk with the public API key and environment `Risk.init(config: yourConfig)` early-on.
+        <details>
+        <summary>Arguments</summary>
+
+        ```swift
+        public struct RiskConfig {
+            public let publicKey: String
+            public let environment: RiskEnvironment
+            public let framesMode: Bool
+            
+            public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
+                self.publicKey = publicKey
+                self.environment = environment
+                self.framesMode = framesMode
+            }
+        }
+
+        public enum RiskEnvironment {
+            case qa
+            case sandbox
+            case production
+        }
+        ```
+        </details>
+  4. Use the `configure` to complete your setup, then publish the device data within the closure with the `publishData` method. 
+
+See example below:
 ```swift
+import Risk
+
 // Example usage of package
 let yourConfig = RiskConfig(publicKey: "pk_qa_xxx", environment: RiskEnvironment.qa)
-            
-Risk.getInstance(config: yourConfig) { riskInstance in
-    riskInstance?.publishData() { response in
-        print(response.deviceSessionId)
-    }
+
+self.riskSDK = Risk.init(config: yourConfig)            
+
+self.riskSDK.configure { errorResponse in
+
+	if let errorResponse = errorResponse {
+		print(errorResponse.localizedDescription)
+		return
+	}
+
+	self.riskSDK.publishData { result in
+
+		switch result {
+		case .success(let response):
+			print(response.deviceSessionId)
+		case .failure(let errorResponse):
+			print(errorResponse.localizedDescription)
+		}
+	}
 }
  ```
 
 ### Public API
-The package exposes two methods:
-1. `getInstance` - This is a method that returns a singleton instance of Risk. When the method is called, preliminary checks are made to Checkout's internal API(s) that retrieves the public keys used to initialise the package used in collecting device data, if the checks fail or the merchant is disabled, nil will be returned, else, if the checks are successful, the `Risk` instance is returned to the consumer of the package which can now be used to publish the data with the `publishData` method.
-
-    <details>
-    <summary>Arguments</summary>
-
-    ```swift
-    public struct RiskConfig {
-        public let publicKey: String
-        public let environment: RiskEnvironment
-        public let framesMode: Bool
-        
-        public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
-            self.publicKey = publicKey
-            self.environment = environment
-            self.framesMode = framesMode
-        }
-    }
-
-    public enum RiskEnvironment {
-        case qa
-        case sandbox
-        case prod
-    }
-    ```
-    </details>
-
+Aside the instantiation via the `init` method, the package exposes two methods:
+1. `configure` - This method completes your setup after initialisation. When the method is called, preliminary checks are made to Checkout's internal API(s) that retrieves other configurations required for collecting device data, if the checks fail or the merchant is disabled, the error is returned and logged, you can also see more information on your Xcode console while in development mode.
     <details>
     <summary>Responses</summary>
 
     ```swift
-    public class Risk {
+    public func configure(completion: @escaping (Error?) -> Void) {
         ...
-
-        public func publishData(...) ... {
-                ...
-        }
     }
     ```
     </details>
