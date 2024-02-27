@@ -16,9 +16,9 @@ public enum RiskEnvironment: String {
 }
 
 public struct RiskConfig {
-    public let publicKey: String
-    public let environment: RiskEnvironment
-    public let framesMode: Bool
+    let publicKey: String
+    let environment: RiskEnvironment
+    let framesMode: Bool
 
     public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
         self.publicKey = publicKey

@@ -613,7 +613,7 @@
 			repositoryURL = "https://github.com/checkout/checkout-risk-sdk-ios";
 			requirement = {
 				kind = exactVersion;
-				version = 1.0.4;
+				version = 1.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

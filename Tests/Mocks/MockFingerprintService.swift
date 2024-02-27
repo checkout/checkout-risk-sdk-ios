@@ -12,7 +12,7 @@ class MockFingerprintService: FingerprintServiceProtocol {
     var shouldSucceed: Bool = true
     var requestId: String?
 
-    func publishData(completion: @escaping (Result<String, RiskError>) -> Void) {
+    func publishData(completion: @escaping (Result<String, RiskError.Publish>) -> Void) {
         if shouldSucceed {
             if let requestId = requestId {
                 completion(.success(requestId))
@@ -21,8 +21,7 @@ class MockFingerprintService: FingerprintServiceProtocol {
                 completion(.success(fakeRequestId))
             }
         } else {
-            let error = RiskError.couldNotPublishRiskData
-            completion(.failure(error))
+            completion(.failure(.couldNotPublishRiskData))
         }
     }
 }
