@@ -16,7 +16,6 @@
 		BA0B00662AD6A52A0037D9FF /* RiskExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0B00652AD6A52A0037D9FF /* RiskExampleUITestsLaunchTests.swift */; };
 		BA13934B2AF9416200D89A8D /* Risk in Frameworks */ = {isa = PBXBuildFile; productRef = BA13934A2AF9416200D89A8D /* Risk */; };
 		BA1927362B58159E00700874 /* Risk in Frameworks */ = {isa = PBXBuildFile; productRef = BA1927352B58159E00700874 /* Risk */; };
-		BA78E54C2B7B84A600317F46 /* Risk in Frameworks */ = {isa = PBXBuildFile; productRef = BA78E54B2B7B84A600317F46 /* Risk */; };
 		BA9442362AEFE8970037BFCB /* Risk in Frameworks */ = {isa = PBXBuildFile; productRef = BA9442352AEFE8970037BFCB /* Risk */; };
 		BABAD8F72B72712A00E91DF4 /* Risk in Frameworks */ = {isa = PBXBuildFile; productRef = BABAD8F62B72712A00E91DF4 /* Risk */; };
 /* End PBXBuildFile section */
@@ -58,7 +57,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA1927362B58159E00700874 /* Risk in Frameworks */,
-				BA78E54C2B7B84A600317F46 /* Risk in Frameworks */,
 				BABAD8F72B72712A00E91DF4 /* Risk in Frameworks */,
 				BA9442362AEFE8970037BFCB /* Risk in Frameworks */,
 				BA13934B2AF9416200D89A8D /* Risk in Frameworks */,
@@ -160,7 +158,6 @@
 				BA13934A2AF9416200D89A8D /* Risk */,
 				BA1927352B58159E00700874 /* Risk */,
 				BABAD8F62B72712A00E91DF4 /* Risk */,
-				BA78E54B2B7B84A600317F46 /* Risk */,
 			);
 			productName = RiskExample;
 			productReference = BA0B00452AD6A5280037D9FF /* RiskExample.app */;
@@ -235,7 +232,6 @@
 			);
 			mainGroup = BA0B003C2AD6A5280037D9FF;
 			packageReferences = (
-				BA78E54A2B7B84A600317F46 /* XCRemoteSwiftPackageReference "checkout-risk-sdk-ios" */,
 			);
 			productRefGroup = BA0B00462AD6A5280037D9FF /* Products */;
 			projectDirPath = "";
@@ -607,17 +603,6 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		BA78E54A2B7B84A600317F46 /* XCRemoteSwiftPackageReference "checkout-risk-sdk-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/checkout/checkout-risk-sdk-ios";
-			requirement = {
-				kind = exactVersion;
-				version = 1.1.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
 		BA13934A2AF9416200D89A8D /* Risk */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -625,11 +610,6 @@
 		};
 		BA1927352B58159E00700874 /* Risk */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Risk;
-		};
-		BA78E54B2B7B84A600317F46 /* Risk */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = BA78E54A2B7B84A600317F46 /* XCRemoteSwiftPackageReference "checkout-risk-sdk-ios" */;
 			productName = Risk;
 		};
 		BA9442352AEFE8970037BFCB /* Risk */ = {
