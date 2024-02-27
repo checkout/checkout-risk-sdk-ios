@@ -42,6 +42,7 @@ struct ContentView: View {
 
 			checked = true
 			loading = true
+			error = nil
 
 			self.riskSDK.configure { errorResponse in
 				loading = false
