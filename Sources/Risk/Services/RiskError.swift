@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum RiskError: LocalizedError, Equatable {
+public enum RiskError {
     case configuration(Configuration)
     case publish(Publish)
 }
@@ -16,7 +16,6 @@ public extension RiskError {
     enum Configuration: LocalizedError {
         case integrationDisabled
         case couldNotRetrieveConfiguration
-        
         
         public var errorDescription: String? {
             switch self {
@@ -34,7 +33,6 @@ public extension RiskError {
         case couldNotPersisRiskData
         case fingerprintServiceIsNotConfigured
         
-        
         public var errorDescription: String? {
             switch self {
             case .couldNotPublishRiskData:
@@ -48,5 +46,4 @@ public extension RiskError {
             }
         }
     }
-    
 }
