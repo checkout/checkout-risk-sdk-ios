@@ -34,16 +34,14 @@ class RiskTests: XCTestCase {
 
     func testGetInstanceWithInvalidPublicKey() {
         let expectation = self.expectation(description: "Risk instance creation with invalid public key")
-        var createdRiskInstance: Risk?
 
         let invalidConfig = RiskConfig(publicKey: "invalid_public_key", environment: RiskEnvironment.qa)
-
-        Risk.getInstance(config: invalidConfig) { risk in
-            createdRiskInstance = risk
-            expectation.fulfill()
+        let riskSDK = Risk(config: invalidConfig)
+        riskSDK.configure { error in
+          XCTAssertNotNil(error)
+          expectation.fulfill()
         }
 
         waitForExpectations(timeout: 5, handler: nil)
-        XCTAssertNil(createdRiskInstance)
     }
 }

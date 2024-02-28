@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1500"
+   LastUpgradeVersion = "1520"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Risk"
-               BuildableName = "Risk"
-               BlueprintName = "Risk"
-               ReferencedContainer = "container:">
+               BlueprintIdentifier = "BA0B00442AD6A5280037D9FF"
+               BuildableName = "RiskExample.app"
+               BlueprintName = "RiskExample"
+               ReferencedContainer = "container:RiskExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -30,13 +30,25 @@
       shouldAutocreateTestPlan = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "RiskTests"
-               BuildableName = "RiskTests"
-               BlueprintName = "RiskTests"
-               ReferencedContainer = "container:">
+               BlueprintIdentifier = "BA0B00542AD6A52A0037D9FF"
+               BuildableName = "RiskExampleTests.xctest"
+               BlueprintName = "RiskExampleTests"
+               ReferencedContainer = "container:RiskExample.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BA0B005E2AD6A52A0037D9FF"
+               BuildableName = "RiskExampleUITests.xctest"
+               BlueprintName = "RiskExampleUITests"
+               ReferencedContainer = "container:RiskExample.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -51,6 +63,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BA0B00442AD6A5280037D9FF"
+            BuildableName = "RiskExample.app"
+            BlueprintName = "RiskExample"
+            ReferencedContainer = "container:RiskExample.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -58,15 +80,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Risk"
-            BuildableName = "Risk"
-            BlueprintName = "Risk"
-            ReferencedContainer = "container:">
+            BlueprintIdentifier = "BA0B00442AD6A5280037D9FF"
+            BuildableName = "RiskExample.app"
+            BlueprintName = "RiskExample"
+            ReferencedContainer = "container:RiskExample.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

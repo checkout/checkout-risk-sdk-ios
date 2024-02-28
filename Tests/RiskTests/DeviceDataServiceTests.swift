@@ -22,12 +22,13 @@ class DeviceDataServiceTests: XCTestCase {
 
         let expectation = self.expectation(description: "Configuration received")
 
-        let expectedConfiguration = DeviceDataConfiguration(fingerprintIntegration: FingerprintIntegration(enabled: true, publicKey: "mockPublicKey"))
+        let expectedApiConfiguration = DeviceDataConfiguration(fingerprintIntegration: FingerprintIntegration(enabled: true, publicKey: "mockPublicKey"))
+        let expectedDeviceDataServiceConfiguration = FingerprintConfiguration(publicKey: "mockPublicKey")
 
-        mockAPIService.expectedResult = .success(expectedConfiguration)
+        mockAPIService.expectedResult = .success(expectedApiConfiguration)
 
         deviceDataService.getConfiguration { configuration in
-            XCTAssertEqual(configuration, .success(expectedConfiguration))
+            XCTAssertEqual(configuration, .success(expectedDeviceDataServiceConfiguration))
             expectation.fulfill()
         }
 

@@ -120,7 +120,7 @@ struct LoggerService: LoggerServiceProtocol {
         switch internalConfig.environment {
         case .qa, .sandbox:
             logEnvironment = .sandbox
-        case .prod:
+        case .production:
             logEnvironment = .production
         }
 

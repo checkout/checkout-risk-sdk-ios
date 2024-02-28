@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@testable import Risk
 
 class MockAPIService: APIServiceProtocol {
     var expectedResult: Result<DeviceDataConfiguration, Error>?

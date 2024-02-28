@@ -29,56 +29,126 @@ The package helps collect device data for merchants with direct integration (sta
 ### Usage guide
   1. Add `Risk` as a package dependency - _see [Installation guide](https://github.com/checkout/checkout-risk-sdk-ios/blob/main/.github/partial-readmes/Installation.md) on how to add our SDK in your iOS app via SPM or Cocoapods._
   2. Obtain a public API key from [Checkout Dashboard](https://dashboard.checkout.com/developers/keys).
-  3. Initialise the package with the `getInstance` method passing in the required configuration (public API key and environment), then publish the device data with the `publishData` method, see example below.
+  3. Initialise the package Risk with the public API key and environment `Risk.init(config: yourConfig)` early-on.
+        <details>
+        <summary>Type definitions</summary>
+
+        ```swift
+        public struct RiskConfig {
+            let publicKey: String
+            let environment: RiskEnvironment
+            let framesMode: Bool
+            
+            public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
+                self.publicKey = publicKey
+                self.environment = environment
+                self.framesMode = framesMode
+            }
+        }
+
+        public enum RiskEnvironment {
+            case qa
+            case sandbox
+            case production
+        }
+        ```
+        </details>
+  4. Use the `configure` to complete your setup, then publish the device data within the closure with the `publishData` method. 
+
+        <details>
+        <summary>Type definitions</summary>
+
+        ```swift
+        public struct PublishRiskData {
+            public let deviceSessionId: String
+        }
+
+        public enum RiskError: LocalizedError, Equatable {
+            case configuration(Configuration)
+            case publish(Publish)
+        }
+
+        public enum RiskError {
+            case configuration(Configuration)
+            case publish(Publish)
+        }
+
+        public extension RiskError {
+            enum Configuration: LocalizedError {
+                case integrationDisabled
+                case couldNotRetrieveConfiguration
+                
+                public var errorDescription: String? {
+                    switch self {
+                    case .integrationDisabled:
+                        return "Integration disabled"
+                        
+                    case .couldNotRetrieveConfiguration:
+                        return "Error retrieving configuration"
+                    }
+                }
+            }
+            
+            enum Publish: LocalizedError {
+                case couldNotPublishRiskData
+                case couldNotPersisRiskData
+                case fingerprintServiceIsNotConfigured
+                
+                public var errorDescription: String? {
+                    switch self {
+                    case .couldNotPublishRiskData:
+                        return "Error publishing risk data"
+                        
+                    case .couldNotPersisRiskData:
+                        return "Error persisting risk data"
+                        
+                    case .fingerprintServiceIsNotConfigured:
+                        return "Fingerprint service is not configured. Please call configure() method first."
+                    }
+                }
+            }
+        }
+        ```
+        </details>
+
+See example below:
 ```swift
+import Risk
+
 // Example usage of package
 let yourConfig = RiskConfig(publicKey: "pk_qa_xxx", environment: RiskEnvironment.qa)
-            
-Risk.getInstance(config: yourConfig) { riskInstance in
-    riskInstance?.publishData() { response in
-        print(response.deviceSessionId)
-    }
-}
+
+self.riskSDK = Risk.init(config: yourConfig)  
+
+self.riskSDK.configure { configurationResult in
+
+	switch configurationResult {
+	case .failure(let errorResponse):
+		print(errorResponse.localizedDescription)
+	case .success():
+		self.riskSDK.publishData { result in
+			
+			switch result {
+			case .success(let response):
+				print(response.deviceSessionId)
+			case .failure(let errorResponse):
+				print(errorResponse.localizedDescription)
+			}
+		}
+	}
+	
+}   
  ```
 
 ### Public API
-The package exposes two methods:
-1. `getInstance` - This is a method that returns a singleton instance of Risk. When the method is called, preliminary checks are made to Checkout's internal API(s) that retrieves the public keys used to initialise the package used in collecting device data, if the checks fail or the merchant is disabled, nil will be returned, else, if the checks are successful, the `Risk` instance is returned to the consumer of the package which can now be used to publish the data with the `publishData` method.
-
+Aside the instantiation via the `init` method, the package exposes two methods:
+1. `configure` - This method completes your setup after initialisation. When the method is called, preliminary checks are made to Checkout's internal API(s) that retrieves other configurations required for collecting device data, if the checks fail or the merchant is disabled, the error is returned and logged, you can also see more information on your Xcode console while in development mode.
     <details>
-    <summary>Arguments</summary>
+    <summary>Type definitions</summary>
 
     ```swift
-    public struct RiskConfig {
-        public let publicKey: String
-        public let environment: RiskEnvironment
-        public let framesMode: Bool
-        
-        public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
-            self.publicKey = publicKey
-            self.environment = environment
-            self.framesMode = framesMode
-        }
-    }
-
-    public enum RiskEnvironment {
-        case qa
-        case sandbox
-        case prod
-    }
-    ```
-    </details>
-
-    <details>
-    <summary>Responses</summary>
-
-    ```swift
-    public class Risk {
+    public func configure(completion: @escaping (Result<Void, RiskError.Configuration>) -> Void) {
         ...
-
-        public func publishData(...) ... {
-                ...
-        }
     }
     ```
     </details>
@@ -87,35 +157,15 @@ The package exposes two methods:
 2. `publishData` - This is used to publish and persist the device data.
 
     <details>
-    <summary>Arguments</summary>
+    <summary>Type definitions</summary>
 
     ```swift
-    public func publishData(cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, RiskError>) -> Void) {
+    public func publishData (cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, RiskError.Publish>) -> Void) {
             ...
     }
     ```
     </details>
 
-    <details>
-    <summary>Responses</summary>
-
-    ```swift
-    public struct PublishRiskData {
-        public let deviceSessionId: String
-    }
-
-    public enum RiskError: Error, Equatable {
-        case description(String)
-        
-        var localizedDescription: String {
-            switch self {
-            case .description(let errorMessage):
-                return errorMessage
-            }
-        }
-    }
-    ```
-    </details>
 
 ### Additional Resources
 <!-- TODO: Add website documentation link here - [Risk iOS SDK documentation](https://docs.checkout.com/risk/overview) -->

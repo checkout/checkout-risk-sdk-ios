@@ -6,26 +6,27 @@
 //
 
 import Foundation
+@testable import Risk
 
 class MockDeviceDataService: DeviceDataServiceProtocol {
     var shouldReturnConfiguration: Bool = true
     var shouldSucceedPersistFpData: Bool = true
 
-    func getConfiguration(completion: @escaping (Result<DeviceDataConfiguration, RiskError>) -> Void) {
+    func getConfiguration(completion: @escaping (Result<FingerprintConfiguration, RiskError.Configuration>) -> Void) {
         if shouldReturnConfiguration {
-            let configuration = DeviceDataConfiguration(fingerprintIntegration: FingerprintIntegration(enabled: true, publicKey: "mocked_public_key"))
+            let configuration = FingerprintConfiguration(publicKey: "mocked_public_key")
             completion(.success(configuration))
         } else {
-            completion(.failure(RiskError.description("Mocked configuration error")))
+            completion(.failure(.couldNotRetrieveConfiguration))
         }
     }
 
-    func persistFpData(fingerprintRequestId: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError>) -> Void) {
+    func persistFpData(fingerprintRequestId: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError.Publish>) -> Void) {
         if shouldSucceedPersistFpData {
             let response = PersistDeviceDataResponse(deviceSessionId: "mocked_device_session_id")
             completion(.success(response))
         } else {
-            completion(.failure(RiskError.description("Mocked persistFpData error")))
+            completion(.failure(.couldNotPersisRiskData))
         }
     }
 }
