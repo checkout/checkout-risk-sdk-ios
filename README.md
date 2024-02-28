@@ -68,11 +68,15 @@ The package helps collect device data for merchants with direct integration (sta
             case publish(Publish)
         }
 
+        public enum RiskError {
+            case configuration(Configuration)
+            case publish(Publish)
+        }
+
         public extension RiskError {
             enum Configuration: LocalizedError {
                 case integrationDisabled
                 case couldNotRetrieveConfiguration
-                
                 
                 public var errorDescription: String? {
                     switch self {
@@ -90,7 +94,6 @@ The package helps collect device data for merchants with direct integration (sta
                 case couldNotPersisRiskData
                 case fingerprintServiceIsNotConfigured
                 
-                
                 public var errorDescription: String? {
                     switch self {
                     case .couldNotPublishRiskData:
@@ -104,7 +107,6 @@ The package helps collect device data for merchants with direct integration (sta
                     }
                 }
             }
-            
         }
         ```
         </details>
