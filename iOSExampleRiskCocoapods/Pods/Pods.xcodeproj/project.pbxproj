@@ -31,113 +31,107 @@
 
 /* Begin PBXBuildFile section */
 		04DF9328DCA135006D45644D53CCB3B7 /* Pods-iOSExampleRiskCocoapods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F28AFDA3B406451447CA0718419A917B /* Pods-iOSExampleRiskCocoapods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0731F07922C18B5FD07D1A190EEB4C72 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		1152B2C14A58AD9F5FD10E00AEA18412 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0075502A3F9F78A0E3B5ECD8E7D478 /* Constants.swift */; };
+		08F261B341B37F72BF14DA7BE941D132 /* FingerprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89335B19DE8D3157A76B1DA0332003CC /* FingerprintService.swift */; };
+		14075A1113FC6D1906098406714E45E3 /* RiskIntegrationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6267C064441C47A821724017AA400F6 /* RiskIntegrationType.swift */; };
 		18A74F90535A0D6DB514157C77D80B63 /* Pods-iOSExampleRiskCocoapods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C192D0974868A93A3F971DD010B5E56B /* Pods-iOSExampleRiskCocoapods-dummy.m */; };
-		1A453FFC2873551F920E363A74A4E39C /* MockAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4318913BD9249B51E8A468AE4904B53 /* MockAPIService.swift */; };
-		1C7AB30DA4729EE79A50B1F14D92BC28 /* MockLoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A77AEA9C374E1028556051ABDD11EFC /* MockLoggerService.swift */; };
+		1A51A620882AB47B7767D3CFCB01B2A6 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361FC2294F4A18D45BF4CEC2CF7CBD /* APIService.swift */; };
 		3D933018DBE812375000FEB9DE9EF71F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		426D81CF4E8161E6962FB09D05959866 /* MockFingerprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F9CAFE9D3DBF2AEF2F15D9C8628A4A /* MockFingerprintService.swift */; };
-		5E428D504EC65F8561ACDF8AB9B0AD5C /* Risk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD1AEAF4B10A8854526438D397A3C35 /* Risk.swift */; };
-		686BB7FE87117E9AB79DEFC7BADAB0DF /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEE9F042CE456FDCBF29111923E50A6 /* APIService.swift */; };
-		6F099E340E769DB6673162C2602347D4 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D73FD4AC71FAEDBF18142369483313 /* LoggerService.swift */; };
-		A0A3D1E096F350CEC1137C02CC075E56 /* Risk-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E4BF74E59BFE6CB6111F06C39B8F55B /* Risk-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A0B8281B4BAB7321BBE40E64AD74AA20 /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA12F49971179ECC6F0CDBA7807EB07 /* DeviceDataService.swift */; };
-		ABDBA6806BB88FA4D2E8098370A2443F /* MockDeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DB933BB3C371D934D48CBC04BEDFD3 /* MockDeviceDataService.swift */; };
-		BD6D46E319E74E571128A3F67B54DA1B /* RiskSDKConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C94A1ED60B8BFA114AA23F132EAD53 /* RiskSDKConfig.swift */; };
-		DBD1608B2A96F2A658641B688C1C8BE9 /* Risk-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F1DA8DBA6548282D739A99A348A5E8DC /* Risk-dummy.m */; };
-		F4C3BC98007C4E7F8492B63619EFC9F1 /* FingerprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9CF7B60BD72A539AECF013A1DD9836 /* FingerprintService.swift */; };
+		667CDED5C7C22FB89CB5320429756B2B /* RiskSDKInternalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9798DC6106B021CF4E922CFEC7317 /* RiskSDKInternalConfig.swift */; };
+		7D4232FC103A8BA98C91CE7BC0AB45FF /* RiskSDKConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D823CDA0786C4B118003FF668E120E /* RiskSDKConfig.swift */; };
+		80BCF707842CD6D91B21468493FED725 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907BF4D4B4D838DAC25F652B61F6D97 /* LoggerService.swift */; };
+		830E9F57D05D4B8376CE000FB14BA4C9 /* Risk-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0362F461AD4FCA6B2A588F9DED66DD5 /* Risk-dummy.m */; };
+		969CC5AEE5E6CF87C9C6BBAC864694AF /* Risk-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B323AED7BAB3983762701BF0431CEE2 /* Risk-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9EECA56F40F79E371E87D0403C2254E2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0B1F9E663AF4BACBD9D13E1F51148 /* Constants.swift */; };
+		A685D6BC3755646DC22D37E0DA5E9083 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		A9484D70500BCD9AE77CD95549FD631C /* PublishRiskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF044CE17CB33BA46C2543405C50F26A /* PublishRiskData.swift */; };
+		B366794E9D3C0064F658F1AB247158BC /* Risk.swift in Sources */ = {isa = PBXBuildFile; fileRef = E587942ABAAFC390CE003DCC0C79B5B5 /* Risk.swift */; };
+		BBADE3ADACA397FC28B3208A098DC007 /* SourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE49CA9D5DF11E76C49E0262FC749B4 /* SourceType.swift */; };
+		DDE49950E32CDCFD0E81E2C11772F69D /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6172F1BA7FD1ACCBA53B33BFFB94C20 /* DeviceDataService.swift */; };
+		E3342894B05A8BF1EE5AA4C7C7C207AD /* RiskError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B13508D0EE81668EF9253FD1DBFC /* RiskError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		0E3C335F66A5BEADFF4F836E7788A613 /* PBXContainerItemProxy */ = {
+		18331CEC8CBFBA28C785696652D5466F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 91A05235D7E7A72F1A15E46A32454B8F;
 			remoteInfo = CheckoutEventLoggerKit;
 		};
-		A08C64273F36F0661C04C0F1C85E2F0F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E9C243DAADA86271CC0B2005D14E8D56;
-			remoteInfo = FingerprintPro;
-		};
-		A1A774CAF5DE67D80F3063640CD9F7E1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E9C243DAADA86271CC0B2005D14E8D56;
-			remoteInfo = FingerprintPro;
-		};
-		C2C36295C548D6565657A5172A7D75EA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 91A05235D7E7A72F1A15E46A32454B8F;
-			remoteInfo = CheckoutEventLoggerKit;
-		};
-		F0F42485F39E01BA7A43B37783C94FE0 /* PBXContainerItemProxy */ = {
+		3A83F6F8B33F1D3D6578E26542E1EB2D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 56F1B13EFE0688DB886681575B8C6642;
 			remoteInfo = Risk;
 		};
+		52B2BD4CDE85307A43D1BA5B5568986A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91A05235D7E7A72F1A15E46A32454B8F;
+			remoteInfo = CheckoutEventLoggerKit;
+		};
+		C8CDA63B9C52B95F125BCD07EAAB691B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9C243DAADA86271CC0B2005D14E8D56;
+			remoteInfo = FingerprintPro;
+		};
+		E6BA62F320BD4BB83DE7D71BA18A8A9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E9C243DAADA86271CC0B2005D14E8D56;
+			remoteInfo = FingerprintPro;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		169789CE00225B5BDD2784B43B4DBBFC /* FingerprintPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintPro.release.xcconfig; sourceTree = "<group>"; };
-		1BEE9F042CE456FDCBF29111923E50A6 /* APIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIService.swift; path = Sources/Risk/APIService.swift; sourceTree = "<group>"; };
-		2054EEB905F14CF3E2CAAADFD7B816D7 /* CheckoutEventLoggerKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CheckoutEventLoggerKit.debug.xcconfig; sourceTree = "<group>"; };
-		20BEB5A6DA5E08FE141F67B1B7D9F0CB /* Risk.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Risk.modulemap; sourceTree = "<group>"; };
-		20C94A1ED60B8BFA114AA23F132EAD53 /* RiskSDKConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RiskSDKConfig.swift; path = Sources/Risk/RiskSDKConfig.swift; sourceTree = "<group>"; };
-		2A77AEA9C374E1028556051ABDD11EFC /* MockLoggerService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MockLoggerService.swift; path = Sources/Mocks/MockLoggerService.swift; sourceTree = "<group>"; };
+		07868A3E2BC65C4A44043399445BC864 /* Risk.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Risk.modulemap; sourceTree = "<group>"; };
+		1FE2E51F89F97FBDA61CA1441E19048E /* CheckoutEventLoggerKit-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "CheckoutEventLoggerKit-xcframeworks.sh"; sourceTree = "<group>"; };
+		2907BF4D4B4D838DAC25F652B61F6D97 /* LoggerService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoggerService.swift; path = Sources/Risk/Logging/LoggerService.swift; sourceTree = "<group>"; };
 		2AA9093838702FD1877C52DB2D956554 /* Pods-iOSExampleRiskCocoapods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iOSExampleRiskCocoapods.modulemap"; sourceTree = "<group>"; };
-		2BD5F5A878B85635BF7B9DF256730A79 /* Risk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Risk.release.xcconfig; sourceTree = "<group>"; };
+		352C009E38123133646ED58AFC9EEA9B /* FingerprintPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintPro.debug.xcconfig; sourceTree = "<group>"; };
 		360AF8DE0542151543373CB5BF8F4A3E /* Risk */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Risk; path = Risk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E3A35352E83BA8E3FAAA8EF1A2B60E7 /* CheckoutEventLoggerKit-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "CheckoutEventLoggerKit-xcframeworks.sh"; sourceTree = "<group>"; };
-		3EA12F49971179ECC6F0CDBA7807EB07 /* DeviceDataService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeviceDataService.swift; path = Sources/Risk/DeviceDataService.swift; sourceTree = "<group>"; };
-		460460DAA8EFFF495692BEF8E4B93514 /* FingerprintPro-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FingerprintPro-xcframeworks.sh"; sourceTree = "<group>"; };
-		4A63167A7CE3EFDF6D447B3BC16258D4 /* FingerprintPro.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = FingerprintPro.xcframework; sourceTree = "<group>"; };
-		584757C2A8381CB102457E921356DEDE /* CheckoutEventLoggerKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = CheckoutEventLoggerKit.xcframework; sourceTree = "<group>"; };
-		5D060875CBCF1395C7AF572C5842C6DA /* Risk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Risk.debug.xcconfig; sourceTree = "<group>"; };
-		5E4BF74E59BFE6CB6111F06C39B8F55B /* Risk-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Risk-umbrella.h"; sourceTree = "<group>"; };
+		40361FC2294F4A18D45BF4CEC2CF7CBD /* APIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIService.swift; path = Sources/Risk/Services/APIService.swift; sourceTree = "<group>"; };
+		571D540FBEE8A629B9E70AF3ABF927A0 /* CheckoutEventLoggerKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CheckoutEventLoggerKit.release.xcconfig; sourceTree = "<group>"; };
+		57479CC84704DF6806C498F677AE7A91 /* CheckoutEventLoggerKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = CheckoutEventLoggerKit.xcframework; sourceTree = "<group>"; };
+		5B323AED7BAB3983762701BF0431CEE2 /* Risk-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Risk-umbrella.h"; sourceTree = "<group>"; };
 		602EDC56993FBC33F62BD1940BA34B61 /* Pods-iOSExampleRiskCocoapods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSExampleRiskCocoapods.release.xcconfig"; sourceTree = "<group>"; };
-		6BCFAC796DB6ED624745CFFF38BA53F5 /* Risk-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Risk-Info.plist"; sourceTree = "<group>"; };
+		70C1CE19A39EE8BC0CD2CD9BD66E0829 /* Risk-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Risk-prefix.pch"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		733F524669DE0141C9196D116CA39B00 /* Pods-iOSExampleRiskCocoapods-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSExampleRiskCocoapods-Info.plist"; sourceTree = "<group>"; };
-		74D73FD4AC71FAEDBF18142369483313 /* LoggerService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoggerService.swift; path = Sources/Core/LoggerService.swift; sourceTree = "<group>"; };
 		78115D80E0AC24A2C78790EA0AE1735E /* Pods-iOSExampleRiskCocoapods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iOSExampleRiskCocoapods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		8AD1AEAF4B10A8854526438D397A3C35 /* Risk.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Risk.swift; path = Sources/Risk/Risk.swift; sourceTree = "<group>"; };
-		958732BA3F0A82207CE301236A3F021B /* CheckoutEventLoggerKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CheckoutEventLoggerKit.release.xcconfig; sourceTree = "<group>"; };
+		82D823CDA0786C4B118003FF668E120E /* RiskSDKConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RiskSDKConfig.swift; path = Sources/Risk/RiskSDKConfig.swift; sourceTree = "<group>"; };
+		878A1CA5B54D8B433D3055AE4ABE2A4C /* FingerprintPro.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = FingerprintPro.xcframework; sourceTree = "<group>"; };
+		89335B19DE8D3157A76B1DA0332003CC /* FingerprintService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FingerprintService.swift; path = Sources/Risk/Services/FingerprintService.swift; sourceTree = "<group>"; };
+		8EE49CA9D5DF11E76C49E0262FC749B4 /* SourceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SourceType.swift; path = Sources/Risk/Models/SourceType.swift; sourceTree = "<group>"; };
+		916D3FE169B2D2E1B47ABCD2313B496F /* CheckoutEventLoggerKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CheckoutEventLoggerKit.debug.xcconfig; sourceTree = "<group>"; };
+		94747CEFE6DB976AA1E274CD09426E03 /* Risk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Risk.release.xcconfig; sourceTree = "<group>"; };
 		9744E6FFC8B43F5162A9171FD71EB805 /* Pods-iOSExampleRiskCocoapods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iOSExampleRiskCocoapods-frameworks.sh"; sourceTree = "<group>"; };
 		9D40BBEA1151303CB60B1AA4A54DD88F /* Pods-iOSExampleRiskCocoapods */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-iOSExampleRiskCocoapods"; path = Pods_iOSExampleRiskCocoapods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A0AB28BDD5645FA6F520C9F5B8DFD697 /* FingerprintPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintPro.debug.xcconfig; sourceTree = "<group>"; };
-		A2DB933BB3C371D934D48CBC04BEDFD3 /* MockDeviceDataService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MockDeviceDataService.swift; path = Sources/Mocks/MockDeviceDataService.swift; sourceTree = "<group>"; };
-		AB0075502A3F9F78A0E3B5ECD8E7D478 /* Constants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Sources/Core/Constants.swift; sourceTree = "<group>"; };
+		B6172F1BA7FD1ACCBA53B33BFFB94C20 /* DeviceDataService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeviceDataService.swift; path = Sources/Risk/Services/DeviceDataService.swift; sourceTree = "<group>"; };
+		B7E028DA2ED0E573F8874342F386E1F8 /* FingerprintPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintPro.release.xcconfig; sourceTree = "<group>"; };
 		BA9206A6523368C1C1BE69FAEF704DC7 /* Pods-iOSExampleRiskCocoapods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSExampleRiskCocoapods-acknowledgements.plist"; sourceTree = "<group>"; };
+		BF044CE17CB33BA46C2543405C50F26A /* PublishRiskData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PublishRiskData.swift; path = Sources/Risk/Models/PublishRiskData.swift; sourceTree = "<group>"; };
 		C192D0974868A93A3F971DD010B5E56B /* Pods-iOSExampleRiskCocoapods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iOSExampleRiskCocoapods-dummy.m"; sourceTree = "<group>"; };
-		D3E3D8030935B20B569D179E747FFAAB /* Risk-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Risk-prefix.pch"; sourceTree = "<group>"; };
-		E3F9CAFE9D3DBF2AEF2F15D9C8628A4A /* MockFingerprintService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MockFingerprintService.swift; path = Sources/Mocks/MockFingerprintService.swift; sourceTree = "<group>"; };
+		C6C2F7804347011C0EE9F4835AF90D5A /* Risk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Risk.debug.xcconfig; sourceTree = "<group>"; };
+		D0362F461AD4FCA6B2A588F9DED66DD5 /* Risk-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Risk-dummy.m"; sourceTree = "<group>"; };
+		E0B0B1F9E663AF4BACBD9D13E1F51148 /* Constants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Sources/Risk/Logging/Constants.swift; sourceTree = "<group>"; };
+		E587942ABAAFC390CE003DCC0C79B5B5 /* Risk.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Risk.swift; path = Sources/Risk/Risk.swift; sourceTree = "<group>"; };
+		E9767608234B15365F4A2EE8594C135C /* Risk-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Risk-Info.plist"; sourceTree = "<group>"; };
 		ED7BC5FF31C38730D4D701E934069243 /* Pods-iOSExampleRiskCocoapods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSExampleRiskCocoapods.debug.xcconfig"; sourceTree = "<group>"; };
-		F1DA8DBA6548282D739A99A348A5E8DC /* Risk-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Risk-dummy.m"; sourceTree = "<group>"; };
+		F1AC086DF48A46A174A6343F9CB757D1 /* FingerprintPro-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FingerprintPro-xcframeworks.sh"; sourceTree = "<group>"; };
 		F28AFDA3B406451447CA0718419A917B /* Pods-iOSExampleRiskCocoapods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iOSExampleRiskCocoapods-umbrella.h"; sourceTree = "<group>"; };
-		F4318913BD9249B51E8A468AE4904B53 /* MockAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MockAPIService.swift; path = Sources/Mocks/MockAPIService.swift; sourceTree = "<group>"; };
-		FB9CF7B60BD72A539AECF013A1DD9836 /* FingerprintService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FingerprintService.swift; path = Sources/Risk/FingerprintService.swift; sourceTree = "<group>"; };
+		F354B13508D0EE81668EF9253FD1DBFC /* RiskError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RiskError.swift; path = Sources/Risk/Services/RiskError.swift; sourceTree = "<group>"; };
+		F6267C064441C47A821724017AA400F6 /* RiskIntegrationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RiskIntegrationType.swift; path = Sources/Risk/Models/RiskIntegrationType.swift; sourceTree = "<group>"; };
+		FFD9798DC6106B021CF4E922CFEC7317 /* RiskSDKInternalConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RiskSDKInternalConfig.swift; path = Sources/Risk/Models/RiskSDKInternalConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		11604A0CCC334F4F191D0333EDD1A6A7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0731F07922C18B5FD07D1A190EEB4C72 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2E0EB35160553F8FE07B20A4726873AF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,9 +140,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C28F5CC409C40071354A09B1978E6BA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A685D6BC3755646DC22D37E0DA5E9083 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AFC6C39E810C920C4F2F1BC963AFC32 /* CheckoutEventLoggerKit */ = {
+			isa = PBXGroup;
+			children = (
+				D5B66775151EA771A02A9A767E9ADA20 /* Frameworks */,
+				A018119FCE8EEF5F60DD073E33B4BF8C /* Support Files */,
+			);
+			name = CheckoutEventLoggerKit;
+			path = CheckoutEventLoggerKit;
+			sourceTree = "<group>";
+		};
 		188CCC567F6CDA6BB4A3796C0FF33AB4 /* Pods-iOSExampleRiskCocoapods */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,27 +176,6 @@
 			);
 			name = "Pods-iOSExampleRiskCocoapods";
 			path = "Target Support Files/Pods-iOSExampleRiskCocoapods";
-			sourceTree = "<group>";
-		};
-		21E4EC3F151F3ED1987A13EB573BAAA1 /* CheckoutEventLoggerKit */ = {
-			isa = PBXGroup;
-			children = (
-				B592E7240F0A1AA98F33DE2D19DFDFCC /* Frameworks */,
-				8451DD2CBAEA87DA3564C1DF2FA4D087 /* Support Files */,
-			);
-			name = CheckoutEventLoggerKit;
-			path = CheckoutEventLoggerKit;
-			sourceTree = "<group>";
-		};
-		22B3935B4D826886F2B505D499F82EE9 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				460460DAA8EFFF495692BEF8E4B93514 /* FingerprintPro-xcframeworks.sh */,
-				A0AB28BDD5645FA6F520C9F5B8DFD697 /* FingerprintPro.debug.xcconfig */,
-				169789CE00225B5BDD2784B43B4DBBFC /* FingerprintPro.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FingerprintPro";
 			sourceTree = "<group>";
 		};
 		3F36AC5F6E2B3983CFB2DF69B72801CD /* Products */ = {
@@ -204,76 +195,61 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		66DDB4B4C0C364AE071695EBF6154F05 /* Risk */ = {
+		A018119FCE8EEF5F60DD073E33B4BF8C /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				1BEE9F042CE456FDCBF29111923E50A6 /* APIService.swift */,
-				AB0075502A3F9F78A0E3B5ECD8E7D478 /* Constants.swift */,
-				3EA12F49971179ECC6F0CDBA7807EB07 /* DeviceDataService.swift */,
-				FB9CF7B60BD72A539AECF013A1DD9836 /* FingerprintService.swift */,
-				74D73FD4AC71FAEDBF18142369483313 /* LoggerService.swift */,
-				F4318913BD9249B51E8A468AE4904B53 /* MockAPIService.swift */,
-				A2DB933BB3C371D934D48CBC04BEDFD3 /* MockDeviceDataService.swift */,
-				E3F9CAFE9D3DBF2AEF2F15D9C8628A4A /* MockFingerprintService.swift */,
-				2A77AEA9C374E1028556051ABDD11EFC /* MockLoggerService.swift */,
-				8AD1AEAF4B10A8854526438D397A3C35 /* Risk.swift */,
-				20C94A1ED60B8BFA114AA23F132EAD53 /* RiskSDKConfig.swift */,
-				C49A7F08666B86AE4C85D89C0A68E98F /* Support Files */,
-			);
-			name = Risk;
-			path = Risk;
-			sourceTree = "<group>";
-		};
-		8451DD2CBAEA87DA3564C1DF2FA4D087 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				3E3A35352E83BA8E3FAAA8EF1A2B60E7 /* CheckoutEventLoggerKit-xcframeworks.sh */,
-				2054EEB905F14CF3E2CAAADFD7B816D7 /* CheckoutEventLoggerKit.debug.xcconfig */,
-				958732BA3F0A82207CE301236A3F021B /* CheckoutEventLoggerKit.release.xcconfig */,
+				1FE2E51F89F97FBDA61CA1441E19048E /* CheckoutEventLoggerKit-xcframeworks.sh */,
+				916D3FE169B2D2E1B47ABCD2313B496F /* CheckoutEventLoggerKit.debug.xcconfig */,
+				571D540FBEE8A629B9E70AF3ABF927A0 /* CheckoutEventLoggerKit.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/CheckoutEventLoggerKit";
 			sourceTree = "<group>";
 		};
-		951C1001F75CDC97BBA129BFA1F998D0 /* FingerprintPro */ = {
+		A9044DF9C47C9B7741EA16472185CC18 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				9E3BDC9B92EA56D91E0348AE6AC3A02B /* Frameworks */,
-				22B3935B4D826886F2B505D499F82EE9 /* Support Files */,
-			);
-			name = FingerprintPro;
-			path = FingerprintPro;
-			sourceTree = "<group>";
-		};
-		9E3BDC9B92EA56D91E0348AE6AC3A02B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4A63167A7CE3EFDF6D447B3BC16258D4 /* FingerprintPro.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B592E7240F0A1AA98F33DE2D19DFDFCC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				584757C2A8381CB102457E921356DEDE /* CheckoutEventLoggerKit.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C49A7F08666B86AE4C85D89C0A68E98F /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				20BEB5A6DA5E08FE141F67B1B7D9F0CB /* Risk.modulemap */,
-				F1DA8DBA6548282D739A99A348A5E8DC /* Risk-dummy.m */,
-				6BCFAC796DB6ED624745CFFF38BA53F5 /* Risk-Info.plist */,
-				D3E3D8030935B20B569D179E747FFAAB /* Risk-prefix.pch */,
-				5E4BF74E59BFE6CB6111F06C39B8F55B /* Risk-umbrella.h */,
-				5D060875CBCF1395C7AF572C5842C6DA /* Risk.debug.xcconfig */,
-				2BD5F5A878B85635BF7B9DF256730A79 /* Risk.release.xcconfig */,
+				07868A3E2BC65C4A44043399445BC864 /* Risk.modulemap */,
+				D0362F461AD4FCA6B2A588F9DED66DD5 /* Risk-dummy.m */,
+				E9767608234B15365F4A2EE8594C135C /* Risk-Info.plist */,
+				70C1CE19A39EE8BC0CD2CD9BD66E0829 /* Risk-prefix.pch */,
+				5B323AED7BAB3983762701BF0431CEE2 /* Risk-umbrella.h */,
+				C6C2F7804347011C0EE9F4835AF90D5A /* Risk.debug.xcconfig */,
+				94747CEFE6DB976AA1E274CD09426E03 /* Risk.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Risk";
+			sourceTree = "<group>";
+		};
+		B1F9B5FF68ED9E87F0B20FAD5B6F1FDD /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F1AC086DF48A46A174A6343F9CB757D1 /* FingerprintPro-xcframeworks.sh */,
+				352C009E38123133646ED58AFC9EEA9B /* FingerprintPro.debug.xcconfig */,
+				B7E028DA2ED0E573F8874342F386E1F8 /* FingerprintPro.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FingerprintPro";
+			sourceTree = "<group>";
+		};
+		C24414EFF9124DFD17ED57857078A947 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0AFC6C39E810C920C4F2F1BC963AFC32 /* CheckoutEventLoggerKit */,
+				C4FA136AC1CBEE1ACA7B3E8FF8B04FDE /* FingerprintPro */,
+				DC615F7A9B9072A025F86E416A699A26 /* Risk */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C4FA136AC1CBEE1ACA7B3E8FF8B04FDE /* FingerprintPro */ = {
+			isa = PBXGroup;
+			children = (
+				DF14A94F7A469A5FCAA5F596D9275989 /* Frameworks */,
+				B1F9B5FF68ED9E87F0B20FAD5B6F1FDD /* Support Files */,
+			);
+			name = FingerprintPro;
+			path = FingerprintPro;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -281,7 +257,7 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				D6E34E50A6D00551D59722DB5CC2347B /* Pods */,
+				C24414EFF9124DFD17ED57857078A947 /* Pods */,
 				3F36AC5F6E2B3983CFB2DF69B72801CD /* Products */,
 				D1F21CBA77F00AF5F7B2FD756760B465 /* Targets Support Files */,
 			);
@@ -303,14 +279,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D6E34E50A6D00551D59722DB5CC2347B /* Pods */ = {
+		D5B66775151EA771A02A9A767E9ADA20 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				21E4EC3F151F3ED1987A13EB573BAAA1 /* CheckoutEventLoggerKit */,
-				951C1001F75CDC97BBA129BFA1F998D0 /* FingerprintPro */,
-				66DDB4B4C0C364AE071695EBF6154F05 /* Risk */,
+				57479CC84704DF6806C498F677AE7A91 /* CheckoutEventLoggerKit.xcframework */,
 			);
-			name = Pods;
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DC615F7A9B9072A025F86E416A699A26 /* Risk */ = {
+			isa = PBXGroup;
+			children = (
+				40361FC2294F4A18D45BF4CEC2CF7CBD /* APIService.swift */,
+				E0B0B1F9E663AF4BACBD9D13E1F51148 /* Constants.swift */,
+				B6172F1BA7FD1ACCBA53B33BFFB94C20 /* DeviceDataService.swift */,
+				89335B19DE8D3157A76B1DA0332003CC /* FingerprintService.swift */,
+				2907BF4D4B4D838DAC25F652B61F6D97 /* LoggerService.swift */,
+				BF044CE17CB33BA46C2543405C50F26A /* PublishRiskData.swift */,
+				E587942ABAAFC390CE003DCC0C79B5B5 /* Risk.swift */,
+				F354B13508D0EE81668EF9253FD1DBFC /* RiskError.swift */,
+				F6267C064441C47A821724017AA400F6 /* RiskIntegrationType.swift */,
+				82D823CDA0786C4B118003FF668E120E /* RiskSDKConfig.swift */,
+				FFD9798DC6106B021CF4E922CFEC7317 /* RiskSDKInternalConfig.swift */,
+				8EE49CA9D5DF11E76C49E0262FC749B4 /* SourceType.swift */,
+				A9044DF9C47C9B7741EA16472185CC18 /* Support Files */,
+			);
+			name = Risk;
+			path = Risk;
+			sourceTree = "<group>";
+		};
+		DF14A94F7A469A5FCAA5F596D9275989 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				878A1CA5B54D8B433D3055AE4ABE2A4C /* FingerprintPro.xcframework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,11 +327,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C9197BCCC7A6841B2C72BA0883832D7F /* Headers */ = {
+		B845EEAE4876B4CD1FE63C12B1DD2A88 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0A3D1E096F350CEC1137C02CC075E56 /* Risk-umbrella.h in Headers */,
+				969CC5AEE5E6CF87C9C6BBAC864694AF /* Risk-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,18 +340,18 @@
 /* Begin PBXNativeTarget section */
 		56F1B13EFE0688DB886681575B8C6642 /* Risk */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 294577AD807FEC784C99C39DC4478CFB /* Build configuration list for PBXNativeTarget "Risk" */;
+			buildConfigurationList = 77E19DA916B95F4413312D350469250B /* Build configuration list for PBXNativeTarget "Risk" */;
 			buildPhases = (
-				C9197BCCC7A6841B2C72BA0883832D7F /* Headers */,
-				E1375EF4BC54CD063E4CEB95ECF85464 /* Sources */,
-				11604A0CCC334F4F191D0333EDD1A6A7 /* Frameworks */,
-				E3CE567D029E5C88E9C399F91CA005BD /* Resources */,
+				B845EEAE4876B4CD1FE63C12B1DD2A88 /* Headers */,
+				716F6D1200873C8693E186C4E9E5C816 /* Sources */,
+				C28F5CC409C40071354A09B1978E6BA1 /* Frameworks */,
+				913D50F423974326C2B42D92DD49825E /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				68C0A5A64CEE29E46A3CB4E927BAE3D8 /* PBXTargetDependency */,
-				462C985FE6FAA8195CE289D805D2B676 /* PBXTargetDependency */,
+				6DB71FF3137D2F42E3862CA7246A4160 /* PBXTargetDependency */,
+				FEB8E449410D572E0461ADBA47BB29F1 /* PBXTargetDependency */,
 			);
 			name = Risk;
 			productName = Risk;
@@ -367,9 +370,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				FA74F97E5A12B9A9C4ED6F3D874E0BDC /* PBXTargetDependency */,
-				1D3D48639DF3E51D9F6EF351512CC4A4 /* PBXTargetDependency */,
-				70B7461D236BD7ECC7169E6C0BD022E6 /* PBXTargetDependency */,
+				43A8A6D6727330F55C0C96BDDA282AE5 /* PBXTargetDependency */,
+				2E7C63FF8AE67EE42ABA09A21B1C60C5 /* PBXTargetDependency */,
+				EC62E84ACD10197A7B0CB31FDF11161E /* PBXTargetDependency */,
 			);
 			name = "Pods-iOSExampleRiskCocoapods";
 			productName = Pods_iOSExampleRiskCocoapods;
@@ -414,7 +417,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E3CE567D029E5C88E9C399F91CA005BD /* Resources */ = {
+		913D50F423974326C2B42D92DD49825E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -469,64 +472,65 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E1375EF4BC54CD063E4CEB95ECF85464 /* Sources */ = {
+		716F6D1200873C8693E186C4E9E5C816 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				686BB7FE87117E9AB79DEFC7BADAB0DF /* APIService.swift in Sources */,
-				1152B2C14A58AD9F5FD10E00AEA18412 /* Constants.swift in Sources */,
-				A0B8281B4BAB7321BBE40E64AD74AA20 /* DeviceDataService.swift in Sources */,
-				F4C3BC98007C4E7F8492B63619EFC9F1 /* FingerprintService.swift in Sources */,
-				6F099E340E769DB6673162C2602347D4 /* LoggerService.swift in Sources */,
-				1A453FFC2873551F920E363A74A4E39C /* MockAPIService.swift in Sources */,
-				ABDBA6806BB88FA4D2E8098370A2443F /* MockDeviceDataService.swift in Sources */,
-				426D81CF4E8161E6962FB09D05959866 /* MockFingerprintService.swift in Sources */,
-				1C7AB30DA4729EE79A50B1F14D92BC28 /* MockLoggerService.swift in Sources */,
-				5E428D504EC65F8561ACDF8AB9B0AD5C /* Risk.swift in Sources */,
-				DBD1608B2A96F2A658641B688C1C8BE9 /* Risk-dummy.m in Sources */,
-				BD6D46E319E74E571128A3F67B54DA1B /* RiskSDKConfig.swift in Sources */,
+				1A51A620882AB47B7767D3CFCB01B2A6 /* APIService.swift in Sources */,
+				9EECA56F40F79E371E87D0403C2254E2 /* Constants.swift in Sources */,
+				DDE49950E32CDCFD0E81E2C11772F69D /* DeviceDataService.swift in Sources */,
+				08F261B341B37F72BF14DA7BE941D132 /* FingerprintService.swift in Sources */,
+				80BCF707842CD6D91B21468493FED725 /* LoggerService.swift in Sources */,
+				A9484D70500BCD9AE77CD95549FD631C /* PublishRiskData.swift in Sources */,
+				B366794E9D3C0064F658F1AB247158BC /* Risk.swift in Sources */,
+				830E9F57D05D4B8376CE000FB14BA4C9 /* Risk-dummy.m in Sources */,
+				E3342894B05A8BF1EE5AA4C7C7C207AD /* RiskError.swift in Sources */,
+				14075A1113FC6D1906098406714E45E3 /* RiskIntegrationType.swift in Sources */,
+				7D4232FC103A8BA98C91CE7BC0AB45FF /* RiskSDKConfig.swift in Sources */,
+				667CDED5C7C22FB89CB5320429756B2B /* RiskSDKInternalConfig.swift in Sources */,
+				BBADE3ADACA397FC28B3208A098DC007 /* SourceType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1D3D48639DF3E51D9F6EF351512CC4A4 /* PBXTargetDependency */ = {
+		2E7C63FF8AE67EE42ABA09A21B1C60C5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FingerprintPro;
 			target = E9C243DAADA86271CC0B2005D14E8D56 /* FingerprintPro */;
-			targetProxy = A08C64273F36F0661C04C0F1C85E2F0F /* PBXContainerItemProxy */;
+			targetProxy = C8CDA63B9C52B95F125BCD07EAAB691B /* PBXContainerItemProxy */;
 		};
-		462C985FE6FAA8195CE289D805D2B676 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FingerprintPro;
-			target = E9C243DAADA86271CC0B2005D14E8D56 /* FingerprintPro */;
-			targetProxy = A1A774CAF5DE67D80F3063640CD9F7E1 /* PBXContainerItemProxy */;
-		};
-		68C0A5A64CEE29E46A3CB4E927BAE3D8 /* PBXTargetDependency */ = {
+		43A8A6D6727330F55C0C96BDDA282AE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CheckoutEventLoggerKit;
 			target = 91A05235D7E7A72F1A15E46A32454B8F /* CheckoutEventLoggerKit */;
-			targetProxy = C2C36295C548D6565657A5172A7D75EA /* PBXContainerItemProxy */;
+			targetProxy = 52B2BD4CDE85307A43D1BA5B5568986A /* PBXContainerItemProxy */;
 		};
-		70B7461D236BD7ECC7169E6C0BD022E6 /* PBXTargetDependency */ = {
+		6DB71FF3137D2F42E3862CA7246A4160 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CheckoutEventLoggerKit;
+			target = 91A05235D7E7A72F1A15E46A32454B8F /* CheckoutEventLoggerKit */;
+			targetProxy = 18331CEC8CBFBA28C785696652D5466F /* PBXContainerItemProxy */;
+		};
+		EC62E84ACD10197A7B0CB31FDF11161E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Risk;
 			target = 56F1B13EFE0688DB886681575B8C6642 /* Risk */;
-			targetProxy = F0F42485F39E01BA7A43B37783C94FE0 /* PBXContainerItemProxy */;
+			targetProxy = 3A83F6F8B33F1D3D6578E26542E1EB2D /* PBXContainerItemProxy */;
 		};
-		FA74F97E5A12B9A9C4ED6F3D874E0BDC /* PBXTargetDependency */ = {
+		FEB8E449410D572E0461ADBA47BB29F1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = CheckoutEventLoggerKit;
-			target = 91A05235D7E7A72F1A15E46A32454B8F /* CheckoutEventLoggerKit */;
-			targetProxy = 0E3C335F66A5BEADFF4F836E7788A613 /* PBXContainerItemProxy */;
+			name = FingerprintPro;
+			target = E9C243DAADA86271CC0B2005D14E8D56 /* FingerprintPro */;
+			targetProxy = E6BA62F320BD4BB83DE7D71BA18A8A9B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1E4D67D0053AF25F47B468192261042D /* Debug */ = {
+		0838E35330C3782DAEFC559CC780E87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5D060875CBCF1395C7AF572C5842C6DA /* Risk.debug.xcconfig */;
+			baseConfigurationReference = 94747CEFE6DB976AA1E274CD09426E03 /* Risk.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -553,10 +557,11 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		2A97B4E49F929005643A45F1325C2CF1 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -661,9 +666,43 @@
 			};
 			name = Debug;
 		};
+		4CA3E4D1ABB6861CF8C421F4C08F3E1F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6C2F7804347011C0EE9F4835AF90D5A /* Risk.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/Risk/Risk-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Risk/Risk-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Risk/Risk.modulemap";
+				PRODUCT_MODULE_NAME = Risk;
+				PRODUCT_NAME = Risk;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		5E8B5B9FE6D8E5B74CDE1977B3FF6205 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 958732BA3F0A82207CE301236A3F021B /* CheckoutEventLoggerKit.release.xcconfig */;
+			baseConfigurationReference = 571D540FBEE8A629B9E70AF3ABF927A0 /* CheckoutEventLoggerKit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -680,7 +719,7 @@
 		};
 		630B38D96B2B42ACB85832B5374D23F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A0AB28BDD5645FA6F520C9F5B8DFD697 /* FingerprintPro.debug.xcconfig */;
+			baseConfigurationReference = 352C009E38123133646ED58AFC9EEA9B /* FingerprintPro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -756,44 +795,9 @@
 			};
 			name = Release;
 		};
-		A3249C612DB4566F76EBFF658C7BEAC0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BD5F5A878B85635BF7B9DF256730A79 /* Risk.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Risk/Risk-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Risk/Risk-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Risk/Risk.modulemap";
-				PRODUCT_MODULE_NAME = Risk;
-				PRODUCT_NAME = Risk;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		C6BAEEEB5D52200DD9E6689A401ED5F3 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 169789CE00225B5BDD2784B43B4DBBFC /* FingerprintPro.release.xcconfig */;
+			baseConfigurationReference = B7E028DA2ED0E573F8874342F386E1F8 /* FingerprintPro.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -810,7 +814,7 @@
 		};
 		D23EC7A3E56B19368474EDC04124F35D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2054EEB905F14CF3E2CAAADFD7B816D7 /* CheckoutEventLoggerKit.debug.xcconfig */;
+			baseConfigurationReference = 916D3FE169B2D2E1B47ABCD2313B496F /* CheckoutEventLoggerKit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -872,15 +876,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		294577AD807FEC784C99C39DC4478CFB /* Build configuration list for PBXNativeTarget "Risk" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1E4D67D0053AF25F47B468192261042D /* Debug */,
-				A3249C612DB4566F76EBFF658C7BEAC0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -895,6 +890,15 @@
 			buildConfigurations = (
 				D23EC7A3E56B19368474EDC04124F35D /* Debug */,
 				5E8B5B9FE6D8E5B74CDE1977B3FF6205 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		77E19DA916B95F4413312D350469250B /* Build configuration list for PBXNativeTarget "Risk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4CA3E4D1ABB6861CF8C421F4C08F3E1F /* Debug */,
+				0838E35330C3782DAEFC559CC780E87E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
