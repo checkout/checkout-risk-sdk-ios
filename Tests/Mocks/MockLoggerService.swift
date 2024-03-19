@@ -8,5 +8,5 @@ struct MockLoggerService: LoggerServiceProtocol {
 
     init(internalConfig: RiskSDKInternalConfig) {}
 
-    func log(riskEvent: RiskEvent, deviceSessionId: String?, requestId: String?, error: RiskLogError?) {}
+    func log(riskEvent: RiskEvent, blockTime: Double?, deviceDataPersistTime: Double?, fpLoadTime: Double?, fpPublishTime: Double?, deviceSessionId: String?, requestId: String?, error: RiskLogError?) {}
 }

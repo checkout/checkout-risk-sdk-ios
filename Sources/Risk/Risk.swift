@@ -50,8 +50,8 @@ public final class Risk {
             guard let self = self else { return }
             
             switch fpResult {
-            case .success(let requestId):
-                self.persistFpData(cardToken: cardToken, fingerprintRequestId: requestId, completion: completion)
+            case .success(let response):
+                self.persistFpData(cardToken: cardToken, fingerprintRequestId: response.requestId, fpLoadTime: response.fpLoadTime, fpPublishTime: response.fpPublishTime, completion: completion)
                 
             case .failure(let error):
                 completion(.failure(error))
@@ -59,8 +59,8 @@ public final class Risk {
         }
     }
     
-    private func persistFpData(cardToken: String?, fingerprintRequestId: String, completion: @escaping (Result<PublishRiskData, RiskError.Publish>) -> Void) {
-        self.deviceDataService.persistFpData(fingerprintRequestId: fingerprintRequestId, cardToken: cardToken) { result in
+    private func persistFpData(cardToken: String?, fingerprintRequestId: String, fpLoadTime: Double, fpPublishTime: Double, completion: @escaping (Result<PublishRiskData, RiskError.Publish>) -> Void) {
+        self.deviceDataService.persistFpData(fingerprintRequestId: fingerprintRequestId, fpLoadTime: fpLoadTime, fpPublishTime: fpPublishTime, cardToken: cardToken) { result in
             switch result {
             case .success(let response):
                 completion(.success(PublishRiskData(deviceSessionId: response.deviceSessionId)))
