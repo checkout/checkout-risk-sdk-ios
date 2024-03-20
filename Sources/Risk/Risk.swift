@@ -30,7 +30,8 @@ public final class Risk {
                 self.fingerprintService = FingerprintService(
                     fingerprintPublicKey: configuration.publicKey,
                     internalConfig: self.internalConfig,
-                    loggerService: self.loggerService
+                    loggerService: self.loggerService,
+                    blockTime: configuration.blockTime
                 )
                 completion(.success(()))
                 

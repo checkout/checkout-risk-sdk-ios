@@ -16,6 +16,7 @@ struct FingerprintIntegration: Decodable, Equatable {
 
 struct FingerprintConfiguration: Equatable {
     let publicKey: String
+    let blockTime: Double
 }
 
 struct DeviceDataConfiguration: Decodable, Equatable {
@@ -66,10 +67,10 @@ final class DeviceDataService: DeviceDataServiceProtocol {
         
         apiService.getJSONFromAPIWithAuthorization(endpoint: endpoint, authToken: authToken, responseType: DeviceDataConfiguration.self) {
             result in
-            let endBlockTime = CACurrentMediaTime()
-            self.blockTime = (endBlockTime - startBlockTime) * 1000
             switch result {
             case .success(let configuration):
+                let endBlockTime = CACurrentMediaTime()
+                self.blockTime = (endBlockTime - startBlockTime) * 1000
                 guard configuration.fingerprintIntegration.enabled, let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey else {
                     self.loggerService.log(riskEvent: .publishDisabled, blockTime: self.blockTime, deviceDataPersistTime: nil, fpLoadTime: nil, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "getConfiguration", message: RiskError.Configuration.integrationDisabled.localizedDescription, status: nil, type: "Error"))
                     
@@ -77,9 +78,9 @@ final class DeviceDataService: DeviceDataServiceProtocol {
                 }
                 
                 completion(.success(
-                    FingerprintConfiguration.init(publicKey: fingerprintPublicKey)))
+                    FingerprintConfiguration.init(publicKey: fingerprintPublicKey, blockTime: self.blockTime)))
             case .failure(let error):
-                self.loggerService.log(riskEvent: .loadFailure, blockTime: self.blockTime, deviceDataPersistTime: nil, fpLoadTime: nil, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "getConfiguration", message: error.localizedDescription, status: nil, type: "Error"))
+                self.loggerService.log(riskEvent: .loadFailure, blockTime: nil, deviceDataPersistTime: nil, fpLoadTime: nil, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "getConfiguration", message: error.localizedDescription, status: nil, type: "Error"))
                 return completion(.failure(.couldNotRetrieveConfiguration))
             }
         }
@@ -98,11 +99,11 @@ final class DeviceDataService: DeviceDataServiceProtocol {
         )
         
         apiService.putDataToAPIWithAuthorization(endpoint: endpoint, authToken: authToken, data: data, responseType: PersistDeviceDataResponse.self) { result in
-            let endPersistTime = CACurrentMediaTime()
-            let persistTime = (endPersistTime - startPersistTime) * 1000
             
             switch result {
             case .success(let response):
+                let endPersistTime = CACurrentMediaTime()
+                let persistTime = (endPersistTime - startPersistTime) * 1000
                 self.loggerService.log(riskEvent: .published, blockTime: self.blockTime, deviceDataPersistTime: persistTime, fpLoadTime: fpLoadTime, fpPublishTime: fpPublishTime, deviceSessionId: response.deviceSessionId, requestId: fingerprintRequestId, error: nil)
                 
                 completion(.success(response))

@@ -36,8 +36,9 @@ final class FingerprintService: FingerprintServiceProtocol {
     private let loggerService: LoggerServiceProtocol
     private let fpLoadTime: Double
     private var fpPublishTime: Double
+    private let blockTime: Double
     
-    init(fingerprintPublicKey: String, internalConfig: RiskSDKInternalConfig, loggerService: LoggerServiceProtocol) {
+    init(fingerprintPublicKey: String, internalConfig: RiskSDKInternalConfig, loggerService: LoggerServiceProtocol, blockTime: Double) {
         
         let startBlockTime = CACurrentMediaTime()
         
@@ -47,7 +48,7 @@ final class FingerprintService: FingerprintServiceProtocol {
         let endBlockTime = CACurrentMediaTime()
         self.fpLoadTime = (endBlockTime - startBlockTime) * 1000
         self.fpPublishTime = 0.00
-        
+        self.blockTime = blockTime
         self.internalConfig = internalConfig
         self.loggerService = loggerService
     }
@@ -62,16 +63,16 @@ final class FingerprintService: FingerprintServiceProtocol {
         let metadata = createMetadata(sourceType: internalConfig.sourceType.rawValue)
         
         client.getVisitorIdResponse(metadata) { [weak self] result in
-            let endFpPublishTime = CACurrentMediaTime()
-            self?.fpPublishTime = (endFpPublishTime - startFpPublishTime) * 1000
             
             switch result {
             case .failure(let error):
-                self?.loggerService.log(riskEvent: .publishFailure, blockTime: nil, deviceDataPersistTime: nil, fpLoadTime: self?.fpLoadTime, fpPublishTime: self?.fpPublishTime, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "publishData", message: error.localizedDescription, status: nil, type: "Error"))
+                self?.loggerService.log(riskEvent: .publishFailure, blockTime: self?.blockTime, deviceDataPersistTime: nil, fpLoadTime: self?.fpLoadTime, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "publishData", message: error.localizedDescription, status: nil, type: "Error"))
                 
                 return completion(.failure(.couldNotPublishRiskData))
             case let .success(response):
-                self?.loggerService.log(riskEvent: .collected, blockTime: nil, deviceDataPersistTime: nil, fpLoadTime: self?.fpLoadTime, fpPublishTime: self?.fpPublishTime, deviceSessionId: nil, requestId: response.requestId, error: nil)
+                let endFpPublishTime = CACurrentMediaTime()
+                self?.fpPublishTime = (endFpPublishTime - startFpPublishTime) * 1000
+                self?.loggerService.log(riskEvent: .collected, blockTime: self?.blockTime, deviceDataPersistTime: nil, fpLoadTime: self?.fpLoadTime, fpPublishTime: self?.fpPublishTime, deviceSessionId: nil, requestId: response.requestId, error: nil)
                 self?.requestId = response.requestId
                 
                 completion(.success(FpPublishData(requestId: response.requestId, fpLoadTime: self?.fpLoadTime ?? 0.00, fpPublishTime: self?.fpPublishTime ?? 0.00)))
