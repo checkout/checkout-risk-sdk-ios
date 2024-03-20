@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import QuartzCore
 
 struct FingerprintIntegration: Decodable, Equatable {
     let enabled: Bool
@@ -15,6 +16,7 @@ struct FingerprintIntegration: Decodable, Equatable {
 
 struct FingerprintConfiguration: Equatable {
     let publicKey: String
+    let blockTime: Double
 }
 
 struct DeviceDataConfiguration: Decodable, Equatable {
@@ -42,21 +44,24 @@ struct PersistDeviceDataResponse: Decodable, Equatable {
 
 protocol DeviceDataServiceProtocol {
     func getConfiguration(completion: @escaping (Result<FingerprintConfiguration, RiskError.Configuration>) -> Void)
-    func persistFpData(fingerprintRequestId: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError.Publish>) -> Void)
+    func persistFpData(fingerprintRequestId: String, fpLoadTime: Double, fpPublishTime: Double, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError.Publish>) -> Void)
 }
 
-struct DeviceDataService: DeviceDataServiceProtocol {
+final class DeviceDataService: DeviceDataServiceProtocol {
     let config: RiskSDKInternalConfig
     let apiService: APIServiceProtocol
     let loggerService: LoggerServiceProtocol
+    var blockTime: Double
     
     init(config: RiskSDKInternalConfig, apiService: APIServiceProtocol = APIService(), loggerService: LoggerServiceProtocol) {
         self.config = config
         self.apiService = apiService
         self.loggerService = loggerService
+        self.blockTime = 0.00
     }
     
     func getConfiguration(completion: @escaping (Result<FingerprintConfiguration, RiskError.Configuration>) -> Void) {
+        let startBlockTime = CACurrentMediaTime()
         let endpoint = "\(config.deviceDataEndpoint)/configuration?integrationType=\(config.integrationType.rawValue)&riskSdkVersion=\(Constants.riskSdkVersion)&timezone=\(TimeZone.current.identifier)"
         let authToken = config.merchantPublicKey
         
@@ -64,24 +69,25 @@ struct DeviceDataService: DeviceDataServiceProtocol {
             result in
             switch result {
             case .success(let configuration):
-                
+                let endBlockTime = CACurrentMediaTime()
+                self.blockTime = (endBlockTime - startBlockTime) * 1000
                 guard configuration.fingerprintIntegration.enabled, let fingerprintPublicKey = configuration.fingerprintIntegration.publicKey else {
-                    loggerService.log(riskEvent: .publishDisabled, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "getConfiguration", message: RiskError.Configuration.integrationDisabled.localizedDescription, status: nil, type: "Error"))
+                    self.loggerService.log(riskEvent: .publishDisabled, blockTime: self.blockTime, deviceDataPersistTime: nil, fpLoadTime: nil, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "getConfiguration", message: RiskError.Configuration.integrationDisabled.localizedDescription, status: nil, type: "Error"))
                     
                     return completion(.failure(.integrationDisabled))
                 }
                 
                 completion(.success(
-                    FingerprintConfiguration.init(publicKey: fingerprintPublicKey)))
+                    FingerprintConfiguration.init(publicKey: fingerprintPublicKey, blockTime: self.blockTime)))
             case .failure(let error):
-                
-                loggerService.log(riskEvent: .loadFailure, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "getConfiguration", message: error.localizedDescription, status: nil, type: "Error"))
+                self.loggerService.log(riskEvent: .loadFailure, blockTime: nil, deviceDataPersistTime: nil, fpLoadTime: nil, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "getConfiguration", message: error.localizedDescription, status: nil, type: "Error"))
                 return completion(.failure(.couldNotRetrieveConfiguration))
             }
         }
     }
     
-    func persistFpData(fingerprintRequestId: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError.Publish>) -> Void) {
+    func persistFpData(fingerprintRequestId: String, fpLoadTime: Double, fpPublishTime: Double, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError.Publish>) -> Void) {
+        let startPersistTime = CACurrentMediaTime()
         let endpoint = "\(config.deviceDataEndpoint)/fingerprint?riskSdkVersion=\(Constants.riskSdkVersion)"
         let authToken = config.merchantPublicKey
         let integrationType = config.integrationType
@@ -96,11 +102,13 @@ struct DeviceDataService: DeviceDataServiceProtocol {
             
             switch result {
             case .success(let response):
-                loggerService.log(riskEvent: .published, deviceSessionId: response.deviceSessionId, requestId: fingerprintRequestId, error: nil)
+                let endPersistTime = CACurrentMediaTime()
+                let persistTime = (endPersistTime - startPersistTime) * 1000
+                self.loggerService.log(riskEvent: .published, blockTime: self.blockTime, deviceDataPersistTime: persistTime, fpLoadTime: fpLoadTime, fpPublishTime: fpPublishTime, deviceSessionId: response.deviceSessionId, requestId: fingerprintRequestId, error: nil)
                 
                 completion(.success(response))
             case .failure(let error):
-                loggerService.log(riskEvent: .publishFailure, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "persistFpData", message: error.localizedDescription, status: nil, type: "Error"))
+                self.loggerService.log(riskEvent: .publishFailure, blockTime: self.blockTime, deviceDataPersistTime: nil, fpLoadTime: fpLoadTime, fpPublishTime: fpPublishTime, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "persistFpData", message: error.localizedDescription, status: nil, type: "Error"))
                 
                 completion(.failure(.couldNotPersisRiskData))
             }

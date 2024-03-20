@@ -23,12 +23,17 @@ class DeviceDataServiceTests: XCTestCase {
         let expectation = self.expectation(description: "Configuration received")
 
         let expectedApiConfiguration = DeviceDataConfiguration(fingerprintIntegration: FingerprintIntegration(enabled: true, publicKey: "mockPublicKey"))
-        let expectedDeviceDataServiceConfiguration = FingerprintConfiguration(publicKey: "mockPublicKey")
+        let expectedDeviceDataServiceConfiguration = FingerprintConfiguration(publicKey: "mockPublicKey", blockTime: 123.00)
 
         mockAPIService.expectedResult = .success(expectedApiConfiguration)
 
         deviceDataService.getConfiguration { configuration in
-            XCTAssertEqual(configuration, .success(expectedDeviceDataServiceConfiguration))
+            switch configuration {
+            case .success(let result):
+                XCTAssertEqual(result.publicKey, expectedDeviceDataServiceConfiguration.publicKey)
+            case .failure:
+                return
+            }
             expectation.fulfill()
         }
 
@@ -51,7 +56,7 @@ class DeviceDataServiceTests: XCTestCase {
 
         mockAPIService.expectedDeviceDataResult = .success(expectedResponse)
 
-        deviceDataService.persistFpData(fingerprintRequestId: "12345.ab0cd", cardToken: "") { result in
+        deviceDataService.persistFpData(fingerprintRequestId: "12345.ab0cd", fpLoadTime: 123.00, fpPublishTime: 321.00, cardToken: "") { result in
             XCTAssertEqual(result, .success(expectedResponse))
 
             expectation.fulfill()

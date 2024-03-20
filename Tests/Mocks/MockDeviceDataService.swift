@@ -14,14 +14,14 @@ class MockDeviceDataService: DeviceDataServiceProtocol {
 
     func getConfiguration(completion: @escaping (Result<FingerprintConfiguration, RiskError.Configuration>) -> Void) {
         if shouldReturnConfiguration {
-            let configuration = FingerprintConfiguration(publicKey: "mocked_public_key")
+            let configuration = FingerprintConfiguration(publicKey: "mocked_public_key", blockTime: 123.00)
             completion(.success(configuration))
         } else {
             completion(.failure(.couldNotRetrieveConfiguration))
         }
     }
-
-    func persistFpData(fingerprintRequestId: String, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError.Publish>) -> Void) {
+    
+    func persistFpData(fingerprintRequestId: String, fpLoadTime: Double, fpPublishTime: Double, cardToken: String?, completion: @escaping (Result<PersistDeviceDataResponse, RiskError.Publish>) -> Void) {
         if shouldSucceedPersistFpData {
             let response = PersistDeviceDataResponse(deviceSessionId: "mocked_device_session_id")
             completion(.success(response))

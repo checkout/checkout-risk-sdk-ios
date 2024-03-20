@@ -17,6 +17,18 @@ enum RiskEvent: String, Codable {
     case loadFailure = "riskLoadFailure"
 }
 
+struct Elapsed {
+    let block: Double? // time to retrieve configuration or loadFailure
+    let deviceDataPersist: Double? // time to persist data
+    let fpload: Double? // time to load fingerprint
+    let fppublish: Double? // time to publish fingerprint data
+    let total: Double? // total time
+
+    private enum CodingKeys: String, CodingKey {
+        case block = "Block", deviceDataPersist = "DeviceDataPersist", fpload = "FpLoad", fppublish = "FpPublish", total = "Total"
+    }
+}
+
 struct RiskLogError {
     let reason: String // service method
     let message: String // description of error
@@ -30,11 +42,11 @@ struct RiskLogError {
 
 protocol LoggerServiceProtocol {
     init(internalConfig: RiskSDKInternalConfig)
-    func log(riskEvent: RiskEvent, deviceSessionId: String?, requestId: String?, error: RiskLogError?)
+    func log(riskEvent: RiskEvent, blockTime: Double?, deviceDataPersistTime: Double?, fpLoadTime: Double?, fpPublishTime: Double?, deviceSessionId: String?, requestId: String?, error: RiskLogError?)
 }
 
 extension LoggerServiceProtocol {
-    func formatEvent(internalConfig: RiskSDKInternalConfig, riskEvent: RiskEvent, deviceSessionId: String?, requestId: String?, error: RiskLogError?) -> Event {
+    func formatEvent(internalConfig: RiskSDKInternalConfig, riskEvent: RiskEvent, deviceSessionId: String?, requestId: String?, error: RiskLogError?, latencyMetric: Elapsed) -> Event {
         let maskedPublicKey = getMaskedPublicKey(publicKey: internalConfig.merchantPublicKey)
         let ddTags = getDDTags(environment: internalConfig.environment.rawValue)
         var monitoringLevel: MonitoringLevel
@@ -56,17 +68,27 @@ extension LoggerServiceProtocol {
         switch riskEvent {
         case .published, .collected:
             properties = [
+                "Block": AnyCodable(latencyMetric.block),
+                "DeviceDataPersist": AnyCodable(latencyMetric.deviceDataPersist),
+                "FpLoad": AnyCodable(latencyMetric.fpload),
+                "FpPublish": AnyCodable(latencyMetric.fppublish),
+                "Total": AnyCodable(latencyMetric.total),
                 "EventType": AnyCodable(riskEvent.rawValue),
                 "FramesMode": AnyCodable(internalConfig.framesMode),
                 "MaskedPublicKey": AnyCodable(maskedPublicKey),
                 "ddTags": AnyCodable(ddTags),
                 "RiskSDKVersion": AnyCodable(Constants.riskSdkVersion),
                 "Timezone": AnyCodable(TimeZone.current.identifier),
-                "RequestId": AnyCodable(requestId),
+                "FpRequestId": AnyCodable(requestId),
                 "DeviceSessionId": AnyCodable(deviceSessionId),
             ]
         case .publishFailure, .loadFailure, .publishDisabled:
             properties = [
+                "Block": AnyCodable(latencyMetric.block),
+                "DeviceDataPersist": AnyCodable(latencyMetric.deviceDataPersist),
+                "FpLoad": AnyCodable(latencyMetric.fpload),
+                "FpPublish": AnyCodable(latencyMetric.fppublish),
+                "Total": AnyCodable(latencyMetric.total),
                 "EventType": AnyCodable(riskEvent.rawValue),
                 "FramesMode": AnyCodable(internalConfig.framesMode),
                 "MaskedPublicKey": AnyCodable(maskedPublicKey),
@@ -144,11 +166,16 @@ struct LoggerService: LoggerServiceProtocol {
 
     }
 
-    func log(riskEvent: RiskEvent, deviceSessionId: String? = nil, requestId: String? = nil, error: RiskLogError? = nil) {
-        let event = formatEvent(internalConfig: internalConfig, riskEvent: riskEvent, deviceSessionId: deviceSessionId, requestId: requestId, error: error)
+    func log(riskEvent: RiskEvent, blockTime: Double? = nil, deviceDataPersistTime: Double? = nil, fpLoadTime: Double? = nil, fpPublishTime: Double? = nil, deviceSessionId: String? = nil, requestId: String? = nil, error: RiskLogError? = nil) {
+        
+        let totalLatency = (blockTime ?? 0.00) + (deviceDataPersistTime ?? 0.00) + (fpLoadTime ?? 0.00) + (fpPublishTime ?? 0.00)
+        
+        let latencyMetric = Elapsed(block: blockTime, deviceDataPersist: deviceDataPersistTime, fpload: fpLoadTime, fppublish: fpPublishTime, total: totalLatency)
+        
+        let event = formatEvent(internalConfig: internalConfig, riskEvent: riskEvent, deviceSessionId: deviceSessionId, requestId: requestId, error: error, latencyMetric: latencyMetric)
         logger.log(event: event)
     }
-
+    
     private func getDeviceModel() -> String {
         #if targetEnvironment(simulator)
         if let identifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
