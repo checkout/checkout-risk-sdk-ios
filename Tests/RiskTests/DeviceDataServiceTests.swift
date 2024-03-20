@@ -23,7 +23,7 @@ class DeviceDataServiceTests: XCTestCase {
         let expectation = self.expectation(description: "Configuration received")
 
         let expectedApiConfiguration = DeviceDataConfiguration(fingerprintIntegration: FingerprintIntegration(enabled: true, publicKey: "mockPublicKey"))
-        let expectedDeviceDataServiceConfiguration = FingerprintConfiguration(publicKey: "mockPublicKey")
+        let expectedDeviceDataServiceConfiguration = FingerprintConfiguration(publicKey: "mockPublicKey", blockTime: 123.00)
 
         mockAPIService.expectedResult = .success(expectedApiConfiguration)
 

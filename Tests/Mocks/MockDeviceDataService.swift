@@ -14,7 +14,7 @@ class MockDeviceDataService: DeviceDataServiceProtocol {
 
     func getConfiguration(completion: @escaping (Result<FingerprintConfiguration, RiskError.Configuration>) -> Void) {
         if shouldReturnConfiguration {
-            let configuration = FingerprintConfiguration(publicKey: "mocked_public_key")
+            let configuration = FingerprintConfiguration(publicKey: "mocked_public_key", blockTime: 123.00)
             completion(.success(configuration))
         } else {
             completion(.failure(.couldNotRetrieveConfiguration))
