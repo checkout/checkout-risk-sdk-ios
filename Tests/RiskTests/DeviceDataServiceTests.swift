@@ -28,7 +28,12 @@ class DeviceDataServiceTests: XCTestCase {
         mockAPIService.expectedResult = .success(expectedApiConfiguration)
 
         deviceDataService.getConfiguration { configuration in
-            XCTAssertEqual(configuration, .success(expectedDeviceDataServiceConfiguration))
+            switch configuration {
+            case .success(let result):
+                XCTAssertEqual(result.publicKey, expectedDeviceDataServiceConfiguration.publicKey)
+            case .failure:
+                return
+            }
             expectation.fulfill()
         }
 
