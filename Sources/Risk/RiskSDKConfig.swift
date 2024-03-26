@@ -19,10 +19,12 @@ public struct RiskConfig {
     let publicKey: String
     let environment: RiskEnvironment
     let framesMode: Bool
+    let correlationId: String
 
-    public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
+    public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false, correlationId: String = "") {
         self.publicKey = publicKey
         self.environment = environment
         self.framesMode = framesMode
+        self.correlationId = correlationId
     }
 }
