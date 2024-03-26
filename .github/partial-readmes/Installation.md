@@ -9,7 +9,7 @@ We've done our best to support the most common distribution methods on iOS. We a
 let package = Package(
     ...
     dependencies: [
-        .package(url: "https://github.com/checkout/checkout-risk-sdk-ios", from: "2.0.2")
+        .package(url: "https://github.com/checkout/checkout-risk-sdk-ios", from: "<latest_version>")
     ]
     ...
 )
@@ -34,7 +34,7 @@ platform :ios, '12.0'
 use_frameworks!
 
 target '<Your Target Name>' do
-    pod 'Risk', '~> 2.0.2' 
+    pod 'Risk', '~> <latest_version>' 
 end
 ```
 
