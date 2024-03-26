@@ -15,11 +15,13 @@ struct RiskSDKInternalConfig {
     let sourceType: SourceType
     let framesMode: Bool
     let environment: RiskEnvironment
+    let correlationId: String
 
     init(config: RiskConfig) {
         merchantPublicKey = config.publicKey
         environment = config.environment
         framesMode = config.framesMode
+        correlationId = config.framesMode ? config.correlationId : ""
         integrationType = framesMode ? .inFrames : .standalone
         sourceType = framesMode ? .cardToken : .riskSDK
 

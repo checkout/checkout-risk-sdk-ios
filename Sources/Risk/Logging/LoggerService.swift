@@ -69,6 +69,7 @@ extension LoggerServiceProtocol {
         case .published, .collected:
             properties = [
                 "Block": AnyCodable(latencyMetric.block),
+                "CorrelationId": AnyCodable(internalConfig.correlationId),
                 "DeviceDataPersist": AnyCodable(latencyMetric.deviceDataPersist),
                 "FpLoad": AnyCodable(latencyMetric.fpload),
                 "FpPublish": AnyCodable(latencyMetric.fppublish),
@@ -85,6 +86,7 @@ extension LoggerServiceProtocol {
         case .publishFailure, .loadFailure, .publishDisabled:
             properties = [
                 "Block": AnyCodable(latencyMetric.block),
+                "CorrelationId": AnyCodable(internalConfig.correlationId),
                 "DeviceDataPersist": AnyCodable(latencyMetric.deviceDataPersist),
                 "FpLoad": AnyCodable(latencyMetric.fpload),
                 "FpPublish": AnyCodable(latencyMetric.fppublish),
