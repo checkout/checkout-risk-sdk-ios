@@ -20,7 +20,7 @@ public struct RiskConfig {
     let environment: RiskEnvironment
     let framesOptions: FramesOptions?
 
-    public init(publicKey: String, environment: RiskEnvironment, framesOptions: FramesOptions?) {
+    public init(publicKey: String, environment: RiskEnvironment, framesOptions: FramesOptions? = nil) {
         self.publicKey = publicKey
         self.environment = environment
         self.framesOptions = framesOptions
