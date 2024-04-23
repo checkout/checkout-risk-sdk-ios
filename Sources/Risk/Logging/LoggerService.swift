@@ -50,6 +50,7 @@ extension LoggerServiceProtocol {
         let maskedPublicKey = getMaskedPublicKey(publicKey: internalConfig.merchantPublicKey)
         let ddTags = getDDTags(environment: internalConfig.environment.rawValue)
         var monitoringLevel: MonitoringLevel
+        let framesMode = internalConfig.framesOptions != nil
         let properties: [String: AnyCodable]
 
         switch riskEvent {
@@ -69,13 +70,12 @@ extension LoggerServiceProtocol {
         case .published, .collected:
             properties = [
                 "Block": AnyCodable(latencyMetric.block),
-                "CorrelationId": AnyCodable(internalConfig.correlationId),
                 "DeviceDataPersist": AnyCodable(latencyMetric.deviceDataPersist),
                 "FpLoad": AnyCodable(latencyMetric.fpload),
                 "FpPublish": AnyCodable(latencyMetric.fppublish),
                 "Total": AnyCodable(latencyMetric.total),
                 "EventType": AnyCodable(riskEvent.rawValue),
-                "FramesMode": AnyCodable(internalConfig.framesMode),
+                "FramesMode": AnyCodable(framesMode),
                 "MaskedPublicKey": AnyCodable(maskedPublicKey),
                 "ddTags": AnyCodable(ddTags),
                 "RiskSDKVersion": AnyCodable(Constants.riskSdkVersion),
@@ -86,13 +86,12 @@ extension LoggerServiceProtocol {
         case .publishFailure, .loadFailure, .publishDisabled:
             properties = [
                 "Block": AnyCodable(latencyMetric.block),
-                "CorrelationId": AnyCodable(internalConfig.correlationId),
                 "DeviceDataPersist": AnyCodable(latencyMetric.deviceDataPersist),
                 "FpLoad": AnyCodable(latencyMetric.fpload),
                 "FpPublish": AnyCodable(latencyMetric.fppublish),
                 "Total": AnyCodable(latencyMetric.total),
                 "EventType": AnyCodable(riskEvent.rawValue),
-                "FramesMode": AnyCodable(internalConfig.framesMode),
+                "FramesMode": AnyCodable(framesMode),
                 "MaskedPublicKey": AnyCodable(maskedPublicKey),
                 "ddTags": AnyCodable(ddTags),
                 "RiskSDKVersion": AnyCodable(Constants.riskSdkVersion),
@@ -104,7 +103,7 @@ extension LoggerServiceProtocol {
         }
 
         return Event(
-            typeIdentifier: Constants.loggerTypeIdentifier,
+            typeIdentifier: riskEvent.rawValue,
             time: Date(),
             monitoringLevel: monitoringLevel,
             properties: properties
@@ -140,6 +139,8 @@ struct LoggerService: LoggerServiceProtocol {
         let deviceName = getDeviceModel()
         let osVersion = UIDevice.current.systemVersion
         let logEnvironment: Environment
+        let productIdentifier = internalConfig.framesOptions?.productIdentifier ?? Constants.productName
+        let productVersion = internalConfig.framesOptions?.version ?? Constants.riskSdkVersion
 
         switch internalConfig.environment {
         case .qa, .sandbox:
@@ -155,8 +156,8 @@ struct LoggerService: LoggerServiceProtocol {
         logger.enableRemoteProcessor(
             environment: logEnvironment,
             remoteProcessorMetadata: RemoteProcessorMetadata(
-                productIdentifier: Constants.productName,
-                productVersion: Constants.riskSdkVersion,
+                productIdentifier: productIdentifier,
+                productVersion: productVersion,
                 environment: internalConfig.environment.rawValue,
                 appPackageName: appPackageName,
                 appPackageVersion: appPackageVersion,
@@ -165,7 +166,9 @@ struct LoggerService: LoggerServiceProtocol {
                 osVersion: osVersion
             )
         )
-
+        
+        guard let correlationID = internalConfig.framesOptions?.correlationId else { return }
+        logger.add(metadata: CheckoutEventLogger.MetadataKey.correlationID.rawValue, value: correlationID)
     }
 
     func log(riskEvent: RiskEvent, blockTime: Double? = nil, deviceDataPersistTime: Double? = nil, fpLoadTime: Double? = nil, fpPublishTime: Double? = nil, deviceSessionId: String? = nil, requestId: String? = nil, error: RiskLogError? = nil) {
