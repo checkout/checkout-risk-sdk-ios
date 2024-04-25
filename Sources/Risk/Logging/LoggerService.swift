@@ -130,14 +130,6 @@ struct LoggerService: LoggerServiceProtocol {
     }
 
     private func setup() {
-
-        let appBundle = Bundle.main
-        let appPackageName = appBundle.bundleIdentifier ?? "unavailableAppPackageName"
-        let appPackageVersion = appBundle
-            .infoDictionary?["CFBundleShortVersionString"] as? String ?? "unavailableAppPackageVersion"
-
-        let deviceName = getDeviceModel()
-        let osVersion = UIDevice.current.systemVersion
         let logEnvironment: Environment
         let productIdentifier = internalConfig.framesOptions?.productIdentifier ?? Constants.productName
         let productVersion = internalConfig.framesOptions?.version ?? Constants.riskSdkVersion
@@ -158,12 +150,7 @@ struct LoggerService: LoggerServiceProtocol {
             remoteProcessorMetadata: RemoteProcessorMetadata(
                 productIdentifier: productIdentifier,
                 productVersion: productVersion,
-                environment: internalConfig.environment.rawValue,
-                appPackageName: appPackageName,
-                appPackageVersion: appPackageVersion,
-                deviceName: deviceName,
-                platform: "iOS",
-                osVersion: osVersion
+                environment: internalConfig.environment.rawValue
             )
         )
         
@@ -179,21 +166,5 @@ struct LoggerService: LoggerServiceProtocol {
         
         let event = formatEvent(internalConfig: internalConfig, riskEvent: riskEvent, deviceSessionId: deviceSessionId, requestId: requestId, error: error, latencyMetric: latencyMetric)
         logger.log(event: event)
-    }
-    
-    private func getDeviceModel() -> String {
-        #if targetEnvironment(simulator)
-        if let identifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
-            return identifier
-        }
-        #endif
-
-        var systemInfo = utsname()
-        uname(&systemInfo)
-        let machineMirror = Mirror(reflecting: systemInfo.machine)
-        return machineMirror.children.reduce("") { identifier, element in
-            guard let value = element.value as? Int8, value != 0 else { return identifier }
-            return identifier + String(UnicodeScalar(UInt8(value)))
-        }
     }
 }
