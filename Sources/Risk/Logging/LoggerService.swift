@@ -50,6 +50,7 @@ extension LoggerServiceProtocol {
         let maskedPublicKey = getMaskedPublicKey(publicKey: internalConfig.merchantPublicKey)
         let ddTags = getDDTags(environment: internalConfig.environment.rawValue)
         var monitoringLevel: MonitoringLevel
+        let framesMode = internalConfig.framesOptions != nil
         let properties: [String: AnyCodable]
 
         switch riskEvent {
@@ -69,13 +70,12 @@ extension LoggerServiceProtocol {
         case .published, .collected:
             properties = [
                 "Block": AnyCodable(latencyMetric.block),
-                "CorrelationId": AnyCodable(internalConfig.correlationId),
                 "DeviceDataPersist": AnyCodable(latencyMetric.deviceDataPersist),
                 "FpLoad": AnyCodable(latencyMetric.fpload),
                 "FpPublish": AnyCodable(latencyMetric.fppublish),
                 "Total": AnyCodable(latencyMetric.total),
                 "EventType": AnyCodable(riskEvent.rawValue),
-                "FramesMode": AnyCodable(internalConfig.framesMode),
+                "FramesMode": AnyCodable(framesMode),
                 "MaskedPublicKey": AnyCodable(maskedPublicKey),
                 "ddTags": AnyCodable(ddTags),
                 "RiskSDKVersion": AnyCodable(Constants.riskSdkVersion),
@@ -86,13 +86,12 @@ extension LoggerServiceProtocol {
         case .publishFailure, .loadFailure, .publishDisabled:
             properties = [
                 "Block": AnyCodable(latencyMetric.block),
-                "CorrelationId": AnyCodable(internalConfig.correlationId),
                 "DeviceDataPersist": AnyCodable(latencyMetric.deviceDataPersist),
                 "FpLoad": AnyCodable(latencyMetric.fpload),
                 "FpPublish": AnyCodable(latencyMetric.fppublish),
                 "Total": AnyCodable(latencyMetric.total),
                 "EventType": AnyCodable(riskEvent.rawValue),
-                "FramesMode": AnyCodable(internalConfig.framesMode),
+                "FramesMode": AnyCodable(framesMode),
                 "MaskedPublicKey": AnyCodable(maskedPublicKey),
                 "ddTags": AnyCodable(ddTags),
                 "RiskSDKVersion": AnyCodable(Constants.riskSdkVersion),
@@ -104,7 +103,7 @@ extension LoggerServiceProtocol {
         }
 
         return Event(
-            typeIdentifier: Constants.loggerTypeIdentifier,
+            typeIdentifier: riskEvent.rawValue,
             time: Date(),
             monitoringLevel: monitoringLevel,
             properties: properties
@@ -131,15 +130,9 @@ struct LoggerService: LoggerServiceProtocol {
     }
 
     private func setup() {
-
-        let appBundle = Bundle.main
-        let appPackageName = appBundle.bundleIdentifier ?? "unavailableAppPackageName"
-        let appPackageVersion = appBundle
-            .infoDictionary?["CFBundleShortVersionString"] as? String ?? "unavailableAppPackageVersion"
-
-        let deviceName = getDeviceModel()
-        let osVersion = UIDevice.current.systemVersion
         let logEnvironment: Environment
+        let productIdentifier = internalConfig.framesOptions?.productIdentifier ?? Constants.productName
+        let productVersion = internalConfig.framesOptions?.version ?? Constants.riskSdkVersion
 
         switch internalConfig.environment {
         case .qa, .sandbox:
@@ -155,17 +148,14 @@ struct LoggerService: LoggerServiceProtocol {
         logger.enableRemoteProcessor(
             environment: logEnvironment,
             remoteProcessorMetadata: RemoteProcessorMetadata(
-                productIdentifier: Constants.productName,
-                productVersion: Constants.riskSdkVersion,
-                environment: internalConfig.environment.rawValue,
-                appPackageName: appPackageName,
-                appPackageVersion: appPackageVersion,
-                deviceName: deviceName,
-                platform: "iOS",
-                osVersion: osVersion
+                productIdentifier: productIdentifier,
+                productVersion: productVersion,
+                environment: internalConfig.environment.rawValue
             )
         )
-
+        
+        guard let correlationID = internalConfig.framesOptions?.correlationId else { return }
+        logger.add(metadata: CheckoutEventLogger.MetadataKey.correlationID.rawValue, value: correlationID)
     }
 
     func log(riskEvent: RiskEvent, blockTime: Double? = nil, deviceDataPersistTime: Double? = nil, fpLoadTime: Double? = nil, fpPublishTime: Double? = nil, deviceSessionId: String? = nil, requestId: String? = nil, error: RiskLogError? = nil) {
@@ -176,21 +166,5 @@ struct LoggerService: LoggerServiceProtocol {
         
         let event = formatEvent(internalConfig: internalConfig, riskEvent: riskEvent, deviceSessionId: deviceSessionId, requestId: requestId, error: error, latencyMetric: latencyMetric)
         logger.log(event: event)
-    }
-    
-    private func getDeviceModel() -> String {
-        #if targetEnvironment(simulator)
-        if let identifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
-            return identifier
-        }
-        #endif
-
-        var systemInfo = utsname()
-        uname(&systemInfo)
-        let machineMirror = Mirror(reflecting: systemInfo.machine)
-        return machineMirror.children.reduce("") { identifier, element in
-            guard let value = element.value as? Int8, value != 0 else { return identifier }
-            return identifier + String(UnicodeScalar(UInt8(value)))
-        }
     }
 }
