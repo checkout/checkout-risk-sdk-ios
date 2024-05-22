@@ -28,13 +28,11 @@ public struct RiskConfig {
 }
 
 public struct FramesOptions {
-    let correlationId: String
     let version: String
     let productIdentifier: String
 
-    public init(productIdentifier: String, version: String, correlationId: String) {
+    public init(productIdentifier: String, version: String) {
         self.productIdentifier = productIdentifier
         self.version = version
-        self.correlationId = correlationId
     }
 }
