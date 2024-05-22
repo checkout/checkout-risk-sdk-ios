@@ -153,9 +153,6 @@ struct LoggerService: LoggerServiceProtocol {
                 environment: internalConfig.environment.rawValue
             )
         )
-        
-        guard let correlationID = internalConfig.framesOptions?.correlationId else { return }
-        logger.add(metadata: CheckoutEventLogger.MetadataKey.correlationID.rawValue, value: correlationID)
     }
 
     func log(riskEvent: RiskEvent, blockTime: Double? = nil, deviceDataPersistTime: Double? = nil, fpLoadTime: Double? = nil, fpPublishTime: Double? = nil, deviceSessionId: String? = nil, requestId: String? = nil, error: RiskLogError? = nil) {
