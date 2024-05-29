@@ -13,13 +13,14 @@ struct RiskSDKInternalConfig {
     let fingerprintEndpoint: String
     let integrationType: RiskIntegrationType
     let sourceType: SourceType
-    let framesMode: Bool
     let environment: RiskEnvironment
+    let framesOptions: FramesOptions?
 
     init(config: RiskConfig) {
+        framesOptions = config.framesOptions
+        let framesMode = framesOptions != nil
         merchantPublicKey = config.publicKey
         environment = config.environment
-        framesMode = config.framesMode
         integrationType = framesMode ? .inFrames : .standalone
         sourceType = framesMode ? .cardToken : .riskSDK
 

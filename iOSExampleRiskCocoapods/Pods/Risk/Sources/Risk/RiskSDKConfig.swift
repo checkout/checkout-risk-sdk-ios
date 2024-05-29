@@ -18,11 +18,21 @@ public enum RiskEnvironment: String {
 public struct RiskConfig {
     let publicKey: String
     let environment: RiskEnvironment
-    let framesMode: Bool
+    let framesOptions: FramesOptions?
 
-    public init(publicKey: String, environment: RiskEnvironment, framesMode: Bool = false) {
+    public init(publicKey: String, environment: RiskEnvironment, framesOptions: FramesOptions? = nil) {
         self.publicKey = publicKey
         self.environment = environment
-        self.framesMode = framesMode
+        self.framesOptions = framesOptions
+    }
+}
+
+public struct FramesOptions {
+    let version: String
+    let productIdentifier: String
+
+    public init(productIdentifier: String, version: String) {
+        self.productIdentifier = productIdentifier
+        self.version = version
     }
 }
