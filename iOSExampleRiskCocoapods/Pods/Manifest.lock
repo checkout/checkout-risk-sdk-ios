@@ -1,12 +1,12 @@
 PODS:
   - CheckoutEventLoggerKit (1.2.4)
   - FingerprintPro (2.2.0)
-  - Risk (2.0.1):
+  - Risk (3.0.1):
     - CheckoutEventLoggerKit (~> 1.2.4)
     - FingerprintPro (= 2.2.0)
 
 DEPENDENCIES:
-  - Risk (= 2.0.1)
+  - Risk (= 3.0.1)
 
 SPEC REPOS:
   trunk:
@@ -17,8 +17,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   CheckoutEventLoggerKit: b780dec46295a34942780ea6230d0d5fd08aa05a
   FingerprintPro: 72e35dc0315b75ba36eafaaed996dbb2f35f7326
-  Risk: 5afc8c739782cae0c26b3d605975339ea6bd0c62
+  Risk: d7e3e210b7e6d3a8a711fde8b9d439f66d91d889
 
-PODFILE CHECKSUM: c10bf95d52beebaf38c52a3ee16182e3dbcc4434
+PODFILE CHECKSUM: d80b05ce77ca9c8da581b865b80efc83a8885d28
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.15.2
