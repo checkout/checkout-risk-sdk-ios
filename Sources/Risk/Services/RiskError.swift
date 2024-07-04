@@ -32,6 +32,7 @@ public extension RiskError {
         case couldNotPublishRiskData
         case couldNotPersisRiskData
         case fingerprintServiceIsNotConfigured
+        case fingerprintTimeout
         
         public var errorDescription: String? {
             switch self {
@@ -43,6 +44,9 @@ public extension RiskError {
                 
             case .fingerprintServiceIsNotConfigured:
                 return "Fingerprint service is not configured. Please call configure() method first."
+
+            case .fingerprintTimeout:
+                return "Risk data publishing timed out"
             }
         }
     }

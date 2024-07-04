@@ -34,7 +34,7 @@ final class FingerprintService: FingerprintServiceProtocol {
     private let client: FingerprintClientProviding
     private let internalConfig: RiskSDKInternalConfig
     private let loggerService: LoggerServiceProtocol
-    private let fpLoadTime: Double
+    public let fpLoadTime: Double
     private var fpPublishTime: Double
     private let blockTime: Double
     
