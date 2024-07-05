@@ -46,7 +46,7 @@ public final class Risk {
     }
     
     public func publishData(cardToken: String? = nil, completion: @escaping (Result<PublishRiskData, RiskError.Publish>) -> Void) {
-        guard let _ = fingerprintService else {
+        guard let fingerprintService else {
           completion(.failure(.fingerprintServiceIsNotConfigured))
           return
         }
@@ -55,12 +55,12 @@ public final class Risk {
             // Timer setup remains on the main queue
             self.timer = Timer.scheduledTimer(withTimeInterval: self.fingerprintTimeoutInterval, repeats: false) { _ in // 2.00
               
-                self.loggerService.log(riskEvent: .publishFailure, blockTime: self.blockTime, deviceDataPersistTime: nil, fpLoadTime: self.fingerprintService?.fpLoadTime, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "publishData", message: RiskError.Publish.fingerprintTimeout.localizedDescription, status: nil, type: "Timeout"))
+                self.loggerService.log(riskEvent: .publishFailure, blockTime: self.blockTime, deviceDataPersistTime: nil, fpLoadTime: fingerprintService.fpLoadTime, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "publishData", message: RiskError.Publish.fingerprintTimeout.localizedDescription, status: nil, type: "Timeout"))
                 completion(.failure(.fingerprintTimeout))
           }
         }
 
-        fingerprintService?.publishData { [weak self] fpResult in
+        fingerprintService.publishData { [weak self] fpResult in
           guard let self = self else { return }
 
           DispatchQueue.main.async {
