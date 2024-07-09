@@ -10,13 +10,13 @@ import Foundation
 
 public final class Risk {
     private let internalConfig: RiskSDKInternalConfig
-    private let deviceDataService: DeviceDataService
-    private let loggerService: LoggerServiceProtocol
     private var timer: Timer?
     private var blockTime: Double?
-    private let fingerprintTimeoutInterval: Double = 3.00
+    var fingerprintTimeoutInterval: Double = 3.00
     
-    private var fingerprintService: FingerprintService?
+    var loggerService: LoggerServiceProtocol
+    var deviceDataService: DeviceDataServiceProtocol
+    var fingerprintService: FingerprintServiceProtocol?
     
     public init(config: RiskConfig) {
         internalConfig = RiskSDKInternalConfig(config: config)
@@ -53,7 +53,7 @@ public final class Risk {
 
         DispatchQueue.main.async {
             // Timer setup remains on the main queue
-            self.timer = Timer.scheduledTimer(withTimeInterval: self.fingerprintTimeoutInterval, repeats: false) { _ in // 2.00
+            self.timer = Timer.scheduledTimer(withTimeInterval: self.fingerprintTimeoutInterval, repeats: false) { _ in // 3.00
               
                 self.loggerService.log(riskEvent: .publishFailure, blockTime: self.blockTime, deviceDataPersistTime: nil, fpLoadTime: fingerprintService.fpLoadTime, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "publishData", message: RiskError.Publish.fingerprintTimeout.localizedDescription, status: nil, type: "Timeout"))
                 completion(.failure(.fingerprintTimeout))
