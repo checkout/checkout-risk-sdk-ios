@@ -10,6 +10,7 @@ import Foundation
 import QuartzCore
 
 protocol FingerprintServiceProtocol {
+    var fpLoadTime: Double { get }
     func publishData(completion: @escaping (Result<FpPublishData, RiskError.Publish>) -> Void)
 }
 
@@ -34,7 +35,7 @@ final class FingerprintService: FingerprintServiceProtocol {
     private let client: FingerprintClientProviding
     private let internalConfig: RiskSDKInternalConfig
     private let loggerService: LoggerServiceProtocol
-    private let fpLoadTime: Double
+    let fpLoadTime: Double
     private var fpPublishTime: Double
     private let blockTime: Double
     

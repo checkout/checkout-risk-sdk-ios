@@ -9,19 +9,25 @@ import Foundation
 @testable import Risk
 
 class MockFingerprintService: FingerprintServiceProtocol {
+    var fpLoadTime: Double = 0.0
+    
     var shouldSucceed: Bool = true
     var requestId: String?
+    var delayTime: TimeInterval = 0.00
 
     func publishData(completion: @escaping (Result<FpPublishData, RiskError.Publish>) -> Void) {
-        if shouldSucceed {
-            if let requestId = requestId {
-                completion(.success(FpPublishData(requestId: requestId, fpLoadTime: 123.00, fpPublishTime: 321.00)))
+        DispatchQueue.main.asyncAfter(deadline: .now() + delayTime) {
+        
+            if self.shouldSucceed {
+                if let requestId = self.requestId {
+                    completion(.success(FpPublishData(requestId: requestId, fpLoadTime: 123.00, fpPublishTime: 321.00)))
+                } else {
+                    let fakeRequestId = "fakeRequestId"
+                    completion(.success(FpPublishData(requestId: fakeRequestId, fpLoadTime: 123.00, fpPublishTime: 321.00)))
+                }
             } else {
-                let fakeRequestId = "fakeRequestId"
-                completion(.success(FpPublishData(requestId: fakeRequestId, fpLoadTime: 123.00, fpPublishTime: 321.00)))
+                completion(.failure(.couldNotPublishRiskData))
             }
-        } else {
-            completion(.failure(.couldNotPublishRiskData))
         }
     }
 }
