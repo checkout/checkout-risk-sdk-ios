@@ -53,7 +53,8 @@ public final class Risk {
 
         DispatchQueue.main.async {
             // Timer setup remains on the main queue
-            self.timer = Timer.scheduledTimer(withTimeInterval: self.fingerprintTimeoutInterval, repeats: false) { _ in // 3.00
+            self.timer = Timer.scheduledTimer(withTimeInterval: self.fingerprintTimeoutInterval, repeats: false) { [weak self] _ in // 3.00
+            guard let self else { return }
               
                 self.loggerService.log(riskEvent: .publishFailure, blockTime: self.blockTime, deviceDataPersistTime: nil, fpLoadTime: fingerprintService.fpLoadTime, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "publishData", message: RiskError.Publish.fingerprintTimeout.localizedDescription, status: nil, type: "Timeout"))
                 completion(.failure(.fingerprintTimeout))
