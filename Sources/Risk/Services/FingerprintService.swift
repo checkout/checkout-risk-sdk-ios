@@ -15,6 +15,13 @@ protocol FingerprintServiceProtocol {
 }
 
 extension FingerprintServiceProtocol {
+  func publishData(completion: @escaping (Result<FpPublishData, RiskError.Publish>) -> Void) {
+    print("Publish data under protocol called")
+    completion(.success(.init(requestId: "1721740608388.pfaoYs", fpLoadTime: 0.0, fpPublishTime: 0.0)))
+  }
+}
+
+extension FingerprintServiceProtocol {
     func createMetadata(sourceType: SourceType.RawValue) -> Metadata {
         var meta = Metadata()
         meta.setTag(sourceType, forKey: "fpjsSource")
@@ -54,32 +61,30 @@ final class FingerprintService: FingerprintServiceProtocol {
         self.loggerService = loggerService
     }
     
-    func publishData(completion: @escaping (Result<FpPublishData, RiskError.Publish>) -> Void) {
-        let startFpPublishTime = CACurrentMediaTime()
-        
-        guard requestId == nil else {
-            return completion(.success(FpPublishData(requestId: requestId!, fpLoadTime: self.fpLoadTime, fpPublishTime: self.fpPublishTime)))
-        }
-        
-        let metadata = createMetadata(sourceType: internalConfig.sourceType.rawValue)
-        
-        client.getVisitorIdResponse(metadata) { [weak self] result in
-            
-            switch result {
-            case .failure(let error):
-                self?.loggerService.log(riskEvent: .publishFailure, blockTime: self?.blockTime, deviceDataPersistTime: nil, fpLoadTime: self?.fpLoadTime, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "publishData", message: error.localizedDescription, status: nil, type: "Error"))
-                
-                return completion(.failure(.couldNotPublishRiskData))
-            case let .success(response):
-                let endFpPublishTime = CACurrentMediaTime()
-                self?.fpPublishTime = (endFpPublishTime - startFpPublishTime) * 1000
-                self?.loggerService.log(riskEvent: .collected, blockTime: self?.blockTime, deviceDataPersistTime: nil, fpLoadTime: self?.fpLoadTime, fpPublishTime: self?.fpPublishTime, deviceSessionId: nil, requestId: response.requestId, error: nil)
-                self?.requestId = response.requestId
-                
-                completion(.success(FpPublishData(requestId: response.requestId, fpLoadTime: self?.fpLoadTime ?? 0.00, fpPublishTime: self?.fpPublishTime ?? 0.00)))
-            }
-        }
-    }
-    
-    
+//    func publishData(completion: @escaping (Result<FpPublishData, RiskError.Publish>) -> Void) {
+//        let startFpPublishTime = CACurrentMediaTime()
+//        
+//        guard requestId == nil else {
+//            return completion(.success(FpPublishData(requestId: requestId!, fpLoadTime: self.fpLoadTime, fpPublishTime: self.fpPublishTime)))
+//        }
+//        
+//        let metadata = createMetadata(sourceType: internalConfig.sourceType.rawValue)
+//        
+//        client.getVisitorIdResponse(metadata) { [weak self] result in
+//            
+//            switch result {
+//            case .failure(let error):
+//                self?.loggerService.log(riskEvent: .publishFailure, blockTime: self?.blockTime, deviceDataPersistTime: nil, fpLoadTime: self?.fpLoadTime, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "publishData", message: error.localizedDescription, status: nil, type: "Error"))
+//                
+//                return completion(.failure(.couldNotPublishRiskData))
+//            case let .success(response):
+//                let endFpPublishTime = CACurrentMediaTime()
+//                self?.fpPublishTime = (endFpPublishTime - startFpPublishTime) * 1000
+//                self?.loggerService.log(riskEvent: .collected, blockTime: self?.blockTime, deviceDataPersistTime: nil, fpLoadTime: self?.fpLoadTime, fpPublishTime: self?.fpPublishTime, deviceSessionId: nil, requestId: response.requestId, error: nil)
+//                self?.requestId = response.requestId
+//                
+//                completion(.success(FpPublishData(requestId: response.requestId, fpLoadTime: self?.fpLoadTime ?? 0.00, fpPublishTime: self?.fpPublishTime ?? 0.00)))
+//            }
+//        }
+//    }
 }
