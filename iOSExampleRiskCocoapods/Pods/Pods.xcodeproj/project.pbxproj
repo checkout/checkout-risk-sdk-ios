@@ -30,56 +30,56 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		04DF9328DCA135006D45644D53CCB3B7 /* Pods-iOSExampleRiskCocoapods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F28AFDA3B406451447CA0718419A917B /* Pods-iOSExampleRiskCocoapods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		08F261B341B37F72BF14DA7BE941D132 /* FingerprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89335B19DE8D3157A76B1DA0332003CC /* FingerprintService.swift */; };
-		14075A1113FC6D1906098406714E45E3 /* RiskIntegrationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6267C064441C47A821724017AA400F6 /* RiskIntegrationType.swift */; };
-		18A74F90535A0D6DB514157C77D80B63 /* Pods-iOSExampleRiskCocoapods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C192D0974868A93A3F971DD010B5E56B /* Pods-iOSExampleRiskCocoapods-dummy.m */; };
-		1A51A620882AB47B7767D3CFCB01B2A6 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361FC2294F4A18D45BF4CEC2CF7CBD /* APIService.swift */; };
-		3D933018DBE812375000FEB9DE9EF71F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		667CDED5C7C22FB89CB5320429756B2B /* RiskSDKInternalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9798DC6106B021CF4E922CFEC7317 /* RiskSDKInternalConfig.swift */; };
-		7D4232FC103A8BA98C91CE7BC0AB45FF /* RiskSDKConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D823CDA0786C4B118003FF668E120E /* RiskSDKConfig.swift */; };
-		80BCF707842CD6D91B21468493FED725 /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907BF4D4B4D838DAC25F652B61F6D97 /* LoggerService.swift */; };
-		830E9F57D05D4B8376CE000FB14BA4C9 /* Risk-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0362F461AD4FCA6B2A588F9DED66DD5 /* Risk-dummy.m */; };
-		969CC5AEE5E6CF87C9C6BBAC864694AF /* Risk-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B323AED7BAB3983762701BF0431CEE2 /* Risk-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9EECA56F40F79E371E87D0403C2254E2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0B1F9E663AF4BACBD9D13E1F51148 /* Constants.swift */; };
-		A685D6BC3755646DC22D37E0DA5E9083 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		A9484D70500BCD9AE77CD95549FD631C /* PublishRiskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF044CE17CB33BA46C2543405C50F26A /* PublishRiskData.swift */; };
-		B366794E9D3C0064F658F1AB247158BC /* Risk.swift in Sources */ = {isa = PBXBuildFile; fileRef = E587942ABAAFC390CE003DCC0C79B5B5 /* Risk.swift */; };
-		BBADE3ADACA397FC28B3208A098DC007 /* SourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE49CA9D5DF11E76C49E0262FC749B4 /* SourceType.swift */; };
-		DDE49950E32CDCFD0E81E2C11772F69D /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6172F1BA7FD1ACCBA53B33BFFB94C20 /* DeviceDataService.swift */; };
-		E3342894B05A8BF1EE5AA4C7C7C207AD /* RiskError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B13508D0EE81668EF9253FD1DBFC /* RiskError.swift */; };
+		051A5519290D2F943A7E5FA80A54EE3C /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907BF4D4B4D838DAC25F652B61F6D97 /* LoggerService.swift */; };
+		0EB1514EF059125637204ABC83C95744 /* PublishRiskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF044CE17CB33BA46C2543405C50F26A /* PublishRiskData.swift */; };
+		1413167366CDAC18D7F4CDD81F4DD06A /* RiskIntegrationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6267C064441C47A821724017AA400F6 /* RiskIntegrationType.swift */; };
+		3429DFBE83335281823E47802A65C534 /* SourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EE49CA9D5DF11E76C49E0262FC749B4 /* SourceType.swift */; };
+		34BA90FB518A02FE013A667EE70B920D /* FingerprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89335B19DE8D3157A76B1DA0332003CC /* FingerprintService.swift */; };
+		369FCCB5228590E538827C3E2BFB1ECD /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6172F1BA7FD1ACCBA53B33BFFB94C20 /* DeviceDataService.swift */; };
+		46E7BC544AB92FD360CF9F5C7CA9CE6A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		7D377DB4EF67F68BB131412FC509E49D /* Pods-iOSExampleRiskCocoapods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C192D0974868A93A3F971DD010B5E56B /* Pods-iOSExampleRiskCocoapods-dummy.m */; };
+		7E2666167A22A504D451F02AE30331DF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		81CFBFC334FA359EA6C1586BD883E4F7 /* Pods-iOSExampleRiskCocoapods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F28AFDA3B406451447CA0718419A917B /* Pods-iOSExampleRiskCocoapods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		89F668E7C922DA4961694C40544F68C4 /* RiskError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F354B13508D0EE81668EF9253FD1DBFC /* RiskError.swift */; };
+		930C910E7B3C49E27F457EE48E7E0ECD /* RiskSDKConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82D823CDA0786C4B118003FF668E120E /* RiskSDKConfig.swift */; };
+		9F7242F4A293D4B27643FA0AACF4B3A4 /* Risk-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D0362F461AD4FCA6B2A588F9DED66DD5 /* Risk-dummy.m */; };
+		B0895DCDDC60F0BEDF661F1E08714600 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40361FC2294F4A18D45BF4CEC2CF7CBD /* APIService.swift */; };
+		B61276FBF2254B2F7E8F5E1C605F5CD8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B0B1F9E663AF4BACBD9D13E1F51148 /* Constants.swift */; };
+		D2952191E00C3CADE655B3F3D28721F4 /* Risk-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B323AED7BAB3983762701BF0431CEE2 /* Risk-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA97CB7CA9DB00FAAF1D7756C5991EAD /* Risk.swift in Sources */ = {isa = PBXBuildFile; fileRef = E587942ABAAFC390CE003DCC0C79B5B5 /* Risk.swift */; };
+		FE506B63E79D1ADEF14D7843731D492F /* RiskSDKInternalConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD9798DC6106B021CF4E922CFEC7317 /* RiskSDKInternalConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		18331CEC8CBFBA28C785696652D5466F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 91A05235D7E7A72F1A15E46A32454B8F;
-			remoteInfo = CheckoutEventLoggerKit;
-		};
-		3A83F6F8B33F1D3D6578E26542E1EB2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 56F1B13EFE0688DB886681575B8C6642;
-			remoteInfo = Risk;
-		};
-		52B2BD4CDE85307A43D1BA5B5568986A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 91A05235D7E7A72F1A15E46A32454B8F;
-			remoteInfo = CheckoutEventLoggerKit;
-		};
-		C8CDA63B9C52B95F125BCD07EAAB691B /* PBXContainerItemProxy */ = {
+		05A499BF29954A7893DA935601E16745 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E9C243DAADA86271CC0B2005D14E8D56;
 			remoteInfo = FingerprintPro;
 		};
-		E6BA62F320BD4BB83DE7D71BA18A8A9B /* PBXContainerItemProxy */ = {
+		2260955963E5DF90765DCCA4384CC44E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91A05235D7E7A72F1A15E46A32454B8F;
+			remoteInfo = CheckoutEventLoggerKit;
+		};
+		4C0AFBA6CCA9ED10EB8270C6092A6CB7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91A05235D7E7A72F1A15E46A32454B8F;
+			remoteInfo = CheckoutEventLoggerKit;
+		};
+		9468EFA6CD714A65B8745BB4C8125151 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 56F1B13EFE0688DB886681575B8C6642;
+			remoteInfo = Risk;
+		};
+		DD5BAE660C85D471799CAFF33BEF77D0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -95,13 +95,13 @@
 		2AA9093838702FD1877C52DB2D956554 /* Pods-iOSExampleRiskCocoapods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iOSExampleRiskCocoapods.modulemap"; sourceTree = "<group>"; };
 		352C009E38123133646ED58AFC9EEA9B /* FingerprintPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintPro.debug.xcconfig; sourceTree = "<group>"; };
 		360AF8DE0542151543373CB5BF8F4A3E /* Risk */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Risk; path = Risk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		40361FC2294F4A18D45BF4CEC2CF7CBD /* APIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIService.swift; path = Sources/Risk/Services/APIService.swift; sourceTree = "<group>"; };
 		571D540FBEE8A629B9E70AF3ABF927A0 /* CheckoutEventLoggerKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CheckoutEventLoggerKit.release.xcconfig; sourceTree = "<group>"; };
 		57479CC84704DF6806C498F677AE7A91 /* CheckoutEventLoggerKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = CheckoutEventLoggerKit.xcframework; sourceTree = "<group>"; };
 		5B323AED7BAB3983762701BF0431CEE2 /* Risk-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Risk-umbrella.h"; sourceTree = "<group>"; };
 		602EDC56993FBC33F62BD1940BA34B61 /* Pods-iOSExampleRiskCocoapods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSExampleRiskCocoapods.release.xcconfig"; sourceTree = "<group>"; };
 		70C1CE19A39EE8BC0CD2CD9BD66E0829 /* Risk-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Risk-prefix.pch"; sourceTree = "<group>"; };
-		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		733F524669DE0141C9196D116CA39B00 /* Pods-iOSExampleRiskCocoapods-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSExampleRiskCocoapods-Info.plist"; sourceTree = "<group>"; };
 		78115D80E0AC24A2C78790EA0AE1735E /* Pods-iOSExampleRiskCocoapods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iOSExampleRiskCocoapods-acknowledgements.markdown"; sourceTree = "<group>"; };
 		82D823CDA0786C4B118003FF668E120E /* RiskSDKConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RiskSDKConfig.swift; path = Sources/Risk/RiskSDKConfig.swift; sourceTree = "<group>"; };
@@ -132,19 +132,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2E0EB35160553F8FE07B20A4726873AF /* Frameworks */ = {
+		C6FE091808886C11A789251334111E18 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D933018DBE812375000FEB9DE9EF71F /* Foundation.framework in Frameworks */,
+				7E2666167A22A504D451F02AE30331DF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C28F5CC409C40071354A09B1978E6BA1 /* Frameworks */ = {
+		CB4994E9E4E99A9C43A95E369FDECE3C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A685D6BC3755646DC22D37E0DA5E9083 /* Foundation.framework in Frameworks */,
+				46E7BC544AB92FD360CF9F5C7CA9CE6A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,14 +185,6 @@
 				360AF8DE0542151543373CB5BF8F4A3E /* Risk */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
 		};
 		A018119FCE8EEF5F60DD073E33B4BF8C /* Support Files */ = {
@@ -274,7 +266,7 @@
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				578452D2E740E91742655AC8F1636D1F /* iOS */,
+				E4801F62A6B08CD9B5410329F1A18FDE /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -316,22 +308,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E4801F62A6B08CD9B5410329F1A18FDE /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		3084AB533152576DBCC290573DBEAD0D /* Headers */ = {
+		962952800E6F4D531A5A056C229CD7E9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04DF9328DCA135006D45644D53CCB3B7 /* Pods-iOSExampleRiskCocoapods-umbrella.h in Headers */,
+				81CFBFC334FA359EA6C1586BD883E4F7 /* Pods-iOSExampleRiskCocoapods-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B845EEAE4876B4CD1FE63C12B1DD2A88 /* Headers */ = {
+		EC410288715DF7502764E904085F3BDE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				969CC5AEE5E6CF87C9C6BBAC864694AF /* Risk-umbrella.h in Headers */,
+				D2952191E00C3CADE655B3F3D28721F4 /* Risk-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,18 +340,18 @@
 /* Begin PBXNativeTarget section */
 		56F1B13EFE0688DB886681575B8C6642 /* Risk */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 77E19DA916B95F4413312D350469250B /* Build configuration list for PBXNativeTarget "Risk" */;
+			buildConfigurationList = 7AD9E0F1704872986A9A9D000270473F /* Build configuration list for PBXNativeTarget "Risk" */;
 			buildPhases = (
-				B845EEAE4876B4CD1FE63C12B1DD2A88 /* Headers */,
-				716F6D1200873C8693E186C4E9E5C816 /* Sources */,
-				C28F5CC409C40071354A09B1978E6BA1 /* Frameworks */,
-				913D50F423974326C2B42D92DD49825E /* Resources */,
+				EC410288715DF7502764E904085F3BDE /* Headers */,
+				1FE9E5350EB4DC70DB90C72DB58C029F /* Sources */,
+				CB4994E9E4E99A9C43A95E369FDECE3C /* Frameworks */,
+				321E943985FFE6C0DDEDDB03A321C439 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6DB71FF3137D2F42E3862CA7246A4160 /* PBXTargetDependency */,
-				FEB8E449410D572E0461ADBA47BB29F1 /* PBXTargetDependency */,
+				C23411945262E536C7E77DDCE8349F99 /* PBXTargetDependency */,
+				D2D87394433193E442A9051DBBB6FB10 /* PBXTargetDependency */,
 			);
 			name = Risk;
 			productName = Risk;
@@ -360,19 +360,19 @@
 		};
 		AA92C266C7C1E114495E36186E5A9F31 /* Pods-iOSExampleRiskCocoapods */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 82D0F4AC2CDBE584112BF76F0A0EC0A0 /* Build configuration list for PBXNativeTarget "Pods-iOSExampleRiskCocoapods" */;
+			buildConfigurationList = 2FE61F72301C4D4D1F71D849D9260D2A /* Build configuration list for PBXNativeTarget "Pods-iOSExampleRiskCocoapods" */;
 			buildPhases = (
-				3084AB533152576DBCC290573DBEAD0D /* Headers */,
-				5FFFBAA70F079D06E0BF15CB34510CC8 /* Sources */,
-				2E0EB35160553F8FE07B20A4726873AF /* Frameworks */,
-				3C745E666781CC60ED770DFD7A5C1239 /* Resources */,
+				962952800E6F4D531A5A056C229CD7E9 /* Headers */,
+				2538A0ABA742CDD5DF69B2BDB0B08902 /* Sources */,
+				C6FE091808886C11A789251334111E18 /* Frameworks */,
+				DACD4E78A4224973C7B8A513C3915ED3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				43A8A6D6727330F55C0C96BDDA282AE5 /* PBXTargetDependency */,
-				2E7C63FF8AE67EE42ABA09A21B1C60C5 /* PBXTargetDependency */,
-				EC62E84ACD10197A7B0CB31FDF11161E /* PBXTargetDependency */,
+				43453A605F775A946649AF087B83B0C3 /* PBXTargetDependency */,
+				A1308F610F4EC9A5D78D19B9200F6C2B /* PBXTargetDependency */,
+				CDEAE974C73D9113CDD7C53918ED036F /* PBXTargetDependency */,
 			);
 			name = "Pods-iOSExampleRiskCocoapods";
 			productName = Pods_iOSExampleRiskCocoapods;
@@ -385,8 +385,8 @@
 		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -397,6 +397,8 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 3F36AC5F6E2B3983CFB2DF69B72801CD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -410,14 +412,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3C745E666781CC60ED770DFD7A5C1239 /* Resources */ = {
+		321E943985FFE6C0DDEDDB03A321C439 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		913D50F423974326C2B42D92DD49825E /* Resources */ = {
+		DACD4E78A4224973C7B8A513C3915ED3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -464,106 +466,106 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5FFFBAA70F079D06E0BF15CB34510CC8 /* Sources */ = {
+		1FE9E5350EB4DC70DB90C72DB58C029F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18A74F90535A0D6DB514157C77D80B63 /* Pods-iOSExampleRiskCocoapods-dummy.m in Sources */,
+				B0895DCDDC60F0BEDF661F1E08714600 /* APIService.swift in Sources */,
+				B61276FBF2254B2F7E8F5E1C605F5CD8 /* Constants.swift in Sources */,
+				369FCCB5228590E538827C3E2BFB1ECD /* DeviceDataService.swift in Sources */,
+				34BA90FB518A02FE013A667EE70B920D /* FingerprintService.swift in Sources */,
+				051A5519290D2F943A7E5FA80A54EE3C /* LoggerService.swift in Sources */,
+				0EB1514EF059125637204ABC83C95744 /* PublishRiskData.swift in Sources */,
+				FA97CB7CA9DB00FAAF1D7756C5991EAD /* Risk.swift in Sources */,
+				9F7242F4A293D4B27643FA0AACF4B3A4 /* Risk-dummy.m in Sources */,
+				89F668E7C922DA4961694C40544F68C4 /* RiskError.swift in Sources */,
+				1413167366CDAC18D7F4CDD81F4DD06A /* RiskIntegrationType.swift in Sources */,
+				930C910E7B3C49E27F457EE48E7E0ECD /* RiskSDKConfig.swift in Sources */,
+				FE506B63E79D1ADEF14D7843731D492F /* RiskSDKInternalConfig.swift in Sources */,
+				3429DFBE83335281823E47802A65C534 /* SourceType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		716F6D1200873C8693E186C4E9E5C816 /* Sources */ = {
+		2538A0ABA742CDD5DF69B2BDB0B08902 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A51A620882AB47B7767D3CFCB01B2A6 /* APIService.swift in Sources */,
-				9EECA56F40F79E371E87D0403C2254E2 /* Constants.swift in Sources */,
-				DDE49950E32CDCFD0E81E2C11772F69D /* DeviceDataService.swift in Sources */,
-				08F261B341B37F72BF14DA7BE941D132 /* FingerprintService.swift in Sources */,
-				80BCF707842CD6D91B21468493FED725 /* LoggerService.swift in Sources */,
-				A9484D70500BCD9AE77CD95549FD631C /* PublishRiskData.swift in Sources */,
-				B366794E9D3C0064F658F1AB247158BC /* Risk.swift in Sources */,
-				830E9F57D05D4B8376CE000FB14BA4C9 /* Risk-dummy.m in Sources */,
-				E3342894B05A8BF1EE5AA4C7C7C207AD /* RiskError.swift in Sources */,
-				14075A1113FC6D1906098406714E45E3 /* RiskIntegrationType.swift in Sources */,
-				7D4232FC103A8BA98C91CE7BC0AB45FF /* RiskSDKConfig.swift in Sources */,
-				667CDED5C7C22FB89CB5320429756B2B /* RiskSDKInternalConfig.swift in Sources */,
-				BBADE3ADACA397FC28B3208A098DC007 /* SourceType.swift in Sources */,
+				7D377DB4EF67F68BB131412FC509E49D /* Pods-iOSExampleRiskCocoapods-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2E7C63FF8AE67EE42ABA09A21B1C60C5 /* PBXTargetDependency */ = {
+		43453A605F775A946649AF087B83B0C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CheckoutEventLoggerKit;
+			target = 91A05235D7E7A72F1A15E46A32454B8F /* CheckoutEventLoggerKit */;
+			targetProxy = 4C0AFBA6CCA9ED10EB8270C6092A6CB7 /* PBXContainerItemProxy */;
+		};
+		A1308F610F4EC9A5D78D19B9200F6C2B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FingerprintPro;
 			target = E9C243DAADA86271CC0B2005D14E8D56 /* FingerprintPro */;
-			targetProxy = C8CDA63B9C52B95F125BCD07EAAB691B /* PBXContainerItemProxy */;
+			targetProxy = DD5BAE660C85D471799CAFF33BEF77D0 /* PBXContainerItemProxy */;
 		};
-		43A8A6D6727330F55C0C96BDDA282AE5 /* PBXTargetDependency */ = {
+		C23411945262E536C7E77DDCE8349F99 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CheckoutEventLoggerKit;
 			target = 91A05235D7E7A72F1A15E46A32454B8F /* CheckoutEventLoggerKit */;
-			targetProxy = 52B2BD4CDE85307A43D1BA5B5568986A /* PBXContainerItemProxy */;
+			targetProxy = 2260955963E5DF90765DCCA4384CC44E /* PBXContainerItemProxy */;
 		};
-		6DB71FF3137D2F42E3862CA7246A4160 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = CheckoutEventLoggerKit;
-			target = 91A05235D7E7A72F1A15E46A32454B8F /* CheckoutEventLoggerKit */;
-			targetProxy = 18331CEC8CBFBA28C785696652D5466F /* PBXContainerItemProxy */;
-		};
-		EC62E84ACD10197A7B0CB31FDF11161E /* PBXTargetDependency */ = {
+		CDEAE974C73D9113CDD7C53918ED036F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Risk;
 			target = 56F1B13EFE0688DB886681575B8C6642 /* Risk */;
-			targetProxy = 3A83F6F8B33F1D3D6578E26542E1EB2D /* PBXContainerItemProxy */;
+			targetProxy = 9468EFA6CD714A65B8745BB4C8125151 /* PBXContainerItemProxy */;
 		};
-		FEB8E449410D572E0461ADBA47BB29F1 /* PBXTargetDependency */ = {
+		D2D87394433193E442A9051DBBB6FB10 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FingerprintPro;
 			target = E9C243DAADA86271CC0B2005D14E8D56 /* FingerprintPro */;
-			targetProxy = E6BA62F320BD4BB83DE7D71BA18A8A9B /* PBXContainerItemProxy */;
+			targetProxy = 05A499BF29954A7893DA935601E16745 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		0838E35330C3782DAEFC559CC780E87E /* Release */ = {
+		119CC1780AC6FFF30F1035B932FDF811 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94747CEFE6DB976AA1E274CD09426E03 /* Risk.release.xcconfig */;
+			baseConfigurationReference = 571D540FBEE8A629B9E70AF3ABF927A0 /* CheckoutEventLoggerKit.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Risk/Risk-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Risk/Risk-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
-				MODULEMAP_FILE = "Target Support Files/Risk/Risk.modulemap";
-				PRODUCT_MODULE_NAME = Risk;
-				PRODUCT_NAME = Risk;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		2A97B4E49F929005643A45F1325C2CF1 /* Release */ = {
+		13B9B7CD81471A0DC7AFF0F98278769A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 916D3FE169B2D2E1B47ABCD2313B496F /* CheckoutEventLoggerKit.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		23232E06653EAD5841EEF2E1D4A19660 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 602EDC56993FBC33F62BD1940BA34B61 /* Pods-iOSExampleRiskCocoapods.release.xcconfig */;
 			buildSettings = {
@@ -577,6 +579,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Target Support Files/Pods-iOSExampleRiskCocoapods/Pods-iOSExampleRiskCocoapods-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -600,7 +604,25 @@
 			};
 			name = Release;
 		};
-		2B9E26EAE2CD392AD762421F663075A1 /* Debug */ = {
+		651D29A20AFC8EB872402CA5FACEBF1F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7E028DA2ED0E573F8874342F386E1F8 /* FingerprintPro.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8DE5143C03248BB6CD542DE3963D6F3A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -653,7 +675,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -666,74 +688,7 @@
 			};
 			name = Debug;
 		};
-		4CA3E4D1ABB6861CF8C421F4C08F3E1F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C6C2F7804347011C0EE9F4835AF90D5A /* Risk.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/Risk/Risk-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Risk/Risk-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MODULEMAP_FILE = "Target Support Files/Risk/Risk.modulemap";
-				PRODUCT_MODULE_NAME = Risk;
-				PRODUCT_NAME = Risk;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		5E8B5B9FE6D8E5B74CDE1977B3FF6205 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 571D540FBEE8A629B9E70AF3ABF927A0 /* CheckoutEventLoggerKit.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		630B38D96B2B42ACB85832B5374D23F9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 352C009E38123133646ED58AFC9EEA9B /* FingerprintPro.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */ = {
+		9E406C6AAF85E580207CD97B0044DEAB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -783,7 +738,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -795,30 +750,52 @@
 			};
 			name = Release;
 		};
-		C6BAEEEB5D52200DD9E6689A401ED5F3 /* Release */ = {
+		C2E5C80568737B68045ACD2DD6D9070B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7E028DA2ED0E573F8874342F386E1F8 /* FingerprintPro.release.xcconfig */;
+			baseConfigurationReference = C6C2F7804347011C0EE9F4835AF90D5A /* Risk.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/Risk/Risk-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/Risk/Risk-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
+				MODULEMAP_FILE = "Target Support Files/Risk/Risk.modulemap";
+				PRODUCT_MODULE_NAME = Risk;
+				PRODUCT_NAME = Risk;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		D23EC7A3E56B19368474EDC04124F35D /* Debug */ = {
+		C6EDBB89849DD7FA30DC90F65889A101 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 916D3FE169B2D2E1B47ABCD2313B496F /* CheckoutEventLoggerKit.debug.xcconfig */;
+			baseConfigurationReference = 352C009E38123133646ED58AFC9EEA9B /* FingerprintPro.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -828,7 +805,46 @@
 			};
 			name = Debug;
 		};
-		DBB9065506DE21EE338C8C7581DB90D1 /* Debug */ = {
+		E6A2B28BEBDB0C8B280721902EC0828E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94747CEFE6DB976AA1E274CD09426E03 /* Risk.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/Risk/Risk-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/Risk/Risk-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/Risk/Risk.modulemap";
+				PRODUCT_MODULE_NAME = Risk;
+				PRODUCT_NAME = Risk;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		EC0096EB5273C227A776623E793BFC46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ED7BC5FF31C38730D4D701E934069243 /* Pods-iOSExampleRiskCocoapods.debug.xcconfig */;
 			buildSettings = {
@@ -842,6 +858,8 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				INFOPLIST_FILE = "Target Support Files/Pods-iOSExampleRiskCocoapods/Pods-iOSExampleRiskCocoapods-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -870,8 +888,17 @@
 		19E8024E185DE4197EC4A269CCA9A928 /* Build configuration list for PBXAggregateTarget "FingerprintPro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				630B38D96B2B42ACB85832B5374D23F9 /* Debug */,
-				C6BAEEEB5D52200DD9E6689A401ED5F3 /* Release */,
+				C6EDBB89849DD7FA30DC90F65889A101 /* Debug */,
+				651D29A20AFC8EB872402CA5FACEBF1F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FE61F72301C4D4D1F71D849D9260D2A /* Build configuration list for PBXNativeTarget "Pods-iOSExampleRiskCocoapods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC0096EB5273C227A776623E793BFC46 /* Debug */,
+				23232E06653EAD5841EEF2E1D4A19660 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -879,8 +906,8 @@
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2B9E26EAE2CD392AD762421F663075A1 /* Debug */,
-				63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */,
+				8DE5143C03248BB6CD542DE3963D6F3A /* Debug */,
+				9E406C6AAF85E580207CD97B0044DEAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -888,26 +915,17 @@
 		4A2564AEADD1C323FE9200A571EAF2E0 /* Build configuration list for PBXAggregateTarget "CheckoutEventLoggerKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D23EC7A3E56B19368474EDC04124F35D /* Debug */,
-				5E8B5B9FE6D8E5B74CDE1977B3FF6205 /* Release */,
+				13B9B7CD81471A0DC7AFF0F98278769A /* Debug */,
+				119CC1780AC6FFF30F1035B932FDF811 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		77E19DA916B95F4413312D350469250B /* Build configuration list for PBXNativeTarget "Risk" */ = {
+		7AD9E0F1704872986A9A9D000270473F /* Build configuration list for PBXNativeTarget "Risk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4CA3E4D1ABB6861CF8C421F4C08F3E1F /* Debug */,
-				0838E35330C3782DAEFC559CC780E87E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		82D0F4AC2CDBE584112BF76F0A0EC0A0 /* Build configuration list for PBXNativeTarget "Pods-iOSExampleRiskCocoapods" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DBB9065506DE21EE338C8C7581DB90D1 /* Debug */,
-				2A97B4E49F929005643A45F1325C2CF1 /* Release */,
+				C2E5C80568737B68045ACD2DD6D9070B /* Debug */,
+				E6A2B28BEBDB0C8B280721902EC0828E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
