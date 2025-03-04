@@ -21,7 +21,7 @@ The package helps collect device data for merchants with direct integration (sta
 
 
 ## Requirements
-- iOS 12.0+
+- iOS 13.0+
 - Xcode 12.4+
 - Swift 5.3+
 

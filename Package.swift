@@ -6,7 +6,7 @@ let package = Package(
     name: "Risk",
     platforms: [
         .macOS(.v10_12),
-        .iOS(.v12)
+        .iOS(.v13)
     ],
     products: [
         .library(
