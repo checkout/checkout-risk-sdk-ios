@@ -33,7 +33,7 @@ jobs:
 
   risk-sdk:
     name: Risk SDK Verification
-    runs-on: macos-13-xl
+    runs-on: macos-13-xlarge
     needs: lint
     env:
       SAMPLE_MERCHANT_PUBLIC_KEY: ${{ secrets.SAMPLE_MERCHANT_PUBLIC_KEY }}
