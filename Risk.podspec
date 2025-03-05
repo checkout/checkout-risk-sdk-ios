@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     s.swift_version = "5.0"
     s.license      = "MIT"
     s.author       = { "Checkout.com Integration" => "integration@checkout.com" }
-    s.platform     = :ios, "12.0"
+    s.platform     = :ios, "13.0"
     s.source       = { :git => "https://github.com/checkout/checkout-risk-sdk-ios.git", :tag => s.version }
   
     s.source_files = 'Sources/**/*.swift'

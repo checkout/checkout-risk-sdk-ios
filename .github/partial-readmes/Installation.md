@@ -30,7 +30,7 @@ Any version newer than **1.10.0** is a good sign. If not installed, or unsupport
 Once Cocoapods of a valid version is on your machine, to integrate Risk into your Xcode project, update your `Podfile`:
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '12.0'
+platform :ios, '13.0'
 use_frameworks!
 
 target '<Your Target Name>' do
