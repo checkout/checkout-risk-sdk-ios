@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import Risk
+@testable import RiskSDK
 
 class MockFingerprintService: FingerprintServiceProtocol {
     var fpLoadTime: Double = 0.0

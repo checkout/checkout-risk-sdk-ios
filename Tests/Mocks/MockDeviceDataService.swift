@@ -6,7 +6,7 @@
 //
 
 import Foundation
-@testable import Risk
+@testable import RiskSDK
 
 class MockDeviceDataService: DeviceDataServiceProtocol {
     var shouldReturnConfiguration: Bool = true
