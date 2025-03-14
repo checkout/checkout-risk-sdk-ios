@@ -113,7 +113,7 @@ The package helps collect device data for merchants with direct integration (sta
 
 See example below:
 ```swift
-import Risk
+import RiskSDK
 
 // Example usage of package
 let yourConfig = RiskConfig(publicKey: "pk_qa_xxx", environment: RiskEnvironment.qa)
