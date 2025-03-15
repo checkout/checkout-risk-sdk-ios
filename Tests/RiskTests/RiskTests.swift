@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Risk
+@testable import RiskSDK
 
 class RiskTests: XCTestCase {
 

@@ -11,7 +11,7 @@ let package = Package(
     products: [
         .library(
             name: "Risk",
-            targets: ["Risk"])
+            targets: ["RiskSDK"])
     ],
     dependencies: [
         .package(
@@ -23,7 +23,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Risk",
+            name: "RiskSDK",
             dependencies: [
                 .product(name: "CheckoutEventLoggerKit",
                          package: "checkout-event-logger-ios-framework"),
@@ -34,7 +34,7 @@ let package = Package(
             path: "Sources"),
         .testTarget(
             name: "RiskTests",
-            dependencies: ["Risk"],
+            dependencies: ["RiskSDK"],
             path: "Tests")
     ],
     swiftLanguageVersions: [.v5]

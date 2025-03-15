@@ -8,7 +8,7 @@
 
 import Foundation
 import XCTest
-@testable import Risk
+@testable import RiskSDK
 
 class DeviceDataServiceTests: XCTestCase {
     func testGetConfiguration() {
