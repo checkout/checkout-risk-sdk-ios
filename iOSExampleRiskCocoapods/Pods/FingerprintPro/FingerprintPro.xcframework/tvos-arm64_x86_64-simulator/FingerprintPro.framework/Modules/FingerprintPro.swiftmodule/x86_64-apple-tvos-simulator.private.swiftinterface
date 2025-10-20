@@ -1,41 +1,53 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
-// swift-module-flags: -target x86_64-apple-tvos12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name FingerprintPro
+// swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)
+// swift-module-flags: -target x86_64-apple-tvos15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name FingerprintPro
 // swift-module-flags-ignorable: -enable-bare-slash-regex
-import CommonCrypto
+import AppTrackingTransparency
+import CoreBluetooth
+import CoreLocation
+import CryptoKit
 import Foundation
+import MapKit
 import Swift
 import _Concurrency
 import _StringProcessing
-public typealias VisitorIdResponseBlock = (Swift.Result<FingerprintPro.FingerprintResponse, FingerprintPro.FPJSError>) -> Swift.Void
-public typealias VisitorIdBlock = (Swift.Result<Swift.String, FingerprintPro.FPJSError>) -> Swift.Void
-public protocol FingerprintClientProviding {
+import _SwiftConcurrencyShims
+#if compiler(>=5.3) && $Sendable
+public typealias VisitorIdResponseBlock = @Sendable (Swift.Result<FingerprintPro.FingerprintResponse, FingerprintPro.FPJSError>) -> Swift.Void
+#endif
+#if compiler(>=5.3) && $Sendable
+public typealias VisitorIdBlock = @Sendable (Swift.Result<Swift.String, FingerprintPro.FPJSError>) -> Swift.Void
+#endif
+public protocol FingerprintClientProviding : Swift.Sendable {
   #if compiler(>=5.3) && $AsyncAwait
-  @available(iOS 13.0, tvOS 13.0, *)
-  func getVisitorId(_ metadata: FingerprintPro.Metadata?) async throws -> Swift.String
+  func getVisitorId(_ metadata: FingerprintPro.Metadata?, timeout: Foundation.TimeInterval) async throws -> Swift.String
   #endif
   #if compiler(>=5.3) && $AsyncAwait
-  @available(iOS 13.0, tvOS 13.0, *)
-  func getVisitorIdResponse(_ metadata: FingerprintPro.Metadata?) async throws -> FingerprintPro.FingerprintResponse
+  func getVisitorIdResponse(_ metadata: FingerprintPro.Metadata?, timeout: Foundation.TimeInterval) async throws -> FingerprintPro.FingerprintResponse
   #endif
-  @available(iOS 12.0, tvOS 12.0, *)
-  func getVisitorId(_ metadata: FingerprintPro.Metadata?, completion: @escaping FingerprintPro.VisitorIdBlock)
-  @available(iOS 12.0, tvOS 12.0, *)
-  func getVisitorIdResponse(_ metadata: FingerprintPro.Metadata?, completion: @escaping FingerprintPro.VisitorIdResponseBlock)
+  #if compiler(>=5.3) && $Sendable
+  @preconcurrency func getVisitorId(_ metadata: FingerprintPro.Metadata?, timeout: Foundation.TimeInterval, completion: @escaping FingerprintPro.VisitorIdBlock)
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  @preconcurrency func getVisitorIdResponse(_ metadata: FingerprintPro.Metadata?, timeout: Foundation.TimeInterval, completion: @escaping FingerprintPro.VisitorIdResponseBlock)
+  #endif
 }
 extension FingerprintPro.FingerprintClientProviding {
   #if compiler(>=5.3) && $AsyncAwait
-  @available(iOS 13.0, tvOS 13.0, *)
-  public func getVisitorId(_ metadata: FingerprintPro.Metadata? = nil) async throws -> Swift.String
+  public func getVisitorId(_ metadata: FingerprintPro.Metadata? = nil, timeout timeoutInterval: Foundation.TimeInterval = 60.0) async throws -> Swift.String
   #endif
   #if compiler(>=5.3) && $AsyncAwait
-  @available(iOS 13.0, tvOS 13.0, *)
-  public func getVisitorIdResponse(_ metadata: FingerprintPro.Metadata? = nil) async throws -> FingerprintPro.FingerprintResponse
+  public func getVisitorIdResponse(_ metadata: FingerprintPro.Metadata? = nil, timeout timeoutInterval: Foundation.TimeInterval = 60.0) async throws -> FingerprintPro.FingerprintResponse
   #endif
-  @available(iOS 12.0, tvOS 12.0, *)
-  public func getVisitorId(_ metadata: FingerprintPro.Metadata? = nil, completion: @escaping FingerprintPro.VisitorIdBlock)
-  @available(iOS 12.0, tvOS 12.0, *)
-  public func getVisitorIdResponse(_ metadata: FingerprintPro.Metadata? = nil, completion: @escaping FingerprintPro.VisitorIdResponseBlock)
+  #if compiler(>=5.3) && $Sendable
+  @preconcurrency public func getVisitorId(_ metadata: FingerprintPro.Metadata? = nil, timeout timeoutInterval: Foundation.TimeInterval = 60.0, completion: @escaping FingerprintPro.VisitorIdBlock)
+  #endif
+  #if compiler(>=5.3) && $Sendable
+  @preconcurrency public func getVisitorIdResponse(_ metadata: FingerprintPro.Metadata? = nil, timeout timeoutInterval: Foundation.TimeInterval = 60.0, completion: @escaping FingerprintPro.VisitorIdResponseBlock)
+  #endif
+}
+extension FingerprintPro.JSONType : FingerprintPro.JSONTypeConvertible {
+  public func asJSONType() -> FingerprintPro.JSONType
 }
 extension Swift.String : FingerprintPro.JSONTypeConvertible {
   public func asJSONType() -> FingerprintPro.JSONType
@@ -49,16 +61,16 @@ extension Swift.Double : FingerprintPro.JSONTypeConvertible {
 extension Swift.Bool : FingerprintPro.JSONTypeConvertible {
   public func asJSONType() -> FingerprintPro.JSONType
 }
-extension Swift.Optional : FingerprintPro.JSONTypeConvertible where Wrapped == FingerprintPro.JSONTypeConvertible {
+extension Swift.Optional : FingerprintPro.JSONTypeConvertible where Wrapped == any FingerprintPro.JSONTypeConvertible {
   public func asJSONType() -> FingerprintPro.JSONType
 }
-extension Swift.Array : FingerprintPro.JSONTypeConvertible where Element == FingerprintPro.JSONTypeConvertible {
+extension Swift.Array : FingerprintPro.JSONTypeConvertible where Element == any FingerprintPro.JSONTypeConvertible {
   public func asJSONType() -> FingerprintPro.JSONType
 }
-extension Swift.Dictionary : FingerprintPro.JSONTypeConvertible where Key == Swift.String, Value == FingerprintPro.JSONTypeConvertible {
+extension Swift.Dictionary : FingerprintPro.JSONTypeConvertible where Key == Swift.String, Value == any FingerprintPro.JSONTypeConvertible {
   public func asJSONType() -> FingerprintPro.JSONType
 }
-public enum JSONType {
+public enum JSONType : Swift.Equatable, Swift.Sendable {
   case int(Swift.Int)
   case double(Swift.Double)
   case string(Swift.String)
@@ -66,11 +78,12 @@ public enum JSONType {
   case null
   indirect case array([FingerprintPro.JSONType])
   indirect case object([Swift.String : FingerprintPro.JSONType])
+  public static func == (a: FingerprintPro.JSONType, b: FingerprintPro.JSONType) -> Swift.Bool
 }
 extension FingerprintPro.JSONType : Swift.Encodable {
-  public func encode(to encoder: Swift.Encoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
-public struct IPLocation : Swift.Equatable, Swift.Codable {
+public struct IPLocation : Swift.Equatable, Swift.Codable, Swift.Sendable {
   public let city: FingerprintPro.IPGeoInfo?
   public let country: FingerprintPro.IPGeoInfo?
   public let continent: FingerprintPro.IPGeoInfo?
@@ -80,23 +93,28 @@ public struct IPLocation : Swift.Equatable, Swift.Codable {
   public let timezone: Swift.String?
   public let accuracyRadius: Swift.UInt?
   public let subdivisions: [FingerprintPro.IPLocationSubdivision]?
+  public init(city: FingerprintPro.IPGeoInfo, country: FingerprintPro.IPGeoInfo, continent: FingerprintPro.IPGeoInfo, longitude: Swift.Float, latitude: Swift.Float, postalCode: Swift.String, timezone: Swift.String, accuracyRadius: Swift.UInt, subdivisions: [FingerprintPro.IPLocationSubdivision])
   public static func == (a: FingerprintPro.IPLocation, b: FingerprintPro.IPLocation) -> Swift.Bool
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
-public struct IPLocationSubdivision : Swift.Equatable, Swift.Codable {
+public struct IPLocationSubdivision : Swift.Equatable, Swift.Codable, Swift.Sendable {
+  public let isoCode: Swift.String
+  public let name: Swift.String
+  public init(isoCode: Swift.String, name: Swift.String)
   public static func == (a: FingerprintPro.IPLocationSubdivision, b: FingerprintPro.IPLocationSubdivision) -> Swift.Bool
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
-public struct IPGeoInfo : Swift.Equatable, Swift.Codable {
+public struct IPGeoInfo : Swift.Equatable, Swift.Codable, Swift.Sendable {
   public let name: Swift.String
   public let code: Swift.String?
+  public init(name: Swift.String, code: Swift.String?)
   public static func == (a: FingerprintPro.IPGeoInfo, b: FingerprintPro.IPGeoInfo) -> Swift.Bool
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
-public struct FingerprintResponse : Swift.Equatable {
+public struct FingerprintResponse : Swift.Equatable, Swift.Sendable {
   public let version: Swift.String
   public let requestId: Swift.String
   public let visitorId: Swift.String
@@ -108,90 +126,117 @@ public struct FingerprintResponse : Swift.Equatable {
   public let ipLocation: FingerprintPro.IPLocation?
   public let firstSeenAt: FingerprintPro.SeenAt?
   public let lastSeenAt: FingerprintPro.SeenAt?
+  public let sealedResult: Swift.String?
   public static func == (a: FingerprintPro.FingerprintResponse, b: FingerprintPro.FingerprintResponse) -> Swift.Bool
 }
-public struct SeenAt : Swift.Equatable, Swift.Codable {
-  public let global: Foundation.Date?
-  public let subscription: Foundation.Date?
-  public static func == (a: FingerprintPro.SeenAt, b: FingerprintPro.SeenAt) -> Swift.Bool
-  public func encode(to encoder: Swift.Encoder) throws
-  public init(from decoder: Swift.Decoder) throws
+extension FingerprintPro.FingerprintResponse {
+  public init(version: Swift.String, requestId: Swift.String, visitorId: Swift.String, visitorFound: Swift.Bool, confidence: Swift.Float, ipAddress: Swift.String?, ipLocation: FingerprintPro.IPLocation?, firstSeenAt: FingerprintPro.SeenAt?, lastSeenAt: FingerprintPro.SeenAt?, sealedResult: Swift.String? = nil)
 }
 extension FingerprintPro.FingerprintResponse {
   public func asJSON() -> Swift.String
 }
-public enum FingerprintProFactory {
-  public static func getInstance(_ apiKey: Swift.String) -> FingerprintPro.FingerprintClientProviding
-  public static func getInstance(_ configuration: FingerprintPro.Configuration) -> FingerprintPro.FingerprintClientProviding
+public struct SeenAt : Swift.Equatable, Swift.Codable, Swift.Sendable {
+  public let global: Foundation.Date?
+  public let subscription: Foundation.Date?
+  public init(global: Foundation.Date, subscription: Foundation.Date)
+  public static func == (a: FingerprintPro.SeenAt, b: FingerprintPro.SeenAt) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
-public enum APIErrorType : Swift.String, Swift.Decodable {
-  case tokenRequired
-  case tokenNotFound
-  case tokenExpired
-  case requestCannotBeParsed
-  case failed
-  case requestTimeout
-  case tooManyRequests
-  case wrongRegion
-  case subscriptionNotActive
-  case originNotAvailable
-  case headerRestricted
-  case notAvailableForCrawlBots
-  case notAvailableWithoutUA
-  case unsupportedVersion
-  case installationMethodRestricted
-  case hostnameRestricted
-  public init?(rawValue: Swift.String)
-  public typealias RawValue = Swift.String
-  public var rawValue: Swift.String {
-    get
+extension CoreLocation.CLLocationCoordinate2D : Swift.Equatable {
+  public static func == (lhs: CoreLocation.CLLocationCoordinate2D, rhs: CoreLocation.CLLocationCoordinate2D) -> Swift.Bool
+}
+public enum FingerprintProFactory {
+  public static func getInstance(_ apiKey: Swift.String) -> any FingerprintPro.FingerprintClientProviding
+  public static func getInstance(_ configuration: FingerprintPro.Configuration) -> any FingerprintPro.FingerprintClientProviding
+}
+@available(*, deprecated, renamed: "APIError.Code")
+public typealias APIErrorType = FingerprintPro.APIError.Code
+extension FingerprintPro.APIError {
+  public enum Code : Swift.String, Swift.Decodable, Swift.Sendable {
+    case tokenRequired
+    case tokenNotFound
+    case tokenExpired
+    case requestCannotBeParsed
+    case failed
+    case requestTimeout
+    case tooManyRequests
+    case wrongRegion
+    case subscriptionNotActive
+    case packageNotAuthorized
+    case originNotAvailable
+    case headerRestricted
+    case notAvailableForCrawlBots
+    case notAvailableWithoutUA
+    case unsupportedVersion
+    case installationMethodRestricted
+    case hostnameRestricted
+    case invalidProxyIntegrationSecret
+    case invalidProxyIntegrationHeaders
+    case proxyIntegrationSecretEnvironmentMismatch
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
   }
 }
-extension FingerprintPro.APIErrorType : Swift.CustomStringConvertible {
+extension FingerprintPro.APIError.Code : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
 }
-public struct APIError : Swift.Decodable {
+public struct APIError : Swift.Decodable, Swift.Sendable {
   public let version: Swift.String
   public let requestId: Swift.String
-  public let error: FingerprintPro.APIError.ErrorDetails?
-  public init(from decoder: Swift.Decoder) throws
+  public let errorDetails: FingerprintPro.APIError.ErrorDetails?
+  public init(from decoder: any Swift.Decoder) throws
 }
 extension FingerprintPro.APIError {
-  public struct ErrorDetails : Swift.Decodable {
-    public let code: FingerprintPro.APIErrorType?
+  @available(*, deprecated, renamed: "errorDetails")
+  public var error: FingerprintPro.APIError.ErrorDetails? {
+    get
+  }
+  public struct ErrorDetails : Swift.Decodable, Swift.Sendable {
+    public let code: FingerprintPro.APIError.Code?
     public let message: Swift.String
-    public init(from decoder: Swift.Decoder) throws
+    public init(from decoder: any Swift.Decoder) throws
   }
 }
-public enum Region {
+public enum Region : Swift.Equatable, Swift.Sendable {
   case global
   case eu
   case ap
-  case custom(domain: Swift.String)
+  case custom(domain: Swift.String, fallback: [Swift.String] = [])
+  public static func == (a: FingerprintPro.Region, b: FingerprintPro.Region) -> Swift.Bool
 }
 extension FingerprintPro.Region : Swift.CustomStringConvertible {
   public var description: Swift.String {
     get
   }
 }
+extension CoreLocation.CLLocationCoordinate2D : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
 public typealias IntegrationInfo = (Swift.String, Swift.String)
-public struct Configuration {
+public struct Configuration : Swift.Sendable {
   public var apiKey: Swift.String
   public var region: FingerprintPro.Region
   public var integrationInfo: [FingerprintPro.IntegrationInfo]
   public var extendedResponseFormat: Swift.Bool
   public init(apiKey: Swift.String, region: FingerprintPro.Region = .global, integrationInfo: [FingerprintPro.IntegrationInfo] = [], extendedResponseFormat: Swift.Bool = false)
 }
-public struct Metadata {
+public struct Metadata : Swift.Equatable, Swift.Sendable {
   public var linkedId: Swift.String?
   public var tags: [Swift.String : FingerprintPro.JSONType] {
     get
   }
   public init(linkedId: Swift.String? = nil)
-  public mutating func setTag(_ tag: FingerprintPro.JSONTypeConvertible, forKey key: Swift.String)
+  public mutating func setTag(_ tag: any FingerprintPro.JSONTypeConvertible, forKey key: Swift.String)
   public mutating func deleteTag(forKey key: Swift.String)
+  public static func == (a: FingerprintPro.Metadata, b: FingerprintPro.Metadata) -> Swift.Bool
 }
 public protocol JSONTypeConvertible {
   func asJSONType() -> FingerprintPro.JSONType
@@ -200,9 +245,10 @@ public enum FPJSError : Swift.Error {
   case invalidURL
   case invalidURLParams
   case apiError(FingerprintPro.APIError)
-  case networkError(Swift.Error)
-  case jsonParsingError(Swift.Error)
+  case networkError(any Swift.Error)
+  case jsonParsingError(any Swift.Error)
   case invalidResponseType
+  case clientTimeout
   case unknownError
 }
 extension FingerprintPro.FPJSError : Swift.CustomStringConvertible {
@@ -210,6 +256,6 @@ extension FingerprintPro.FPJSError : Swift.CustomStringConvertible {
     get
   }
 }
-extension FingerprintPro.APIErrorType : Swift.Equatable {}
-extension FingerprintPro.APIErrorType : Swift.Hashable {}
-extension FingerprintPro.APIErrorType : Swift.RawRepresentable {}
+extension FingerprintPro.APIError.Code : Swift.Equatable {}
+extension FingerprintPro.APIError.Code : Swift.Hashable {}
+extension FingerprintPro.APIError.Code : Swift.RawRepresentable {}
