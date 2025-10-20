@@ -6,9 +6,9 @@ target 'iOSExampleRiskCocoapods' do
   use_frameworks!
 
   # Pods for iOS Example Custom
-  pod 'Risk', '3.0.3'
+  # pod 'Risk', '4.0.0'
   # to debug locally switch this around and it'll use the local SDK version instead of the deployed version
-  # pod 'Risk', :path => '../'
+  pod 'Risk', :path => '../'
 
 end
 
