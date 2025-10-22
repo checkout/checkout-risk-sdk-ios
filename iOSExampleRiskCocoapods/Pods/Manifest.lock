@@ -1,9 +1,9 @@
 PODS:
   - CheckoutEventLoggerKit (1.2.4)
   - FingerprintPro (2.9.0)
-  - Risk (4.0.0):
+  - Risk (4.0.1):
     - CheckoutEventLoggerKit (~> 1.2.4)
-    - FingerprintPro (~> 2.9.0)
+    - FingerprintPro (< 3.0.0, >= 2.7.0)
 
 DEPENDENCIES:
   - Risk (from `../`)
@@ -20,8 +20,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   CheckoutEventLoggerKit: b780dec46295a34942780ea6230d0d5fd08aa05a
   FingerprintPro: 0d3e5957cd165ff4065853c3b7089c118656a234
-  Risk: 49eb6ebad52b3da932374d231a0e0f9950abf9ec
+  Risk: e8ee31ba847b6cce1d4c384a9bb49d78fc34cdc5
 
-PODFILE CHECKSUM: 196bf8fe6beb7ea7c0441c533dfb76f8b200e54d
+PODFILE CHECKSUM: a69f511add1d2778d3ef82907c4e0d234bda1f8d
 
 COCOAPODS: 1.16.2

@@ -1,6 +1,6 @@
 {
   "name": "Risk",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "summary": "Checkout Risk package in Swift",
   "description": "Checkout Risk package in Swift.\nThis library contains methods to collect and publish device data.",
   "homepage": "https://github.com/checkout/checkout-risk-sdk-ios",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/checkout/checkout-risk-sdk-ios.git",
-    "tag": "4.0.0"
+    "tag": "4.0.1"
   },
   "source_files": "Sources/**/*.swift",
   "dependencies": {
@@ -22,7 +22,8 @@
       "~> 1.2.4"
     ],
     "FingerprintPro": [
-      "~> 2.9.0"
+      ">= 2.7.0",
+      "< 3.0.0"
     ]
   },
   "swift_version": "5.0"
