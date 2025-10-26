@@ -61,8 +61,7 @@ public final class Risk {
           }
         }
 
-        fingerprintService.publishData { [weak self] fpResult in
-          guard let self = self else { return }
+        fingerprintService.publishData { fpResult in
 
           DispatchQueue.main.async {
             guard let timer = self.timer, timer.isValid else { // 2.59 -> valid
@@ -86,11 +85,14 @@ public final class Risk {
     
     private func persistFpData(cardToken: String?, fingerprintRequestId: String, fpLoadTime: Double, fpPublishTime: Double, completion: @escaping (Result<PublishRiskData, RiskError.Publish>) -> Void) {
         self.deviceDataService.persistFpData(fingerprintRequestId: fingerprintRequestId, fpLoadTime: fpLoadTime, fpPublishTime: fpPublishTime, cardToken: cardToken) { result in
-            switch result {
-            case .success(let response):
-                completion(.success(PublishRiskData(deviceSessionId: response.deviceSessionId)))
-            case .failure(let error):
-                completion(.failure(error))
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    print(completion)
+                    completion(.success(PublishRiskData(deviceSessionId: response.deviceSessionId)))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
     }
