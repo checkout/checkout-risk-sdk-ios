@@ -88,7 +88,6 @@ public final class Risk {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
-                    print(completion)
                     completion(.success(PublishRiskData(deviceSessionId: response.deviceSessionId)))
                 case .failure(let error):
                     completion(.failure(error))

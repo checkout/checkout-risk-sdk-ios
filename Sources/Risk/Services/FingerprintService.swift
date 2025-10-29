@@ -63,7 +63,8 @@ final class FingerprintService: FingerprintServiceProtocol {
         
         let metadata = createMetadata(sourceType: internalConfig.sourceType.rawValue)
         
-        client.getVisitorIdResponse(metadata) { result in
+        client.getVisitorIdResponse(metadata) { [weak self] result in
+            guard let self else { return }
             DispatchQueue.main.async {
                 switch result {
                 case .failure(let error):
