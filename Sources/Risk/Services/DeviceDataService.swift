@@ -114,5 +114,4 @@ final class DeviceDataService: DeviceDataServiceProtocol {
             }
         }
     }
-    
 }
