@@ -37,7 +37,12 @@ struct ContentView: View {
 				return
 			}
 			
-			let yourConfig = RiskConfig(publicKey: publicKey, environment: RiskEnvironment.qa)
+			guard let mssd = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_MSSD"] else {
+				error = "Environment variable (SAMPLE_MERCHANT_MSSD) not set"
+				return
+			}
+			
+			let yourConfig = RiskConfig(publicKey: publicKey, mssd: mssd, environment: RiskEnvironment.qa)
 			self.riskSDK = Risk.init(config: yourConfig)
 			
 			checked = true

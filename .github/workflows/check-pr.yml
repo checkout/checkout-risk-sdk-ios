@@ -37,6 +37,7 @@ jobs:
     needs: lint
     env:
       SAMPLE_MERCHANT_PUBLIC_KEY: ${{ secrets.SAMPLE_MERCHANT_PUBLIC_KEY }}
+      SAMPLE_MERCHANT_MSSD: ${{ secrets.SAMPLE_MERCHANT_MSSD }}
 
     steps:
       - name: Checkout
@@ -59,6 +60,8 @@ jobs:
 
       - name: Set Configuration File
         run: echo "SAMPLE_MERCHANT_PUBLIC_KEY=${{ secrets.SAMPLE_MERCHANT_PUBLIC_KEY }}" > .github/config.xcconfig
+      - name: Set MSSD Configuration
+        run: echo "SAMPLE_MERCHANT_MSSD=${{ secrets.SAMPLE_MERCHANT_MSSD }}" >> .github/config.xcconfig
 
       - name: Run Risk SDK Tests
         run: |
