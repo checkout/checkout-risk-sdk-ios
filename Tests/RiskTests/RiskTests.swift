@@ -14,7 +14,7 @@ class RiskTests: XCTestCase {
     func testGetInstanceWithInvalidPublicKey() {
         let expectation = self.expectation(description: "Risk instance creation with invalid public key")
         
-        let invalidConfig = RiskConfig(publicKey: "invalid_public_key", environment: RiskEnvironment.qa)
+        let invalidConfig = RiskConfig(publicKey: "invalid_public_key", mssd: "12345678", environment: RiskEnvironment.qa)
         let riskSDK = Risk(config: invalidConfig)
         riskSDK.configure { error in
             XCTAssertNotNil(error)
@@ -41,7 +41,7 @@ class RiskTests: XCTestCase {
             let expectation = self.expectation(description: "Risk data timed out")
             
             let publicKey = "dummy_key"
-            let validConfig = RiskConfig(publicKey: publicKey, environment: RiskEnvironment.qa)
+            let validConfig = RiskConfig(publicKey: publicKey, mssd: "12345678", environment: RiskEnvironment.qa)
             let riskSDK = Risk(config: validConfig)
             
             riskSDK.fingerprintTimeoutInterval = fingerprintTimeoutInterval
