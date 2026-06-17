@@ -17,13 +17,15 @@ public enum RiskEnvironment: String {
 
 public struct RiskConfig {
     let publicKey: String
+    let mssd: String
     let environment: RiskEnvironment
     let framesOptions: FramesOptions?
 
-    public init(publicKey: String, environment: RiskEnvironment, framesOptions: FramesOptions? = nil) {
+    public init(publicKey: String, mssd: String, environment: RiskEnvironment, framesOptions: FramesOptions? = nil) {
         self.publicKey = publicKey
         self.environment = environment
         self.framesOptions = framesOptions
+        self.mssd = mssd
     }
 }
 

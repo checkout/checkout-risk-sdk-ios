@@ -26,13 +26,13 @@ struct RiskSDKInternalConfig {
 
         switch environment {
         case .qa:
-            deviceDataEndpoint = "https://prism-qa.ckotech.co/collect"
+            deviceDataEndpoint = "https://\(config.mssd).devices-egw.cko-qa.ckotech.co"
             fingerprintEndpoint = "https://fpjs.cko-qa.ckotech.co"
         case .sandbox:
-            deviceDataEndpoint = "https://risk.sandbox.checkout.com/collect"
+            deviceDataEndpoint = "https://\(config.mssd).devices.api.sandbox.checkout.com"
             fingerprintEndpoint = "https://fpjs.sandbox.checkout.com"
         case .production:
-            deviceDataEndpoint = "https://risk.checkout.com/collect"
+            deviceDataEndpoint = "https://\(config.mssd).devices.api.checkout.com"
             fingerprintEndpoint = "https://fpjs.checkout.com"
         }
     }

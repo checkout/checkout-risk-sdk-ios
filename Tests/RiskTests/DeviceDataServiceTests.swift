@@ -14,8 +14,9 @@ class DeviceDataServiceTests: XCTestCase {
     func testGetConfiguration() {
         let mockAPIService = MockAPIService()
         let publicKey="mocked_public_key"
+        let mssd="12345678"
 
-        let config = RiskConfig(publicKey: publicKey, environment: .qa)
+        let config = RiskConfig(publicKey: publicKey, mssd: mssd, environment: .qa)
         let internalConfig = RiskSDKInternalConfig(config: config)
         let mockLogger = MockLoggerService(internalConfig: internalConfig)
         let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockAPIService, loggerService: mockLogger)
@@ -43,8 +44,9 @@ class DeviceDataServiceTests: XCTestCase {
     func testPersistFpData() {
         let mockAPIService = MockAPIService()
         let publicKey="mocked_public_key"
+        let mssd="12345678"
 
-        let config = RiskConfig(publicKey: publicKey, environment: RiskEnvironment.qa)
+        let config = RiskConfig(publicKey: publicKey, mssd: mssd, environment: RiskEnvironment.qa)
         let internalConfig = RiskSDKInternalConfig(config: config)
         let mockLogger = MockLoggerService(internalConfig: internalConfig)
 
