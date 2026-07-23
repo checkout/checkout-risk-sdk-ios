@@ -36,6 +36,95 @@ class RiskTests: XCTestCase {
         verifyFingerprintTimeout(shouldTimeout: true, fingerprintTimeoutInterval: 0.01, delayTime: 0.01)
     }
     
+    func testPublishWithSimpleCollectorOnly() {
+        let expectation = self.expectation(description: "Risk data published via simple collector")
+
+        let config = RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa)
+        let riskSDK = Risk(config: config)
+
+        let stubDeviceDataService = MockDeviceDataService()
+        let stubSimpleService = MockSimpleService()
+        riskSDK.deviceDataService = stubDeviceDataService
+        riskSDK.simpleService = stubSimpleService
+
+        riskSDK.publishData { result in
+            switch result {
+            case .success(let data):
+                XCTAssertEqual(data.deviceSessionId, "mocked_device_session_id")
+                XCTAssertEqual(stubDeviceDataService.lastCollectors.count, 1)
+                XCTAssertEqual(stubDeviceDataService.lastCollectors.first?.collector, "simple")
+                XCTAssertEqual(stubDeviceDataService.lastCollectors.first?.sealedResult, "mocked_sealed_result")
+                XCTAssertEqual(stubDeviceDataService.lastDeviceCollectorProviders, ["simple"])
+            case .failure(let error):
+                XCTFail("Expected success, got \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
+    func testPublishWithBothCollectors() {
+        let expectation = self.expectation(description: "Risk data published via both collectors")
+
+        let config = RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa)
+        let riskSDK = Risk(config: config)
+
+        let stubDeviceDataService = MockDeviceDataService()
+        let stubFingerprintService = MockFingerprintService()
+        stubFingerprintService.requestId = "pro_request_id"
+        let stubSimpleService = MockSimpleService()
+        riskSDK.deviceDataService = stubDeviceDataService
+        riskSDK.fingerprintService = stubFingerprintService
+        riskSDK.simpleService = stubSimpleService
+
+        riskSDK.publishData { result in
+            switch result {
+            case .success:
+                XCTAssertEqual(stubDeviceDataService.lastCollectors.count, 2)
+                XCTAssertEqual(stubDeviceDataService.lastDeviceCollectorProviders, ["fingerprint", "simple"])
+                let simple = stubDeviceDataService.lastCollectors.first { $0.collector == "simple" }
+                XCTAssertEqual(simple?.sealedResult, "mocked_sealed_result")
+                let pro = stubDeviceDataService.lastCollectors.first { $0.collector == "fingerprint" }
+                XCTAssertNil(pro?.sealedResult)
+            case .failure(let error):
+                XCTFail("Expected success, got \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
+    func testPublishFailsWhenAllCollectorsFail() {
+        let expectation = self.expectation(description: "Publish fails when every collector fails")
+
+        let config = RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa)
+        let riskSDK = Risk(config: config)
+
+        let stubDeviceDataService = MockDeviceDataService()
+        let stubFingerprintService = MockFingerprintService()
+        stubFingerprintService.shouldSucceed = false
+        let stubSimpleService = MockSimpleService()
+        stubSimpleService.shouldSucceed = false
+        riskSDK.deviceDataService = stubDeviceDataService
+        riskSDK.fingerprintService = stubFingerprintService
+        riskSDK.simpleService = stubSimpleService
+
+        riskSDK.publishData { result in
+            switch result {
+            case .success:
+                XCTFail("Expected failure when all collectors fail")
+            case .failure(let error):
+                XCTAssertEqual(error, .couldNotPublishRiskData)
+                XCTAssertEqual(stubDeviceDataService.persistFpDataCallCount, 0)
+            }
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
     private func verifyFingerprintTimeout(shouldTimeout: Bool, fingerprintTimeoutInterval: TimeInterval, delayTime: TimeInterval, file: StaticString = #file, line: UInt = #line) {
         
             let expectation = self.expectation(description: "Risk data timed out")

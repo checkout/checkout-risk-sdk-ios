@@ -49,6 +49,18 @@
             ReferencedContainer = "container:iOSExampleRiskCocoapods.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "SAMPLE_MERCHANT_PUBLIC_KEY"
+            value = "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "SAMPLE_MERCHANT_MSSD"
+            value = "bc2vfz7p"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

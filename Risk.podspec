@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = "Risk"
-    s.version      = "4.0.1"
+    s.version      = "4.1.0"
     s.summary      = "Checkout Risk package in Swift"
     s.description  = <<-DESC
     Checkout Risk package in Swift.
@@ -17,5 +17,6 @@ Pod::Spec.new do |s|
     
     s.dependency 'CheckoutEventLoggerKit', '~> 1.2.4'
     s.dependency 'FingerprintPro', '>= 2.12.0', '< 3.0.0'
+    s.dependency 'FingerprintJS', '>= 1.7.0', '< 2.0.0'
     
   end
