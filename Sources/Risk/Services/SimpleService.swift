@@ -29,17 +29,24 @@ protocol SimpleServiceProtocol {
 final class SimpleService: SimpleServiceProtocol {
     private let fingerprinter: Fingerprinter
     private let dropFieldPaths: [String]
+    private let timeoutMs: Int?
 
     /// - Parameters:
     ///   - dropFieldPaths: Dot-notation paths into the `device` data that the `configurations`
     ///     endpoint asked to drop before encoding (e.g. "canvas.value.geometry"). Paths that do
     ///     not resolve against the collected data are ignored.
+    ///   - timeoutMs: Collection timeout budget in milliseconds, as supplied by the
+    ///     `configurations` endpoint. When collection exceeds this budget the collector fails
+    ///     so the remaining collectors can still publish. Nil (or non-positive) leaves collection
+    ///     unbounded, in which case only the global publish timer applies.
     ///   - fingerprinter: The fingerprintjs-ios fingerprinter (injectable for testing).
     init(
         dropFieldPaths: [String] = [],
+        timeoutMs: Int? = nil,
         fingerprinter: Fingerprinter = FingerprinterFactory.getInstance(Configuration(version: .latest, stabilityLevel: .optimal))
     ) {
         self.dropFieldPaths = dropFieldPaths
+        self.timeoutMs = timeoutMs
         self.fingerprinter = fingerprinter
     }
 
@@ -54,6 +61,27 @@ final class SimpleService: SimpleServiceProtocol {
     /// The generated `requestId` matches the `requestId` embedded in the payload; the caller
     /// uses it as the root `fp_request_id` when the PRO collector is absent.
     func publishData(completion: @escaping (Result<SimplePublishData, RiskError.Publish>) -> Void) {
+        // Signal collection and the timeout race each other; whichever finishes first wins and
+        // the completion is invoked exactly once. `hasCompleted` is guarded by `lock` because the
+        // fingerprintjs callbacks and the timeout fire on different queues.
+        let lock = NSLock()
+        var hasCompleted = false
+        func finish(_ result: Result<SimplePublishData, RiskError.Publish>) {
+            lock.lock()
+            defer { lock.unlock() }
+            guard !hasCompleted else { return }
+            hasCompleted = true
+            completion(result)
+        }
+
+        // Bound collection by the backend-provided budget. A non-positive or absent budget leaves
+        // collection unbounded (only the global publish timer in `Risk.publishData` then applies).
+        if let timeoutMs, timeoutMs > 0 {
+            DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(timeoutMs)) {
+                finish(.failure(.couldNotPublishRiskData))
+            }
+        }
+
         fingerprinter.getDeviceId { [weak self] deviceId in
             guard let self = self else { return }
 
@@ -72,10 +100,10 @@ final class SimpleService: SimpleServiceProtocol {
                 )
 
                 guard let sealedResult = payloadJson.data(using: .utf8)?.base64EncodedString() else {
-                    return completion(.failure(.couldNotPublishRiskData))
+                    return finish(.failure(.couldNotPublishRiskData))
                 }
 
-                completion(.success(SimplePublishData(
+                finish(.success(SimplePublishData(
                     deviceId: visitorId,
                     requestId: requestId,
                     sealedResult: sealedResult

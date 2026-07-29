@@ -46,7 +46,8 @@ public final class Risk {
 
                 if configuration.simpleEnabled {
                     self.simpleService = SimpleService(
-                        dropFieldPaths: configuration.simpleConfig?.dropFieldPaths ?? []
+                        dropFieldPaths: configuration.simpleConfig?.dropFieldPaths ?? [],
+                        timeoutMs: configuration.simpleConfig?.timeoutMs
                     )
                 }
 
