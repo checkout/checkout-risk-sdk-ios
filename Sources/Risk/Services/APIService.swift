@@ -79,15 +79,7 @@ struct APIService: APIServiceProtocol {
             }
 
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
-                let statusCode = (response as? HTTPURLResponse)?.statusCode ?? HTTPStatusCode.internalServerError.rawValue
-                #if DEBUG
-                print("❌ HTTP \(statusCode) for \(request.httpMethod ?? "GET") \(url.absoluteString)")
-                if let data = data, let body = String(data: data, encoding: .utf8) {
-                    print("   Response body: \(body)")
-                }
-                print("   Headers: \((response as? HTTPURLResponse)?.allHeaderFields ?? [:])")
-                #endif
-                completion(.failure(APIServiceError.httpError(statusCode)))
+                completion(.failure(APIServiceError.httpError((response as? HTTPURLResponse)?.statusCode ?? HTTPStatusCode.internalServerError.rawValue)))
                 return
             }
 
