@@ -14,16 +14,21 @@ class MockDeviceDataService: DeviceDataServiceProtocol {
     var persistFpDataCallCount: Int = 0
     var lastCollectors: [CollectorData] = []
     var lastDeviceCollectorProviders: [String] = []
+    var lastFingerprintRequestId: String?
+
+    /// The configuration handed back on each `getConfiguration`. Overridable so tests can drive
+    /// either collector enabled or disabled, and can change it between successive `configure()`
+    /// calls on one `Risk` instance.
+    var configuration = DeviceDataConfig(
+        fingerprintPublicKey: "mocked_public_key",
+        simpleConfig: nil,
+        proEnabled: true,
+        simpleEnabled: false,
+        blockTime: 123.00
+    )
 
     func getConfiguration(completion: @escaping (Result<DeviceDataConfig, RiskError.Configuration>) -> Void) {
         if shouldReturnConfiguration {
-            let configuration = DeviceDataConfig(
-                fingerprintPublicKey: "mocked_public_key",
-                simpleConfig: nil,
-                proEnabled: true,
-                simpleEnabled: false,
-                blockTime: 123.00
-            )
             completion(.success(configuration))
         } else {
             completion(.failure(.couldNotRetrieveConfiguration))
@@ -34,6 +39,7 @@ class MockDeviceDataService: DeviceDataServiceProtocol {
         persistFpDataCallCount += 1
         lastCollectors = collectors
         lastDeviceCollectorProviders = deviceCollectorProviders
+        lastFingerprintRequestId = fingerprintRequestId
         if shouldSucceedPersistFpData {
             let response = PersistDeviceDataResponse(deviceSessionId: "mocked_device_session_id")
             completion(.success(response))

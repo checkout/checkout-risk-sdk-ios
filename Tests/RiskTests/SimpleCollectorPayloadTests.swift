@@ -19,12 +19,12 @@ class SimpleCollectorPayloadTests: XCTestCase {
     ]
 
     private func buildDevice(dropFieldPaths: [String] = []) throws -> [String: Any] {
-        let json = SimpleCollectorPayload.build(
+        let json = try XCTUnwrap(SimpleCollectorPayload.build(
             deviceId: "device-id-123",
             requestId: "req-abc",
             device: device,
             dropFieldPaths: dropFieldPaths
-        )
+        ))
         let object = try JSONSerialization.jsonObject(with: Data(json.utf8)) as? [String: Any]
         return object ?? [:]
     }
@@ -92,6 +92,24 @@ class SimpleCollectorPayloadTests: XCTestCase {
         SimpleCollectorPayload.dropPath(&root, path: "manufacturerName.value")
 
         XCTAssertEqual(root["manufacturerName"] as? String, "Google")
+    }
+
+    /// `flatten` types signal values as `Any`, so a non-serialisable value can reach `build`.
+    /// It must surface as nil so the caller fails the collector — returning a placeholder such as
+    /// `"{}"` would publish a device session with no device data as a success.
+    ///
+    /// This also pins the validity pre-check: `JSONSerialization` raises an Objective-C
+    /// `NSInvalidArgumentException` for an unsupported value, so without it this test would not
+    /// fail an assertion, it would kill the test process.
+    func testBuildReturnsNilWhenDeviceDataIsNotSerialisable() {
+        let json = SimpleCollectorPayload.build(
+            deviceId: "device-id-123",
+            requestId: "req-abc",
+            device: ["collectedAt": Date()],
+            dropFieldPaths: []
+        )
+
+        XCTAssertNil(json)
     }
 
     func testDeviceKeyCamelCasesLabels() {

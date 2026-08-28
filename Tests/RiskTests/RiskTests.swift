@@ -125,6 +125,140 @@ class RiskTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
 
+    /// The headline claim of the multi-collector work: one collector failing must not stop the
+    /// others publishing. Asserted in both directions, since the two collectors contribute
+    /// differently to the payload (PRO via the root `fp_request_id`, simple via `sealed_result`).
+    func testPublishSucceedsWhenOnlyTheProCollectorFails() {
+        let expectation = self.expectation(description: "Publish succeeds on simple alone")
+
+        let riskSDK = Risk(config: RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa))
+        let stubDeviceDataService = MockDeviceDataService()
+        let stubFingerprintService = MockFingerprintService()
+        stubFingerprintService.shouldSucceed = false
+        let stubSimpleService = MockSimpleService()
+        stubSimpleService.requestId = "simple_request_id"
+        riskSDK.deviceDataService = stubDeviceDataService
+        riskSDK.fingerprintService = stubFingerprintService
+        riskSDK.simpleService = stubSimpleService
+
+        riskSDK.publishData { result in
+            switch result {
+            case .success:
+                XCTAssertEqual(stubDeviceDataService.lastDeviceCollectorProviders, ["simple"])
+                XCTAssertEqual(stubDeviceDataService.lastCollectors.count, 1)
+                XCTAssertEqual(stubDeviceDataService.lastCollectors.first?.sealedResult, "mocked_sealed_result")
+                // With PRO absent the root id falls back to the simple collector's client id,
+                // which is the one embedded in its sealed_result.
+                XCTAssertEqual(stubDeviceDataService.lastFingerprintRequestId, "simple_request_id")
+            case .failure(let error):
+                XCTFail("Expected the simple collector to publish alone, got \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
+    func testPublishSucceedsWhenOnlyTheSimpleCollectorFails() {
+        let expectation = self.expectation(description: "Publish succeeds on PRO alone")
+
+        let riskSDK = Risk(config: RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa))
+        let stubDeviceDataService = MockDeviceDataService()
+        let stubFingerprintService = MockFingerprintService()
+        stubFingerprintService.requestId = "pro_request_id"
+        let stubSimpleService = MockSimpleService()
+        stubSimpleService.shouldSucceed = false
+        riskSDK.deviceDataService = stubDeviceDataService
+        riskSDK.fingerprintService = stubFingerprintService
+        riskSDK.simpleService = stubSimpleService
+
+        riskSDK.publishData { result in
+            switch result {
+            case .success:
+                XCTAssertEqual(stubDeviceDataService.lastDeviceCollectorProviders, ["fingerprint"])
+                XCTAssertEqual(stubDeviceDataService.lastCollectors.count, 1)
+                XCTAssertNil(stubDeviceDataService.lastCollectors.first?.sealedResult)
+                XCTAssertEqual(stubDeviceDataService.lastFingerprintRequestId, "pro_request_id")
+            case .failure(let error):
+                XCTFail("Expected the PRO collector to publish alone, got \(error)")
+            }
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+
+    /// `configure()` is documented as re-callable on a live instance, and the README advertises
+    /// collectors being toggled server-side with no integration change. A collector the backend
+    /// has since removed from `data_collectors` must therefore be torn down, not left running.
+    func testReconfigureTearsDownCollectorsDisabledServerSide() {
+        let riskSDK = Risk(config: RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa))
+        let stubDeviceDataService = MockDeviceDataService()
+        riskSDK.deviceDataService = stubDeviceDataService
+
+        stubDeviceDataService.configuration = DeviceDataConfig(
+            fingerprintPublicKey: "mocked_public_key",
+            simpleConfig: SimpleCollectorConfig(dropFieldPaths: [], timeoutMs: 1000),
+            proEnabled: true,
+            simpleEnabled: true,
+            blockTime: 123.00
+        )
+
+        let firstConfigure = self.expectation(description: "First configure")
+        riskSDK.configure { _ in firstConfigure.fulfill() }
+        wait(for: [firstConfigure], timeout: 5)
+
+        XCTAssertNotNil(riskSDK.fingerprintService)
+        XCTAssertNotNil(riskSDK.simpleService)
+
+        // The backend now serves neither collector for this merchant.
+        stubDeviceDataService.configuration = DeviceDataConfig(
+            fingerprintPublicKey: nil,
+            simpleConfig: nil,
+            proEnabled: false,
+            simpleEnabled: false,
+            blockTime: 123.00
+        )
+
+        let secondConfigure = self.expectation(description: "Second configure")
+        riskSDK.configure { _ in secondConfigure.fulfill() }
+        wait(for: [secondConfigure], timeout: 5)
+
+        XCTAssertNil(riskSDK.fingerprintService, "PRO collector survived being disabled server-side")
+        XCTAssertNil(riskSDK.simpleService, "Simple collector survived being disabled server-side")
+    }
+
+    /// The reverse direction: a collector newly enabled server-side is picked up, and the one
+    /// dropped in the same response is cleared.
+    func testReconfigureSwapsTheEnabledCollector() {
+        let riskSDK = Risk(config: RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa))
+        let stubDeviceDataService = MockDeviceDataService()
+        riskSDK.deviceDataService = stubDeviceDataService
+
+        // Default mock configuration is PRO-only.
+        let firstConfigure = self.expectation(description: "First configure")
+        riskSDK.configure { _ in firstConfigure.fulfill() }
+        wait(for: [firstConfigure], timeout: 5)
+
+        XCTAssertNotNil(riskSDK.fingerprintService)
+        XCTAssertNil(riskSDK.simpleService)
+
+        stubDeviceDataService.configuration = DeviceDataConfig(
+            fingerprintPublicKey: nil,
+            simpleConfig: SimpleCollectorConfig(dropFieldPaths: [], timeoutMs: 1000),
+            proEnabled: false,
+            simpleEnabled: true,
+            blockTime: 123.00
+        )
+
+        let secondConfigure = self.expectation(description: "Second configure")
+        riskSDK.configure { _ in secondConfigure.fulfill() }
+        wait(for: [secondConfigure], timeout: 5)
+
+        XCTAssertNil(riskSDK.fingerprintService, "PRO collector survived being disabled server-side")
+        XCTAssertNotNil(riskSDK.simpleService)
+    }
+
     private func verifyFingerprintTimeout(shouldTimeout: Bool, fingerprintTimeoutInterval: TimeInterval, delayTime: TimeInterval, file: StaticString = #file, line: UInt = #line) {
         
             let expectation = self.expectation(description: "Risk data timed out")

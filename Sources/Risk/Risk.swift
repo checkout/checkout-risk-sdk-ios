@@ -35,21 +35,31 @@ public final class Risk {
 
                 // A collector is enabled when its name is present in `data_collectors`.
                 // The PRO collector additionally needs a fingerprint public key.
-                if configuration.proEnabled, let fingerprintPublicKey = configuration.fingerprintPublicKey {
-                    self.fingerprintService = FingerprintService(
+                //
+                // Build both, assign both. Assigning unconditionally means a collector the
+                // backend has since disabled is actually torn down on a re-`configure()` of a
+                // live instance, and adding a third collector cannot reintroduce a
+                // stale-instance bug by omitting an `else`.
+                let newFingerprintService: FingerprintServiceProtocol? = {
+                    guard configuration.proEnabled,
+                          let fingerprintPublicKey = configuration.fingerprintPublicKey else { return nil }
+                    return FingerprintService(
                         fingerprintPublicKey: fingerprintPublicKey,
                         internalConfig: self.internalConfig,
                         loggerService: self.loggerService,
                         blockTime: configuration.blockTime
                     )
-                }
+                }()
 
-                if configuration.simpleEnabled {
-                    self.simpleService = SimpleService(
+                let newSimpleService: SimpleServiceProtocol? = configuration.simpleEnabled
+                    ? SimpleService(
                         dropFieldPaths: configuration.simpleConfig?.dropFieldPaths ?? [],
                         timeoutMs: configuration.simpleConfig?.timeoutMs
-                    )
-                }
+                      )
+                    : nil
+
+                self.fingerprintService = newFingerprintService
+                self.simpleService = newSimpleService
 
                 completion(.success(()))
 

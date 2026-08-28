@@ -23,7 +23,13 @@ enum SimpleCollectorPayload {
     ///   - requestId: The client-generated request id, echoed at the payload root.
     ///   - device: The flattened device signals gathered from fingerprintjs-ios.
     ///   - dropFieldPaths: Dot-notation paths into `device` to remove before encoding.
-    static func build(deviceId: String, requestId: String, device: [String: Any], dropFieldPaths: [String]) -> String {
+    ///
+    /// - Returns: The JSON payload, or nil when it could not be serialised. Nil must be treated
+    ///   as a collection failure by the caller: `flatten` types signal values as `Any`, so a value
+    ///   that `JSONSerialization` rejects (a `Date`, an `NSNumber` edge case, a non-UTF8 string)
+    ///   is possible. Returning a placeholder such as `"{}"` here would be a *valid* payload and
+    ///   would publish a device session carrying no device data as a success.
+    static func build(deviceId: String, requestId: String, device: [String: Any], dropFieldPaths: [String]) -> String? {
         var deviceObject = device
         deviceObject["visitor_id"] = deviceId
 
@@ -36,11 +42,21 @@ enum SimpleCollectorPayload {
             "device": deviceObject
         ]
 
-        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys]),
-              let json = String(data: data, encoding: .utf8) else {
-            return "{}"
+        // `isValidJSONObject` first, and not merely `try?`: for an unsupported value
+        // `JSONSerialization.data(withJSONObject:)` raises an Objective-C
+        // `NSInvalidArgumentException` rather than throwing a Swift error, which no `do`/`catch`
+        // here can intercept — it would terminate the host app. The check is the only way to
+        // turn that into a recoverable collector failure.
+        guard JSONSerialization.isValidJSONObject(payload) else { return nil }
+
+        do {
+            let data = try JSONSerialization.data(withJSONObject: payload, options: [.sortedKeys])
+            return String(data: data, encoding: .utf8)
+        } catch {
+            // The single point where a serialisation failure is observable; once a logger is
+            // injected into `SimpleService` this is where the error should be reported from.
+            return nil
         }
-        return json
     }
 
     /// Derives a stable, readable camelCase key from a signal label, e.g.
