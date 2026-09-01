@@ -116,7 +116,10 @@ See example below:
 import RiskSDK
 
 // Example usage of package
-let yourConfig = RiskConfig(publicKey: "pk_qa_xxx",mssd: "xxxxxxxx", environment: RiskEnvironment.qa)
+let yourConfig = RiskConfig(publicKey: "pk_qa_xxx", environment: RiskEnvironment.qa)
+
+// Optionally pass an mssd to send device data to your dedicated endpoint
+let yourConfigWithMssd = RiskConfig(publicKey: "pk_qa_xxx", mssd: "xxxxxxxx", environment: RiskEnvironment.qa)
 
 self.riskSDK = Risk.init(config: yourConfig)  
 

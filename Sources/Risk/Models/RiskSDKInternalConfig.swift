@@ -24,17 +24,24 @@ struct RiskSDKInternalConfig {
         integrationType = framesMode ? .inFrames : .standalone
         sourceType = framesMode ? .cardToken : .riskSDK
 
+        // A missing or blank mssd falls back to the shared device data endpoint.
+        let mssd = config.mssd
+            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+            .flatMap { $0.isEmpty ? nil : $0 }
+
         switch environment {
         case .qa:
-            deviceDataEndpoint = "https://\(config.mssd).devices-egw.cko-qa.ckotech.co"
+            deviceDataEndpoint = mssd.map { "https://\($0).devices-egw.cko-qa.ckotech.co" }
+                ?? "https://prism-qa.ckotech.co/collect"
             fingerprintEndpoint = "https://fpjs.cko-qa.ckotech.co"
         case .sandbox:
-            deviceDataEndpoint = "https://\(config.mssd).devices.api.sandbox.checkout.com"
+            deviceDataEndpoint = mssd.map { "https://\($0).devices.api.sandbox.checkout.com" }
+                ?? "https://risk.sandbox.checkout.com/collect"
             fingerprintEndpoint = "https://fpjs.sandbox.checkout.com"
         case .production:
-            deviceDataEndpoint = "https://\(config.mssd).devices.api.checkout.com"
+            deviceDataEndpoint = mssd.map { "https://\($0).devices.api.checkout.com" }
+                ?? "https://risk.checkout.com/collect"
             fingerprintEndpoint = "https://fpjs.checkout.com"
         }
     }
-
 }
