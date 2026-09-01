@@ -173,28 +173,15 @@
 		25F3DA3C0F469F30F8A65E53ABE9FBB3 /* Fingerprinter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Fingerprinter.swift; path = Sources/FingerprintJS/Library/Fingerprinter.swift; sourceTree = "<group>"; };
 		28F13F6EF9068BDB564F3E2E01F808D6 /* LocaleInfoProviding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocaleInfoProviding.swift; path = Sources/FingerprintJS/Harvesters/AppInfoHarvester/Providers/LocaleInfoProviding.swift; sourceTree = "<group>"; };
 		2AA9093838702FD1877C52DB2D956554 /* Pods-iOSExampleRiskCocoapods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iOSExampleRiskCocoapods.modulemap"; sourceTree = "<group>"; };
-		2B5FE9662FEA96104CF2D714C3FB3538 /* Risk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Risk.release.xcconfig; sourceTree = "<group>"; };
-		2B753915CA3EB7F094BD9C4AF7646A67 /* SystemControlValuesRetriever.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemControlValuesRetriever.swift; path = Sources/SystemControl/SystemControlValuesRetriever.swift; sourceTree = "<group>"; };
-		2DADA60EDE76C46A4E93838B4794D444 /* VirtualMemorySubsystem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VirtualMemorySubsystem.swift; path = Sources/SystemControl/Subsystems/VirtualMemorySubsystem.swift; sourceTree = "<group>"; };
-		32B1EEA50FA79C4B4919475A0CAC6788 /* Risk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Risk.debug.xcconfig; sourceTree = "<group>"; };
-		360AF8DE0542151543373CB5BF8F4A3E /* Risk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Risk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3708A29011C214932E58DCFC018F6965 /* OSInfoHarvester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OSInfoHarvester.swift; path = Sources/FingerprintJS/Harvesters/OSInfoHarvester/OSInfoHarvester.swift; sourceTree = "<group>"; };
+		34811F45E024598873C57E07E4E18F23 /* PublishRiskData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PublishRiskData.swift; sourceTree = "<group>"; };
+		360AF8DE0542151543373CB5BF8F4A3E /* Risk */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Risk; path = Risk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		3A2E840C38AB96C5B988FDCCF72EA719 /* FingerprintService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FingerprintService.swift; sourceTree = "<group>"; };
-		402F4309D35C9F7D55B2E02AA61AD37C /* VendorIdentifierProviding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VendorIdentifierProviding.swift; path = Sources/FingerprintJS/Harvesters/IdentifierHarvester/Providers/VendorIdentifierProviding.swift; sourceTree = "<group>"; };
-		4442CC5923C9A10BD4263631FC86C9CC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		477C8A553C931E4C3596E9B2B80AE821 /* BatteryLevelProviding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BatteryLevelProviding.swift; path = Sources/FingerprintJS/Harvesters/HardwareInfoHarvester/Providers/BatteryLevelProviding.swift; sourceTree = "<group>"; };
-		47D032B221B2377DC404AAF5BDFF0E97 /* CPUInfoProviding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CPUInfoProviding.swift; path = Sources/FingerprintJS/Harvesters/HardwareInfoHarvester/Providers/CPUInfoProviding.swift; sourceTree = "<group>"; };
-		4A1321B28C0689EEEB86483982B8B227 /* SimpleService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SimpleService.swift; sourceTree = "<group>"; };
-		4A4103EAAAAFA97B5F73260D492EF64D /* AuthenticationContextInfoProviding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthenticationContextInfoProviding.swift; path = Sources/FingerprintJS/Harvesters/LocalAuthenticationInfoHarvester/Providers/AuthenticationContextInfoProviding.swift; sourceTree = "<group>"; };
-		4FB47E9C97BBCCEF9A8BAD79EF59821E /* DeviceInfoTreeProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeviceInfoTreeProvider.swift; path = Sources/FingerprintJS/Fingerprints/DeviceInfoTreeProvider.swift; sourceTree = "<group>"; };
-		5106D5E614E351D6A29D4BED926B00B7 /* CGSize+CustomStringConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CGSize+CustomStringConvertible.swift"; path = "Sources/FingerprintJS/Common/CGSize+CustomStringConvertible.swift"; sourceTree = "<group>"; };
-		53DEE3BE9994501E55BBA2E300B635EE /* FingerprintJS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintJS.debug.xcconfig; sourceTree = "<group>"; };
-		557A3CDB4CFE6B0536DD85DB3D3F7ACC /* Risk-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Risk-umbrella.h"; sourceTree = "<group>"; };
-		589FE68F245417B5E03F7DAA4428B2ED /* RawPointerConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RawPointerConvertible.swift; path = Sources/SystemControl/RawPointerConvertible.swift; sourceTree = "<group>"; };
-		58C28E3C237D15CCDBF9A3F3D8BAEC99 /* Risk-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Risk-prefix.pch"; sourceTree = "<group>"; };
-		5A0EB493BE30EBFAED80C3AD95B76329 /* DeviceCollector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceCollector.swift; sourceTree = "<group>"; };
-		5D61201B8E740122CD5A5DDBF1903B32 /* RiskSDKConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RiskSDKConfig.swift; path = Sources/Risk/RiskSDKConfig.swift; sourceTree = "<group>"; };
+		3EC86C00E8D017848183BBBD0E10AC20 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		43EBC1BA2F0FAD26F7E5523C450B6C4F /* FingerprintPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintPro.release.xcconfig; sourceTree = "<group>"; };
+		49FDDD038A23B097E5E534EDDCA99F38 /* FingerprintPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintPro.debug.xcconfig; sourceTree = "<group>"; };
+		4B1834EE09B5DBA191DD374E0745F4A9 /* RiskSDKInternalConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RiskSDKInternalConfig.swift; sourceTree = "<group>"; };
+		4CAF50EF221C1EB0335AB9E1818F4FF9 /* Risk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Risk.release.xcconfig; sourceTree = "<group>"; };
+		4F280081D6AD3AC6518F998D254277B0 /* Risk-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Risk-umbrella.h"; sourceTree = "<group>"; };
 		602EDC56993FBC33F62BD1940BA34B61 /* Pods-iOSExampleRiskCocoapods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSExampleRiskCocoapods.release.xcconfig"; sourceTree = "<group>"; };
 		607A0482AD1B658AB05DEB92BA103743 /* Risk-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Risk-dummy.m"; sourceTree = "<group>"; };
 		64EDED7265916523B84F9482B0BBAE9B /* FingerprinterFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FingerprinterFactory.swift; path = Sources/FingerprintJS/Library/FingerprinterFactory.swift; sourceTree = "<group>"; };
@@ -205,7 +192,8 @@
 		71ADC9A1F15F936DF4307F719B9972EB /* KeychainIdentifierStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainIdentifierStorage.swift; path = Sources/FingerprintJS/Common/Storage/KeychainIdentifierStorage.swift; sourceTree = "<group>"; };
 		72AFD77C31F1BC0939F131B20764EF7D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		733F524669DE0141C9196D116CA39B00 /* Pods-iOSExampleRiskCocoapods-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSExampleRiskCocoapods-Info.plist"; sourceTree = "<group>"; };
-		775744055C7A53D8C446EEC024C8BD7F /* IdentifierHarvester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IdentifierHarvester.swift; path = Sources/FingerprintJS/Harvesters/IdentifierHarvester/IdentifierHarvester.swift; sourceTree = "<group>"; };
+		740423D7969233A54BCACA4E7E97BDB0 /* DeviceDataService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceDataService.swift; sourceTree = "<group>"; };
+		7534A0C7AA8A5C7281333687593E6DC9 /* CheckoutEventLoggerKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = CheckoutEventLoggerKit.xcframework; sourceTree = "<group>"; };
 		78115D80E0AC24A2C78790EA0AE1735E /* Pods-iOSExampleRiskCocoapods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iOSExampleRiskCocoapods-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7EC875F1FBEAAED6D62D38C86D0A81C0 /* DiskSpaceInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DiskSpaceInfo.swift; path = Sources/FingerprintJS/Harvesters/DataExchange/DiskSpaceInfo.swift; sourceTree = "<group>"; };
 		7FA7BAE8B4DEBBEEF37D659B77A0DD3D /* Risk.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Risk.modulemap; sourceTree = "<group>"; };
@@ -221,41 +209,23 @@
 		946F33372BBC0B21554698742306C1B4 /* HardwareSubsystem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HardwareSubsystem.swift; path = Sources/SystemControl/Subsystems/HardwareSubsystem.swift; sourceTree = "<group>"; };
 		973017294D204209904C9FEC4F2CC381 /* AuthenticationContextInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AuthenticationContextInfo.swift; path = Sources/FingerprintJS/Harvesters/DataExchange/AuthenticationContextInfo.swift; sourceTree = "<group>"; };
 		9744E6FFC8B43F5162A9171FD71EB805 /* Pods-iOSExampleRiskCocoapods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iOSExampleRiskCocoapods-frameworks.sh"; sourceTree = "<group>"; };
-		9906AF8615094CD01AE677DF46AE1F61 /* Digest+StringOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Digest+StringOutput.swift"; path = "Sources/FingerprintJS/Hashing/Digest+StringOutput.swift"; sourceTree = "<group>"; };
-		9BF6390F1EADCB2742893A2EDF3B836E /* PublishRiskData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PublishRiskData.swift; sourceTree = "<group>"; };
-		9D40BBEA1151303CB60B1AA4A54DD88F /* Pods_iOSExampleRiskCocoapods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSExampleRiskCocoapods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9DD17F87CEBDE775614F8EDA626E0C16 /* FingerprintJS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FingerprintJS-Info.plist"; sourceTree = "<group>"; };
-		9F0EFA67EC67C0E934D498CC3CE23FFC /* CellularNetworkInfoHarvester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CellularNetworkInfoHarvester.swift; path = Sources/FingerprintJS/Harvesters/CellularNetworkInfoHarvester/CellularNetworkInfoHarvester.swift; sourceTree = "<group>"; };
-		9F36A68DE162D2FCC6D6DF5E5204C7CA /* CheckoutEventLoggerKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = CheckoutEventLoggerKit.xcframework; sourceTree = "<group>"; };
-		A1794710BB8BCBCAE47EBBA4014366BD /* AppInfoHarvester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppInfoHarvester.swift; path = Sources/FingerprintJS/Harvesters/AppInfoHarvester/AppInfoHarvester.swift; sourceTree = "<group>"; };
-		A3C1DDB9D91131463006332552105E6C /* DeviceInfoProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeviceInfoProvider.swift; path = Sources/FingerprintJS/Library/DeviceInfoProvider.swift; sourceTree = "<group>"; };
-		A3D7C6F5E92BD575C8D15F705E80C83B /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Sources/FingerprintJS/Library/Configuration.swift; sourceTree = "<group>"; };
-		A3E6E68AFDFA97E744FF1AE93C07BBBD /* DeviceInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeviceInfo.swift; path = Sources/FingerprintJS/Harvesters/DataExchange/DeviceInfo.swift; sourceTree = "<group>"; };
-		A43ADA16A952EC86084136474BE5CDD7 /* FingerprintTreeCalculator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FingerprintTreeCalculator.swift; path = Sources/FingerprintJS/Fingerprints/FingerprintTreeCalculator.swift; sourceTree = "<group>"; };
-		A737282D9C48BBCC652980ADBB6957BC /* FingerprintJS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FingerprintJS-umbrella.h"; sourceTree = "<group>"; };
-		B2C59914C79FC470E310D84FCE1EC2D9 /* Risk.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Risk.swift; path = Sources/Risk/Risk.swift; sourceTree = "<group>"; };
-		B58CF354933868C62E91B7FF79D6D96C /* RiskIntegrationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RiskIntegrationType.swift; sourceTree = "<group>"; };
-		B679E29DDAD10F84AFAC9FE8FEF4772C /* CheckoutEventLoggerKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CheckoutEventLoggerKit.release.xcconfig; sourceTree = "<group>"; };
-		B6AEA458949D9A3B38D2E61F2997AE0E /* FingerprintPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintPro.debug.xcconfig; sourceTree = "<group>"; };
-		B6B71FC7C38E0B3989D5B4A3C8D71B97 /* FingerprintFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FingerprintFunction.swift; path = Sources/FingerprintJS/Hashing/FingerprintFunction.swift; sourceTree = "<group>"; };
+		9C22C2E8C336326F3182C71CCB36A251 /* Risk-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Risk-dummy.m"; sourceTree = "<group>"; };
+		9D40BBEA1151303CB60B1AA4A54DD88F /* Pods-iOSExampleRiskCocoapods */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-iOSExampleRiskCocoapods"; path = Pods_iOSExampleRiskCocoapods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		B118A4AD96E62A56A94BAFD3DCD75424 /* RiskIntegrationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RiskIntegrationType.swift; sourceTree = "<group>"; };
+		B7885E5821D47C225506DE42A8E7C49B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		B835FA0FEADA0FFAD7C820561E68219A /* LoggerService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
 		BA9206A6523368C1C1BE69FAEF704DC7 /* Pods-iOSExampleRiskCocoapods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSExampleRiskCocoapods-acknowledgements.plist"; sourceTree = "<group>"; };
 		BB2F91AFEBA2E16682BB7AACB0A36211 /* DeviceIdentificationInfoProviding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeviceIdentificationInfoProviding.swift; path = Sources/FingerprintJS/Harvesters/HardwareInfoHarvester/Providers/DeviceIdentificationInfoProviding.swift; sourceTree = "<group>"; };
 		BB65647ABA2C298F67A7D858E9D10331 /* FingerprintStabilityLevel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FingerprintStabilityLevel.swift; path = Sources/FingerprintJS/Library/FingerprintStabilityLevel.swift; sourceTree = "<group>"; };
 		C06DC881011814F61F26768C400D8983 /* FingerprintPro.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = FingerprintPro.xcframework; sourceTree = "<group>"; };
 		C192D0974868A93A3F971DD010B5E56B /* Pods-iOSExampleRiskCocoapods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iOSExampleRiskCocoapods-dummy.m"; sourceTree = "<group>"; };
-		C2897BFE2F9501ACA11ED79F5908808F /* LocalAuthenticationInfoHarvester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocalAuthenticationInfoHarvester.swift; path = Sources/FingerprintJS/Harvesters/LocalAuthenticationInfoHarvester/LocalAuthenticationInfoHarvester.swift; sourceTree = "<group>"; };
-		C72DCA385E86A3D2659806ECC69ACCCA /* Constants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		D0F709DDD3F370ADE159A54A90DC9E57 /* Risk-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Risk-Info.plist"; sourceTree = "<group>"; };
-		D678EA8488F6B98029A49C0C60623AE7 /* DeviceDataService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceDataService.swift; sourceTree = "<group>"; };
-		DA517C2EAC0D7BCB10EFA767E9616C73 /* HardwareInfoHarvester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HardwareInfoHarvester.swift; path = Sources/FingerprintJS/Harvesters/HardwareInfoHarvester/HardwareInfoHarvester.swift; sourceTree = "<group>"; };
-		DD044B6FA5ACBC3D44E4A9C8FA9994B8 /* SHA256FingerprintFunction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SHA256FingerprintFunction.swift; path = Sources/FingerprintJS/Hashing/SHA256FingerprintFunction.swift; sourceTree = "<group>"; };
-		DF0122E0F54B3C6701ACAA55E6A7DEC3 /* FingerprintPro-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FingerprintPro-xcframeworks.sh"; sourceTree = "<group>"; };
-		E2BC61B84CCD2FAE169FF7D1990D1FE3 /* CellularServiceInfoProviding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CellularServiceInfoProviding.swift; path = Sources/FingerprintJS/Harvesters/CellularNetworkInfoHarvester/Providers/CellularServiceInfoProviding.swift; sourceTree = "<group>"; };
-		E2BEF1C93476B78F5DB84EFF200E1782 /* RiskError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RiskError.swift; sourceTree = "<group>"; };
-		E42F728D068784AE4386A3B0C7D555E3 /* CheckoutEventLoggerKit-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "CheckoutEventLoggerKit-xcframeworks.sh"; sourceTree = "<group>"; };
-		E8ED4973818A8FCA89319264C418D634 /* SystemControlValueDefinition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemControlValueDefinition.swift; path = Sources/SystemControl/SystemControlValueDefinition.swift; sourceTree = "<group>"; };
-		E8FB12F8CB2CEAACE5451D69867D3B1E /* FingerprintTree.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FingerprintTree.swift; path = Sources/FingerprintJS/Fingerprints/FingerprintTree.swift; sourceTree = "<group>"; };
+		C79144CCFE476D6609E23702885E8696 /* CheckoutEventLoggerKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CheckoutEventLoggerKit.release.xcconfig; sourceTree = "<group>"; };
+		C7D78A205EDE08DB6BB1FF84FF97F1A0 /* Risk-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Risk-Info.plist"; sourceTree = "<group>"; };
+		C80E4B4DAACBA42B54D9D75227CB641C /* Risk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Risk.debug.xcconfig; sourceTree = "<group>"; };
+		CF9DE1D4B3D470F412EC2C3B99A988B0 /* FingerprintService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FingerprintService.swift; sourceTree = "<group>"; };
+		D5CD82F55B26FDAD63DB3108CE9ED3DF /* Risk.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Risk.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D6DC4050B12EBF9A228C48DA0A170FD6 /* FingerprintPro.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = FingerprintPro.xcframework; sourceTree = "<group>"; };
 		ED7BC5FF31C38730D4D701E934069243 /* Pods-iOSExampleRiskCocoapods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSExampleRiskCocoapods.debug.xcconfig"; sourceTree = "<group>"; };
 		EE19150CD6D43A56096A1BA2E2FA02E8 /* IdentifierStorable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IdentifierStorable.swift; path = Sources/FingerprintJS/Common/Storage/IdentifierStorable.swift; sourceTree = "<group>"; };
 		F28AFDA3B406451447CA0718419A917B /* Pods-iOSExampleRiskCocoapods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iOSExampleRiskCocoapods-umbrella.h"; sourceTree = "<group>"; };
@@ -359,14 +329,8 @@
 		615AF9A20E33A430A6DE72DC2514426B /* SystemControl */ = {
 			isa = PBXGroup;
 			children = (
-				946F33372BBC0B21554698742306C1B4 /* HardwareSubsystem.swift */,
-				675C4D7008BA8D6942242724ED75CAB4 /* KernelSubsystem.swift */,
-				589FE68F245417B5E03F7DAA4428B2ED /* RawPointerConvertible.swift */,
-				F6F95D8058E603825CEA4FB54EE20DD6 /* SystemControlError.swift */,
-				E8ED4973818A8FCA89319264C418D634 /* SystemControlValueDefinition.swift */,
-				8475A11F132C928BA6EFF45273A96553 /* SystemControlValuesProvider.swift */,
-				2B753915CA3EB7F094BD9C4AF7646A67 /* SystemControlValuesRetriever.swift */,
-				2DADA60EDE76C46A4E93838B4794D444 /* VirtualMemorySubsystem.swift */,
+				9D40BBEA1151303CB60B1AA4A54DD88F /* Pods-iOSExampleRiskCocoapods */,
+				360AF8DE0542151543373CB5BF8F4A3E /* Risk */,
 			);
 			name = SystemControl;
 			sourceTree = "<group>";
@@ -461,49 +425,11 @@
 		8BC53619DC1E95635F057E08D593923C /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				A1794710BB8BCBCAE47EBBA4014366BD /* AppInfoHarvester.swift */,
-				973017294D204209904C9FEC4F2CC381 /* AuthenticationContextInfo.swift */,
-				4A4103EAAAAFA97B5F73260D492EF64D /* AuthenticationContextInfoProviding.swift */,
-				477C8A553C931E4C3596E9B2B80AE821 /* BatteryLevelProviding.swift */,
-				8A2BBAD2DDB49069839584963C440E04 /* BiometryType.swift */,
-				0B00BFF31E44F542870B48BE0C811220 /* CarrierInfoProviding.swift */,
-				9F0EFA67EC67C0E934D498CC3CE23FFC /* CellularNetworkInfoHarvester.swift */,
-				E2BC61B84CCD2FAE169FF7D1990D1FE3 /* CellularServiceInfoProviding.swift */,
-				5106D5E614E351D6A29D4BED926B00B7 /* CGSize+CustomStringConvertible.swift */,
-				04A9B091776D4DB0CCCF4036367B1DE9 /* CompoundTreeBuilder.swift */,
-				A3D7C6F5E92BD575C8D15F705E80C83B /* Configuration.swift */,
-				47D032B221B2377DC404AAF5BDFF0E97 /* CPUInfoProviding.swift */,
-				BB2F91AFEBA2E16682BB7AACB0A36211 /* DeviceIdentificationInfoProviding.swift */,
-				A3E6E68AFDFA97E744FF1AE93C07BBBD /* DeviceInfo.swift */,
-				68FE5E2AB9CAA1ACF51A95491D6EA910 /* DeviceInfoItem.swift */,
-				A3C1DDB9D91131463006332552105E6C /* DeviceInfoProvider.swift */,
-				4FB47E9C97BBCCEF9A8BAD79EF59821E /* DeviceInfoTreeProvider.swift */,
-				9906AF8615094CD01AE677DF46AE1F61 /* Digest+StringOutput.swift */,
-				7EC875F1FBEAAED6D62D38C86D0A81C0 /* DiskSpaceInfo.swift */,
-				23912CC79477167EBAFF0E4CA3ED6967 /* Fingerprintable.swift */,
-				25F3DA3C0F469F30F8A65E53ABE9FBB3 /* Fingerprinter.swift */,
-				64EDED7265916523B84F9482B0BBAE9B /* FingerprinterFactory.swift */,
-				B6B71FC7C38E0B3989D5B4A3C8D71B97 /* FingerprintFunction.swift */,
-				838F91201D605E49B21ABFE6DE29461F /* FingerprintJSVersion.swift */,
-				BB65647ABA2C298F67A7D858E9D10331 /* FingerprintStabilityLevel.swift */,
-				E8FB12F8CB2CEAACE5451D69867D3B1E /* FingerprintTree.swift */,
-				A43ADA16A952EC86084136474BE5CDD7 /* FingerprintTreeCalculator.swift */,
-				DA517C2EAC0D7BCB10EFA767E9616C73 /* HardwareInfoHarvester.swift */,
-				775744055C7A53D8C446EEC024C8BD7F /* IdentifierHarvester.swift */,
-				EE19150CD6D43A56096A1BA2E2FA02E8 /* IdentifierStorable.swift */,
-				71ADC9A1F15F936DF4307F719B9972EB /* KeychainIdentifierStorage.swift */,
-				C2897BFE2F9501ACA11ED79F5908808F /* LocalAuthenticationInfoHarvester.swift */,
-				28F13F6EF9068BDB564F3E2E01F808D6 /* LocaleInfoProviding.swift */,
-				10688636C0A0F23309A805554C6E9404 /* LowPowerModeProviding.swift */,
-				3708A29011C214932E58DCFC018F6965 /* OSInfoHarvester.swift */,
-				0C611520629C1F8EDE100AA8CC6A9C8E /* ScreenInfoProviding.swift */,
-				DD044B6FA5ACBC3D44E4A9C8FA9994B8 /* SHA256FingerprintFunction.swift */,
-				23319FD7B7D7378F07E80F9541861547 /* TimeZoneInfoProviding.swift */,
-				222B5196FF51A1BB24349AAF01EF87C5 /* UserInterfaceStyle.swift */,
-				8F244EF5072AF676E825D0D8A0AE3855 /* UserInterfaceTraitsProviding.swift */,
-				402F4309D35C9F7D55B2E02AA61AD37C /* VendorIdentifierProviding.swift */,
+				F694FF149C84B5BEA8A3D4F85B186FA1 /* Frameworks */,
+				5485EE770158B079E72A2AD2445FC246 /* Support Files */,
 			);
-			name = Core;
+			name = FingerprintPro;
+			path = FingerprintPro;
 			sourceTree = "<group>";
 		};
 		8E6E6824446C248562B2FE6040B46A55 /* Models */ = {
@@ -526,28 +452,8 @@
 				F2CC80F7690061B7B58D195E7873A3B6 /* CheckoutEventLoggerKit.debug.xcconfig */,
 				B679E29DDAD10F84AFAC9FE8FEF4772C /* CheckoutEventLoggerKit.release.xcconfig */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/CheckoutEventLoggerKit";
-			sourceTree = "<group>";
-		};
-		BB56E7A35593868A0138F152A73C274F /* FingerprintJS */ = {
-			isa = PBXGroup;
-			children = (
-				8BC53619DC1E95635F057E08D593923C /* Core */,
-				7CDF97F68B3459C3159FD5FE82CF7E31 /* Support Files */,
-				615AF9A20E33A430A6DE72DC2514426B /* SystemControl */,
-			);
-			path = FingerprintJS;
-			sourceTree = "<group>";
-		};
-		CA4AD58CF13AF953D64443E4D030B8E8 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				DBDB537ACC1A79F795A6EA3026F3C3F8 /* CheckoutEventLoggerKit */,
-				BB56E7A35593868A0138F152A73C274F /* FingerprintJS */,
-				847790BC459400D9405191A1E2F65C27 /* FingerprintPro */,
-			);
-			name = Pods;
+			name = CheckoutEventLoggerKit;
+			path = CheckoutEventLoggerKit;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -665,25 +571,7 @@
 			);
 			name = "Pods-iOSExampleRiskCocoapods";
 			productName = Pods_iOSExampleRiskCocoapods;
-			productReference = 9D40BBEA1151303CB60B1AA4A54DD88F /* Pods_iOSExampleRiskCocoapods.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		E08ED3D7F55A92B14DC907731169C185 /* FingerprintJS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E5446065D60856C41B74109BD8C6E037 /* Build configuration list for PBXNativeTarget "FingerprintJS" */;
-			buildPhases = (
-				F747337204565C200831D8B486C9D057 /* Headers */,
-				F42F35556F50016AD100807030536921 /* Sources */,
-				9687B3D826E4F45071E712F0482AFF21 /* Frameworks */,
-				C64A61152A49C456E2FB9D8F549B230F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = FingerprintJS;
-			productName = FingerprintJS;
-			productReference = F6D06DF27833904E7C107AC5BD02777D /* FingerprintJS.framework */;
+			productReference = 9D40BBEA1151303CB60B1AA4A54DD88F /* Pods-iOSExampleRiskCocoapods */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -704,7 +592,9 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = 1CEEFA63F57724E10045CE82C055B72F /* Products */;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 3F36AC5F6E2B3983CFB2DF69B72801CD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
