@@ -16,6 +16,7 @@
 			dependencies = (
 			);
 			name = CheckoutEventLoggerKit;
+			productName = CheckoutEventLoggerKit;
 		};
 		E9C243DAADA86271CC0B2005D14E8D56 /* FingerprintPro */ = {
 			isa = PBXAggregateTarget;
@@ -26,6 +27,7 @@
 			dependencies = (
 			);
 			name = FingerprintPro;
+			productName = FingerprintPro;
 		};
 /* End PBXAggregateTarget section */
 
@@ -96,9 +98,9 @@
 		2A6F722474A6F88D0D7332AC26708DDB /* RiskError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RiskError.swift; sourceTree = "<group>"; };
 		2AA9093838702FD1877C52DB2D956554 /* Pods-iOSExampleRiskCocoapods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iOSExampleRiskCocoapods.modulemap"; sourceTree = "<group>"; };
 		34811F45E024598873C57E07E4E18F23 /* PublishRiskData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PublishRiskData.swift; sourceTree = "<group>"; };
-		360AF8DE0542151543373CB5BF8F4A3E /* Risk */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Risk; path = Risk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		360AF8DE0542151543373CB5BF8F4A3E /* Risk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Risk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		3EC86C00E8D017848183BBBD0E10AC20 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		3EC86C00E8D017848183BBBD0E10AC20 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		43EBC1BA2F0FAD26F7E5523C450B6C4F /* FingerprintPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintPro.release.xcconfig; sourceTree = "<group>"; };
 		49FDDD038A23B097E5E534EDDCA99F38 /* FingerprintPro.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintPro.debug.xcconfig; sourceTree = "<group>"; };
 		4B1834EE09B5DBA191DD374E0745F4A9 /* RiskSDKInternalConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RiskSDKInternalConfig.swift; sourceTree = "<group>"; };
@@ -109,16 +111,16 @@
 		71FA45D6887CB7FB8280681300D93365 /* CheckoutEventLoggerKit-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "CheckoutEventLoggerKit-xcframeworks.sh"; sourceTree = "<group>"; };
 		733F524669DE0141C9196D116CA39B00 /* Pods-iOSExampleRiskCocoapods-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSExampleRiskCocoapods-Info.plist"; sourceTree = "<group>"; };
 		740423D7969233A54BCACA4E7E97BDB0 /* DeviceDataService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DeviceDataService.swift; sourceTree = "<group>"; };
-		7534A0C7AA8A5C7281333687593E6DC9 /* CheckoutEventLoggerKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = CheckoutEventLoggerKit.xcframework; sourceTree = "<group>"; };
+		7534A0C7AA8A5C7281333687593E6DC9 /* CheckoutEventLoggerKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = CheckoutEventLoggerKit.xcframework; sourceTree = "<group>"; };
 		78115D80E0AC24A2C78790EA0AE1735E /* Pods-iOSExampleRiskCocoapods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iOSExampleRiskCocoapods-acknowledgements.markdown"; sourceTree = "<group>"; };
 		792DA6DCFC63234E82181B0DBCB18C69 /* Risk.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Risk.modulemap; sourceTree = "<group>"; };
 		87EAE4B20856C5030D745CACEA7771D2 /* RiskSDKConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RiskSDKConfig.swift; path = Sources/Risk/RiskSDKConfig.swift; sourceTree = "<group>"; };
 		9744E6FFC8B43F5162A9171FD71EB805 /* Pods-iOSExampleRiskCocoapods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iOSExampleRiskCocoapods-frameworks.sh"; sourceTree = "<group>"; };
 		9C22C2E8C336326F3182C71CCB36A251 /* Risk-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Risk-dummy.m"; sourceTree = "<group>"; };
-		9D40BBEA1151303CB60B1AA4A54DD88F /* Pods-iOSExampleRiskCocoapods */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-iOSExampleRiskCocoapods"; path = Pods_iOSExampleRiskCocoapods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D40BBEA1151303CB60B1AA4A54DD88F /* Pods_iOSExampleRiskCocoapods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSExampleRiskCocoapods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B118A4AD96E62A56A94BAFD3DCD75424 /* RiskIntegrationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RiskIntegrationType.swift; sourceTree = "<group>"; };
-		B7885E5821D47C225506DE42A8E7C49B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		B7885E5821D47C225506DE42A8E7C49B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B835FA0FEADA0FFAD7C820561E68219A /* LoggerService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
 		BA9206A6523368C1C1BE69FAEF704DC7 /* Pods-iOSExampleRiskCocoapods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSExampleRiskCocoapods-acknowledgements.plist"; sourceTree = "<group>"; };
 		C192D0974868A93A3F971DD010B5E56B /* Pods-iOSExampleRiskCocoapods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iOSExampleRiskCocoapods-dummy.m"; sourceTree = "<group>"; };
@@ -126,8 +128,8 @@
 		C7D78A205EDE08DB6BB1FF84FF97F1A0 /* Risk-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Risk-Info.plist"; sourceTree = "<group>"; };
 		C80E4B4DAACBA42B54D9D75227CB641C /* Risk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Risk.debug.xcconfig; sourceTree = "<group>"; };
 		CF9DE1D4B3D470F412EC2C3B99A988B0 /* FingerprintService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FingerprintService.swift; sourceTree = "<group>"; };
-		D5CD82F55B26FDAD63DB3108CE9ED3DF /* Risk.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Risk.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		D6DC4050B12EBF9A228C48DA0A170FD6 /* FingerprintPro.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = FingerprintPro.xcframework; sourceTree = "<group>"; };
+		D5CD82F55B26FDAD63DB3108CE9ED3DF /* Risk.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Risk.podspec; sourceTree = "<group>"; tabWidth = 2; };
+		D6DC4050B12EBF9A228C48DA0A170FD6 /* FingerprintPro.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = FingerprintPro.xcframework; sourceTree = "<group>"; };
 		ED7BC5FF31C38730D4D701E934069243 /* Pods-iOSExampleRiskCocoapods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-iOSExampleRiskCocoapods.debug.xcconfig"; sourceTree = "<group>"; };
 		EF403BC130C7B468F7E1A28A4E3DE33E /* FingerprintPro-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FingerprintPro-xcframeworks.sh"; sourceTree = "<group>"; };
 		F28AFDA3B406451447CA0718419A917B /* Pods-iOSExampleRiskCocoapods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iOSExampleRiskCocoapods-umbrella.h"; sourceTree = "<group>"; };
@@ -205,8 +207,8 @@
 		3F36AC5F6E2B3983CFB2DF69B72801CD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9D40BBEA1151303CB60B1AA4A54DD88F /* Pods-iOSExampleRiskCocoapods */,
-				360AF8DE0542151543373CB5BF8F4A3E /* Risk */,
+				9D40BBEA1151303CB60B1AA4A54DD88F /* Pods_iOSExampleRiskCocoapods.framework */,
+				360AF8DE0542151543373CB5BF8F4A3E /* Risk.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -297,7 +299,6 @@
 				F694FF149C84B5BEA8A3D4F85B186FA1 /* Frameworks */,
 				5485EE770158B079E72A2AD2445FC246 /* Support Files */,
 			);
-			name = FingerprintPro;
 			path = FingerprintPro;
 			sourceTree = "<group>";
 		};
@@ -307,7 +308,6 @@
 				2CA438948DA39E4FF0DDAB13D5F00F56 /* Frameworks */,
 				3F3C6C9566597A77C240792832468AFD /* Support Files */,
 			);
-			name = CheckoutEventLoggerKit;
 			path = CheckoutEventLoggerKit;
 			sourceTree = "<group>";
 		};
@@ -404,7 +404,7 @@
 			);
 			name = Risk;
 			productName = Risk;
-			productReference = 360AF8DE0542151543373CB5BF8F4A3E /* Risk */;
+			productReference = 360AF8DE0542151543373CB5BF8F4A3E /* Risk.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AA92C266C7C1E114495E36186E5A9F31 /* Pods-iOSExampleRiskCocoapods */ = {
@@ -425,7 +425,7 @@
 			);
 			name = "Pods-iOSExampleRiskCocoapods";
 			productName = Pods_iOSExampleRiskCocoapods;
-			productReference = 9D40BBEA1151303CB60B1AA4A54DD88F /* Pods-iOSExampleRiskCocoapods */;
+			productReference = 9D40BBEA1151303CB60B1AA4A54DD88F /* Pods_iOSExampleRiskCocoapods.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -446,8 +446,6 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			minimizedProjectReferenceProxies = 0;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 3F36AC5F6E2B3983CFB2DF69B72801CD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -486,9 +484,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/CheckoutEventLoggerKit/CheckoutEventLoggerKit-xcframeworks-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy XCFrameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/CheckoutEventLoggerKit/CheckoutEventLoggerKit-xcframeworks-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -503,9 +505,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/FingerprintPro/FingerprintPro-xcframeworks-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy XCFrameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/FingerprintPro/FingerprintPro-xcframeworks-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

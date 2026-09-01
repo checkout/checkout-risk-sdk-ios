@@ -36,12 +36,10 @@ struct ContentView: View {
 				return
 			}
 
-			guard let mssd = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_MSSD"] else {
-				error = "Environment variable (SAMPLE_MERCHANT_MSSD) not set"
-				return
-			}
+			// Optional: when unset the shared device data endpoint is used
+			let mssd = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_MSSD"]
 			
-			let yourConfig = RiskConfig(publicKey: publicKey, mssd: mssd, environment: RiskEnvironment.qa)
+			let yourConfig = RiskConfig(publicKey: publicKey, environment: RiskEnvironment.qa, mssd: mssd)
 			self.riskSDK = Risk.init(config: yourConfig)
 			
 			checked = true
