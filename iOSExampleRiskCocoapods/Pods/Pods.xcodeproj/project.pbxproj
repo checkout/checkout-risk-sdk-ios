@@ -16,7 +16,6 @@
 			dependencies = (
 			);
 			name = CheckoutEventLoggerKit;
-			productName = CheckoutEventLoggerKit;
 		};
 		E9C243DAADA86271CC0B2005D14E8D56 /* FingerprintPro */ = {
 			isa = PBXAggregateTarget;
@@ -27,16 +26,18 @@
 			dependencies = (
 			);
 			name = FingerprintPro;
-			productName = FingerprintPro;
 		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
 		0337B4FBF881C312BB5EDC8307D92A5E /* DeviceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E6E68AFDFA97E744FF1AE93C07BBBD /* DeviceInfo.swift */; };
+		0813934C91D25FF24B5B34ED354CBCD5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB74A84DF62E0DBFFA4715EF79E08A1 /* Foundation.framework */; };
 		096B0A4E532441EE489D8846B0ED8B88 /* RiskIntegrationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58CF354933868C62E91B7FF79D6D96C /* RiskIntegrationType.swift */; };
 		0BF53C244C1DD3EEE1937F5460957F68 /* SourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AAC3B78327524F318619FA1E1EEF53 /* SourceType.swift */; };
+		0C751EF27980510A68111EF81AF61F6A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB74A84DF62E0DBFFA4715EF79E08A1 /* Foundation.framework */; };
 		158C058CB762D8C1071AFBA5199B1A1A /* CGSize+CustomStringConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5106D5E614E351D6A29D4BED926B00B7 /* CGSize+CustomStringConvertible.swift */; };
 		17ED9571DD580B036F473C61790B264E /* FingerprinterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EDED7265916523B84F9482B0BBAE9B /* FingerprinterFactory.swift */; };
+		19545092E7E0BD385E25BEC7AF00B93E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB74A84DF62E0DBFFA4715EF79E08A1 /* Foundation.framework */; };
 		1BB4953932B6160707019385770CE3C6 /* CPUInfoProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D032B221B2377DC404AAF5BDFF0E97 /* CPUInfoProviding.swift */; };
 		1E88877606F6FE90B7A24186429D1876 /* TimeZoneInfoProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23319FD7B7D7378F07E80F9541861547 /* TimeZoneInfoProviding.swift */; };
 		2795A03FD3340DDF8D7D46946EB9A592 /* VendorIdentifierProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402F4309D35C9F7D55B2E02AA61AD37C /* VendorIdentifierProviding.swift */; };
@@ -56,14 +57,12 @@
 		594F603234724B4D6BDD3FED9C398EB8 /* FingerprintTreeCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43ADA16A952EC86084136474BE5CDD7 /* FingerprintTreeCalculator.swift */; };
 		5CE63AA86C214C955C647ADC4E811CF4 /* LocalAuthenticationInfoHarvester.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2897BFE2F9501ACA11ED79F5908808F /* LocalAuthenticationInfoHarvester.swift */; };
 		64C8AFC14CB66A1A02D11D13F6CFAB8D /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D7C6F5E92BD575C8D15F705E80C83B /* Configuration.swift */; };
-		657AB4139D572ECA87EC0F4B1A6D1BCB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
 		67362ED9AF975D5C90E332D9679D1A0A /* PublishRiskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF6390F1EADCB2742893A2EDF3B836E /* PublishRiskData.swift */; };
 		6B7619E551B9603ABDD4DA69E6E89114 /* FingerprintService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2E840C38AB96C5B988FDCCF72EA719 /* FingerprintService.swift */; };
 		6CA7A150DEDA8128E6CB83621EC2404C /* BatteryLevelProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477C8A553C931E4C3596E9B2B80AE821 /* BatteryLevelProviding.swift */; };
 		6EFDACD2C4A74801647DE55EBDC5F01D /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04755F29C8F82F0A088C7E9F97EA740B /* APIService.swift */; };
 		71B47341E402F1B849CE7061857F1F89 /* SystemControlValuesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8475A11F132C928BA6EFF45273A96553 /* SystemControlValuesProvider.swift */; };
 		77FD8150A144FB9ED8C1AAC5FAB10A96 /* BiometryType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2BBAD2DDB49069839584963C440E04 /* BiometryType.swift */; };
-		7E51630E023773F7C37A5F4B64F629A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
 		817F529B3CAC6CEEED96261BA62E4A97 /* CellularNetworkInfoHarvester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0EFA67EC67C0E934D498CC3CE23FFC /* CellularNetworkInfoHarvester.swift */; };
 		82203DCE9EE455C832D77352049C5186 /* DeviceInfoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FE5E2AB9CAA1ACF51A95491D6EA910 /* DeviceInfoItem.swift */; };
 		855CF88CC12C2A704770D79841B3B914 /* KernelSubsystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C4D7008BA8D6942242724ED75CAB4 /* KernelSubsystem.swift */; };
@@ -85,7 +84,6 @@
 		B94B853190C9D98D44EC36264DA8D0B6 /* IdentifierStorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE19150CD6D43A56096A1BA2E2FA02E8 /* IdentifierStorable.swift */; };
 		BB3B224EF027FAB0880DD1D88C3803D8 /* FingerprintFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B71FC7C38E0B3989D5B4A3C8D71B97 /* FingerprintFunction.swift */; };
 		BEEE1AE2D5B2ED4191D77712667F059A /* DeviceInfoTreeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB47E9C97BBCCEF9A8BAD79EF59821E /* DeviceInfoTreeProvider.swift */; };
-		C0325F84D2DC6823550FEF9C5A17A672 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
 		C06233B181E602EE7604F15E70B018B7 /* VirtualMemorySubsystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DADA60EDE76C46A4E93838B4794D444 /* VirtualMemorySubsystem.swift */; };
 		C42A56B9118DB173E241A61F8649EF1C /* SimpleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1321B28C0689EEEB86483982B8B227 /* SimpleService.swift */; };
 		C875EFAFDAE62D0DB7C25C2338BF5BA3 /* AppInfoHarvester.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1794710BB8BCBCAE47EBBA4014366BD /* AppInfoHarvester.swift */; };
@@ -175,14 +173,14 @@
 		2AA9093838702FD1877C52DB2D956554 /* Pods-iOSExampleRiskCocoapods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-iOSExampleRiskCocoapods.modulemap"; sourceTree = "<group>"; };
 		2B5FE9662FEA96104CF2D714C3FB3538 /* Risk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Risk.release.xcconfig; sourceTree = "<group>"; };
 		2B753915CA3EB7F094BD9C4AF7646A67 /* SystemControlValuesRetriever.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemControlValuesRetriever.swift; path = Sources/SystemControl/SystemControlValuesRetriever.swift; sourceTree = "<group>"; };
+		2CB74A84DF62E0DBFFA4715EF79E08A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		2DADA60EDE76C46A4E93838B4794D444 /* VirtualMemorySubsystem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VirtualMemorySubsystem.swift; path = Sources/SystemControl/Subsystems/VirtualMemorySubsystem.swift; sourceTree = "<group>"; };
 		32B1EEA50FA79C4B4919475A0CAC6788 /* Risk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Risk.debug.xcconfig; sourceTree = "<group>"; };
-		360AF8DE0542151543373CB5BF8F4A3E /* Risk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Risk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		360AF8DE0542151543373CB5BF8F4A3E /* Risk */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Risk; path = Risk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3708A29011C214932E58DCFC018F6965 /* OSInfoHarvester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OSInfoHarvester.swift; path = Sources/FingerprintJS/Harvesters/OSInfoHarvester/OSInfoHarvester.swift; sourceTree = "<group>"; };
-		384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		3A2E840C38AB96C5B988FDCCF72EA719 /* FingerprintService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FingerprintService.swift; sourceTree = "<group>"; };
 		402F4309D35C9F7D55B2E02AA61AD37C /* VendorIdentifierProviding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VendorIdentifierProviding.swift; path = Sources/FingerprintJS/Harvesters/IdentifierHarvester/Providers/VendorIdentifierProviding.swift; sourceTree = "<group>"; };
-		4442CC5923C9A10BD4263631FC86C9CC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4442CC5923C9A10BD4263631FC86C9CC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		477C8A553C931E4C3596E9B2B80AE821 /* BatteryLevelProviding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BatteryLevelProviding.swift; path = Sources/FingerprintJS/Harvesters/HardwareInfoHarvester/Providers/BatteryLevelProviding.swift; sourceTree = "<group>"; };
 		47D032B221B2377DC404AAF5BDFF0E97 /* CPUInfoProviding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CPUInfoProviding.swift; path = Sources/FingerprintJS/Harvesters/HardwareInfoHarvester/Providers/CPUInfoProviding.swift; sourceTree = "<group>"; };
 		4A1321B28C0689EEEB86483982B8B227 /* SimpleService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SimpleService.swift; sourceTree = "<group>"; };
@@ -203,7 +201,7 @@
 		6AD8D1DE3C39B520543AAE8A9B260DBE /* FingerprintPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintPro.release.xcconfig; sourceTree = "<group>"; };
 		705FF4FA2750CB33788C5A88C2CF42CB /* FingerprintJS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FingerprintJS.modulemap; sourceTree = "<group>"; };
 		71ADC9A1F15F936DF4307F719B9972EB /* KeychainIdentifierStorage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeychainIdentifierStorage.swift; path = Sources/FingerprintJS/Common/Storage/KeychainIdentifierStorage.swift; sourceTree = "<group>"; };
-		72AFD77C31F1BC0939F131B20764EF7D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		72AFD77C31F1BC0939F131B20764EF7D /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		733F524669DE0141C9196D116CA39B00 /* Pods-iOSExampleRiskCocoapods-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSExampleRiskCocoapods-Info.plist"; sourceTree = "<group>"; };
 		775744055C7A53D8C446EEC024C8BD7F /* IdentifierHarvester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IdentifierHarvester.swift; path = Sources/FingerprintJS/Harvesters/IdentifierHarvester/IdentifierHarvester.swift; sourceTree = "<group>"; };
 		78115D80E0AC24A2C78790EA0AE1735E /* Pods-iOSExampleRiskCocoapods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-iOSExampleRiskCocoapods-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -213,7 +211,7 @@
 		83AAC3B78327524F318619FA1E1EEF53 /* SourceType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SourceType.swift; sourceTree = "<group>"; };
 		8475A11F132C928BA6EFF45273A96553 /* SystemControlValuesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemControlValuesProvider.swift; path = Sources/SystemControl/SystemControlValuesProvider.swift; sourceTree = "<group>"; };
 		88DEF698CCF8BD7067C4E4509A5468EB /* FingerprintJS-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FingerprintJS-prefix.pch"; sourceTree = "<group>"; };
-		89E5022DC0C4371424BDF5314F976A4C /* Risk.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = Risk.podspec; sourceTree = "<group>"; tabWidth = 2; };
+		89E5022DC0C4371424BDF5314F976A4C /* Risk.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = Risk.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8A2BBAD2DDB49069839584963C440E04 /* BiometryType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BiometryType.swift; path = Sources/FingerprintJS/Harvesters/DataExchange/BiometryType.swift; sourceTree = "<group>"; };
 		8A3455FA49342D7E10E7C1D70979F570 /* FingerprintJS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FingerprintJS-dummy.m"; sourceTree = "<group>"; };
 		8E55C10EBBCFC42A7DE6ABC9667CFB96 /* RiskSDKInternalConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RiskSDKInternalConfig.swift; sourceTree = "<group>"; };
@@ -223,11 +221,11 @@
 		9744E6FFC8B43F5162A9171FD71EB805 /* Pods-iOSExampleRiskCocoapods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-iOSExampleRiskCocoapods-frameworks.sh"; sourceTree = "<group>"; };
 		9906AF8615094CD01AE677DF46AE1F61 /* Digest+StringOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Digest+StringOutput.swift"; path = "Sources/FingerprintJS/Hashing/Digest+StringOutput.swift"; sourceTree = "<group>"; };
 		9BF6390F1EADCB2742893A2EDF3B836E /* PublishRiskData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PublishRiskData.swift; sourceTree = "<group>"; };
-		9D40BBEA1151303CB60B1AA4A54DD88F /* Pods_iOSExampleRiskCocoapods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iOSExampleRiskCocoapods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D40BBEA1151303CB60B1AA4A54DD88F /* Pods-iOSExampleRiskCocoapods */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-iOSExampleRiskCocoapods"; path = Pods_iOSExampleRiskCocoapods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9DD17F87CEBDE775614F8EDA626E0C16 /* FingerprintJS-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FingerprintJS-Info.plist"; sourceTree = "<group>"; };
 		9F0EFA67EC67C0E934D498CC3CE23FFC /* CellularNetworkInfoHarvester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CellularNetworkInfoHarvester.swift; path = Sources/FingerprintJS/Harvesters/CellularNetworkInfoHarvester/CellularNetworkInfoHarvester.swift; sourceTree = "<group>"; };
-		9F36A68DE162D2FCC6D6DF5E5204C7CA /* CheckoutEventLoggerKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = CheckoutEventLoggerKit.xcframework; sourceTree = "<group>"; };
+		9F36A68DE162D2FCC6D6DF5E5204C7CA /* CheckoutEventLoggerKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = CheckoutEventLoggerKit.xcframework; sourceTree = "<group>"; };
 		A1794710BB8BCBCAE47EBBA4014366BD /* AppInfoHarvester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppInfoHarvester.swift; path = Sources/FingerprintJS/Harvesters/AppInfoHarvester/AppInfoHarvester.swift; sourceTree = "<group>"; };
 		A3C1DDB9D91131463006332552105E6C /* DeviceInfoProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeviceInfoProvider.swift; path = Sources/FingerprintJS/Library/DeviceInfoProvider.swift; sourceTree = "<group>"; };
 		A3D7C6F5E92BD575C8D15F705E80C83B /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Sources/FingerprintJS/Library/Configuration.swift; sourceTree = "<group>"; };
@@ -242,7 +240,7 @@
 		BA9206A6523368C1C1BE69FAEF704DC7 /* Pods-iOSExampleRiskCocoapods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-iOSExampleRiskCocoapods-acknowledgements.plist"; sourceTree = "<group>"; };
 		BB2F91AFEBA2E16682BB7AACB0A36211 /* DeviceIdentificationInfoProviding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DeviceIdentificationInfoProviding.swift; path = Sources/FingerprintJS/Harvesters/HardwareInfoHarvester/Providers/DeviceIdentificationInfoProviding.swift; sourceTree = "<group>"; };
 		BB65647ABA2C298F67A7D858E9D10331 /* FingerprintStabilityLevel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FingerprintStabilityLevel.swift; path = Sources/FingerprintJS/Library/FingerprintStabilityLevel.swift; sourceTree = "<group>"; };
-		C06DC881011814F61F26768C400D8983 /* FingerprintPro.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; path = FingerprintPro.xcframework; sourceTree = "<group>"; };
+		C06DC881011814F61F26768C400D8983 /* FingerprintPro.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = FingerprintPro.xcframework; sourceTree = "<group>"; };
 		C192D0974868A93A3F971DD010B5E56B /* Pods-iOSExampleRiskCocoapods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-iOSExampleRiskCocoapods-dummy.m"; sourceTree = "<group>"; };
 		C2897BFE2F9501ACA11ED79F5908808F /* LocalAuthenticationInfoHarvester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocalAuthenticationInfoHarvester.swift; path = Sources/FingerprintJS/Harvesters/LocalAuthenticationInfoHarvester/LocalAuthenticationInfoHarvester.swift; sourceTree = "<group>"; };
 		C72DCA385E86A3D2659806ECC69ACCCA /* Constants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -261,7 +259,7 @@
 		F28AFDA3B406451447CA0718419A917B /* Pods-iOSExampleRiskCocoapods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-iOSExampleRiskCocoapods-umbrella.h"; sourceTree = "<group>"; };
 		F2CC80F7690061B7B58D195E7873A3B6 /* CheckoutEventLoggerKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CheckoutEventLoggerKit.debug.xcconfig; sourceTree = "<group>"; };
 		F44B9AE2F01D99F93EBA27DD2DF47AC1 /* FingerprintJS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FingerprintJS.release.xcconfig; sourceTree = "<group>"; };
-		F6D06DF27833904E7C107AC5BD02777D /* FingerprintJS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FingerprintJS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6D06DF27833904E7C107AC5BD02777D /* FingerprintJS */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FingerprintJS; path = FingerprintJS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6F95D8058E603825CEA4FB54EE20DD6 /* SystemControlError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemControlError.swift; path = Sources/SystemControl/SystemControlError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -270,7 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				657AB4139D572ECA87EC0F4B1A6D1BCB /* Foundation.framework in Frameworks */,
+				0C751EF27980510A68111EF81AF61F6A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +276,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0325F84D2DC6823550FEF9C5A17A672 /* Foundation.framework in Frameworks */,
+				0813934C91D25FF24B5B34ED354CBCD5 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,7 +284,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E51630E023773F7C37A5F4B64F629A5 /* Foundation.framework in Frameworks */,
+				19545092E7E0BD385E25BEC7AF00B93E /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,9 +321,9 @@
 		1CEEFA63F57724E10045CE82C055B72F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F6D06DF27833904E7C107AC5BD02777D /* FingerprintJS.framework */,
-				9D40BBEA1151303CB60B1AA4A54DD88F /* Pods_iOSExampleRiskCocoapods.framework */,
-				360AF8DE0542151543373CB5BF8F4A3E /* Risk.framework */,
+				F6D06DF27833904E7C107AC5BD02777D /* FingerprintJS */,
+				9D40BBEA1151303CB60B1AA4A54DD88F /* Pods-iOSExampleRiskCocoapods */,
+				360AF8DE0542151543373CB5BF8F4A3E /* Risk */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -396,6 +394,14 @@
 			path = Sources/Risk/Services;
 			sourceTree = "<group>";
 		};
+		7AECBA61365544F357B06DE1C8710425 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				2CB74A84DF62E0DBFFA4715EF79E08A1 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		7CDF97F68B3459C3159FD5FE82CF7E31 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -432,6 +438,7 @@
 				885C83DAFD52E4670C1FC3B5C8256EE7 /* Frameworks */,
 				64491A595094C60A9917B8A209A5F79E /* Support Files */,
 			);
+			name = FingerprintPro;
 			path = FingerprintPro;
 			sourceTree = "<group>";
 		};
@@ -537,6 +544,7 @@
 				7CDF97F68B3459C3159FD5FE82CF7E31 /* Support Files */,
 				615AF9A20E33A430A6DE72DC2514426B /* SystemControl */,
 			);
+			name = FingerprintJS;
 			path = FingerprintJS;
 			sourceTree = "<group>";
 		};
@@ -573,7 +581,7 @@
 		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E4801F62A6B08CD9B5410329F1A18FDE /* iOS */,
+				7AECBA61365544F357B06DE1C8710425 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -584,15 +592,8 @@
 				382A80F2A23A397CB2CCDFE3D33EAA87 /* Frameworks */,
 				AA36F3F88FF363C4149EBD24F34D6CC2 /* Support Files */,
 			);
+			name = CheckoutEventLoggerKit;
 			path = CheckoutEventLoggerKit;
-			sourceTree = "<group>";
-		};
-		E4801F62A6B08CD9B5410329F1A18FDE /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */,
-			);
-			name = iOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -643,7 +644,7 @@
 			);
 			name = Risk;
 			productName = Risk;
-			productReference = 360AF8DE0542151543373CB5BF8F4A3E /* Risk.framework */;
+			productReference = 360AF8DE0542151543373CB5BF8F4A3E /* Risk */;
 			productType = "com.apple.product-type.framework";
 		};
 		AA92C266C7C1E114495E36186E5A9F31 /* Pods-iOSExampleRiskCocoapods */ = {
@@ -665,7 +666,7 @@
 			);
 			name = "Pods-iOSExampleRiskCocoapods";
 			productName = Pods_iOSExampleRiskCocoapods;
-			productReference = 9D40BBEA1151303CB60B1AA4A54DD88F /* Pods_iOSExampleRiskCocoapods.framework */;
+			productReference = 9D40BBEA1151303CB60B1AA4A54DD88F /* Pods-iOSExampleRiskCocoapods */;
 			productType = "com.apple.product-type.framework";
 		};
 		E08ED3D7F55A92B14DC907731169C185 /* FingerprintJS */ = {
@@ -683,7 +684,7 @@
 			);
 			name = FingerprintJS;
 			productName = FingerprintJS;
-			productReference = F6D06DF27833904E7C107AC5BD02777D /* FingerprintJS.framework */;
+			productReference = F6D06DF27833904E7C107AC5BD02777D /* FingerprintJS */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -704,6 +705,8 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 100;
 			productRefGroup = 1CEEFA63F57724E10045CE82C055B72F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -750,13 +753,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/CheckoutEventLoggerKit/CheckoutEventLoggerKit-xcframeworks-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy XCFrameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/CheckoutEventLoggerKit/CheckoutEventLoggerKit-xcframeworks-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -771,13 +770,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/FingerprintPro/FingerprintPro-xcframeworks-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy XCFrameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/FingerprintPro/FingerprintPro-xcframeworks-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
