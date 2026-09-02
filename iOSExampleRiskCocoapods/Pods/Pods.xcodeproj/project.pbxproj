@@ -16,6 +16,7 @@
 			dependencies = (
 			);
 			name = CheckoutEventLoggerKit;
+			productName = CheckoutEventLoggerKit;
 		};
 		E9C243DAADA86271CC0B2005D14E8D56 /* FingerprintPro */ = {
 			isa = PBXAggregateTarget;
@@ -26,6 +27,7 @@
 			dependencies = (
 			);
 			name = FingerprintPro;
+			productName = FingerprintPro;
 		};
 /* End PBXAggregateTarget section */
 
@@ -644,7 +646,7 @@
 			);
 			name = Risk;
 			productName = Risk;
-			productReference = 360AF8DE0542151543373CB5BF8F4A3E /* Risk */;
+			productReference = 360AF8DE0542151543373CB5BF8F4A3E /* Risk.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		AA92C266C7C1E114495E36186E5A9F31 /* Pods-iOSExampleRiskCocoapods */ = {
@@ -666,7 +668,7 @@
 			);
 			name = "Pods-iOSExampleRiskCocoapods";
 			productName = Pods_iOSExampleRiskCocoapods;
-			productReference = 9D40BBEA1151303CB60B1AA4A54DD88F /* Pods-iOSExampleRiskCocoapods */;
+			productReference = 9D40BBEA1151303CB60B1AA4A54DD88F /* Pods_iOSExampleRiskCocoapods.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		E08ED3D7F55A92B14DC907731169C185 /* FingerprintJS */ = {
@@ -753,9 +755,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/CheckoutEventLoggerKit/CheckoutEventLoggerKit-xcframeworks-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy XCFrameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/CheckoutEventLoggerKit/CheckoutEventLoggerKit-xcframeworks-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -770,9 +776,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/FingerprintPro/FingerprintPro-xcframeworks-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy XCFrameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/FingerprintPro/FingerprintPro-xcframeworks-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
