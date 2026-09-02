@@ -44,7 +44,7 @@ class DeviceDataServiceTests: XCTestCase {
 
     func testGetConfigurationDisabledWhenNoCollectors() {
         let mockAPIService = MockAPIService()
-        let config = RiskConfig(publicKey: "mocked_public_key", mssd: "12345678", environment: .qa)
+        let config = RiskConfig(publicKey: "mocked_public_key", environment: .qa, mssd: "12345678")
         let internalConfig = RiskSDKInternalConfig(config: config)
         let mockLogger = MockLoggerService(internalConfig: internalConfig)
         let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockAPIService, loggerService: mockLogger)
@@ -140,7 +140,7 @@ class DeviceDataServiceTests: XCTestCase {
     /// (`riskSdkVersion`, `timezone`, …) can change without churning this test.
     func testGetConfigurationCallsTheConfigurationsEndpoint() {
         let mockAPIService = MockAPIService()
-        let config = RiskConfig(publicKey: "mocked_public_key", mssd: "12345678", environment: .qa)
+        let config = RiskConfig(publicKey: "mocked_public_key", environment: .qa, mssd: "12345678")
         let internalConfig = RiskSDKInternalConfig(config: config)
         let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockAPIService, loggerService: MockLoggerService(internalConfig: internalConfig))
 
@@ -160,7 +160,7 @@ class DeviceDataServiceTests: XCTestCase {
 
     func testPersistFpDataCallsTheFingerprintV2Endpoint() throws {
         let mockAPIService = MockAPIService()
-        let config = RiskConfig(publicKey: "mocked_public_key", mssd: "12345678", environment: .qa)
+        let config = RiskConfig(publicKey: "mocked_public_key", environment: .qa, mssd: "12345678")
         let internalConfig = RiskSDKInternalConfig(config: config)
         let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockAPIService, loggerService: MockLoggerService(internalConfig: internalConfig))
 
@@ -188,7 +188,7 @@ class DeviceDataServiceTests: XCTestCase {
     /// entry omits it (its identifier travels in the root request id instead).
     func testPersistFpDataEncodesTheCollectorsWireShape() throws {
         let mockAPIService = MockAPIService()
-        let config = RiskConfig(publicKey: "mocked_public_key", mssd: "12345678", environment: .qa)
+        let config = RiskConfig(publicKey: "mocked_public_key", environment: .qa, mssd: "12345678")
         let internalConfig = RiskSDKInternalConfig(config: config)
         let deviceDataService = DeviceDataService(config: internalConfig, apiService: mockAPIService, loggerService: MockLoggerService(internalConfig: internalConfig))
 

@@ -39,7 +39,7 @@ class RiskTests: XCTestCase {
     func testPublishWithSimpleCollectorOnly() {
         let expectation = self.expectation(description: "Risk data published via simple collector")
 
-        let config = RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa)
+        let config = RiskConfig(publicKey: "dummy_key", environment: .qa, mssd: "12345678")
         let riskSDK = Risk(config: config)
 
         let stubDeviceDataService = MockDeviceDataService()
@@ -67,7 +67,7 @@ class RiskTests: XCTestCase {
     func testPublishWithBothCollectors() {
         let expectation = self.expectation(description: "Risk data published via both collectors")
 
-        let config = RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa)
+        let config = RiskConfig(publicKey: "dummy_key", environment: .qa, mssd: "12345678")
         let riskSDK = Risk(config: config)
 
         let stubDeviceDataService = MockDeviceDataService()
@@ -99,7 +99,7 @@ class RiskTests: XCTestCase {
     func testPublishFailsWhenAllCollectorsFail() {
         let expectation = self.expectation(description: "Publish fails when every collector fails")
 
-        let config = RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa)
+        let config = RiskConfig(publicKey: "dummy_key", environment: .qa, mssd: "12345678")
         let riskSDK = Risk(config: config)
 
         let stubDeviceDataService = MockDeviceDataService()
@@ -131,7 +131,7 @@ class RiskTests: XCTestCase {
     func testPublishSucceedsWhenOnlyTheProCollectorFails() {
         let expectation = self.expectation(description: "Publish succeeds on simple alone")
 
-        let riskSDK = Risk(config: RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa))
+        let riskSDK = Risk(config: RiskConfig(publicKey: "dummy_key", environment: .qa, mssd: "12345678"))
         let stubDeviceDataService = MockDeviceDataService()
         let stubFingerprintService = MockFingerprintService()
         stubFingerprintService.shouldSucceed = false
@@ -162,7 +162,7 @@ class RiskTests: XCTestCase {
     func testPublishSucceedsWhenOnlyTheSimpleCollectorFails() {
         let expectation = self.expectation(description: "Publish succeeds on PRO alone")
 
-        let riskSDK = Risk(config: RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa))
+        let riskSDK = Risk(config: RiskConfig(publicKey: "dummy_key", environment: .qa, mssd: "12345678"))
         let stubDeviceDataService = MockDeviceDataService()
         let stubFingerprintService = MockFingerprintService()
         stubFingerprintService.requestId = "pro_request_id"
@@ -192,7 +192,7 @@ class RiskTests: XCTestCase {
     /// collectors being toggled server-side with no integration change. A collector the backend
     /// has since removed from `data_collectors` must therefore be torn down, not left running.
     func testReconfigureTearsDownCollectorsDisabledServerSide() {
-        let riskSDK = Risk(config: RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa))
+        let riskSDK = Risk(config: RiskConfig(publicKey: "dummy_key", environment: .qa, mssd: "12345678"))
         let stubDeviceDataService = MockDeviceDataService()
         riskSDK.deviceDataService = stubDeviceDataService
 
@@ -231,7 +231,7 @@ class RiskTests: XCTestCase {
     /// The reverse direction: a collector newly enabled server-side is picked up, and the one
     /// dropped in the same response is cleared.
     func testReconfigureSwapsTheEnabledCollector() {
-        let riskSDK = Risk(config: RiskConfig(publicKey: "dummy_key", mssd: "12345678", environment: .qa))
+        let riskSDK = Risk(config: RiskConfig(publicKey: "dummy_key", environment: .qa, mssd: "12345678"))
         let stubDeviceDataService = MockDeviceDataService()
         riskSDK.deviceDataService = stubDeviceDataService
 
