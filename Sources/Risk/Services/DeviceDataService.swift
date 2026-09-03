@@ -125,7 +125,7 @@ final class DeviceDataService: DeviceDataServiceProtocol {
 
     func getConfiguration(completion: @escaping (Result<DeviceDataConfig, RiskError.Configuration>) -> Void) {
         let startBlockTime = CACurrentMediaTime()
-        let endpoint = "\(config.deviceDataEndpoint)/collect/configurations?integrationType=\(config.integrationType.rawValue)&riskSdkVersion=\(Constants.riskSdkVersion)&timezone=\(TimeZone.current.identifier)"
+        let endpoint = "\(config.deviceDataEndpoint)/configurations?integrationType=\(config.integrationType.rawValue)&riskSdkVersion=\(Constants.riskSdkVersion)&timezone=\(TimeZone.current.identifier)"
         let authToken = config.merchantPublicKey
 
         apiService.getJSONFromAPIWithAuthorization(endpoint: endpoint, authToken: authToken, responseType: DeviceDataConfiguration.self) {
@@ -164,7 +164,7 @@ final class DeviceDataService: DeviceDataServiceProtocol {
 
     func persistFpData(fingerprintRequestId: String, fpLoadTime: Double, fpPublishTime: Double, cardToken: String?, collectors: [CollectorData], deviceCollectorProviders: [String], completion: @escaping (Result<PersistDeviceDataResponse, RiskError.Publish>) -> Void) {
         let startPersistTime = CACurrentMediaTime()
-        let endpoint = "\(config.deviceDataEndpoint)/collect/fingerprint/v2?riskSdkVersion=\(Constants.riskSdkVersion)"
+        let endpoint = "\(config.deviceDataEndpoint)/fingerprint/v2?riskSdkVersion=\(Constants.riskSdkVersion)"
         let authToken = config.merchantPublicKey
         let integrationType = config.integrationType
 
@@ -191,5 +191,4 @@ final class DeviceDataService: DeviceDataServiceProtocol {
             }
         }
     }
-
 }
