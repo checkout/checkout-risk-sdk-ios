@@ -38,7 +38,7 @@ struct ContentView: View {
 
 			// Optional: when unset the shared device data endpoint is used
 			let mssd = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_MSSD"]
-			
+            
 			let yourConfig = RiskConfig(publicKey: publicKey, environment: RiskEnvironment.qa, mssd: mssd)
 			self.riskSDK = Risk.init(config: yourConfig)
 			

@@ -16,9 +16,9 @@ class RiskSDKInternalConfigTests: XCTestCase {
     }
 
     func testUsesMerchantSpecificDeviceDataEndpointWhenMssdIsProvided() {
-        XCTAssertEqual(endpointFor(environment: .qa, mssd: "merchant"), "https://merchant.devices-egw.cko-qa.ckotech.co")
-        XCTAssertEqual(endpointFor(environment: .sandbox, mssd: "merchant"), "https://merchant.devices.api.sandbox.checkout.com")
-        XCTAssertEqual(endpointFor(environment: .production, mssd: "merchant"), "https://merchant.devices.api.checkout.com")
+        XCTAssertEqual(endpointFor(environment: .qa, mssd: "merchant"), "https://merchant.devices-egw.cko-qa.ckotech.co/collect")
+        XCTAssertEqual(endpointFor(environment: .sandbox, mssd: "merchant"), "https://merchant.devices.api.sandbox.checkout.com/collect")
+        XCTAssertEqual(endpointFor(environment: .production, mssd: "merchant"), "https://merchant.devices.api.checkout.com/collect")
     }
 
     func testTreatsBlankMssdAsAbsent() {
