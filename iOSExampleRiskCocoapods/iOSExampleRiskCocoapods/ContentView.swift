@@ -31,14 +31,19 @@ struct ContentView: View {
         .padding().background(Color.gray.opacity(0.1))
 
         Button("Pay $1400") {
-			guard let publicKey = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_PUBLIC_KEY"] else {
-				error = "Environment variable (SAMPLE_MERCHANT_PUBLIC_KEY) not set"
-				return
-			}
-
-			// Optional: when unset the shared device data endpoint is used
-			let mssd = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_MSSD"]
+//			guard let publicKey = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_PUBLIC_KEY"] else {
+//				error = "Environment variable (SAMPLE_MERCHANT_PUBLIC_KEY) not set"
+//				return
+//			}
+//
+//			// Optional: when unset the shared device data endpoint is used
+//			let mssd = ProcessInfo.processInfo.environment["SAMPLE_MERCHANT_MSSD"]
 			
+            let publicKey = "pk_qa_7wzteoyh4nctbkbvghw7eoimiyo"
+            var mssd: String?
+            mssd = nil
+//            mssd = "bc2vfz7p"
+            
 			let yourConfig = RiskConfig(publicKey: publicKey, environment: RiskEnvironment.qa, mssd: mssd)
 			self.riskSDK = Risk.init(config: yourConfig)
 			
