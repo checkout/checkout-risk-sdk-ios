@@ -153,7 +153,7 @@ class DeviceDataServiceTests: XCTestCase {
         let endpoint = mockAPIService.lastGetEndpoint
         XCTAssertNotNil(endpoint)
         XCTAssertTrue(
-            endpoint?.hasPrefix("\(internalConfig.deviceDataEndpoint)/collect/configurations?") ?? false,
+            endpoint?.hasPrefix("\(internalConfig.deviceDataEndpoint)/configurations?") ?? false,
             "Unexpected configurations endpoint: \(endpoint ?? "nil")"
         )
     }
@@ -178,7 +178,7 @@ class DeviceDataServiceTests: XCTestCase {
         let endpoint = mockAPIService.lastPutEndpoint
         XCTAssertNotNil(endpoint)
         XCTAssertTrue(
-            endpoint?.hasPrefix("\(internalConfig.deviceDataEndpoint)/collect/fingerprint/v2?") ?? false,
+            endpoint?.hasPrefix("\(internalConfig.deviceDataEndpoint)/fingerprint/v2?") ?? false,
             "Unexpected persist endpoint: \(endpoint ?? "nil")"
         )
     }
