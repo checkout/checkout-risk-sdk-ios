@@ -10,9 +10,9 @@ import XCTest
 
 class RiskSDKInternalConfigTests: XCTestCase {
     func testUsesSharedDeviceDataEndpointWhenNoMssdIsProvided() {
-        XCTAssertEqual(endpointFor(environment: .qa, mssd: nil), "https://prism-qa.ckotech.co")
-        XCTAssertEqual(endpointFor(environment: .sandbox, mssd: nil), "https://risk.sandbox.checkout.com")
-        XCTAssertEqual(endpointFor(environment: .production, mssd: nil), "https://risk.checkout.com")
+        XCTAssertEqual(endpointFor(environment: .qa, mssd: nil), "https://prism-qa.ckotech.co/collect")
+        XCTAssertEqual(endpointFor(environment: .sandbox, mssd: nil), "https://risk.sandbox.checkout.com/collect")
+        XCTAssertEqual(endpointFor(environment: .production, mssd: nil), "https://risk.checkout.com/collect")
     }
 
     func testUsesMerchantSpecificDeviceDataEndpointWhenMssdIsProvided() {
@@ -22,7 +22,7 @@ class RiskSDKInternalConfigTests: XCTestCase {
     }
 
     func testTreatsBlankMssdAsAbsent() {
-        XCTAssertEqual(endpointFor(environment: .production, mssd: "  "), "https://risk.checkout.com")
+        XCTAssertEqual(endpointFor(environment: .production, mssd: "  "), "https://risk.checkout.com/collect")
     }
 
     private func endpointFor(environment: RiskEnvironment, mssd: String?) -> String {
