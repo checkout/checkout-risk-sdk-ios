@@ -13,6 +13,7 @@ The package helps collect device data for merchants with direct integration (sta
   - [Documentation](#documentation)
     - [Usage guide](#usage-guide)
     - [Public API](#public-api)
+    - [Device collectors](#device-collectors)
     - [Additional Resources](#additional-resources)
   - [Demo projects](#demo-projects)
   - [Changelog](#changelog)
@@ -169,6 +170,24 @@ Aside the instantiation via the `init` method, the package exposes two methods:
     ```
     </details>
 
+
+### Device collectors
+The SDK collects device data through one or more *collectors*. Which collectors run is
+controlled server-side per merchant via the `configurations` endpoint (`data_collectors`);
+no integration changes are required to enable or disable a collector.
+
+| Collector | Provider (`device_collector_provider`) | Description |
+| --- | --- | --- |
+| FingerprintPRO | `fingerprint` | Highly accurate device id resolved server-side. Requires a fingerprint public key. |
+| FingerprintJS (OSS) | `simple` | Open-source, on-device device id with no backend call. Runs **in parallel** with PRO when both are enabled. |
+
+When enabled, each collector's payload is sent on `publishData` in the `fingerprint/v2`
+`collectors` array, tagged with its provider. A single collector failing does not prevent
+the others from publishing.
+
+> **License:** the open-source [fingerprintjs-ios](https://github.com/fingerprintjs/fingerprintjs-ios)
+> collector is [MIT licensed](https://github.com/fingerprintjs/fingerprintjs-ios/blob/main/LICENSE)
+> with no restrictions on production usage. It operates entirely on-device (no data is sent to a third party).
 
 ### Additional Resources
 <!-- TODO: Add website documentation link here - [Risk iOS SDK documentation](https://docs.checkout.com/risk/overview) -->

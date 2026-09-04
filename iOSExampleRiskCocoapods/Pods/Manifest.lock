@@ -1,9 +1,15 @@
 PODS:
   - CheckoutEventLoggerKit (1.2.4)
-  - FingerprintPro (2.9.0)
-  - Risk (4.0.1):
+  - FingerprintJS (1.7.0):
+    - FingerprintJS/Core (= 1.7.0)
+  - FingerprintJS/Core (1.7.0):
+    - FingerprintJS/SystemControl
+  - FingerprintJS/SystemControl (1.7.0)
+  - FingerprintPro (2.17.1)
+  - Risk (4.1.0):
     - CheckoutEventLoggerKit (~> 1.2.4)
-    - FingerprintPro (< 3.0.0, >= 2.7.0)
+    - FingerprintJS (< 2.0.0, >= 1.7.0)
+    - FingerprintPro (< 3.0.0, >= 2.12.0)
 
 DEPENDENCIES:
   - Risk (from `../`)
@@ -11,6 +17,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - CheckoutEventLoggerKit
+    - FingerprintJS
     - FingerprintPro
 
 EXTERNAL SOURCES:
@@ -19,9 +26,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CheckoutEventLoggerKit: b780dec46295a34942780ea6230d0d5fd08aa05a
-  FingerprintPro: 0d3e5957cd165ff4065853c3b7089c118656a234
-  Risk: e8ee31ba847b6cce1d4c384a9bb49d78fc34cdc5
+  FingerprintJS: afb6185cf6951b60adc334f41d63e2e0a520bcf4
+  FingerprintPro: 7a746c73201be4f79cbe34fac8f73f8e11f4c3bd
+  Risk: 0cecd4b89308296b3a40d7a3fcc4bf3115665ff2
 
 PODFILE CHECKSUM: a69f511add1d2778d3ef82907c4e0d234bda1f8d
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.17.0

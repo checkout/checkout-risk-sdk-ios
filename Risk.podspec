@@ -17,5 +17,6 @@ Pod::Spec.new do |s|
     
     s.dependency 'CheckoutEventLoggerKit', '~> 1.2.4'
     s.dependency 'FingerprintPro', '>= 2.12.0', '< 3.0.0'
+    s.dependency 'FingerprintJS', '>= 1.7.0', '< 2.0.0'
     
   end

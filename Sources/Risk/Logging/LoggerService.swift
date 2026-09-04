@@ -42,11 +42,11 @@ struct RiskLogError {
 
 protocol LoggerServiceProtocol {
     init(internalConfig: RiskSDKInternalConfig)
-    func log(riskEvent: RiskEvent, blockTime: Double?, deviceDataPersistTime: Double?, fpLoadTime: Double?, fpPublishTime: Double?, deviceSessionId: String?, requestId: String?, error: RiskLogError?)
+    func log(riskEvent: RiskEvent, blockTime: Double?, deviceDataPersistTime: Double?, fpLoadTime: Double?, fpPublishTime: Double?, deviceSessionId: String?, requestId: String?, error: RiskLogError?, deviceCollectorProviders: [String]?)
 }
 
 extension LoggerServiceProtocol {
-    func formatEvent(internalConfig: RiskSDKInternalConfig, riskEvent: RiskEvent, deviceSessionId: String?, requestId: String?, error: RiskLogError?, latencyMetric: Elapsed) -> Event {
+    func formatEvent(internalConfig: RiskSDKInternalConfig, riskEvent: RiskEvent, deviceSessionId: String?, requestId: String?, error: RiskLogError?, latencyMetric: Elapsed, deviceCollectorProviders: [String]?) -> Event {
         let maskedPublicKey = getMaskedPublicKey(publicKey: internalConfig.merchantPublicKey)
         let ddTags = getDDTags(environment: internalConfig.environment.rawValue)
         var monitoringLevel: MonitoringLevel
@@ -82,6 +82,7 @@ extension LoggerServiceProtocol {
                 "Timezone": AnyCodable(TimeZone.current.identifier),
                 "FpRequestId": AnyCodable(requestId),
                 "DeviceSessionId": AnyCodable(deviceSessionId),
+                "DeviceCollectorProviders": AnyCodable(deviceCollectorProviders?.joined(separator: ",")),
             ]
         case .publishFailure, .loadFailure, .publishDisabled:
             properties = [
@@ -155,13 +156,13 @@ struct LoggerService: LoggerServiceProtocol {
         )
     }
 
-    func log(riskEvent: RiskEvent, blockTime: Double? = nil, deviceDataPersistTime: Double? = nil, fpLoadTime: Double? = nil, fpPublishTime: Double? = nil, deviceSessionId: String? = nil, requestId: String? = nil, error: RiskLogError? = nil) {
-        
+    func log(riskEvent: RiskEvent, blockTime: Double? = nil, deviceDataPersistTime: Double? = nil, fpLoadTime: Double? = nil, fpPublishTime: Double? = nil, deviceSessionId: String? = nil, requestId: String? = nil, error: RiskLogError? = nil, deviceCollectorProviders: [String]? = nil) {
+
         let totalLatency = (blockTime ?? 0.00) + (deviceDataPersistTime ?? 0.00) + (fpLoadTime ?? 0.00) + (fpPublishTime ?? 0.00)
-        
+
         let latencyMetric = Elapsed(block: blockTime, deviceDataPersist: deviceDataPersistTime, fpload: fpLoadTime, fppublish: fpPublishTime, total: totalLatency)
-        
-        let event = formatEvent(internalConfig: internalConfig, riskEvent: riskEvent, deviceSessionId: deviceSessionId, requestId: requestId, error: error, latencyMetric: latencyMetric)
+
+        let event = formatEvent(internalConfig: internalConfig, riskEvent: riskEvent, deviceSessionId: deviceSessionId, requestId: requestId, error: error, latencyMetric: latencyMetric, deviceCollectorProviders: deviceCollectorProviders)
         logger.log(event: event)
     }
 }
