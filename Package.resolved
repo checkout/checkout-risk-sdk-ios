@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "fingerprintjs-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fingerprintjs/fingerprintjs-ios",
+      "state" : {
+        "revision" : "f31f75dfc5a12ea224bbf29dc5aa46b7168351ed",
+        "version" : "1.7.0"
+      }
+    },
+    {
       "identity" : "fingerprintjs-pro-ios",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/fingerprintjs/fingerprintjs-pro-ios",

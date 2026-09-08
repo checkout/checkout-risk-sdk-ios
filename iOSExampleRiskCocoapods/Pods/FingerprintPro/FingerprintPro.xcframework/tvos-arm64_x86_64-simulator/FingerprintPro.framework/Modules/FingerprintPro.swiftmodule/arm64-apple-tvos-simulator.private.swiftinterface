@@ -1,50 +1,32 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)
-// swift-module-flags: -target arm64-apple-tvos15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name FingerprintPro
-// swift-module-flags-ignorable: -enable-bare-slash-regex
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target arm64-apple-tvos15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name FingerprintPro
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import AppTrackingTransparency
+import Combine
 import CoreBluetooth
 import CoreLocation
 import CryptoKit
 import Foundation
 import MapKit
 import Swift
+import UIKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-#if compiler(>=5.3) && $Sendable
 public typealias VisitorIdResponseBlock = @Sendable (Swift.Result<FingerprintPro.FingerprintResponse, FingerprintPro.FPJSError>) -> Swift.Void
-#endif
-#if compiler(>=5.3) && $Sendable
 public typealias VisitorIdBlock = @Sendable (Swift.Result<Swift.String, FingerprintPro.FPJSError>) -> Swift.Void
-#endif
-public protocol FingerprintClientProviding : Swift.Sendable {
-  #if compiler(>=5.3) && $AsyncAwait
+public protocol FingerprintClientProviding : AnyObject, Swift.Sendable {
   func getVisitorId(_ metadata: FingerprintPro.Metadata?, timeout: Foundation.TimeInterval) async throws -> Swift.String
-  #endif
-  #if compiler(>=5.3) && $AsyncAwait
   func getVisitorIdResponse(_ metadata: FingerprintPro.Metadata?, timeout: Foundation.TimeInterval) async throws -> FingerprintPro.FingerprintResponse
-  #endif
-  #if compiler(>=5.3) && $Sendable
   @preconcurrency func getVisitorId(_ metadata: FingerprintPro.Metadata?, timeout: Foundation.TimeInterval, completion: @escaping FingerprintPro.VisitorIdBlock)
-  #endif
-  #if compiler(>=5.3) && $Sendable
   @preconcurrency func getVisitorIdResponse(_ metadata: FingerprintPro.Metadata?, timeout: Foundation.TimeInterval, completion: @escaping FingerprintPro.VisitorIdResponseBlock)
-  #endif
 }
 extension FingerprintPro.FingerprintClientProviding {
-  #if compiler(>=5.3) && $AsyncAwait
   public func getVisitorId(_ metadata: FingerprintPro.Metadata? = nil, timeout timeoutInterval: Foundation.TimeInterval = 60.0) async throws -> Swift.String
-  #endif
-  #if compiler(>=5.3) && $AsyncAwait
   public func getVisitorIdResponse(_ metadata: FingerprintPro.Metadata? = nil, timeout timeoutInterval: Foundation.TimeInterval = 60.0) async throws -> FingerprintPro.FingerprintResponse
-  #endif
-  #if compiler(>=5.3) && $Sendable
   @preconcurrency public func getVisitorId(_ metadata: FingerprintPro.Metadata? = nil, timeout timeoutInterval: Foundation.TimeInterval = 60.0, completion: @escaping FingerprintPro.VisitorIdBlock)
-  #endif
-  #if compiler(>=5.3) && $Sendable
   @preconcurrency public func getVisitorIdResponse(_ metadata: FingerprintPro.Metadata? = nil, timeout timeoutInterval: Foundation.TimeInterval = 60.0, completion: @escaping FingerprintPro.VisitorIdResponseBlock)
-  #endif
 }
 extension FingerprintPro.JSONType : FingerprintPro.JSONTypeConvertible {
   public func asJSONType() -> FingerprintPro.JSONType
@@ -82,6 +64,8 @@ public enum JSONType : Swift.Equatable, Swift.Sendable {
 }
 extension FingerprintPro.JSONType : Swift.Encodable {
   public func encode(to encoder: any Swift.Encoder) throws
+}
+extension CoreLocation.CLLocationManager : @unchecked @retroactive Swift.Sendable {
 }
 public struct IPLocation : Swift.Equatable, Swift.Codable, Swift.Sendable {
   public let city: FingerprintPro.IPGeoInfo?
@@ -146,9 +130,34 @@ public struct SeenAt : Swift.Equatable, Swift.Codable, Swift.Sendable {
 extension CoreLocation.CLLocationCoordinate2D : Swift.Equatable {
   public static func == (lhs: CoreLocation.CLLocationCoordinate2D, rhs: CoreLocation.CLLocationCoordinate2D) -> Swift.Bool
 }
+@_Concurrency.MainActor public protocol LocationPermissionHelperProviding : AnyObject, Swift.Sendable {
+  @_Concurrency.MainActor var delegate: (any FingerprintPro.LocationPermissionDelegate)? { get set }
+  @_Concurrency.MainActor func requestPermission()
+  @available(iOS 14.0, *)
+  @_Concurrency.MainActor func requestTemporaryPrecisePermission()
+  @_Concurrency.MainActor func requestPermanentPrecisePermission(title: Swift.String, message: Swift.String, cancelButtonTitle: Swift.String, openSettingsButtonTitle: Swift.String)
+}
+extension FingerprintPro.LocationPermissionHelperProviding {
+  @_Concurrency.MainActor public func requestPermanentPrecisePermission(title: Swift.String = "Enable Precise Location", message: Swift.String = "To help detect suspicious and fraud activity in your account, please enable Precise Location in your iOS Settings.", cancelButtonTitle: Swift.String = "Cancel", openSettingsButtonTitle: Swift.String = "Settings...")
+}
+@_Concurrency.MainActor public protocol LocationPermissionDelegate : AnyObject {
+  @_Concurrency.MainActor func locationPermissionHelper(_ helper: any FingerprintPro.LocationPermissionHelperProviding, shouldShowLocationRationale rationale: FingerprintPro.LocationPermissionRationale)
+  @_Concurrency.MainActor func locationPermissionHelper(_ helper: any FingerprintPro.LocationPermissionHelperProviding, didUpdateLocationPermission status: CoreLocation.CLAuthorizationStatus)
+}
+public enum LocationPermissionRationale {
+  case needInitialPermission
+  case needSettingsChange
+  case upgradeToPrecise
+  public static func == (a: FingerprintPro.LocationPermissionRationale, b: FingerprintPro.LocationPermissionRationale) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 public enum FingerprintProFactory {
   public static func getInstance(_ apiKey: Swift.String) -> any FingerprintPro.FingerprintClientProviding
   public static func getInstance(_ configuration: FingerprintPro.Configuration) -> any FingerprintPro.FingerprintClientProviding
+  @_Concurrency.MainActor public static func getLocationPermissionHelperInstance(delegate: (any FingerprintPro.LocationPermissionDelegate)? = nil) -> any FingerprintPro.LocationPermissionHelperProviding
 }
 @available(*, deprecated, renamed: "APIError.Code")
 public typealias APIErrorType = FingerprintPro.APIError.Code
@@ -220,13 +229,24 @@ extension CoreLocation.CLLocationCoordinate2D : Swift.CustomStringConvertible {
     get
   }
 }
+@_cdecl("FingerprintProFontSizeChangedHandler")
+public func fontSizeChangedHandler()
+@_cdecl("FingerprintProFontFamilyChangedHandler")
+public func fontFamilyChangedHandler()
+@_cdecl("FingerprintProFontWeightChangedHandler")
+public func fontWeightChangedHandler()
+@_cdecl("FingerprintProFontWidthChangedHandler")
+public func fontWidthChangedHandler()
+@_cdecl("FingerprintProFontHeightChangedHandler")
+public func fontHeightChangedHandler()
 public typealias IntegrationInfo = (Swift.String, Swift.String)
 public struct Configuration : Swift.Sendable {
   public var apiKey: Swift.String
   public var region: FingerprintPro.Region
   public var integrationInfo: [FingerprintPro.IntegrationInfo]
   public var extendedResponseFormat: Swift.Bool
-  public init(apiKey: Swift.String, region: FingerprintPro.Region = .global, integrationInfo: [FingerprintPro.IntegrationInfo] = [], extendedResponseFormat: Swift.Bool = false)
+  public var allowUseOfLocationData: Swift.Bool
+  public init(apiKey: Swift.String, region: FingerprintPro.Region = .global, integrationInfo: [FingerprintPro.IntegrationInfo] = [], extendedResponseFormat: Swift.Bool = false, allowUseOfLocationData: Swift.Bool = false)
 }
 public struct Metadata : Swift.Equatable, Swift.Sendable {
   public var linkedId: Swift.String?
@@ -256,6 +276,8 @@ extension FingerprintPro.FPJSError : Swift.CustomStringConvertible {
     get
   }
 }
+extension FingerprintPro.LocationPermissionRationale : Swift.Equatable {}
+extension FingerprintPro.LocationPermissionRationale : Swift.Hashable {}
 extension FingerprintPro.APIError.Code : Swift.Equatable {}
 extension FingerprintPro.APIError.Code : Swift.Hashable {}
 extension FingerprintPro.APIError.Code : Swift.RawRepresentable {}

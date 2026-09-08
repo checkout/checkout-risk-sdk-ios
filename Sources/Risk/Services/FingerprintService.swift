@@ -67,13 +67,13 @@ final class FingerprintService: FingerprintServiceProtocol {
             
             switch result {
             case .failure(let error):
-                self?.loggerService.log(riskEvent: .publishFailure, blockTime: self?.blockTime, deviceDataPersistTime: nil, fpLoadTime: self?.fpLoadTime, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "publishData", message: error.localizedDescription, status: nil, type: "Error"))
+                self?.loggerService.log(riskEvent: .publishFailure, blockTime: self?.blockTime, deviceDataPersistTime: nil, fpLoadTime: self?.fpLoadTime, fpPublishTime: nil, deviceSessionId: nil, requestId: nil, error: RiskLogError(reason: "publishData", message: error.localizedDescription, status: nil, type: "Error"), deviceCollectorProviders: nil)
                 
                 return completion(.failure(.couldNotPublishRiskData))
             case let .success(response):
                 let endFpPublishTime = CACurrentMediaTime()
                 self?.fpPublishTime = (endFpPublishTime - startFpPublishTime) * 1000
-                self?.loggerService.log(riskEvent: .collected, blockTime: self?.blockTime, deviceDataPersistTime: nil, fpLoadTime: self?.fpLoadTime, fpPublishTime: self?.fpPublishTime, deviceSessionId: nil, requestId: response.requestId, error: nil)
+                self?.loggerService.log(riskEvent: .collected, blockTime: self?.blockTime, deviceDataPersistTime: nil, fpLoadTime: self?.fpLoadTime, fpPublishTime: self?.fpPublishTime, deviceSessionId: nil, requestId: response.requestId, error: nil, deviceCollectorProviders: nil)
                 self?.requestId = response.requestId
                 
                 completion(.success(FpPublishData(requestId: response.requestId, fpLoadTime: self?.fpLoadTime ?? 0.00, fpPublishTime: self?.fpPublishTime ?? 0.00)))
